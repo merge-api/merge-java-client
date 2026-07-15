@@ -17,6 +17,8 @@ public final class RoleEnum {
 
     public static final RoleEnum SYSTEM = new RoleEnum(Value.SYSTEM, "SYSTEM");
 
+    public static final RoleEnum SUPPORT = new RoleEnum(Value.SUPPORT, "SUPPORT");
+
     public static final RoleEnum ADMIN = new RoleEnum(Value.ADMIN, "ADMIN");
 
     private final Value value;
@@ -60,6 +62,8 @@ public final class RoleEnum {
                 return visitor.visitMember();
             case SYSTEM:
                 return visitor.visitSystem();
+            case SUPPORT:
+                return visitor.visitSupport();
             case ADMIN:
                 return visitor.visitAdmin();
             case UNKNOWN:
@@ -81,6 +85,8 @@ public final class RoleEnum {
                 return MEMBER;
             case "SYSTEM":
                 return SYSTEM;
+            case "SUPPORT":
+                return SUPPORT;
             case "ADMIN":
                 return ADMIN;
             default:
@@ -101,6 +107,8 @@ public final class RoleEnum {
 
         MERGE_TEAM,
 
+        SUPPORT,
+
         UNKNOWN
     }
 
@@ -116,6 +124,8 @@ public final class RoleEnum {
         T visitSystem();
 
         T visitMergeTeam();
+
+        T visitSupport();
 
         T visitUnknown(String unknownType);
     }

@@ -10,10 +10,16 @@ import com.merge.api.core.MergeException;
 import com.merge.api.core.ObjectMappers;
 import com.merge.api.core.QueryStringMapper;
 import com.merge.api.core.RequestOptions;
+import com.merge.api.core.SyncPagingIterable;
 import com.merge.api.crm.types.PaginatedSyncStatusList;
+import com.merge.api.crm.types.SyncStatus;
 import com.merge.api.crm.types.SyncStatusListRequest;
 import java.io.IOException;
+import java.util.Collections;
+import java.util.List;
+import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ExecutionException;
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.Headers;
@@ -34,21 +40,21 @@ public class AsyncRawSyncStatusClient {
     /**
      * Get sync status for the current sync and the most recently finished sync. <code>last_sync_start</code> represents the most recent time any sync began. <code>last_sync_finished</code> represents the most recent time any sync completed. These timestamps may correspond to different sync instances which may result in a sync start time being later than a separate sync completed time. To ensure you are retrieving the latest available data reference the <code>last_sync_finished</code> timestamp where <code>last_sync_result</code> is <code>DONE</code>. Possible values for <code>status</code> and <code>last_sync_result</code> are <code>DISABLED</code>, <code>DONE</code>, <code>FAILED</code>, <code>PARTIALLY_SYNCED</code>, <code>PAUSED</code>, <code>SYNCING</code>. Learn more about sync status in our <a href="https://help.merge.dev/en/articles/8184193-merge-sync-statuses">Help Center</a>.
      */
-    public CompletableFuture<MergeApiHttpResponse<PaginatedSyncStatusList>> list() {
+    public CompletableFuture<MergeApiHttpResponse<SyncPagingIterable<SyncStatus>>> list() {
         return list(SyncStatusListRequest.builder().build());
     }
 
     /**
      * Get sync status for the current sync and the most recently finished sync. <code>last_sync_start</code> represents the most recent time any sync began. <code>last_sync_finished</code> represents the most recent time any sync completed. These timestamps may correspond to different sync instances which may result in a sync start time being later than a separate sync completed time. To ensure you are retrieving the latest available data reference the <code>last_sync_finished</code> timestamp where <code>last_sync_result</code> is <code>DONE</code>. Possible values for <code>status</code> and <code>last_sync_result</code> are <code>DISABLED</code>, <code>DONE</code>, <code>FAILED</code>, <code>PARTIALLY_SYNCED</code>, <code>PAUSED</code>, <code>SYNCING</code>. Learn more about sync status in our <a href="https://help.merge.dev/en/articles/8184193-merge-sync-statuses">Help Center</a>.
      */
-    public CompletableFuture<MergeApiHttpResponse<PaginatedSyncStatusList>> list(SyncStatusListRequest request) {
+    public CompletableFuture<MergeApiHttpResponse<SyncPagingIterable<SyncStatus>>> list(SyncStatusListRequest request) {
         return list(request, null);
     }
 
     /**
      * Get sync status for the current sync and the most recently finished sync. <code>last_sync_start</code> represents the most recent time any sync began. <code>last_sync_finished</code> represents the most recent time any sync completed. These timestamps may correspond to different sync instances which may result in a sync start time being later than a separate sync completed time. To ensure you are retrieving the latest available data reference the <code>last_sync_finished</code> timestamp where <code>last_sync_result</code> is <code>DONE</code>. Possible values for <code>status</code> and <code>last_sync_result</code> are <code>DISABLED</code>, <code>DONE</code>, <code>FAILED</code>, <code>PARTIALLY_SYNCED</code>, <code>PAUSED</code>, <code>SYNCING</code>. Learn more about sync status in our <a href="https://help.merge.dev/en/articles/8184193-merge-sync-statuses">Help Center</a>.
      */
-    public CompletableFuture<MergeApiHttpResponse<PaginatedSyncStatusList>> list(
+    public CompletableFuture<MergeApiHttpResponse<SyncPagingIterable<SyncStatus>>> list(
             SyncStatusListRequest request, RequestOptions requestOptions) {
         HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
@@ -71,24 +77,38 @@ public class AsyncRawSyncStatusClient {
         if (requestOptions != null && requestOptions.getTimeout().isPresent()) {
             client = clientOptions.httpClientWithTimeout(requestOptions);
         }
-        CompletableFuture<MergeApiHttpResponse<PaginatedSyncStatusList>> future = new CompletableFuture<>();
+        CompletableFuture<MergeApiHttpResponse<SyncPagingIterable<SyncStatus>>> future = new CompletableFuture<>();
         client.newCall(okhttpRequest).enqueue(new Callback() {
             @Override
             public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                 try (ResponseBody responseBody = response.body()) {
+                    String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                     if (response.isSuccessful()) {
+                        PaginatedSyncStatusList parsedResponse =
+                                ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PaginatedSyncStatusList.class);
+                        Optional<String> startingAfter = parsedResponse.getNext();
+                        SyncStatusListRequest nextRequest = SyncStatusListRequest.builder()
+                                .from(request)
+                                .cursor(startingAfter)
+                                .build();
+                        List<SyncStatus> result = parsedResponse.getResults().orElse(Collections.emptyList());
                         future.complete(new MergeApiHttpResponse<>(
-                                ObjectMappers.JSON_MAPPER.readValue(
-                                        responseBody.string(), PaginatedSyncStatusList.class),
+                                new SyncPagingIterable<SyncStatus>(
+                                        startingAfter.isPresent(), result, parsedResponse, () -> {
+                                            try {
+                                                return list(nextRequest, requestOptions)
+                                                        .get()
+                                                        .body();
+                                            } catch (InterruptedException | ExecutionException e) {
+                                                throw new RuntimeException(e);
+                                            }
+                                        }),
                                 response));
                         return;
                     }
-                    String responseBodyString = responseBody != null ? responseBody.string() : "{}";
+                    Object errorBody = ObjectMappers.parseErrorBody(responseBodyString);
                     future.completeExceptionally(new ApiError(
-                            "Error with status code " + response.code(),
-                            response.code(),
-                            ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Object.class),
-                            response));
+                            "Error with status code " + response.code(), response.code(), errorBody, response));
                     return;
                 } catch (IOException e) {
                     future.completeExceptionally(new MergeException("Network error executing HTTP request", e));

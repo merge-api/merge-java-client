@@ -10,7 +10,6 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
-import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.merge.api.core.ObjectMappers;
 import java.util.ArrayList;
@@ -49,7 +48,7 @@ public final class EndUserDetailsRequest {
 
     private final Optional<Boolean> areSyncsDisabled;
 
-    private final Optional<Map<String, JsonNode>> integrationSpecificConfig;
+    private final Optional<Map<String, Object>> integrationSpecificConfig;
 
     private final Map<String, Object> additionalProperties;
 
@@ -67,7 +66,7 @@ public final class EndUserDetailsRequest {
                     categoryCommonModelScopes,
             Optional<EndUserDetailsRequestLanguage> language,
             Optional<Boolean> areSyncsDisabled,
-            Optional<Map<String, JsonNode>> integrationSpecificConfig,
+            Optional<Map<String, Object>> integrationSpecificConfig,
             Map<String, Object> additionalProperties) {
         this.endUserEmailAddress = endUserEmailAddress;
         this.endUserOrganizationName = endUserOrganizationName;
@@ -190,7 +189,7 @@ public final class EndUserDetailsRequest {
      * @return A JSON object containing integration-specific configuration options.
      */
     @JsonProperty("integration_specific_config")
-    public Optional<Map<String, JsonNode>> getIntegrationSpecificConfig() {
+    public Optional<Map<String, Object>> getIntegrationSpecificConfig() {
         return integrationSpecificConfig;
     }
 
@@ -349,9 +348,9 @@ public final class EndUserDetailsRequest {
         /**
          * <p>A JSON object containing integration-specific configuration options.</p>
          */
-        _FinalStage integrationSpecificConfig(Optional<Map<String, JsonNode>> integrationSpecificConfig);
+        _FinalStage integrationSpecificConfig(Optional<Map<String, Object>> integrationSpecificConfig);
 
-        _FinalStage integrationSpecificConfig(Map<String, JsonNode> integrationSpecificConfig);
+        _FinalStage integrationSpecificConfig(Map<String, Object> integrationSpecificConfig);
     }
 
     @JsonIgnoreProperties(ignoreUnknown = true)
@@ -363,7 +362,7 @@ public final class EndUserDetailsRequest {
 
         private String endUserOriginId;
 
-        private Optional<Map<String, JsonNode>> integrationSpecificConfig = Optional.empty();
+        private Optional<Map<String, Object>> integrationSpecificConfig = Optional.empty();
 
         private Optional<Boolean> areSyncsDisabled = Optional.empty();
 
@@ -448,7 +447,7 @@ public final class EndUserDetailsRequest {
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @java.lang.Override
-        public _FinalStage integrationSpecificConfig(Map<String, JsonNode> integrationSpecificConfig) {
+        public _FinalStage integrationSpecificConfig(Map<String, Object> integrationSpecificConfig) {
             this.integrationSpecificConfig = Optional.ofNullable(integrationSpecificConfig);
             return this;
         }
@@ -458,7 +457,7 @@ public final class EndUserDetailsRequest {
          */
         @java.lang.Override
         @JsonSetter(value = "integration_specific_config", nulls = Nulls.SKIP)
-        public _FinalStage integrationSpecificConfig(Optional<Map<String, JsonNode>> integrationSpecificConfig) {
+        public _FinalStage integrationSpecificConfig(Optional<Map<String, Object>> integrationSpecificConfig) {
             this.integrationSpecificConfig = integrationSpecificConfig;
             return this;
         }

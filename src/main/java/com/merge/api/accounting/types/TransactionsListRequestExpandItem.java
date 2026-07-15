@@ -22,6 +22,9 @@ public final class TransactionsListRequestExpandItem {
     public static final TransactionsListRequestExpandItem CONTACT =
             new TransactionsListRequestExpandItem(Value.CONTACT, "contact");
 
+    public static final TransactionsListRequestExpandItem COMPANY =
+            new TransactionsListRequestExpandItem(Value.COMPANY, "company");
+
     private final Value value;
 
     private final String string;
@@ -65,6 +68,8 @@ public final class TransactionsListRequestExpandItem {
                 return visitor.visitAccount();
             case CONTACT:
                 return visitor.visitContact();
+            case COMPANY:
+                return visitor.visitCompany();
             case UNKNOWN:
             default:
                 return visitor.visitUnknown(string);
@@ -84,6 +89,8 @@ public final class TransactionsListRequestExpandItem {
                 return ACCOUNT;
             case "contact":
                 return CONTACT;
+            case "company":
+                return COMPANY;
             default:
                 return new TransactionsListRequestExpandItem(Value.UNKNOWN, value);
         }
@@ -93,6 +100,8 @@ public final class TransactionsListRequestExpandItem {
         ACCOUNT,
 
         ACCOUNTING_PERIOD,
+
+        COMPANY,
 
         CONTACT,
 
@@ -107,6 +116,8 @@ public final class TransactionsListRequestExpandItem {
         T visitAccount();
 
         T visitAccountingPeriod();
+
+        T visitCompany();
 
         T visitContact();
 

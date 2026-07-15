@@ -31,6 +31,8 @@ public final class RemoteFieldClass {
 
     private final Optional<Boolean> isCustom;
 
+    private final Optional<Boolean> isCommonModelField;
+
     private final Optional<Boolean> isRequired;
 
     private final Optional<FieldTypeEnum> fieldType;
@@ -49,6 +51,7 @@ public final class RemoteFieldClass {
             Optional<String> remoteKeyName,
             Optional<String> description,
             Optional<Boolean> isCustom,
+            Optional<Boolean> isCommonModelField,
             Optional<Boolean> isRequired,
             Optional<FieldTypeEnum> fieldType,
             Optional<FieldFormatEnum> fieldFormat,
@@ -60,6 +63,7 @@ public final class RemoteFieldClass {
         this.remoteKeyName = remoteKeyName;
         this.description = description;
         this.isCustom = isCustom;
+        this.isCommonModelField = isCommonModelField;
         this.isRequired = isRequired;
         this.fieldType = fieldType;
         this.fieldFormat = fieldFormat;
@@ -91,6 +95,11 @@ public final class RemoteFieldClass {
     @JsonProperty("is_custom")
     public Optional<Boolean> getIsCustom() {
         return isCustom;
+    }
+
+    @JsonProperty("is_common_model_field")
+    public Optional<Boolean> getIsCommonModelField() {
+        return isCommonModelField;
     }
 
     @JsonProperty("is_required")
@@ -135,6 +144,7 @@ public final class RemoteFieldClass {
                 && remoteKeyName.equals(other.remoteKeyName)
                 && description.equals(other.description)
                 && isCustom.equals(other.isCustom)
+                && isCommonModelField.equals(other.isCommonModelField)
                 && isRequired.equals(other.isRequired)
                 && fieldType.equals(other.fieldType)
                 && fieldFormat.equals(other.fieldFormat)
@@ -150,6 +160,7 @@ public final class RemoteFieldClass {
                 this.remoteKeyName,
                 this.description,
                 this.isCustom,
+                this.isCommonModelField,
                 this.isRequired,
                 this.fieldType,
                 this.fieldFormat,
@@ -178,6 +189,8 @@ public final class RemoteFieldClass {
 
         private Optional<Boolean> isCustom = Optional.empty();
 
+        private Optional<Boolean> isCommonModelField = Optional.empty();
+
         private Optional<Boolean> isRequired = Optional.empty();
 
         private Optional<FieldTypeEnum> fieldType = Optional.empty();
@@ -199,6 +212,7 @@ public final class RemoteFieldClass {
             remoteKeyName(other.getRemoteKeyName());
             description(other.getDescription());
             isCustom(other.getIsCustom());
+            isCommonModelField(other.getIsCommonModelField());
             isRequired(other.getIsRequired());
             fieldType(other.getFieldType());
             fieldFormat(other.getFieldFormat());
@@ -259,6 +273,17 @@ public final class RemoteFieldClass {
 
         public Builder isCustom(Boolean isCustom) {
             this.isCustom = Optional.ofNullable(isCustom);
+            return this;
+        }
+
+        @JsonSetter(value = "is_common_model_field", nulls = Nulls.SKIP)
+        public Builder isCommonModelField(Optional<Boolean> isCommonModelField) {
+            this.isCommonModelField = isCommonModelField;
+            return this;
+        }
+
+        public Builder isCommonModelField(Boolean isCommonModelField) {
+            this.isCommonModelField = Optional.ofNullable(isCommonModelField);
             return this;
         }
 
@@ -324,6 +349,7 @@ public final class RemoteFieldClass {
                     remoteKeyName,
                     description,
                     isCustom,
+                    isCommonModelField,
                     isRequired,
                     fieldType,
                     fieldFormat,

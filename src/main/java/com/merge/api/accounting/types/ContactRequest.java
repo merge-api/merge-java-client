@@ -10,7 +10,6 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
-import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.merge.api.core.ObjectMappers;
 import java.util.HashMap;
@@ -22,6 +21,8 @@ import java.util.Optional;
 @JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = ContactRequest.Builder.class)
 public final class ContactRequest {
+    private final Optional<String> contactUrl;
+
     private final Optional<String> name;
 
     private final Optional<Boolean> isSupplier;
@@ -36,21 +37,22 @@ public final class ContactRequest {
 
     private final Optional<String> currency;
 
-    private final Optional<String> company;
+    private final Optional<ContactRequestCompany> company;
 
-    private final Optional<List<Optional<ContactRequestAddressesItem>>> addresses;
+    private final Optional<List<ContactRequestAddressesItem>> addresses;
 
-    private final Optional<List<AccountingPhoneNumberRequest>> phoneNumbers;
+    private final Optional<List<ContactRequestPhoneNumbersItem>> phoneNumbers;
 
-    private final Optional<Map<String, JsonNode>> integrationParams;
+    private final Optional<Map<String, Object>> integrationParams;
 
-    private final Optional<Map<String, JsonNode>> linkedAccountParams;
+    private final Optional<Map<String, Object>> linkedAccountParams;
 
     private final Optional<List<RemoteFieldRequest>> remoteFields;
 
     private final Map<String, Object> additionalProperties;
 
     private ContactRequest(
+            Optional<String> contactUrl,
             Optional<String> name,
             Optional<Boolean> isSupplier,
             Optional<Boolean> isCustomer,
@@ -58,13 +60,14 @@ public final class ContactRequest {
             Optional<String> taxNumber,
             Optional<ContactRequestStatus> status,
             Optional<String> currency,
-            Optional<String> company,
-            Optional<List<Optional<ContactRequestAddressesItem>>> addresses,
-            Optional<List<AccountingPhoneNumberRequest>> phoneNumbers,
-            Optional<Map<String, JsonNode>> integrationParams,
-            Optional<Map<String, JsonNode>> linkedAccountParams,
+            Optional<ContactRequestCompany> company,
+            Optional<List<ContactRequestAddressesItem>> addresses,
+            Optional<List<ContactRequestPhoneNumbersItem>> phoneNumbers,
+            Optional<Map<String, Object>> integrationParams,
+            Optional<Map<String, Object>> linkedAccountParams,
             Optional<List<RemoteFieldRequest>> remoteFields,
             Map<String, Object> additionalProperties) {
+        this.contactUrl = contactUrl;
         this.name = name;
         this.isSupplier = isSupplier;
         this.isCustomer = isCustomer;
@@ -79,6 +82,14 @@ public final class ContactRequest {
         this.linkedAccountParams = linkedAccountParams;
         this.remoteFields = remoteFields;
         this.additionalProperties = additionalProperties;
+    }
+
+    /**
+     * @return The 3rd party URL of the contact.
+     */
+    @JsonProperty("contact_url")
+    public Optional<String> getContactUrl() {
+        return contactUrl;
     }
 
     /**
@@ -145,7 +156,7 @@ public final class ContactRequest {
      * @return The company the contact belongs to.
      */
     @JsonProperty("company")
-    public Optional<String> getCompany() {
+    public Optional<ContactRequestCompany> getCompany() {
         return company;
     }
 
@@ -153,7 +164,7 @@ public final class ContactRequest {
      * @return <code>Address</code> object IDs for the given <code>Contacts</code> object.
      */
     @JsonProperty("addresses")
-    public Optional<List<Optional<ContactRequestAddressesItem>>> getAddresses() {
+    public Optional<List<ContactRequestAddressesItem>> getAddresses() {
         return addresses;
     }
 
@@ -161,17 +172,17 @@ public final class ContactRequest {
      * @return <code>AccountingPhoneNumber</code> object for the given <code>Contacts</code> object.
      */
     @JsonProperty("phone_numbers")
-    public Optional<List<AccountingPhoneNumberRequest>> getPhoneNumbers() {
+    public Optional<List<ContactRequestPhoneNumbersItem>> getPhoneNumbers() {
         return phoneNumbers;
     }
 
     @JsonProperty("integration_params")
-    public Optional<Map<String, JsonNode>> getIntegrationParams() {
+    public Optional<Map<String, Object>> getIntegrationParams() {
         return integrationParams;
     }
 
     @JsonProperty("linked_account_params")
-    public Optional<Map<String, JsonNode>> getLinkedAccountParams() {
+    public Optional<Map<String, Object>> getLinkedAccountParams() {
         return linkedAccountParams;
     }
 
@@ -192,7 +203,8 @@ public final class ContactRequest {
     }
 
     private boolean equalTo(ContactRequest other) {
-        return name.equals(other.name)
+        return contactUrl.equals(other.contactUrl)
+                && name.equals(other.name)
                 && isSupplier.equals(other.isSupplier)
                 && isCustomer.equals(other.isCustomer)
                 && emailAddress.equals(other.emailAddress)
@@ -210,6 +222,7 @@ public final class ContactRequest {
     @java.lang.Override
     public int hashCode() {
         return Objects.hash(
+                this.contactUrl,
                 this.name,
                 this.isSupplier,
                 this.isCustomer,
@@ -236,6 +249,8 @@ public final class ContactRequest {
 
     @JsonIgnoreProperties(ignoreUnknown = true)
     public static final class Builder {
+        private Optional<String> contactUrl = Optional.empty();
+
         private Optional<String> name = Optional.empty();
 
         private Optional<Boolean> isSupplier = Optional.empty();
@@ -250,15 +265,15 @@ public final class ContactRequest {
 
         private Optional<String> currency = Optional.empty();
 
-        private Optional<String> company = Optional.empty();
+        private Optional<ContactRequestCompany> company = Optional.empty();
 
-        private Optional<List<Optional<ContactRequestAddressesItem>>> addresses = Optional.empty();
+        private Optional<List<ContactRequestAddressesItem>> addresses = Optional.empty();
 
-        private Optional<List<AccountingPhoneNumberRequest>> phoneNumbers = Optional.empty();
+        private Optional<List<ContactRequestPhoneNumbersItem>> phoneNumbers = Optional.empty();
 
-        private Optional<Map<String, JsonNode>> integrationParams = Optional.empty();
+        private Optional<Map<String, Object>> integrationParams = Optional.empty();
 
-        private Optional<Map<String, JsonNode>> linkedAccountParams = Optional.empty();
+        private Optional<Map<String, Object>> linkedAccountParams = Optional.empty();
 
         private Optional<List<RemoteFieldRequest>> remoteFields = Optional.empty();
 
@@ -268,6 +283,7 @@ public final class ContactRequest {
         private Builder() {}
 
         public Builder from(ContactRequest other) {
+            contactUrl(other.getContactUrl());
             name(other.getName());
             isSupplier(other.getIsSupplier());
             isCustomer(other.getIsCustomer());
@@ -281,6 +297,20 @@ public final class ContactRequest {
             integrationParams(other.getIntegrationParams());
             linkedAccountParams(other.getLinkedAccountParams());
             remoteFields(other.getRemoteFields());
+            return this;
+        }
+
+        /**
+         * <p>The 3rd party URL of the contact.</p>
+         */
+        @JsonSetter(value = "contact_url", nulls = Nulls.SKIP)
+        public Builder contactUrl(Optional<String> contactUrl) {
+            this.contactUrl = contactUrl;
+            return this;
+        }
+
+        public Builder contactUrl(String contactUrl) {
+            this.contactUrl = Optional.ofNullable(contactUrl);
             return this;
         }
 
@@ -390,12 +420,12 @@ public final class ContactRequest {
          * <p>The company the contact belongs to.</p>
          */
         @JsonSetter(value = "company", nulls = Nulls.SKIP)
-        public Builder company(Optional<String> company) {
+        public Builder company(Optional<ContactRequestCompany> company) {
             this.company = company;
             return this;
         }
 
-        public Builder company(String company) {
+        public Builder company(ContactRequestCompany company) {
             this.company = Optional.ofNullable(company);
             return this;
         }
@@ -404,12 +434,12 @@ public final class ContactRequest {
          * <p><code>Address</code> object IDs for the given <code>Contacts</code> object.</p>
          */
         @JsonSetter(value = "addresses", nulls = Nulls.SKIP)
-        public Builder addresses(Optional<List<Optional<ContactRequestAddressesItem>>> addresses) {
+        public Builder addresses(Optional<List<ContactRequestAddressesItem>> addresses) {
             this.addresses = addresses;
             return this;
         }
 
-        public Builder addresses(List<Optional<ContactRequestAddressesItem>> addresses) {
+        public Builder addresses(List<ContactRequestAddressesItem> addresses) {
             this.addresses = Optional.ofNullable(addresses);
             return this;
         }
@@ -418,34 +448,34 @@ public final class ContactRequest {
          * <p><code>AccountingPhoneNumber</code> object for the given <code>Contacts</code> object.</p>
          */
         @JsonSetter(value = "phone_numbers", nulls = Nulls.SKIP)
-        public Builder phoneNumbers(Optional<List<AccountingPhoneNumberRequest>> phoneNumbers) {
+        public Builder phoneNumbers(Optional<List<ContactRequestPhoneNumbersItem>> phoneNumbers) {
             this.phoneNumbers = phoneNumbers;
             return this;
         }
 
-        public Builder phoneNumbers(List<AccountingPhoneNumberRequest> phoneNumbers) {
+        public Builder phoneNumbers(List<ContactRequestPhoneNumbersItem> phoneNumbers) {
             this.phoneNumbers = Optional.ofNullable(phoneNumbers);
             return this;
         }
 
         @JsonSetter(value = "integration_params", nulls = Nulls.SKIP)
-        public Builder integrationParams(Optional<Map<String, JsonNode>> integrationParams) {
+        public Builder integrationParams(Optional<Map<String, Object>> integrationParams) {
             this.integrationParams = integrationParams;
             return this;
         }
 
-        public Builder integrationParams(Map<String, JsonNode> integrationParams) {
+        public Builder integrationParams(Map<String, Object> integrationParams) {
             this.integrationParams = Optional.ofNullable(integrationParams);
             return this;
         }
 
         @JsonSetter(value = "linked_account_params", nulls = Nulls.SKIP)
-        public Builder linkedAccountParams(Optional<Map<String, JsonNode>> linkedAccountParams) {
+        public Builder linkedAccountParams(Optional<Map<String, Object>> linkedAccountParams) {
             this.linkedAccountParams = linkedAccountParams;
             return this;
         }
 
-        public Builder linkedAccountParams(Map<String, JsonNode> linkedAccountParams) {
+        public Builder linkedAccountParams(Map<String, Object> linkedAccountParams) {
             this.linkedAccountParams = Optional.ofNullable(linkedAccountParams);
             return this;
         }
@@ -463,6 +493,7 @@ public final class ContactRequest {
 
         public ContactRequest build() {
             return new ContactRequest(
+                    contactUrl,
                     name,
                     isSupplier,
                     isCustomer,

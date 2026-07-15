@@ -10,7 +10,6 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
-import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.merge.api.core.ObjectMappers;
 import java.time.OffsetDateTime;
@@ -35,7 +34,7 @@ public final class ExpenseRequest {
 
     private final Optional<Double> totalTaxAmount;
 
-    private final Optional<TransactionCurrencyEnum> currency;
+    private final Optional<ExpenseRequestCurrency> currency;
 
     private final Optional<String> exchangeRate;
 
@@ -53,9 +52,9 @@ public final class ExpenseRequest {
 
     private final Optional<ExpenseRequestAccountingPeriod> accountingPeriod;
 
-    private final Optional<Map<String, JsonNode>> integrationParams;
+    private final Optional<Map<String, Object>> integrationParams;
 
-    private final Optional<Map<String, JsonNode>> linkedAccountParams;
+    private final Optional<Map<String, Object>> linkedAccountParams;
 
     private final Optional<List<RemoteFieldRequest>> remoteFields;
 
@@ -68,7 +67,7 @@ public final class ExpenseRequest {
             Optional<Double> totalAmount,
             Optional<Double> subTotal,
             Optional<Double> totalTaxAmount,
-            Optional<TransactionCurrencyEnum> currency,
+            Optional<ExpenseRequestCurrency> currency,
             Optional<String> exchangeRate,
             Optional<Boolean> inclusiveOfTax,
             Optional<ExpenseRequestCompany> company,
@@ -77,8 +76,8 @@ public final class ExpenseRequest {
             Optional<List<ExpenseLineRequest>> lines,
             Optional<List<Optional<ExpenseRequestTrackingCategoriesItem>>> trackingCategories,
             Optional<ExpenseRequestAccountingPeriod> accountingPeriod,
-            Optional<Map<String, JsonNode>> integrationParams,
-            Optional<Map<String, JsonNode>> linkedAccountParams,
+            Optional<Map<String, Object>> integrationParams,
+            Optional<Map<String, Object>> linkedAccountParams,
             Optional<List<RemoteFieldRequest>> remoteFields,
             Map<String, Object> additionalProperties) {
         this.transactionDate = transactionDate;
@@ -462,7 +461,7 @@ public final class ExpenseRequest {
      * </ul>
      */
     @JsonProperty("currency")
-    public Optional<TransactionCurrencyEnum> getCurrency() {
+    public Optional<ExpenseRequestCurrency> getCurrency() {
         return currency;
     }
 
@@ -525,12 +524,12 @@ public final class ExpenseRequest {
     }
 
     @JsonProperty("integration_params")
-    public Optional<Map<String, JsonNode>> getIntegrationParams() {
+    public Optional<Map<String, Object>> getIntegrationParams() {
         return integrationParams;
     }
 
     @JsonProperty("linked_account_params")
-    public Optional<Map<String, JsonNode>> getLinkedAccountParams() {
+    public Optional<Map<String, Object>> getLinkedAccountParams() {
         return linkedAccountParams;
     }
 
@@ -617,7 +616,7 @@ public final class ExpenseRequest {
 
         private Optional<Double> totalTaxAmount = Optional.empty();
 
-        private Optional<TransactionCurrencyEnum> currency = Optional.empty();
+        private Optional<ExpenseRequestCurrency> currency = Optional.empty();
 
         private Optional<String> exchangeRate = Optional.empty();
 
@@ -635,9 +634,9 @@ public final class ExpenseRequest {
 
         private Optional<ExpenseRequestAccountingPeriod> accountingPeriod = Optional.empty();
 
-        private Optional<Map<String, JsonNode>> integrationParams = Optional.empty();
+        private Optional<Map<String, Object>> integrationParams = Optional.empty();
 
-        private Optional<Map<String, JsonNode>> linkedAccountParams = Optional.empty();
+        private Optional<Map<String, Object>> linkedAccountParams = Optional.empty();
 
         private Optional<List<RemoteFieldRequest>> remoteFields = Optional.empty();
 
@@ -1064,12 +1063,12 @@ public final class ExpenseRequest {
          * </ul>
          */
         @JsonSetter(value = "currency", nulls = Nulls.SKIP)
-        public Builder currency(Optional<TransactionCurrencyEnum> currency) {
+        public Builder currency(Optional<ExpenseRequestCurrency> currency) {
             this.currency = currency;
             return this;
         }
 
-        public Builder currency(TransactionCurrencyEnum currency) {
+        public Builder currency(ExpenseRequestCurrency currency) {
             this.currency = Optional.ofNullable(currency);
             return this;
         }
@@ -1182,23 +1181,23 @@ public final class ExpenseRequest {
         }
 
         @JsonSetter(value = "integration_params", nulls = Nulls.SKIP)
-        public Builder integrationParams(Optional<Map<String, JsonNode>> integrationParams) {
+        public Builder integrationParams(Optional<Map<String, Object>> integrationParams) {
             this.integrationParams = integrationParams;
             return this;
         }
 
-        public Builder integrationParams(Map<String, JsonNode> integrationParams) {
+        public Builder integrationParams(Map<String, Object> integrationParams) {
             this.integrationParams = Optional.ofNullable(integrationParams);
             return this;
         }
 
         @JsonSetter(value = "linked_account_params", nulls = Nulls.SKIP)
-        public Builder linkedAccountParams(Optional<Map<String, JsonNode>> linkedAccountParams) {
+        public Builder linkedAccountParams(Optional<Map<String, Object>> linkedAccountParams) {
             this.linkedAccountParams = linkedAccountParams;
             return this;
         }
 
-        public Builder linkedAccountParams(Map<String, JsonNode> linkedAccountParams) {
+        public Builder linkedAccountParams(Map<String, Object> linkedAccountParams) {
             this.linkedAccountParams = Optional.ofNullable(linkedAccountParams);
             return this;
         }

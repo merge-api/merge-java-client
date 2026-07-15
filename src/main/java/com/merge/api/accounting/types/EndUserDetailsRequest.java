@@ -10,7 +10,6 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
-import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.merge.api.core.ObjectMappers;
 import java.util.ArrayList;
@@ -49,7 +48,13 @@ public final class EndUserDetailsRequest {
 
     private final Optional<Boolean> areSyncsDisabled;
 
-    private final Optional<Map<String, JsonNode>> integrationSpecificConfig;
+    private final Optional<Map<String, Object>> integrationSpecificConfig;
+
+    private final Optional<EndUserDetailsRequestCompletedAccountInitialScreen> completedAccountInitialScreen;
+
+    private final Optional<String> linkedDestinationId;
+
+    private final Optional<String> credentialId;
 
     private final Map<String, Object> additionalProperties;
 
@@ -67,7 +72,10 @@ public final class EndUserDetailsRequest {
                     categoryCommonModelScopes,
             Optional<EndUserDetailsRequestLanguage> language,
             Optional<Boolean> areSyncsDisabled,
-            Optional<Map<String, JsonNode>> integrationSpecificConfig,
+            Optional<Map<String, Object>> integrationSpecificConfig,
+            Optional<EndUserDetailsRequestCompletedAccountInitialScreen> completedAccountInitialScreen,
+            Optional<String> linkedDestinationId,
+            Optional<String> credentialId,
             Map<String, Object> additionalProperties) {
         this.endUserEmailAddress = endUserEmailAddress;
         this.endUserOrganizationName = endUserOrganizationName;
@@ -82,6 +90,9 @@ public final class EndUserDetailsRequest {
         this.language = language;
         this.areSyncsDisabled = areSyncsDisabled;
         this.integrationSpecificConfig = integrationSpecificConfig;
+        this.completedAccountInitialScreen = completedAccountInitialScreen;
+        this.linkedDestinationId = linkedDestinationId;
+        this.credentialId = credentialId;
         this.additionalProperties = additionalProperties;
     }
 
@@ -190,8 +201,35 @@ public final class EndUserDetailsRequest {
      * @return A JSON object containing integration-specific configuration options.
      */
     @JsonProperty("integration_specific_config")
-    public Optional<Map<String, JsonNode>> getIntegrationSpecificConfig() {
+    public Optional<Map<String, Object>> getIntegrationSpecificConfig() {
         return integrationSpecificConfig;
+    }
+
+    /**
+     * @return When creating a Link token, you can specifiy the initial screen of Linking Flow for a completed Linked Account.
+     * <ul>
+     * <li><code>SELECTIVE_SYNC</code> - SELECTIVE_SYNC</li>
+     * </ul>
+     */
+    @JsonProperty("completed_account_initial_screen")
+    public Optional<EndUserDetailsRequestCompletedAccountInitialScreen> getCompletedAccountInitialScreen() {
+        return completedAccountInitialScreen;
+    }
+
+    /**
+     * @return The UUID of the linked destination that you want this Linked Account to be tied to.
+     */
+    @JsonProperty("linked_destination_id")
+    public Optional<String> getLinkedDestinationId() {
+        return linkedDestinationId;
+    }
+
+    /**
+     * @return The id of the credential that you want this Linked Account to be tied to.
+     */
+    @JsonProperty("credential_id")
+    public Optional<String> getCredentialId() {
+        return credentialId;
     }
 
     @java.lang.Override
@@ -218,7 +256,10 @@ public final class EndUserDetailsRequest {
                 && categoryCommonModelScopes.equals(other.categoryCommonModelScopes)
                 && language.equals(other.language)
                 && areSyncsDisabled.equals(other.areSyncsDisabled)
-                && integrationSpecificConfig.equals(other.integrationSpecificConfig);
+                && integrationSpecificConfig.equals(other.integrationSpecificConfig)
+                && completedAccountInitialScreen.equals(other.completedAccountInitialScreen)
+                && linkedDestinationId.equals(other.linkedDestinationId)
+                && credentialId.equals(other.credentialId);
     }
 
     @java.lang.Override
@@ -236,7 +277,10 @@ public final class EndUserDetailsRequest {
                 this.categoryCommonModelScopes,
                 this.language,
                 this.areSyncsDisabled,
-                this.integrationSpecificConfig);
+                this.integrationSpecificConfig,
+                this.completedAccountInitialScreen,
+                this.linkedDestinationId,
+                this.credentialId);
     }
 
     @java.lang.Override
@@ -349,9 +393,35 @@ public final class EndUserDetailsRequest {
         /**
          * <p>A JSON object containing integration-specific configuration options.</p>
          */
-        _FinalStage integrationSpecificConfig(Optional<Map<String, JsonNode>> integrationSpecificConfig);
+        _FinalStage integrationSpecificConfig(Optional<Map<String, Object>> integrationSpecificConfig);
 
-        _FinalStage integrationSpecificConfig(Map<String, JsonNode> integrationSpecificConfig);
+        _FinalStage integrationSpecificConfig(Map<String, Object> integrationSpecificConfig);
+
+        /**
+         * <p>When creating a Link token, you can specifiy the initial screen of Linking Flow for a completed Linked Account.</p>
+         * <ul>
+         * <li><code>SELECTIVE_SYNC</code> - SELECTIVE_SYNC</li>
+         * </ul>
+         */
+        _FinalStage completedAccountInitialScreen(
+                Optional<EndUserDetailsRequestCompletedAccountInitialScreen> completedAccountInitialScreen);
+
+        _FinalStage completedAccountInitialScreen(
+                EndUserDetailsRequestCompletedAccountInitialScreen completedAccountInitialScreen);
+
+        /**
+         * <p>The UUID of the linked destination that you want this Linked Account to be tied to.</p>
+         */
+        _FinalStage linkedDestinationId(Optional<String> linkedDestinationId);
+
+        _FinalStage linkedDestinationId(String linkedDestinationId);
+
+        /**
+         * <p>The id of the credential that you want this Linked Account to be tied to.</p>
+         */
+        _FinalStage credentialId(Optional<String> credentialId);
+
+        _FinalStage credentialId(String credentialId);
     }
 
     @JsonIgnoreProperties(ignoreUnknown = true)
@@ -363,7 +433,14 @@ public final class EndUserDetailsRequest {
 
         private String endUserOriginId;
 
-        private Optional<Map<String, JsonNode>> integrationSpecificConfig = Optional.empty();
+        private Optional<String> credentialId = Optional.empty();
+
+        private Optional<String> linkedDestinationId = Optional.empty();
+
+        private Optional<EndUserDetailsRequestCompletedAccountInitialScreen> completedAccountInitialScreen =
+                Optional.empty();
+
+        private Optional<Map<String, Object>> integrationSpecificConfig = Optional.empty();
 
         private Optional<Boolean> areSyncsDisabled = Optional.empty();
 
@@ -404,6 +481,9 @@ public final class EndUserDetailsRequest {
             language(other.getLanguage());
             areSyncsDisabled(other.getAreSyncsDisabled());
             integrationSpecificConfig(other.getIntegrationSpecificConfig());
+            completedAccountInitialScreen(other.getCompletedAccountInitialScreen());
+            linkedDestinationId(other.getLinkedDestinationId());
+            credentialId(other.getCredentialId());
             return this;
         }
 
@@ -444,11 +524,79 @@ public final class EndUserDetailsRequest {
         }
 
         /**
+         * <p>The id of the credential that you want this Linked Account to be tied to.</p>
+         * @return Reference to {@code this} so that method calls can be chained together.
+         */
+        @java.lang.Override
+        public _FinalStage credentialId(String credentialId) {
+            this.credentialId = Optional.ofNullable(credentialId);
+            return this;
+        }
+
+        /**
+         * <p>The id of the credential that you want this Linked Account to be tied to.</p>
+         */
+        @java.lang.Override
+        @JsonSetter(value = "credential_id", nulls = Nulls.SKIP)
+        public _FinalStage credentialId(Optional<String> credentialId) {
+            this.credentialId = credentialId;
+            return this;
+        }
+
+        /**
+         * <p>The UUID of the linked destination that you want this Linked Account to be tied to.</p>
+         * @return Reference to {@code this} so that method calls can be chained together.
+         */
+        @java.lang.Override
+        public _FinalStage linkedDestinationId(String linkedDestinationId) {
+            this.linkedDestinationId = Optional.ofNullable(linkedDestinationId);
+            return this;
+        }
+
+        /**
+         * <p>The UUID of the linked destination that you want this Linked Account to be tied to.</p>
+         */
+        @java.lang.Override
+        @JsonSetter(value = "linked_destination_id", nulls = Nulls.SKIP)
+        public _FinalStage linkedDestinationId(Optional<String> linkedDestinationId) {
+            this.linkedDestinationId = linkedDestinationId;
+            return this;
+        }
+
+        /**
+         * <p>When creating a Link token, you can specifiy the initial screen of Linking Flow for a completed Linked Account.</p>
+         * <ul>
+         * <li><code>SELECTIVE_SYNC</code> - SELECTIVE_SYNC</li>
+         * </ul>
+         * @return Reference to {@code this} so that method calls can be chained together.
+         */
+        @java.lang.Override
+        public _FinalStage completedAccountInitialScreen(
+                EndUserDetailsRequestCompletedAccountInitialScreen completedAccountInitialScreen) {
+            this.completedAccountInitialScreen = Optional.ofNullable(completedAccountInitialScreen);
+            return this;
+        }
+
+        /**
+         * <p>When creating a Link token, you can specifiy the initial screen of Linking Flow for a completed Linked Account.</p>
+         * <ul>
+         * <li><code>SELECTIVE_SYNC</code> - SELECTIVE_SYNC</li>
+         * </ul>
+         */
+        @java.lang.Override
+        @JsonSetter(value = "completed_account_initial_screen", nulls = Nulls.SKIP)
+        public _FinalStage completedAccountInitialScreen(
+                Optional<EndUserDetailsRequestCompletedAccountInitialScreen> completedAccountInitialScreen) {
+            this.completedAccountInitialScreen = completedAccountInitialScreen;
+            return this;
+        }
+
+        /**
          * <p>A JSON object containing integration-specific configuration options.</p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @java.lang.Override
-        public _FinalStage integrationSpecificConfig(Map<String, JsonNode> integrationSpecificConfig) {
+        public _FinalStage integrationSpecificConfig(Map<String, Object> integrationSpecificConfig) {
             this.integrationSpecificConfig = Optional.ofNullable(integrationSpecificConfig);
             return this;
         }
@@ -458,7 +606,7 @@ public final class EndUserDetailsRequest {
          */
         @java.lang.Override
         @JsonSetter(value = "integration_specific_config", nulls = Nulls.SKIP)
-        public _FinalStage integrationSpecificConfig(Optional<Map<String, JsonNode>> integrationSpecificConfig) {
+        public _FinalStage integrationSpecificConfig(Optional<Map<String, Object>> integrationSpecificConfig) {
             this.integrationSpecificConfig = integrationSpecificConfig;
             return this;
         }
@@ -685,6 +833,9 @@ public final class EndUserDetailsRequest {
                     language,
                     areSyncsDisabled,
                     integrationSpecificConfig,
+                    completedAccountInitialScreen,
+                    linkedDestinationId,
+                    credentialId,
                     additionalProperties);
         }
     }

@@ -124,9 +124,10 @@ public class AsyncRawProjectsClient {
             @Override
             public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                 try (ResponseBody responseBody = response.body()) {
+                    String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                     if (response.isSuccessful()) {
                         PaginatedProjectList parsedResponse =
-                                ObjectMappers.JSON_MAPPER.readValue(responseBody.string(), PaginatedProjectList.class);
+                                ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PaginatedProjectList.class);
                         Optional<String> startingAfter = parsedResponse.getNext();
                         ProjectsListRequest nextRequest = ProjectsListRequest.builder()
                                 .from(request)
@@ -147,12 +148,9 @@ public class AsyncRawProjectsClient {
                                 response));
                         return;
                     }
-                    String responseBodyString = responseBody != null ? responseBody.string() : "{}";
+                    Object errorBody = ObjectMappers.parseErrorBody(responseBodyString);
                     future.completeExceptionally(new ApiError(
-                            "Error with status code " + response.code(),
-                            response.code(),
-                            ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Object.class),
-                            response));
+                            "Error with status code " + response.code(), response.code(), errorBody, response));
                     return;
                 } catch (IOException e) {
                     future.completeExceptionally(new MergeException("Network error executing HTTP request", e));
@@ -216,17 +214,15 @@ public class AsyncRawProjectsClient {
             @Override
             public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                 try (ResponseBody responseBody = response.body()) {
+                    String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                     if (response.isSuccessful()) {
                         future.complete(new MergeApiHttpResponse<>(
-                                ObjectMappers.JSON_MAPPER.readValue(responseBody.string(), Project.class), response));
+                                ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Project.class), response));
                         return;
                     }
-                    String responseBodyString = responseBody != null ? responseBody.string() : "{}";
+                    Object errorBody = ObjectMappers.parseErrorBody(responseBodyString);
                     future.completeExceptionally(new ApiError(
-                            "Error with status code " + response.code(),
-                            response.code(),
-                            ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Object.class),
-                            response));
+                            "Error with status code " + response.code(), response.code(), errorBody, response));
                     return;
                 } catch (IOException e) {
                     future.completeExceptionally(new MergeException("Network error executing HTTP request", e));
@@ -311,9 +307,10 @@ public class AsyncRawProjectsClient {
             @Override
             public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                 try (ResponseBody responseBody = response.body()) {
+                    String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                     if (response.isSuccessful()) {
                         PaginatedUserList parsedResponse =
-                                ObjectMappers.JSON_MAPPER.readValue(responseBody.string(), PaginatedUserList.class);
+                                ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PaginatedUserList.class);
                         Optional<String> startingAfter = parsedResponse.getNext();
                         ProjectsUsersListRequest nextRequest = ProjectsUsersListRequest.builder()
                                 .from(request)
@@ -333,12 +330,9 @@ public class AsyncRawProjectsClient {
                                 response));
                         return;
                     }
-                    String responseBodyString = responseBody != null ? responseBody.string() : "{}";
+                    Object errorBody = ObjectMappers.parseErrorBody(responseBodyString);
                     future.completeExceptionally(new ApiError(
-                            "Error with status code " + response.code(),
-                            response.code(),
-                            ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Object.class),
-                            response));
+                            "Error with status code " + response.code(), response.code(), errorBody, response));
                     return;
                 } catch (IOException e) {
                     future.completeExceptionally(new MergeException("Network error executing HTTP request", e));

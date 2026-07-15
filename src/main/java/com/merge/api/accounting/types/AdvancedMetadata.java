@@ -10,7 +10,6 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
-import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.merge.api.core.ObjectMappers;
 import java.util.HashMap;
@@ -33,7 +32,7 @@ public final class AdvancedMetadata {
 
     private final Optional<Boolean> isCustom;
 
-    private final Optional<List<JsonNode>> fieldChoices;
+    private final Optional<List<Object>> fieldChoices;
 
     private final Map<String, Object> additionalProperties;
 
@@ -43,7 +42,7 @@ public final class AdvancedMetadata {
             Optional<String> description,
             Optional<Boolean> isRequired,
             Optional<Boolean> isCustom,
-            Optional<List<JsonNode>> fieldChoices,
+            Optional<List<Object>> fieldChoices,
             Map<String, Object> additionalProperties) {
         this.id = id;
         this.displayName = displayName;
@@ -80,7 +79,7 @@ public final class AdvancedMetadata {
     }
 
     @JsonProperty("field_choices")
-    public Optional<List<JsonNode>> getFieldChoices() {
+    public Optional<List<Object>> getFieldChoices() {
         return fieldChoices;
     }
 
@@ -144,16 +143,16 @@ public final class AdvancedMetadata {
 
         _FinalStage isCustom(Boolean isCustom);
 
-        _FinalStage fieldChoices(Optional<List<JsonNode>> fieldChoices);
+        _FinalStage fieldChoices(Optional<List<Object>> fieldChoices);
 
-        _FinalStage fieldChoices(List<JsonNode> fieldChoices);
+        _FinalStage fieldChoices(List<Object> fieldChoices);
     }
 
     @JsonIgnoreProperties(ignoreUnknown = true)
     public static final class Builder implements IdStage, _FinalStage {
         private String id;
 
-        private Optional<List<JsonNode>> fieldChoices = Optional.empty();
+        private Optional<List<Object>> fieldChoices = Optional.empty();
 
         private Optional<Boolean> isCustom = Optional.empty();
 
@@ -187,14 +186,14 @@ public final class AdvancedMetadata {
         }
 
         @java.lang.Override
-        public _FinalStage fieldChoices(List<JsonNode> fieldChoices) {
+        public _FinalStage fieldChoices(List<Object> fieldChoices) {
             this.fieldChoices = Optional.ofNullable(fieldChoices);
             return this;
         }
 
         @java.lang.Override
         @JsonSetter(value = "field_choices", nulls = Nulls.SKIP)
-        public _FinalStage fieldChoices(Optional<List<JsonNode>> fieldChoices) {
+        public _FinalStage fieldChoices(Optional<List<Object>> fieldChoices) {
             this.fieldChoices = fieldChoices;
             return this;
         }

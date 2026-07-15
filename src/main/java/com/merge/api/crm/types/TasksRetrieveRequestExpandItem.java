@@ -15,6 +15,9 @@ public final class TasksRetrieveRequestExpandItem {
     public static final TasksRetrieveRequestExpandItem ACCOUNT =
             new TasksRetrieveRequestExpandItem(Value.ACCOUNT, "account");
 
+    public static final TasksRetrieveRequestExpandItem CONTACT =
+            new TasksRetrieveRequestExpandItem(Value.CONTACT, "contact");
+
     private final Value value;
 
     private final String string;
@@ -54,6 +57,8 @@ public final class TasksRetrieveRequestExpandItem {
                 return visitor.visitOpportunity();
             case ACCOUNT:
                 return visitor.visitAccount();
+            case CONTACT:
+                return visitor.visitContact();
             case UNKNOWN:
             default:
                 return visitor.visitUnknown(string);
@@ -69,6 +74,8 @@ public final class TasksRetrieveRequestExpandItem {
                 return OPPORTUNITY;
             case "account":
                 return ACCOUNT;
+            case "contact":
+                return CONTACT;
             default:
                 return new TasksRetrieveRequestExpandItem(Value.UNKNOWN, value);
         }
@@ -76,6 +83,8 @@ public final class TasksRetrieveRequestExpandItem {
 
     public enum Value {
         ACCOUNT,
+
+        CONTACT,
 
         OPPORTUNITY,
 
@@ -86,6 +95,8 @@ public final class TasksRetrieveRequestExpandItem {
 
     public interface Visitor<T> {
         T visitAccount();
+
+        T visitContact();
 
         T visitOpportunity();
 

@@ -13,11 +13,13 @@ import com.merge.api.ticketing.types.Ticket;
 import com.merge.api.ticketing.types.TicketEndpointRequest;
 import com.merge.api.ticketing.types.TicketResponse;
 import com.merge.api.ticketing.types.TicketsListRequest;
+import com.merge.api.ticketing.types.TicketsLiveSearchRetrieveRequest;
 import com.merge.api.ticketing.types.TicketsMetaPostRetrieveRequest;
 import com.merge.api.ticketing.types.TicketsRemoteFieldClassesListRequest;
 import com.merge.api.ticketing.types.TicketsRetrieveRequest;
 import com.merge.api.ticketing.types.TicketsViewersListRequest;
 import com.merge.api.ticketing.types.Viewer;
+import java.io.InputStream;
 import java.util.concurrent.CompletableFuture;
 
 public class AsyncTicketsClient {
@@ -131,6 +133,28 @@ public class AsyncTicketsClient {
     public CompletableFuture<SyncPagingIterable<Viewer>> viewersList(
             String ticketId, TicketsViewersListRequest request, RequestOptions requestOptions) {
         return this.rawClient.viewersList(ticketId, request, requestOptions).thenApply(response -> response.body());
+    }
+
+    /**
+     * Returns a list of <code>Ticket</code> objects.
+     */
+    public CompletableFuture<InputStream> liveSearchRetrieve() {
+        return this.rawClient.liveSearchRetrieve().thenApply(response -> response.body());
+    }
+
+    /**
+     * Returns a list of <code>Ticket</code> objects.
+     */
+    public CompletableFuture<InputStream> liveSearchRetrieve(TicketsLiveSearchRetrieveRequest request) {
+        return this.rawClient.liveSearchRetrieve(request).thenApply(response -> response.body());
+    }
+
+    /**
+     * Returns a list of <code>Ticket</code> objects.
+     */
+    public CompletableFuture<InputStream> liveSearchRetrieve(
+            TicketsLiveSearchRetrieveRequest request, RequestOptions requestOptions) {
+        return this.rawClient.liveSearchRetrieve(request, requestOptions).thenApply(response -> response.body());
     }
 
     /**

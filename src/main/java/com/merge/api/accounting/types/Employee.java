@@ -10,7 +10,6 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
-import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.merge.api.core.ObjectMappers;
 import java.time.OffsetDateTime;
@@ -24,6 +23,8 @@ import org.jetbrains.annotations.NotNull;
 @JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = Employee.Builder.class)
 public final class Employee {
+    private final Optional<String> employeeUrl;
+
     private final Optional<String> id;
 
     private final Optional<String> remoteId;
@@ -48,13 +49,14 @@ public final class Employee {
 
     private final Optional<Boolean> remoteWasDeleted;
 
-    private final Optional<Map<String, JsonNode>> fieldMappings;
+    private final Optional<Map<String, Object>> fieldMappings;
 
     private final Optional<List<RemoteData>> remoteData;
 
     private final Map<String, Object> additionalProperties;
 
     private Employee(
+            Optional<String> employeeUrl,
             Optional<String> id,
             Optional<String> remoteId,
             Optional<OffsetDateTime> createdAt,
@@ -67,9 +69,10 @@ public final class Employee {
             Optional<EmployeeCompany> company,
             EmployeeStatus status,
             Optional<Boolean> remoteWasDeleted,
-            Optional<Map<String, JsonNode>> fieldMappings,
+            Optional<Map<String, Object>> fieldMappings,
             Optional<List<RemoteData>> remoteData,
             Map<String, Object> additionalProperties) {
+        this.employeeUrl = employeeUrl;
         this.id = id;
         this.remoteId = remoteId;
         this.createdAt = createdAt;
@@ -85,6 +88,14 @@ public final class Employee {
         this.fieldMappings = fieldMappings;
         this.remoteData = remoteData;
         this.additionalProperties = additionalProperties;
+    }
+
+    /**
+     * @return The 3rd party URL of the employee.
+     */
+    @JsonProperty("employee_url")
+    public Optional<String> getEmployeeUrl() {
+        return employeeUrl;
     }
 
     @JsonProperty("id")
@@ -185,7 +196,7 @@ public final class Employee {
     }
 
     @JsonProperty("field_mappings")
-    public Optional<Map<String, JsonNode>> getFieldMappings() {
+    public Optional<Map<String, Object>> getFieldMappings() {
         return fieldMappings;
     }
 
@@ -206,7 +217,8 @@ public final class Employee {
     }
 
     private boolean equalTo(Employee other) {
-        return id.equals(other.id)
+        return employeeUrl.equals(other.employeeUrl)
+                && id.equals(other.id)
                 && remoteId.equals(other.remoteId)
                 && createdAt.equals(other.createdAt)
                 && modifiedAt.equals(other.modifiedAt)
@@ -225,6 +237,7 @@ public final class Employee {
     @java.lang.Override
     public int hashCode() {
         return Objects.hash(
+                this.employeeUrl,
                 this.id,
                 this.remoteId,
                 this.createdAt,
@@ -265,6 +278,13 @@ public final class Employee {
 
     public interface _FinalStage {
         Employee build();
+
+        /**
+         * <p>The 3rd party URL of the employee.</p>
+         */
+        _FinalStage employeeUrl(Optional<String> employeeUrl);
+
+        _FinalStage employeeUrl(String employeeUrl);
 
         _FinalStage id(Optional<String> id);
 
@@ -340,9 +360,9 @@ public final class Employee {
 
         _FinalStage remoteWasDeleted(Boolean remoteWasDeleted);
 
-        _FinalStage fieldMappings(Optional<Map<String, JsonNode>> fieldMappings);
+        _FinalStage fieldMappings(Optional<Map<String, Object>> fieldMappings);
 
-        _FinalStage fieldMappings(Map<String, JsonNode> fieldMappings);
+        _FinalStage fieldMappings(Map<String, Object> fieldMappings);
 
         _FinalStage remoteData(Optional<List<RemoteData>> remoteData);
 
@@ -355,7 +375,7 @@ public final class Employee {
 
         private Optional<List<RemoteData>> remoteData = Optional.empty();
 
-        private Optional<Map<String, JsonNode>> fieldMappings = Optional.empty();
+        private Optional<Map<String, Object>> fieldMappings = Optional.empty();
 
         private Optional<Boolean> remoteWasDeleted = Optional.empty();
 
@@ -379,6 +399,8 @@ public final class Employee {
 
         private Optional<String> id = Optional.empty();
 
+        private Optional<String> employeeUrl = Optional.empty();
+
         @JsonAnySetter
         private Map<String, Object> additionalProperties = new HashMap<>();
 
@@ -386,6 +408,7 @@ public final class Employee {
 
         @java.lang.Override
         public Builder from(Employee other) {
+            employeeUrl(other.getEmployeeUrl());
             id(other.getId());
             remoteId(other.getRemoteId());
             createdAt(other.getCreatedAt());
@@ -437,14 +460,14 @@ public final class Employee {
         }
 
         @java.lang.Override
-        public _FinalStage fieldMappings(Map<String, JsonNode> fieldMappings) {
+        public _FinalStage fieldMappings(Map<String, Object> fieldMappings) {
             this.fieldMappings = Optional.ofNullable(fieldMappings);
             return this;
         }
 
         @java.lang.Override
         @JsonSetter(value = "field_mappings", nulls = Nulls.SKIP)
-        public _FinalStage fieldMappings(Optional<Map<String, JsonNode>> fieldMappings) {
+        public _FinalStage fieldMappings(Optional<Map<String, Object>> fieldMappings) {
             this.fieldMappings = fieldMappings;
             return this;
         }
@@ -662,9 +685,30 @@ public final class Employee {
             return this;
         }
 
+        /**
+         * <p>The 3rd party URL of the employee.</p>
+         * @return Reference to {@code this} so that method calls can be chained together.
+         */
+        @java.lang.Override
+        public _FinalStage employeeUrl(String employeeUrl) {
+            this.employeeUrl = Optional.ofNullable(employeeUrl);
+            return this;
+        }
+
+        /**
+         * <p>The 3rd party URL of the employee.</p>
+         */
+        @java.lang.Override
+        @JsonSetter(value = "employee_url", nulls = Nulls.SKIP)
+        public _FinalStage employeeUrl(Optional<String> employeeUrl) {
+            this.employeeUrl = employeeUrl;
+            return this;
+        }
+
         @java.lang.Override
         public Employee build() {
             return new Employee(
+                    employeeUrl,
                     id,
                     remoteId,
                     createdAt,

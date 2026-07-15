@@ -10,7 +10,6 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
-import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.merge.api.core.ObjectMappers;
 import java.util.HashMap;
@@ -28,7 +27,7 @@ public final class DownloadRequestMeta {
 
     private final String method;
 
-    private final Map<String, JsonNode> headers;
+    private final Map<String, Object> headers;
 
     private final Map<String, Object> additionalProperties;
 
@@ -36,7 +35,7 @@ public final class DownloadRequestMeta {
             String id,
             String url,
             String method,
-            Map<String, JsonNode> headers,
+            Map<String, Object> headers,
             Map<String, Object> additionalProperties) {
         this.id = id;
         this.url = url;
@@ -61,7 +60,7 @@ public final class DownloadRequestMeta {
     }
 
     @JsonProperty("headers")
-    public Map<String, JsonNode> getHeaders() {
+    public Map<String, Object> getHeaders() {
         return headers;
     }
 
@@ -114,11 +113,11 @@ public final class DownloadRequestMeta {
     public interface _FinalStage {
         DownloadRequestMeta build();
 
-        _FinalStage headers(Map<String, JsonNode> headers);
+        _FinalStage headers(Map<String, Object> headers);
 
-        _FinalStage putAllHeaders(Map<String, JsonNode> headers);
+        _FinalStage putAllHeaders(Map<String, Object> headers);
 
-        _FinalStage headers(String key, JsonNode value);
+        _FinalStage headers(String key, Object value);
     }
 
     @JsonIgnoreProperties(ignoreUnknown = true)
@@ -129,7 +128,7 @@ public final class DownloadRequestMeta {
 
         private String method;
 
-        private Map<String, JsonNode> headers = new LinkedHashMap<>();
+        private Map<String, Object> headers = new LinkedHashMap<>();
 
         @JsonAnySetter
         private Map<String, Object> additionalProperties = new HashMap<>();
@@ -167,13 +166,13 @@ public final class DownloadRequestMeta {
         }
 
         @java.lang.Override
-        public _FinalStage headers(String key, JsonNode value) {
+        public _FinalStage headers(String key, Object value) {
             this.headers.put(key, value);
             return this;
         }
 
         @java.lang.Override
-        public _FinalStage putAllHeaders(Map<String, JsonNode> headers) {
+        public _FinalStage putAllHeaders(Map<String, Object> headers) {
             if (headers != null) {
                 this.headers.putAll(headers);
             }
@@ -182,7 +181,7 @@ public final class DownloadRequestMeta {
 
         @java.lang.Override
         @JsonSetter(value = "headers", nulls = Nulls.SKIP)
-        public _FinalStage headers(Map<String, JsonNode> headers) {
+        public _FinalStage headers(Map<String, Object> headers) {
             this.headers.clear();
             if (headers != null) {
                 this.headers.putAll(headers);

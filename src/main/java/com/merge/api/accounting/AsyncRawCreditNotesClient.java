@@ -3,6 +3,7 @@
  */
 package com.merge.api.accounting;
 
+import com.merge.api.accounting.types.ApplyCreditNoteRequest;
 import com.merge.api.accounting.types.CreditNote;
 import com.merge.api.accounting.types.CreditNoteEndpointRequest;
 import com.merge.api.accounting.types.CreditNoteResponse;
@@ -10,6 +11,7 @@ import com.merge.api.accounting.types.CreditNotesListRequest;
 import com.merge.api.accounting.types.CreditNotesRetrieveRequest;
 import com.merge.api.accounting.types.MetaResponse;
 import com.merge.api.accounting.types.PaginatedCreditNoteList;
+import com.merge.api.accounting.types.PatchedCreditNoteEndpointRequest;
 import com.merge.api.core.ApiError;
 import com.merge.api.core.ClientOptions;
 import com.merge.api.core.MediaTypes;
@@ -21,9 +23,7 @@ import com.merge.api.core.RequestOptions;
 import com.merge.api.core.SyncPagingIterable;
 import java.io.IOException;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
@@ -159,9 +159,10 @@ public class AsyncRawCreditNotesClient {
             @Override
             public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                 try (ResponseBody responseBody = response.body()) {
+                    String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                     if (response.isSuccessful()) {
-                        PaginatedCreditNoteList parsedResponse = ObjectMappers.JSON_MAPPER.readValue(
-                                responseBody.string(), PaginatedCreditNoteList.class);
+                        PaginatedCreditNoteList parsedResponse =
+                                ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PaginatedCreditNoteList.class);
                         Optional<String> startingAfter = parsedResponse.getNext();
                         CreditNotesListRequest nextRequest = CreditNotesListRequest.builder()
                                 .from(request)
@@ -182,12 +183,9 @@ public class AsyncRawCreditNotesClient {
                                 response));
                         return;
                     }
-                    String responseBodyString = responseBody != null ? responseBody.string() : "{}";
+                    Object errorBody = ObjectMappers.parseErrorBody(responseBodyString);
                     future.completeExceptionally(new ApiError(
-                            "Error with status code " + response.code(),
-                            response.code(),
-                            ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Object.class),
-                            response));
+                            "Error with status code " + response.code(), response.code(), errorBody, response));
                     return;
                 } catch (IOException e) {
                     future.completeExceptionally(new MergeException("Network error executing HTTP request", e));
@@ -225,12 +223,10 @@ public class AsyncRawCreditNotesClient {
             QueryStringMapper.addQueryParameter(
                     httpUrl, "run_async", request.getRunAsync().get(), false);
         }
-        Map<String, Object> properties = new HashMap<>();
-        properties.put("model", request.getModel());
         RequestBody body;
         try {
             body = RequestBody.create(
-                    ObjectMappers.JSON_MAPPER.writeValueAsBytes(properties), MediaTypes.APPLICATION_JSON);
+                    ObjectMappers.JSON_MAPPER.writeValueAsBytes(request), MediaTypes.APPLICATION_JSON);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
@@ -250,18 +246,16 @@ public class AsyncRawCreditNotesClient {
             @Override
             public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                 try (ResponseBody responseBody = response.body()) {
+                    String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                     if (response.isSuccessful()) {
                         future.complete(new MergeApiHttpResponse<>(
-                                ObjectMappers.JSON_MAPPER.readValue(responseBody.string(), CreditNoteResponse.class),
+                                ObjectMappers.JSON_MAPPER.readValue(responseBodyString, CreditNoteResponse.class),
                                 response));
                         return;
                     }
-                    String responseBodyString = responseBody != null ? responseBody.string() : "{}";
+                    Object errorBody = ObjectMappers.parseErrorBody(responseBodyString);
                     future.completeExceptionally(new ApiError(
-                            "Error with status code " + response.code(),
-                            response.code(),
-                            ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Object.class),
-                            response));
+                            "Error with status code " + response.code(), response.code(), errorBody, response));
                     return;
                 } catch (IOException e) {
                     future.completeExceptionally(new MergeException("Network error executing HTTP request", e));
@@ -337,18 +331,215 @@ public class AsyncRawCreditNotesClient {
             @Override
             public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                 try (ResponseBody responseBody = response.body()) {
+                    String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                     if (response.isSuccessful()) {
                         future.complete(new MergeApiHttpResponse<>(
-                                ObjectMappers.JSON_MAPPER.readValue(responseBody.string(), CreditNote.class),
+                                ObjectMappers.JSON_MAPPER.readValue(responseBodyString, CreditNote.class), response));
+                        return;
+                    }
+                    Object errorBody = ObjectMappers.parseErrorBody(responseBodyString);
+                    future.completeExceptionally(new ApiError(
+                            "Error with status code " + response.code(), response.code(), errorBody, response));
+                    return;
+                } catch (IOException e) {
+                    future.completeExceptionally(new MergeException("Network error executing HTTP request", e));
+                }
+            }
+
+            @Override
+            public void onFailure(@NotNull Call call, @NotNull IOException e) {
+                future.completeExceptionally(new MergeException("Network error executing HTTP request", e));
+            }
+        });
+        return future;
+    }
+
+    /**
+     * Updates a <code>CreditNote</code> object with the given <code>id</code>.
+     */
+    public CompletableFuture<MergeApiHttpResponse<CreditNoteResponse>> partialUpdate(
+            String id, PatchedCreditNoteEndpointRequest request) {
+        return partialUpdate(id, request, null);
+    }
+
+    /**
+     * Updates a <code>CreditNote</code> object with the given <code>id</code>.
+     */
+    public CompletableFuture<MergeApiHttpResponse<CreditNoteResponse>> partialUpdate(
+            String id, PatchedCreditNoteEndpointRequest request, RequestOptions requestOptions) {
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
+                .newBuilder()
+                .addPathSegments("accounting/v1/credit-notes")
+                .addPathSegment(id);
+        if (request.getIsDebugMode().isPresent()) {
+            QueryStringMapper.addQueryParameter(
+                    httpUrl, "is_debug_mode", request.getIsDebugMode().get(), false);
+        }
+        if (request.getRunAsync().isPresent()) {
+            QueryStringMapper.addQueryParameter(
+                    httpUrl, "run_async", request.getRunAsync().get(), false);
+        }
+        RequestBody body;
+        try {
+            body = RequestBody.create(
+                    ObjectMappers.JSON_MAPPER.writeValueAsBytes(request), MediaTypes.APPLICATION_JSON);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+        Request.Builder _requestBuilder = new Request.Builder()
+                .url(httpUrl.build())
+                .method("PATCH", body)
+                .headers(Headers.of(clientOptions.headers(requestOptions)))
+                .addHeader("Content-Type", "application/json")
+                .addHeader("Accept", "application/json");
+        Request okhttpRequest = _requestBuilder.build();
+        OkHttpClient client = clientOptions.httpClient();
+        if (requestOptions != null && requestOptions.getTimeout().isPresent()) {
+            client = clientOptions.httpClientWithTimeout(requestOptions);
+        }
+        CompletableFuture<MergeApiHttpResponse<CreditNoteResponse>> future = new CompletableFuture<>();
+        client.newCall(okhttpRequest).enqueue(new Callback() {
+            @Override
+            public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
+                try (ResponseBody responseBody = response.body()) {
+                    String responseBodyString = responseBody != null ? responseBody.string() : "{}";
+                    if (response.isSuccessful()) {
+                        future.complete(new MergeApiHttpResponse<>(
+                                ObjectMappers.JSON_MAPPER.readValue(responseBodyString, CreditNoteResponse.class),
                                 response));
                         return;
                     }
-                    String responseBodyString = responseBody != null ? responseBody.string() : "{}";
+                    Object errorBody = ObjectMappers.parseErrorBody(responseBodyString);
                     future.completeExceptionally(new ApiError(
-                            "Error with status code " + response.code(),
-                            response.code(),
-                            ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Object.class),
-                            response));
+                            "Error with status code " + response.code(), response.code(), errorBody, response));
+                    return;
+                } catch (IOException e) {
+                    future.completeExceptionally(new MergeException("Network error executing HTTP request", e));
+                }
+            }
+
+            @Override
+            public void onFailure(@NotNull Call call, @NotNull IOException e) {
+                future.completeExceptionally(new MergeException("Network error executing HTTP request", e));
+            }
+        });
+        return future;
+    }
+
+    /**
+     * Creates a new CreditNoteApplyLine to apply a credit note to an invoice
+     */
+    public CompletableFuture<MergeApiHttpResponse<CreditNoteResponse>> applicationCreate(
+            String id, ApplyCreditNoteRequest request) {
+        return applicationCreate(id, request, null);
+    }
+
+    /**
+     * Creates a new CreditNoteApplyLine to apply a credit note to an invoice
+     */
+    public CompletableFuture<MergeApiHttpResponse<CreditNoteResponse>> applicationCreate(
+            String id, ApplyCreditNoteRequest request, RequestOptions requestOptions) {
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
+                .newBuilder()
+                .addPathSegments("accounting/v1/credit-notes")
+                .addPathSegment(id)
+                .addPathSegments("application");
+        if (request.getIsDebugMode().isPresent()) {
+            QueryStringMapper.addQueryParameter(
+                    httpUrl, "is_debug_mode", request.getIsDebugMode().get(), false);
+        }
+        if (request.getRunAsync().isPresent()) {
+            QueryStringMapper.addQueryParameter(
+                    httpUrl, "run_async", request.getRunAsync().get(), false);
+        }
+        RequestBody body;
+        try {
+            body = RequestBody.create(
+                    ObjectMappers.JSON_MAPPER.writeValueAsBytes(request), MediaTypes.APPLICATION_JSON);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+        Request.Builder _requestBuilder = new Request.Builder()
+                .url(httpUrl.build())
+                .method("POST", body)
+                .headers(Headers.of(clientOptions.headers(requestOptions)))
+                .addHeader("Content-Type", "application/json")
+                .addHeader("Accept", "application/json");
+        Request okhttpRequest = _requestBuilder.build();
+        OkHttpClient client = clientOptions.httpClient();
+        if (requestOptions != null && requestOptions.getTimeout().isPresent()) {
+            client = clientOptions.httpClientWithTimeout(requestOptions);
+        }
+        CompletableFuture<MergeApiHttpResponse<CreditNoteResponse>> future = new CompletableFuture<>();
+        client.newCall(okhttpRequest).enqueue(new Callback() {
+            @Override
+            public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
+                try (ResponseBody responseBody = response.body()) {
+                    String responseBodyString = responseBody != null ? responseBody.string() : "{}";
+                    if (response.isSuccessful()) {
+                        future.complete(new MergeApiHttpResponse<>(
+                                ObjectMappers.JSON_MAPPER.readValue(responseBodyString, CreditNoteResponse.class),
+                                response));
+                        return;
+                    }
+                    Object errorBody = ObjectMappers.parseErrorBody(responseBodyString);
+                    future.completeExceptionally(new ApiError(
+                            "Error with status code " + response.code(), response.code(), errorBody, response));
+                    return;
+                } catch (IOException e) {
+                    future.completeExceptionally(new MergeException("Network error executing HTTP request", e));
+                }
+            }
+
+            @Override
+            public void onFailure(@NotNull Call call, @NotNull IOException e) {
+                future.completeExceptionally(new MergeException("Network error executing HTTP request", e));
+            }
+        });
+        return future;
+    }
+
+    /**
+     * Returns metadata for <code>CreditNote</code> PATCHs.
+     */
+    public CompletableFuture<MergeApiHttpResponse<MetaResponse>> metaPatchRetrieve(String id) {
+        return metaPatchRetrieve(id, null);
+    }
+
+    /**
+     * Returns metadata for <code>CreditNote</code> PATCHs.
+     */
+    public CompletableFuture<MergeApiHttpResponse<MetaResponse>> metaPatchRetrieve(
+            String id, RequestOptions requestOptions) {
+        HttpUrl httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
+                .newBuilder()
+                .addPathSegments("accounting/v1/credit-notes/meta/patch")
+                .addPathSegment(id)
+                .build();
+        Request okhttpRequest = new Request.Builder()
+                .url(httpUrl)
+                .method("GET", null)
+                .headers(Headers.of(clientOptions.headers(requestOptions)))
+                .addHeader("Accept", "application/json")
+                .build();
+        OkHttpClient client = clientOptions.httpClient();
+        if (requestOptions != null && requestOptions.getTimeout().isPresent()) {
+            client = clientOptions.httpClientWithTimeout(requestOptions);
+        }
+        CompletableFuture<MergeApiHttpResponse<MetaResponse>> future = new CompletableFuture<>();
+        client.newCall(okhttpRequest).enqueue(new Callback() {
+            @Override
+            public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
+                try (ResponseBody responseBody = response.body()) {
+                    String responseBodyString = responseBody != null ? responseBody.string() : "{}";
+                    if (response.isSuccessful()) {
+                        future.complete(new MergeApiHttpResponse<>(
+                                ObjectMappers.JSON_MAPPER.readValue(responseBodyString, MetaResponse.class), response));
+                        return;
+                    }
+                    Object errorBody = ObjectMappers.parseErrorBody(responseBodyString);
+                    future.completeExceptionally(new ApiError(
+                            "Error with status code " + response.code(), response.code(), errorBody, response));
                     return;
                 } catch (IOException e) {
                     future.completeExceptionally(new MergeException("Network error executing HTTP request", e));
@@ -393,18 +584,15 @@ public class AsyncRawCreditNotesClient {
             @Override
             public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                 try (ResponseBody responseBody = response.body()) {
+                    String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                     if (response.isSuccessful()) {
                         future.complete(new MergeApiHttpResponse<>(
-                                ObjectMappers.JSON_MAPPER.readValue(responseBody.string(), MetaResponse.class),
-                                response));
+                                ObjectMappers.JSON_MAPPER.readValue(responseBodyString, MetaResponse.class), response));
                         return;
                     }
-                    String responseBodyString = responseBody != null ? responseBody.string() : "{}";
+                    Object errorBody = ObjectMappers.parseErrorBody(responseBodyString);
                     future.completeExceptionally(new ApiError(
-                            "Error with status code " + response.code(),
-                            response.code(),
-                            ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Object.class),
-                            response));
+                            "Error with status code " + response.code(), response.code(), errorBody, response));
                     return;
                 } catch (IOException e) {
                     future.completeExceptionally(new MergeException("Network error executing HTTP request", e));

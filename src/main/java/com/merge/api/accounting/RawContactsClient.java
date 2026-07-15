@@ -12,6 +12,7 @@ import com.merge.api.accounting.types.ContactsRetrieveRequest;
 import com.merge.api.accounting.types.MetaResponse;
 import com.merge.api.accounting.types.PaginatedContactList;
 import com.merge.api.accounting.types.PaginatedRemoteFieldClassList;
+import com.merge.api.accounting.types.PatchedContactEndpointRequest;
 import com.merge.api.accounting.types.RemoteFieldClass;
 import com.merge.api.core.ApiError;
 import com.merge.api.core.ClientOptions;
@@ -24,9 +25,7 @@ import com.merge.api.core.RequestOptions;
 import com.merge.api.core.SyncPagingIterable;
 import java.io.IOException;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.Optional;
 import okhttp3.Headers;
 import okhttp3.HttpUrl;
@@ -166,9 +165,10 @@ public class RawContactsClient {
         }
         try (Response response = client.newCall(okhttpRequest).execute()) {
             ResponseBody responseBody = response.body();
+            String responseBodyString = responseBody != null ? responseBody.string() : "{}";
             if (response.isSuccessful()) {
                 PaginatedContactList parsedResponse =
-                        ObjectMappers.JSON_MAPPER.readValue(responseBody.string(), PaginatedContactList.class);
+                        ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PaginatedContactList.class);
                 Optional<String> startingAfter = parsedResponse.getNext();
                 ContactsListRequest nextRequest = ContactsListRequest.builder()
                         .from(request)
@@ -181,12 +181,8 @@ public class RawContactsClient {
                                 .body()),
                         response);
             }
-            String responseBodyString = responseBody != null ? responseBody.string() : "{}";
-            throw new ApiError(
-                    "Error with status code " + response.code(),
-                    response.code(),
-                    ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Object.class),
-                    response);
+            Object errorBody = ObjectMappers.parseErrorBody(responseBodyString);
+            throw new ApiError("Error with status code " + response.code(), response.code(), errorBody, response);
         } catch (IOException e) {
             throw new MergeException("Network error executing HTTP request", e);
         }
@@ -214,12 +210,10 @@ public class RawContactsClient {
             QueryStringMapper.addQueryParameter(
                     httpUrl, "run_async", request.getRunAsync().get(), false);
         }
-        Map<String, Object> properties = new HashMap<>();
-        properties.put("model", request.getModel());
         RequestBody body;
         try {
             body = RequestBody.create(
-                    ObjectMappers.JSON_MAPPER.writeValueAsBytes(properties), MediaTypes.APPLICATION_JSON);
+                    ObjectMappers.JSON_MAPPER.writeValueAsBytes(request), MediaTypes.APPLICATION_JSON);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
@@ -236,16 +230,13 @@ public class RawContactsClient {
         }
         try (Response response = client.newCall(okhttpRequest).execute()) {
             ResponseBody responseBody = response.body();
+            String responseBodyString = responseBody != null ? responseBody.string() : "{}";
             if (response.isSuccessful()) {
                 return new MergeApiHttpResponse<>(
-                        ObjectMappers.JSON_MAPPER.readValue(responseBody.string(), ContactResponse.class), response);
+                        ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ContactResponse.class), response);
             }
-            String responseBodyString = responseBody != null ? responseBody.string() : "{}";
-            throw new ApiError(
-                    "Error with status code " + response.code(),
-                    response.code(),
-                    ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Object.class),
-                    response);
+            Object errorBody = ObjectMappers.parseErrorBody(responseBodyString);
+            throw new ApiError("Error with status code " + response.code(), response.code(), errorBody, response);
         } catch (IOException e) {
             throw new MergeException("Network error executing HTTP request", e);
         }
@@ -316,16 +307,109 @@ public class RawContactsClient {
         }
         try (Response response = client.newCall(okhttpRequest).execute()) {
             ResponseBody responseBody = response.body();
+            String responseBodyString = responseBody != null ? responseBody.string() : "{}";
             if (response.isSuccessful()) {
                 return new MergeApiHttpResponse<>(
-                        ObjectMappers.JSON_MAPPER.readValue(responseBody.string(), Contact.class), response);
+                        ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Contact.class), response);
             }
+            Object errorBody = ObjectMappers.parseErrorBody(responseBodyString);
+            throw new ApiError("Error with status code " + response.code(), response.code(), errorBody, response);
+        } catch (IOException e) {
+            throw new MergeException("Network error executing HTTP request", e);
+        }
+    }
+
+    /**
+     * Updates a <code>Contact</code> object with the given <code>id</code>.
+     */
+    public MergeApiHttpResponse<ContactResponse> partialUpdate(String id, PatchedContactEndpointRequest request) {
+        return partialUpdate(id, request, null);
+    }
+
+    /**
+     * Updates a <code>Contact</code> object with the given <code>id</code>.
+     */
+    public MergeApiHttpResponse<ContactResponse> partialUpdate(
+            String id, PatchedContactEndpointRequest request, RequestOptions requestOptions) {
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
+                .newBuilder()
+                .addPathSegments("accounting/v1/contacts")
+                .addPathSegment(id);
+        if (request.getIsDebugMode().isPresent()) {
+            QueryStringMapper.addQueryParameter(
+                    httpUrl, "is_debug_mode", request.getIsDebugMode().get(), false);
+        }
+        if (request.getRunAsync().isPresent()) {
+            QueryStringMapper.addQueryParameter(
+                    httpUrl, "run_async", request.getRunAsync().get(), false);
+        }
+        RequestBody body;
+        try {
+            body = RequestBody.create(
+                    ObjectMappers.JSON_MAPPER.writeValueAsBytes(request), MediaTypes.APPLICATION_JSON);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+        Request.Builder _requestBuilder = new Request.Builder()
+                .url(httpUrl.build())
+                .method("PATCH", body)
+                .headers(Headers.of(clientOptions.headers(requestOptions)))
+                .addHeader("Content-Type", "application/json")
+                .addHeader("Accept", "application/json");
+        Request okhttpRequest = _requestBuilder.build();
+        OkHttpClient client = clientOptions.httpClient();
+        if (requestOptions != null && requestOptions.getTimeout().isPresent()) {
+            client = clientOptions.httpClientWithTimeout(requestOptions);
+        }
+        try (Response response = client.newCall(okhttpRequest).execute()) {
+            ResponseBody responseBody = response.body();
             String responseBodyString = responseBody != null ? responseBody.string() : "{}";
-            throw new ApiError(
-                    "Error with status code " + response.code(),
-                    response.code(),
-                    ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Object.class),
-                    response);
+            if (response.isSuccessful()) {
+                return new MergeApiHttpResponse<>(
+                        ObjectMappers.JSON_MAPPER.readValue(responseBodyString, ContactResponse.class), response);
+            }
+            Object errorBody = ObjectMappers.parseErrorBody(responseBodyString);
+            throw new ApiError("Error with status code " + response.code(), response.code(), errorBody, response);
+        } catch (IOException e) {
+            throw new MergeException("Network error executing HTTP request", e);
+        }
+    }
+
+    /**
+     * Returns metadata for <code>Contact</code> PATCHs.
+     */
+    public MergeApiHttpResponse<MetaResponse> metaPatchRetrieve(String id) {
+        return metaPatchRetrieve(id, null);
+    }
+
+    /**
+     * Returns metadata for <code>Contact</code> PATCHs.
+     */
+    public MergeApiHttpResponse<MetaResponse> metaPatchRetrieve(String id, RequestOptions requestOptions) {
+        HttpUrl httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
+                .newBuilder()
+                .addPathSegments("accounting/v1/contacts/meta/patch")
+                .addPathSegment(id)
+                .build();
+        Request okhttpRequest = new Request.Builder()
+                .url(httpUrl)
+                .method("GET", null)
+                .headers(Headers.of(clientOptions.headers(requestOptions)))
+                .addHeader("Accept", "application/json")
+                .build();
+        OkHttpClient client = clientOptions.httpClient();
+        if (requestOptions != null && requestOptions.getTimeout().isPresent()) {
+            client = clientOptions.httpClientWithTimeout(requestOptions);
+        }
+        try (Response response = client.newCall(okhttpRequest).execute()) {
+            ResponseBody responseBody = response.body();
+            String responseBodyString = responseBody != null ? responseBody.string() : "{}";
+            if (response.isSuccessful()) {
+                return new MergeApiHttpResponse<>(
+                        ObjectMappers.JSON_MAPPER.readValue(responseBodyString, MetaResponse.class), response);
+            }
+            Object errorBody = ObjectMappers.parseErrorBody(responseBodyString);
+            throw new ApiError("Error with status code " + response.code(), response.code(), errorBody, response);
         } catch (IOException e) {
             throw new MergeException("Network error executing HTTP request", e);
         }
@@ -358,16 +442,13 @@ public class RawContactsClient {
         }
         try (Response response = client.newCall(okhttpRequest).execute()) {
             ResponseBody responseBody = response.body();
+            String responseBodyString = responseBody != null ? responseBody.string() : "{}";
             if (response.isSuccessful()) {
                 return new MergeApiHttpResponse<>(
-                        ObjectMappers.JSON_MAPPER.readValue(responseBody.string(), MetaResponse.class), response);
+                        ObjectMappers.JSON_MAPPER.readValue(responseBodyString, MetaResponse.class), response);
             }
-            String responseBodyString = responseBody != null ? responseBody.string() : "{}";
-            throw new ApiError(
-                    "Error with status code " + response.code(),
-                    response.code(),
-                    ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Object.class),
-                    response);
+            Object errorBody = ObjectMappers.parseErrorBody(responseBodyString);
+            throw new ApiError("Error with status code " + response.code(), response.code(), errorBody, response);
         } catch (IOException e) {
             throw new MergeException("Network error executing HTTP request", e);
         }
@@ -446,9 +527,10 @@ public class RawContactsClient {
         }
         try (Response response = client.newCall(okhttpRequest).execute()) {
             ResponseBody responseBody = response.body();
+            String responseBodyString = responseBody != null ? responseBody.string() : "{}";
             if (response.isSuccessful()) {
                 PaginatedRemoteFieldClassList parsedResponse =
-                        ObjectMappers.JSON_MAPPER.readValue(responseBody.string(), PaginatedRemoteFieldClassList.class);
+                        ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PaginatedRemoteFieldClassList.class);
                 Optional<String> startingAfter = parsedResponse.getNext();
                 ContactsRemoteFieldClassesListRequest nextRequest = ContactsRemoteFieldClassesListRequest.builder()
                         .from(request)
@@ -462,12 +544,8 @@ public class RawContactsClient {
                                         .body()),
                         response);
             }
-            String responseBodyString = responseBody != null ? responseBody.string() : "{}";
-            throw new ApiError(
-                    "Error with status code " + response.code(),
-                    response.code(),
-                    ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Object.class),
-                    response);
+            Object errorBody = ObjectMappers.parseErrorBody(responseBodyString);
+            throw new ApiError("Error with status code " + response.code(), response.code(), errorBody, response);
         } catch (IOException e) {
             throw new MergeException("Network error executing HTTP request", e);
         }

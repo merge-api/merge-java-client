@@ -10,7 +10,6 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
-import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.merge.api.core.ObjectMappers;
 import java.time.OffsetDateTime;
@@ -45,11 +44,11 @@ public final class Benefit {
 
     private final Optional<OffsetDateTime> endDate;
 
-    private final Optional<Boolean> remoteWasDeleted;
-
     private final Optional<String> employerBenefit;
 
-    private final Optional<Map<String, JsonNode>> fieldMappings;
+    private final Optional<Boolean> remoteWasDeleted;
+
+    private final Optional<Map<String, Object>> fieldMappings;
 
     private final Optional<List<RemoteData>> remoteData;
 
@@ -67,9 +66,9 @@ public final class Benefit {
             Optional<Double> companyContribution,
             Optional<OffsetDateTime> startDate,
             Optional<OffsetDateTime> endDate,
-            Optional<Boolean> remoteWasDeleted,
             Optional<String> employerBenefit,
-            Optional<Map<String, JsonNode>> fieldMappings,
+            Optional<Boolean> remoteWasDeleted,
+            Optional<Map<String, Object>> fieldMappings,
             Optional<List<RemoteData>> remoteData,
             Map<String, Object> additionalProperties) {
         this.id = id;
@@ -83,8 +82,8 @@ public final class Benefit {
         this.companyContribution = companyContribution;
         this.startDate = startDate;
         this.endDate = endDate;
-        this.remoteWasDeleted = remoteWasDeleted;
         this.employerBenefit = employerBenefit;
+        this.remoteWasDeleted = remoteWasDeleted;
         this.fieldMappings = fieldMappings;
         this.remoteData = remoteData;
         this.additionalProperties = additionalProperties;
@@ -176,14 +175,6 @@ public final class Benefit {
     }
 
     /**
-     * @return Indicates whether or not this object has been deleted in the third party platform. Full coverage deletion detection is a premium add-on. Native deletion detection is offered for free with limited coverage. <a href="https://docs.merge.dev/integrations/hris/supported-features/">Learn more</a>.
-     */
-    @JsonProperty("remote_was_deleted")
-    public Optional<Boolean> getRemoteWasDeleted() {
-        return remoteWasDeleted;
-    }
-
-    /**
      * @return The employer benefit plan the employee is enrolled in.
      */
     @JsonProperty("employer_benefit")
@@ -191,8 +182,16 @@ public final class Benefit {
         return employerBenefit;
     }
 
+    /**
+     * @return Indicates whether or not this object has been deleted in the third party platform. Full coverage deletion detection is a premium add-on. Native deletion detection is offered for free with limited coverage. <a href="https://docs.merge.dev/integrations/hris/supported-features/">Learn more</a>.
+     */
+    @JsonProperty("remote_was_deleted")
+    public Optional<Boolean> getRemoteWasDeleted() {
+        return remoteWasDeleted;
+    }
+
     @JsonProperty("field_mappings")
-    public Optional<Map<String, JsonNode>> getFieldMappings() {
+    public Optional<Map<String, Object>> getFieldMappings() {
         return fieldMappings;
     }
 
@@ -224,8 +223,8 @@ public final class Benefit {
                 && companyContribution.equals(other.companyContribution)
                 && startDate.equals(other.startDate)
                 && endDate.equals(other.endDate)
-                && remoteWasDeleted.equals(other.remoteWasDeleted)
                 && employerBenefit.equals(other.employerBenefit)
+                && remoteWasDeleted.equals(other.remoteWasDeleted)
                 && fieldMappings.equals(other.fieldMappings)
                 && remoteData.equals(other.remoteData);
     }
@@ -244,8 +243,8 @@ public final class Benefit {
                 this.companyContribution,
                 this.startDate,
                 this.endDate,
-                this.remoteWasDeleted,
                 this.employerBenefit,
+                this.remoteWasDeleted,
                 this.fieldMappings,
                 this.remoteData);
     }
@@ -283,11 +282,11 @@ public final class Benefit {
 
         private Optional<OffsetDateTime> endDate = Optional.empty();
 
-        private Optional<Boolean> remoteWasDeleted = Optional.empty();
-
         private Optional<String> employerBenefit = Optional.empty();
 
-        private Optional<Map<String, JsonNode>> fieldMappings = Optional.empty();
+        private Optional<Boolean> remoteWasDeleted = Optional.empty();
+
+        private Optional<Map<String, Object>> fieldMappings = Optional.empty();
 
         private Optional<List<RemoteData>> remoteData = Optional.empty();
 
@@ -308,8 +307,8 @@ public final class Benefit {
             companyContribution(other.getCompanyContribution());
             startDate(other.getStartDate());
             endDate(other.getEndDate());
-            remoteWasDeleted(other.getRemoteWasDeleted());
             employerBenefit(other.getEmployerBenefit());
+            remoteWasDeleted(other.getRemoteWasDeleted());
             fieldMappings(other.getFieldMappings());
             remoteData(other.getRemoteData());
             return this;
@@ -467,20 +466,6 @@ public final class Benefit {
         }
 
         /**
-         * <p>Indicates whether or not this object has been deleted in the third party platform. Full coverage deletion detection is a premium add-on. Native deletion detection is offered for free with limited coverage. <a href="https://docs.merge.dev/integrations/hris/supported-features/">Learn more</a>.</p>
-         */
-        @JsonSetter(value = "remote_was_deleted", nulls = Nulls.SKIP)
-        public Builder remoteWasDeleted(Optional<Boolean> remoteWasDeleted) {
-            this.remoteWasDeleted = remoteWasDeleted;
-            return this;
-        }
-
-        public Builder remoteWasDeleted(Boolean remoteWasDeleted) {
-            this.remoteWasDeleted = Optional.ofNullable(remoteWasDeleted);
-            return this;
-        }
-
-        /**
          * <p>The employer benefit plan the employee is enrolled in.</p>
          */
         @JsonSetter(value = "employer_benefit", nulls = Nulls.SKIP)
@@ -494,13 +479,27 @@ public final class Benefit {
             return this;
         }
 
+        /**
+         * <p>Indicates whether or not this object has been deleted in the third party platform. Full coverage deletion detection is a premium add-on. Native deletion detection is offered for free with limited coverage. <a href="https://docs.merge.dev/integrations/hris/supported-features/">Learn more</a>.</p>
+         */
+        @JsonSetter(value = "remote_was_deleted", nulls = Nulls.SKIP)
+        public Builder remoteWasDeleted(Optional<Boolean> remoteWasDeleted) {
+            this.remoteWasDeleted = remoteWasDeleted;
+            return this;
+        }
+
+        public Builder remoteWasDeleted(Boolean remoteWasDeleted) {
+            this.remoteWasDeleted = Optional.ofNullable(remoteWasDeleted);
+            return this;
+        }
+
         @JsonSetter(value = "field_mappings", nulls = Nulls.SKIP)
-        public Builder fieldMappings(Optional<Map<String, JsonNode>> fieldMappings) {
+        public Builder fieldMappings(Optional<Map<String, Object>> fieldMappings) {
             this.fieldMappings = fieldMappings;
             return this;
         }
 
-        public Builder fieldMappings(Map<String, JsonNode> fieldMappings) {
+        public Builder fieldMappings(Map<String, Object> fieldMappings) {
             this.fieldMappings = Optional.ofNullable(fieldMappings);
             return this;
         }
@@ -529,8 +528,8 @@ public final class Benefit {
                     companyContribution,
                     startDate,
                     endDate,
-                    remoteWasDeleted,
                     employerBenefit,
+                    remoteWasDeleted,
                     fieldMappings,
                     remoteData,
                     additionalProperties);

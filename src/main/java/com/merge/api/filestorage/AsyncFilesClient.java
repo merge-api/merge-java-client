@@ -116,14 +116,14 @@ public class AsyncFilesClient {
     }
 
     /**
-     * Returns metadata to construct an authenticated file download request for a singular file, allowing you to download file directly from the third-party.
+     * Returns metadata to construct an authenticated file download request for a singular file, allowing you to download file directly from the third-party. For information on our download process please refer to our &lt;a href='https://help.merge.dev/articles/10644317' target='_blank'&gt;direct file download help center article&lt;/a&gt;.
      */
     public CompletableFuture<DownloadRequestMeta> downloadRequestMetaRetrieve(String id) {
         return this.rawClient.downloadRequestMetaRetrieve(id).thenApply(response -> response.body());
     }
 
     /**
-     * Returns metadata to construct an authenticated file download request for a singular file, allowing you to download file directly from the third-party.
+     * Returns metadata to construct an authenticated file download request for a singular file, allowing you to download file directly from the third-party. For information on our download process please refer to our &lt;a href='https://help.merge.dev/articles/10644317' target='_blank'&gt;direct file download help center article&lt;/a&gt;.
      */
     public CompletableFuture<DownloadRequestMeta> downloadRequestMetaRetrieve(
             String id, FilesDownloadRequestMetaRetrieveRequest request) {
@@ -131,7 +131,7 @@ public class AsyncFilesClient {
     }
 
     /**
-     * Returns metadata to construct an authenticated file download request for a singular file, allowing you to download file directly from the third-party.
+     * Returns metadata to construct an authenticated file download request for a singular file, allowing you to download file directly from the third-party. For information on our download process please refer to our &lt;a href='https://help.merge.dev/articles/10644317' target='_blank'&gt;direct file download help center article&lt;/a&gt;.
      */
     public CompletableFuture<DownloadRequestMeta> downloadRequestMetaRetrieve(
             String id, FilesDownloadRequestMetaRetrieveRequest request, RequestOptions requestOptions) {

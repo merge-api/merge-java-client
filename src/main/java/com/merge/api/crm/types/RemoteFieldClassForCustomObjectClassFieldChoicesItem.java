@@ -10,7 +10,6 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
-import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.merge.api.core.ObjectMappers;
 import java.util.HashMap;
@@ -21,21 +20,21 @@ import java.util.Optional;
 @JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = RemoteFieldClassForCustomObjectClassFieldChoicesItem.Builder.class)
 public final class RemoteFieldClassForCustomObjectClassFieldChoicesItem {
-    private final Optional<JsonNode> value;
+    private final Optional<Object> value;
 
     private final Optional<String> displayName;
 
     private final Map<String, Object> additionalProperties;
 
     private RemoteFieldClassForCustomObjectClassFieldChoicesItem(
-            Optional<JsonNode> value, Optional<String> displayName, Map<String, Object> additionalProperties) {
+            Optional<Object> value, Optional<String> displayName, Map<String, Object> additionalProperties) {
         this.value = value;
         this.displayName = displayName;
         this.additionalProperties = additionalProperties;
     }
 
     @JsonProperty("value")
-    public Optional<JsonNode> getValue() {
+    public Optional<Object> getValue() {
         return value;
     }
 
@@ -76,7 +75,7 @@ public final class RemoteFieldClassForCustomObjectClassFieldChoicesItem {
 
     @JsonIgnoreProperties(ignoreUnknown = true)
     public static final class Builder {
-        private Optional<JsonNode> value = Optional.empty();
+        private Optional<Object> value = Optional.empty();
 
         private Optional<String> displayName = Optional.empty();
 
@@ -92,12 +91,12 @@ public final class RemoteFieldClassForCustomObjectClassFieldChoicesItem {
         }
 
         @JsonSetter(value = "value", nulls = Nulls.SKIP)
-        public Builder value(Optional<JsonNode> value) {
+        public Builder value(Optional<Object> value) {
             this.value = value;
             return this;
         }
 
-        public Builder value(JsonNode value) {
+        public Builder value(Object value) {
             this.value = Optional.ofNullable(value);
             return this;
         }

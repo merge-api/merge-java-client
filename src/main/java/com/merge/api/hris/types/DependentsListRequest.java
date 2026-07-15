@@ -27,6 +27,8 @@ public final class DependentsListRequest {
 
     private final Optional<String> cursor;
 
+    private final Optional<String> employeeId;
+
     private final Optional<Boolean> includeDeletedData;
 
     private final Optional<Boolean> includeRemoteData;
@@ -49,6 +51,7 @@ public final class DependentsListRequest {
             Optional<OffsetDateTime> createdAfter,
             Optional<OffsetDateTime> createdBefore,
             Optional<String> cursor,
+            Optional<String> employeeId,
             Optional<Boolean> includeDeletedData,
             Optional<Boolean> includeRemoteData,
             Optional<Boolean> includeSensitiveFields,
@@ -61,6 +64,7 @@ public final class DependentsListRequest {
         this.createdAfter = createdAfter;
         this.createdBefore = createdBefore;
         this.cursor = cursor;
+        this.employeeId = employeeId;
         this.includeDeletedData = includeDeletedData;
         this.includeRemoteData = includeRemoteData;
         this.includeSensitiveFields = includeSensitiveFields;
@@ -94,6 +98,14 @@ public final class DependentsListRequest {
     @JsonProperty("cursor")
     public Optional<String> getCursor() {
         return cursor;
+    }
+
+    /**
+     * @return If provided, will only return dependents for this employee.
+     */
+    @JsonProperty("employee_id")
+    public Optional<String> getEmployeeId() {
+        return employeeId;
     }
 
     /**
@@ -145,7 +157,7 @@ public final class DependentsListRequest {
     }
 
     /**
-     * @return Number of results to return per page.
+     * @return Number of results to return per page. The maximum limit is 100.
      */
     @JsonProperty("page_size")
     public Optional<Integer> getPageSize() {
@@ -175,6 +187,7 @@ public final class DependentsListRequest {
         return createdAfter.equals(other.createdAfter)
                 && createdBefore.equals(other.createdBefore)
                 && cursor.equals(other.cursor)
+                && employeeId.equals(other.employeeId)
                 && includeDeletedData.equals(other.includeDeletedData)
                 && includeRemoteData.equals(other.includeRemoteData)
                 && includeSensitiveFields.equals(other.includeSensitiveFields)
@@ -191,6 +204,7 @@ public final class DependentsListRequest {
                 this.createdAfter,
                 this.createdBefore,
                 this.cursor,
+                this.employeeId,
                 this.includeDeletedData,
                 this.includeRemoteData,
                 this.includeSensitiveFields,
@@ -218,6 +232,8 @@ public final class DependentsListRequest {
 
         private Optional<String> cursor = Optional.empty();
 
+        private Optional<String> employeeId = Optional.empty();
+
         private Optional<Boolean> includeDeletedData = Optional.empty();
 
         private Optional<Boolean> includeRemoteData = Optional.empty();
@@ -243,6 +259,7 @@ public final class DependentsListRequest {
             createdAfter(other.getCreatedAfter());
             createdBefore(other.getCreatedBefore());
             cursor(other.getCursor());
+            employeeId(other.getEmployeeId());
             includeDeletedData(other.getIncludeDeletedData());
             includeRemoteData(other.getIncludeRemoteData());
             includeSensitiveFields(other.getIncludeSensitiveFields());
@@ -293,6 +310,20 @@ public final class DependentsListRequest {
 
         public Builder cursor(String cursor) {
             this.cursor = Optional.ofNullable(cursor);
+            return this;
+        }
+
+        /**
+         * <p>If provided, will only return dependents for this employee.</p>
+         */
+        @JsonSetter(value = "employee_id", nulls = Nulls.SKIP)
+        public Builder employeeId(Optional<String> employeeId) {
+            this.employeeId = employeeId;
+            return this;
+        }
+
+        public Builder employeeId(String employeeId) {
+            this.employeeId = Optional.ofNullable(employeeId);
             return this;
         }
 
@@ -381,7 +412,7 @@ public final class DependentsListRequest {
         }
 
         /**
-         * <p>Number of results to return per page.</p>
+         * <p>Number of results to return per page. The maximum limit is 100.</p>
          */
         @JsonSetter(value = "page_size", nulls = Nulls.SKIP)
         public Builder pageSize(Optional<Integer> pageSize) {
@@ -413,6 +444,7 @@ public final class DependentsListRequest {
                     createdAfter,
                     createdBefore,
                     cursor,
+                    employeeId,
                     includeDeletedData,
                     includeRemoteData,
                     includeSensitiveFields,

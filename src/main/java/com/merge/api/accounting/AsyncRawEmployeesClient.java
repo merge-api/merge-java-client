@@ -60,6 +60,18 @@ public class AsyncRawEmployeesClient {
         HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("accounting/v1/employees");
+        if (request.getCompanyId().isPresent()) {
+            QueryStringMapper.addQueryParameter(
+                    httpUrl, "company_id", request.getCompanyId().get(), false);
+        }
+        if (request.getCreatedAfter().isPresent()) {
+            QueryStringMapper.addQueryParameter(
+                    httpUrl, "created_after", request.getCreatedAfter().get(), false);
+        }
+        if (request.getCreatedBefore().isPresent()) {
+            QueryStringMapper.addQueryParameter(
+                    httpUrl, "created_before", request.getCreatedBefore().get(), false);
+        }
         if (request.getCursor().isPresent()) {
             QueryStringMapper.addQueryParameter(
                     httpUrl, "cursor", request.getCursor().get(), false);
@@ -82,9 +94,21 @@ public class AsyncRawEmployeesClient {
             QueryStringMapper.addQueryParameter(
                     httpUrl, "include_shell_data", request.getIncludeShellData().get(), false);
         }
+        if (request.getModifiedAfter().isPresent()) {
+            QueryStringMapper.addQueryParameter(
+                    httpUrl, "modified_after", request.getModifiedAfter().get(), false);
+        }
+        if (request.getModifiedBefore().isPresent()) {
+            QueryStringMapper.addQueryParameter(
+                    httpUrl, "modified_before", request.getModifiedBefore().get(), false);
+        }
         if (request.getPageSize().isPresent()) {
             QueryStringMapper.addQueryParameter(
                     httpUrl, "page_size", request.getPageSize().get(), false);
+        }
+        if (request.getRemoteId().isPresent()) {
+            QueryStringMapper.addQueryParameter(
+                    httpUrl, "remote_id", request.getRemoteId().get(), false);
         }
         if (request.getExpand().isPresent()) {
             QueryStringMapper.addQueryParameter(
@@ -105,9 +129,10 @@ public class AsyncRawEmployeesClient {
             @Override
             public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                 try (ResponseBody responseBody = response.body()) {
+                    String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                     if (response.isSuccessful()) {
                         PaginatedEmployeeList parsedResponse =
-                                ObjectMappers.JSON_MAPPER.readValue(responseBody.string(), PaginatedEmployeeList.class);
+                                ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PaginatedEmployeeList.class);
                         Optional<String> startingAfter = parsedResponse.getNext();
                         EmployeesListRequest nextRequest = EmployeesListRequest.builder()
                                 .from(request)
@@ -128,12 +153,9 @@ public class AsyncRawEmployeesClient {
                                 response));
                         return;
                     }
-                    String responseBodyString = responseBody != null ? responseBody.string() : "{}";
+                    Object errorBody = ObjectMappers.parseErrorBody(responseBodyString);
                     future.completeExceptionally(new ApiError(
-                            "Error with status code " + response.code(),
-                            response.code(),
-                            ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Object.class),
-                            response));
+                            "Error with status code " + response.code(), response.code(), errorBody, response));
                     return;
                 } catch (IOException e) {
                     future.completeExceptionally(new MergeException("Network error executing HTTP request", e));
@@ -201,17 +223,15 @@ public class AsyncRawEmployeesClient {
             @Override
             public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                 try (ResponseBody responseBody = response.body()) {
+                    String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                     if (response.isSuccessful()) {
                         future.complete(new MergeApiHttpResponse<>(
-                                ObjectMappers.JSON_MAPPER.readValue(responseBody.string(), Employee.class), response));
+                                ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Employee.class), response));
                         return;
                     }
-                    String responseBodyString = responseBody != null ? responseBody.string() : "{}";
+                    Object errorBody = ObjectMappers.parseErrorBody(responseBodyString);
                     future.completeExceptionally(new ApiError(
-                            "Error with status code " + response.code(),
-                            response.code(),
-                            ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Object.class),
-                            response));
+                            "Error with status code " + response.code(), response.code(), errorBody, response));
                     return;
                 } catch (IOException e) {
                     future.completeExceptionally(new MergeException("Network error executing HTTP request", e));

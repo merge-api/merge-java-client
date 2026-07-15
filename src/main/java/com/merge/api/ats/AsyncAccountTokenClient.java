@@ -4,6 +4,7 @@
 package com.merge.api.ats;
 
 import com.merge.api.ats.types.AccountToken;
+import com.merge.api.ats.types.RegenerateAccountToken;
 import com.merge.api.core.ClientOptions;
 import com.merge.api.core.RequestOptions;
 import java.util.concurrent.CompletableFuture;
@@ -37,5 +38,19 @@ public class AsyncAccountTokenClient {
      */
     public CompletableFuture<AccountToken> retrieve(String publicToken, RequestOptions requestOptions) {
         return this.rawClient.retrieve(publicToken, requestOptions).thenApply(response -> response.body());
+    }
+
+    /**
+     * Exchange Linked Account account tokens.
+     */
+    public CompletableFuture<RegenerateAccountToken> regenerateCreate() {
+        return this.rawClient.regenerateCreate().thenApply(response -> response.body());
+    }
+
+    /**
+     * Exchange Linked Account account tokens.
+     */
+    public CompletableFuture<RegenerateAccountToken> regenerateCreate(RequestOptions requestOptions) {
+        return this.rawClient.regenerateCreate(requestOptions).thenApply(response -> response.body());
     }
 }

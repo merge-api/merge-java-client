@@ -10,7 +10,6 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
-import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.merge.api.core.ObjectMappers;
 import java.time.OffsetDateTime;
@@ -59,6 +58,8 @@ public final class Ticket {
 
     private final Optional<TicketAccessLevel> accessLevel;
 
+    private final Optional<List<Permission>> permissions;
+
     private final Optional<List<Optional<String>>> tags;
 
     private final Optional<List<Optional<String>>> roles;
@@ -75,7 +76,7 @@ public final class Ticket {
 
     private final Optional<Boolean> remoteWasDeleted;
 
-    private final Optional<Map<String, JsonNode>> fieldMappings;
+    private final Optional<Map<String, Object>> fieldMappings;
 
     private final Optional<List<RemoteData>> remoteData;
 
@@ -102,6 +103,7 @@ public final class Ticket {
             Optional<TicketParentTicket> parentTicket,
             Optional<List<Optional<TicketAttachmentsItem>>> attachments,
             Optional<TicketAccessLevel> accessLevel,
+            Optional<List<Permission>> permissions,
             Optional<List<Optional<String>>> tags,
             Optional<List<Optional<String>>> roles,
             Optional<String> ticketUrl,
@@ -110,7 +112,7 @@ public final class Ticket {
             Optional<OffsetDateTime> remoteUpdatedAt,
             Optional<OffsetDateTime> completedAt,
             Optional<Boolean> remoteWasDeleted,
-            Optional<Map<String, JsonNode>> fieldMappings,
+            Optional<Map<String, Object>> fieldMappings,
             Optional<List<RemoteData>> remoteData,
             Optional<List<RemoteField>> remoteFields,
             Map<String, Object> additionalProperties) {
@@ -132,6 +134,7 @@ public final class Ticket {
         this.parentTicket = parentTicket;
         this.attachments = attachments;
         this.accessLevel = accessLevel;
+        this.permissions = permissions;
         this.tags = tags;
         this.roles = roles;
         this.ticketUrl = ticketUrl;
@@ -296,6 +299,11 @@ public final class Ticket {
         return accessLevel;
     }
 
+    @JsonProperty("permissions")
+    public Optional<List<Permission>> getPermissions() {
+        return permissions;
+    }
+
     @JsonProperty("tags")
     public Optional<List<Optional<String>>> getTags() {
         return tags;
@@ -361,7 +369,7 @@ public final class Ticket {
     }
 
     @JsonProperty("field_mappings")
-    public Optional<Map<String, JsonNode>> getFieldMappings() {
+    public Optional<Map<String, Object>> getFieldMappings() {
         return fieldMappings;
     }
 
@@ -405,6 +413,7 @@ public final class Ticket {
                 && parentTicket.equals(other.parentTicket)
                 && attachments.equals(other.attachments)
                 && accessLevel.equals(other.accessLevel)
+                && permissions.equals(other.permissions)
                 && tags.equals(other.tags)
                 && roles.equals(other.roles)
                 && ticketUrl.equals(other.ticketUrl)
@@ -439,6 +448,7 @@ public final class Ticket {
                 this.parentTicket,
                 this.attachments,
                 this.accessLevel,
+                this.permissions,
                 this.tags,
                 this.roles,
                 this.ticketUrl,
@@ -499,6 +509,8 @@ public final class Ticket {
 
         private Optional<TicketAccessLevel> accessLevel = Optional.empty();
 
+        private Optional<List<Permission>> permissions = Optional.empty();
+
         private Optional<List<Optional<String>>> tags = Optional.empty();
 
         private Optional<List<Optional<String>>> roles = Optional.empty();
@@ -515,7 +527,7 @@ public final class Ticket {
 
         private Optional<Boolean> remoteWasDeleted = Optional.empty();
 
-        private Optional<Map<String, JsonNode>> fieldMappings = Optional.empty();
+        private Optional<Map<String, Object>> fieldMappings = Optional.empty();
 
         private Optional<List<RemoteData>> remoteData = Optional.empty();
 
@@ -545,6 +557,7 @@ public final class Ticket {
             parentTicket(other.getParentTicket());
             attachments(other.getAttachments());
             accessLevel(other.getAccessLevel());
+            permissions(other.getPermissions());
             tags(other.getTags());
             roles(other.getRoles());
             ticketUrl(other.getTicketUrl());
@@ -817,6 +830,17 @@ public final class Ticket {
             return this;
         }
 
+        @JsonSetter(value = "permissions", nulls = Nulls.SKIP)
+        public Builder permissions(Optional<List<Permission>> permissions) {
+            this.permissions = permissions;
+            return this;
+        }
+
+        public Builder permissions(List<Permission> permissions) {
+            this.permissions = Optional.ofNullable(permissions);
+            return this;
+        }
+
         @JsonSetter(value = "tags", nulls = Nulls.SKIP)
         public Builder tags(Optional<List<Optional<String>>> tags) {
             this.tags = tags;
@@ -930,12 +954,12 @@ public final class Ticket {
         }
 
         @JsonSetter(value = "field_mappings", nulls = Nulls.SKIP)
-        public Builder fieldMappings(Optional<Map<String, JsonNode>> fieldMappings) {
+        public Builder fieldMappings(Optional<Map<String, Object>> fieldMappings) {
             this.fieldMappings = fieldMappings;
             return this;
         }
 
-        public Builder fieldMappings(Map<String, JsonNode> fieldMappings) {
+        public Builder fieldMappings(Map<String, Object> fieldMappings) {
             this.fieldMappings = Optional.ofNullable(fieldMappings);
             return this;
         }
@@ -982,6 +1006,7 @@ public final class Ticket {
                     parentTicket,
                     attachments,
                     accessLevel,
+                    permissions,
                     tags,
                     roles,
                     ticketUrl,

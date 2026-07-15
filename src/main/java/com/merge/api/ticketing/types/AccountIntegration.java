@@ -10,7 +10,6 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
-import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.merge.api.core.ObjectMappers;
 import java.util.HashMap;
@@ -37,11 +36,11 @@ public final class AccountIntegration {
 
     private final Optional<String> slug;
 
-    private final Optional<Map<String, JsonNode>> apiEndpointsToDocumentationUrls;
+    private final Optional<Map<String, Object>> apiEndpointsToDocumentationUrls;
 
     private final Optional<String> webhookSetupGuideUrl;
 
-    private final Optional<Map<String, JsonNode>> categoryBetaStatus;
+    private final Optional<Map<String, Object>> categoryBetaStatus;
 
     private final Map<String, Object> additionalProperties;
 
@@ -53,9 +52,9 @@ public final class AccountIntegration {
             Optional<String> squareImage,
             Optional<String> color,
             Optional<String> slug,
-            Optional<Map<String, JsonNode>> apiEndpointsToDocumentationUrls,
+            Optional<Map<String, Object>> apiEndpointsToDocumentationUrls,
             Optional<String> webhookSetupGuideUrl,
-            Optional<Map<String, JsonNode>> categoryBetaStatus,
+            Optional<Map<String, Object>> categoryBetaStatus,
             Map<String, Object> additionalProperties) {
         this.name = name;
         this.abbreviatedName = abbreviatedName;
@@ -127,7 +126,7 @@ public final class AccountIntegration {
      * @return Mapping of API endpoints to documentation urls for support. Example: {'GET': [['/common-model-scopes', 'https://docs.merge.dev/accounting/common-model-scopes/#common_model_scopes_retrieve'],['/common-model-actions', 'https://docs.merge.dev/accounting/common-model-actions/#common_model_actions_retrieve']], 'POST': []}
      */
     @JsonProperty("api_endpoints_to_documentation_urls")
-    public Optional<Map<String, JsonNode>> getApiEndpointsToDocumentationUrls() {
+    public Optional<Map<String, Object>> getApiEndpointsToDocumentationUrls() {
         return apiEndpointsToDocumentationUrls;
     }
 
@@ -143,7 +142,7 @@ public final class AccountIntegration {
      * @return Category or categories this integration is in beta status for.
      */
     @JsonProperty("category_beta_status")
-    public Optional<Map<String, JsonNode>> getCategoryBetaStatus() {
+    public Optional<Map<String, Object>> getCategoryBetaStatus() {
         return categoryBetaStatus;
     }
 
@@ -249,9 +248,9 @@ public final class AccountIntegration {
         /**
          * <p>Mapping of API endpoints to documentation urls for support. Example: {'GET': [['/common-model-scopes', 'https://docs.merge.dev/accounting/common-model-scopes/#common_model_scopes_retrieve'],['/common-model-actions', 'https://docs.merge.dev/accounting/common-model-actions/#common_model_actions_retrieve']], 'POST': []}</p>
          */
-        _FinalStage apiEndpointsToDocumentationUrls(Optional<Map<String, JsonNode>> apiEndpointsToDocumentationUrls);
+        _FinalStage apiEndpointsToDocumentationUrls(Optional<Map<String, Object>> apiEndpointsToDocumentationUrls);
 
-        _FinalStage apiEndpointsToDocumentationUrls(Map<String, JsonNode> apiEndpointsToDocumentationUrls);
+        _FinalStage apiEndpointsToDocumentationUrls(Map<String, Object> apiEndpointsToDocumentationUrls);
 
         /**
          * <p>Setup guide URL for third party webhook creation. Exposed in Merge Docs.</p>
@@ -263,20 +262,20 @@ public final class AccountIntegration {
         /**
          * <p>Category or categories this integration is in beta status for.</p>
          */
-        _FinalStage categoryBetaStatus(Optional<Map<String, JsonNode>> categoryBetaStatus);
+        _FinalStage categoryBetaStatus(Optional<Map<String, Object>> categoryBetaStatus);
 
-        _FinalStage categoryBetaStatus(Map<String, JsonNode> categoryBetaStatus);
+        _FinalStage categoryBetaStatus(Map<String, Object> categoryBetaStatus);
     }
 
     @JsonIgnoreProperties(ignoreUnknown = true)
     public static final class Builder implements NameStage, _FinalStage {
         private String name;
 
-        private Optional<Map<String, JsonNode>> categoryBetaStatus = Optional.empty();
+        private Optional<Map<String, Object>> categoryBetaStatus = Optional.empty();
 
         private Optional<String> webhookSetupGuideUrl = Optional.empty();
 
-        private Optional<Map<String, JsonNode>> apiEndpointsToDocumentationUrls = Optional.empty();
+        private Optional<Map<String, Object>> apiEndpointsToDocumentationUrls = Optional.empty();
 
         private Optional<String> slug = Optional.empty();
 
@@ -327,7 +326,7 @@ public final class AccountIntegration {
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @java.lang.Override
-        public _FinalStage categoryBetaStatus(Map<String, JsonNode> categoryBetaStatus) {
+        public _FinalStage categoryBetaStatus(Map<String, Object> categoryBetaStatus) {
             this.categoryBetaStatus = Optional.ofNullable(categoryBetaStatus);
             return this;
         }
@@ -337,7 +336,7 @@ public final class AccountIntegration {
          */
         @java.lang.Override
         @JsonSetter(value = "category_beta_status", nulls = Nulls.SKIP)
-        public _FinalStage categoryBetaStatus(Optional<Map<String, JsonNode>> categoryBetaStatus) {
+        public _FinalStage categoryBetaStatus(Optional<Map<String, Object>> categoryBetaStatus) {
             this.categoryBetaStatus = categoryBetaStatus;
             return this;
         }
@@ -367,7 +366,7 @@ public final class AccountIntegration {
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @java.lang.Override
-        public _FinalStage apiEndpointsToDocumentationUrls(Map<String, JsonNode> apiEndpointsToDocumentationUrls) {
+        public _FinalStage apiEndpointsToDocumentationUrls(Map<String, Object> apiEndpointsToDocumentationUrls) {
             this.apiEndpointsToDocumentationUrls = Optional.ofNullable(apiEndpointsToDocumentationUrls);
             return this;
         }
@@ -378,7 +377,7 @@ public final class AccountIntegration {
         @java.lang.Override
         @JsonSetter(value = "api_endpoints_to_documentation_urls", nulls = Nulls.SKIP)
         public _FinalStage apiEndpointsToDocumentationUrls(
-                Optional<Map<String, JsonNode>> apiEndpointsToDocumentationUrls) {
+                Optional<Map<String, Object>> apiEndpointsToDocumentationUrls) {
             this.apiEndpointsToDocumentationUrls = apiEndpointsToDocumentationUrls;
             return this;
         }

@@ -10,7 +10,6 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
-import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.merge.api.core.ObjectMappers;
 import java.time.OffsetDateTime;
@@ -30,7 +29,7 @@ public final class Issue {
 
     private final String errorDescription;
 
-    private final Optional<Map<String, JsonNode>> endUser;
+    private final Optional<Map<String, Object>> endUser;
 
     private final Optional<OffsetDateTime> firstIncidentTime;
 
@@ -46,7 +45,7 @@ public final class Issue {
             Optional<String> id,
             Optional<IssueStatus> status,
             String errorDescription,
-            Optional<Map<String, JsonNode>> endUser,
+            Optional<Map<String, Object>> endUser,
             Optional<OffsetDateTime> firstIncidentTime,
             Optional<OffsetDateTime> lastIncidentTime,
             Optional<Boolean> isMuted,
@@ -86,7 +85,7 @@ public final class Issue {
     }
 
     @JsonProperty("end_user")
-    public Optional<Map<String, JsonNode>> getEndUser() {
+    public Optional<Map<String, Object>> getEndUser() {
         return endUser;
     }
 
@@ -178,9 +177,9 @@ public final class Issue {
 
         _FinalStage status(IssueStatus status);
 
-        _FinalStage endUser(Optional<Map<String, JsonNode>> endUser);
+        _FinalStage endUser(Optional<Map<String, Object>> endUser);
 
-        _FinalStage endUser(Map<String, JsonNode> endUser);
+        _FinalStage endUser(Map<String, Object> endUser);
 
         _FinalStage firstIncidentTime(Optional<OffsetDateTime> firstIncidentTime);
 
@@ -211,7 +210,7 @@ public final class Issue {
 
         private Optional<OffsetDateTime> firstIncidentTime = Optional.empty();
 
-        private Optional<Map<String, JsonNode>> endUser = Optional.empty();
+        private Optional<Map<String, Object>> endUser = Optional.empty();
 
         private Optional<IssueStatus> status = Optional.empty();
 
@@ -295,14 +294,14 @@ public final class Issue {
         }
 
         @java.lang.Override
-        public _FinalStage endUser(Map<String, JsonNode> endUser) {
+        public _FinalStage endUser(Map<String, Object> endUser) {
             this.endUser = Optional.ofNullable(endUser);
             return this;
         }
 
         @java.lang.Override
         @JsonSetter(value = "end_user", nulls = Nulls.SKIP)
-        public _FinalStage endUser(Optional<Map<String, JsonNode>> endUser) {
+        public _FinalStage endUser(Optional<Map<String, Object>> endUser) {
             this.endUser = endUser;
             return this;
         }

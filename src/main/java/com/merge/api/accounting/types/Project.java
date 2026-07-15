@@ -10,7 +10,6 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
-import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.merge.api.core.ObjectMappers;
 import java.time.OffsetDateTime;
@@ -26,6 +25,8 @@ import org.jetbrains.annotations.NotNull;
 public final class Project {
     private final Optional<String> id;
 
+    private final Optional<String> projectUrl;
+
     private final Optional<String> remoteId;
 
     private final Optional<OffsetDateTime> createdAt;
@@ -40,7 +41,7 @@ public final class Project {
 
     private final Optional<ProjectContact> contact;
 
-    private final Optional<Map<String, JsonNode>> fieldMappings;
+    private final Optional<Map<String, Object>> fieldMappings;
 
     private final Optional<List<RemoteData>> remoteData;
 
@@ -48,6 +49,7 @@ public final class Project {
 
     private Project(
             Optional<String> id,
+            Optional<String> projectUrl,
             Optional<String> remoteId,
             Optional<OffsetDateTime> createdAt,
             Optional<OffsetDateTime> modifiedAt,
@@ -55,10 +57,11 @@ public final class Project {
             Optional<Boolean> isActive,
             Optional<ProjectCompany> company,
             Optional<ProjectContact> contact,
-            Optional<Map<String, JsonNode>> fieldMappings,
+            Optional<Map<String, Object>> fieldMappings,
             Optional<List<RemoteData>> remoteData,
             Map<String, Object> additionalProperties) {
         this.id = id;
+        this.projectUrl = projectUrl;
         this.remoteId = remoteId;
         this.createdAt = createdAt;
         this.modifiedAt = modifiedAt;
@@ -74,6 +77,14 @@ public final class Project {
     @JsonProperty("id")
     public Optional<String> getId() {
         return id;
+    }
+
+    /**
+     * @return The 3rd party URL of the project.
+     */
+    @JsonProperty("project_url")
+    public Optional<String> getProjectUrl() {
+        return projectUrl;
     }
 
     /**
@@ -133,7 +144,7 @@ public final class Project {
     }
 
     @JsonProperty("field_mappings")
-    public Optional<Map<String, JsonNode>> getFieldMappings() {
+    public Optional<Map<String, Object>> getFieldMappings() {
         return fieldMappings;
     }
 
@@ -155,6 +166,7 @@ public final class Project {
 
     private boolean equalTo(Project other) {
         return id.equals(other.id)
+                && projectUrl.equals(other.projectUrl)
                 && remoteId.equals(other.remoteId)
                 && createdAt.equals(other.createdAt)
                 && modifiedAt.equals(other.modifiedAt)
@@ -170,6 +182,7 @@ public final class Project {
     public int hashCode() {
         return Objects.hash(
                 this.id,
+                this.projectUrl,
                 this.remoteId,
                 this.createdAt,
                 this.modifiedAt,
@@ -205,6 +218,13 @@ public final class Project {
         _FinalStage id(Optional<String> id);
 
         _FinalStage id(String id);
+
+        /**
+         * <p>The 3rd party URL of the project.</p>
+         */
+        _FinalStage projectUrl(Optional<String> projectUrl);
+
+        _FinalStage projectUrl(String projectUrl);
 
         /**
          * <p>The third-party API ID of the matching object.</p>
@@ -248,9 +268,9 @@ public final class Project {
 
         _FinalStage contact(ProjectContact contact);
 
-        _FinalStage fieldMappings(Optional<Map<String, JsonNode>> fieldMappings);
+        _FinalStage fieldMappings(Optional<Map<String, Object>> fieldMappings);
 
-        _FinalStage fieldMappings(Map<String, JsonNode> fieldMappings);
+        _FinalStage fieldMappings(Map<String, Object> fieldMappings);
 
         _FinalStage remoteData(Optional<List<RemoteData>> remoteData);
 
@@ -263,7 +283,7 @@ public final class Project {
 
         private Optional<List<RemoteData>> remoteData = Optional.empty();
 
-        private Optional<Map<String, JsonNode>> fieldMappings = Optional.empty();
+        private Optional<Map<String, Object>> fieldMappings = Optional.empty();
 
         private Optional<ProjectContact> contact = Optional.empty();
 
@@ -277,6 +297,8 @@ public final class Project {
 
         private Optional<String> remoteId = Optional.empty();
 
+        private Optional<String> projectUrl = Optional.empty();
+
         private Optional<String> id = Optional.empty();
 
         @JsonAnySetter
@@ -287,6 +309,7 @@ public final class Project {
         @java.lang.Override
         public Builder from(Project other) {
             id(other.getId());
+            projectUrl(other.getProjectUrl());
             remoteId(other.getRemoteId());
             createdAt(other.getCreatedAt());
             modifiedAt(other.getModifiedAt());
@@ -325,14 +348,14 @@ public final class Project {
         }
 
         @java.lang.Override
-        public _FinalStage fieldMappings(Map<String, JsonNode> fieldMappings) {
+        public _FinalStage fieldMappings(Map<String, Object> fieldMappings) {
             this.fieldMappings = Optional.ofNullable(fieldMappings);
             return this;
         }
 
         @java.lang.Override
         @JsonSetter(value = "field_mappings", nulls = Nulls.SKIP)
-        public _FinalStage fieldMappings(Optional<Map<String, JsonNode>> fieldMappings) {
+        public _FinalStage fieldMappings(Optional<Map<String, Object>> fieldMappings) {
             this.fieldMappings = fieldMappings;
             return this;
         }
@@ -457,6 +480,26 @@ public final class Project {
             return this;
         }
 
+        /**
+         * <p>The 3rd party URL of the project.</p>
+         * @return Reference to {@code this} so that method calls can be chained together.
+         */
+        @java.lang.Override
+        public _FinalStage projectUrl(String projectUrl) {
+            this.projectUrl = Optional.ofNullable(projectUrl);
+            return this;
+        }
+
+        /**
+         * <p>The 3rd party URL of the project.</p>
+         */
+        @java.lang.Override
+        @JsonSetter(value = "project_url", nulls = Nulls.SKIP)
+        public _FinalStage projectUrl(Optional<String> projectUrl) {
+            this.projectUrl = projectUrl;
+            return this;
+        }
+
         @java.lang.Override
         public _FinalStage id(String id) {
             this.id = Optional.ofNullable(id);
@@ -474,6 +517,7 @@ public final class Project {
         public Project build() {
             return new Project(
                     id,
+                    projectUrl,
                     remoteId,
                     createdAt,
                     modifiedAt,

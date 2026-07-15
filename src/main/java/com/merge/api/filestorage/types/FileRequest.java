@@ -10,7 +10,6 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
-import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.merge.api.core.ObjectMappers;
 import java.util.HashMap;
@@ -35,15 +34,15 @@ public final class FileRequest {
 
     private final Optional<FileRequestFolder> folder;
 
-    private final Optional<Map<String, JsonNode>> checksum;
+    private final Optional<Map<String, Object>> checksum;
 
     private final Optional<FileRequestPermissions> permissions;
 
     private final Optional<FileRequestDrive> drive;
 
-    private final Optional<Map<String, JsonNode>> integrationParams;
+    private final Optional<Map<String, Object>> integrationParams;
 
-    private final Optional<Map<String, JsonNode>> linkedAccountParams;
+    private final Optional<Map<String, Object>> linkedAccountParams;
 
     private final Map<String, Object> additionalProperties;
 
@@ -55,11 +54,11 @@ public final class FileRequest {
             Optional<String> mimeType,
             Optional<String> description,
             Optional<FileRequestFolder> folder,
-            Optional<Map<String, JsonNode>> checksum,
+            Optional<Map<String, Object>> checksum,
             Optional<FileRequestPermissions> permissions,
             Optional<FileRequestDrive> drive,
-            Optional<Map<String, JsonNode>> integrationParams,
-            Optional<Map<String, JsonNode>> linkedAccountParams,
+            Optional<Map<String, Object>> integrationParams,
+            Optional<Map<String, Object>> linkedAccountParams,
             Map<String, Object> additionalProperties) {
         this.name = name;
         this.fileUrl = fileUrl;
@@ -136,7 +135,7 @@ public final class FileRequest {
      * @return This field stores file checksum data. 'type' indicates the algorithm (e.g. crc_32, sha1, sha256, quickXor, or md5), and 'content_hash' is the unique hash used to verify file integrity and detect alterations.
      */
     @JsonProperty("checksum")
-    public Optional<Map<String, JsonNode>> getChecksum() {
+    public Optional<Map<String, Object>> getChecksum() {
         return checksum;
     }
 
@@ -157,12 +156,12 @@ public final class FileRequest {
     }
 
     @JsonProperty("integration_params")
-    public Optional<Map<String, JsonNode>> getIntegrationParams() {
+    public Optional<Map<String, Object>> getIntegrationParams() {
         return integrationParams;
     }
 
     @JsonProperty("linked_account_params")
-    public Optional<Map<String, JsonNode>> getLinkedAccountParams() {
+    public Optional<Map<String, Object>> getLinkedAccountParams() {
         return linkedAccountParams;
     }
 
@@ -234,15 +233,15 @@ public final class FileRequest {
 
         private Optional<FileRequestFolder> folder = Optional.empty();
 
-        private Optional<Map<String, JsonNode>> checksum = Optional.empty();
+        private Optional<Map<String, Object>> checksum = Optional.empty();
 
         private Optional<FileRequestPermissions> permissions = Optional.empty();
 
         private Optional<FileRequestDrive> drive = Optional.empty();
 
-        private Optional<Map<String, JsonNode>> integrationParams = Optional.empty();
+        private Optional<Map<String, Object>> integrationParams = Optional.empty();
 
-        private Optional<Map<String, JsonNode>> linkedAccountParams = Optional.empty();
+        private Optional<Map<String, Object>> linkedAccountParams = Optional.empty();
 
         @JsonAnySetter
         private Map<String, Object> additionalProperties = new HashMap<>();
@@ -367,12 +366,12 @@ public final class FileRequest {
          * <p>This field stores file checksum data. 'type' indicates the algorithm (e.g. crc_32, sha1, sha256, quickXor, or md5), and 'content_hash' is the unique hash used to verify file integrity and detect alterations.</p>
          */
         @JsonSetter(value = "checksum", nulls = Nulls.SKIP)
-        public Builder checksum(Optional<Map<String, JsonNode>> checksum) {
+        public Builder checksum(Optional<Map<String, Object>> checksum) {
             this.checksum = checksum;
             return this;
         }
 
-        public Builder checksum(Map<String, JsonNode> checksum) {
+        public Builder checksum(Map<String, Object> checksum) {
             this.checksum = Optional.ofNullable(checksum);
             return this;
         }
@@ -406,23 +405,23 @@ public final class FileRequest {
         }
 
         @JsonSetter(value = "integration_params", nulls = Nulls.SKIP)
-        public Builder integrationParams(Optional<Map<String, JsonNode>> integrationParams) {
+        public Builder integrationParams(Optional<Map<String, Object>> integrationParams) {
             this.integrationParams = integrationParams;
             return this;
         }
 
-        public Builder integrationParams(Map<String, JsonNode> integrationParams) {
+        public Builder integrationParams(Map<String, Object> integrationParams) {
             this.integrationParams = Optional.ofNullable(integrationParams);
             return this;
         }
 
         @JsonSetter(value = "linked_account_params", nulls = Nulls.SKIP)
-        public Builder linkedAccountParams(Optional<Map<String, JsonNode>> linkedAccountParams) {
+        public Builder linkedAccountParams(Optional<Map<String, Object>> linkedAccountParams) {
             this.linkedAccountParams = linkedAccountParams;
             return this;
         }
 
-        public Builder linkedAccountParams(Map<String, JsonNode> linkedAccountParams) {
+        public Builder linkedAccountParams(Map<String, Object> linkedAccountParams) {
             this.linkedAccountParams = Optional.ofNullable(linkedAccountParams);
             return this;
         }

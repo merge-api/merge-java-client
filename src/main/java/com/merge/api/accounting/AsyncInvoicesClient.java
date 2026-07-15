@@ -3,7 +3,10 @@
  */
 package com.merge.api.accounting;
 
+import com.merge.api.accounting.types.AsyncBulkCreateResponse;
+import com.merge.api.accounting.types.BatchObjectsResponse;
 import com.merge.api.accounting.types.Invoice;
+import com.merge.api.accounting.types.InvoiceBulkRequest;
 import com.merge.api.accounting.types.InvoiceEndpointRequest;
 import com.merge.api.accounting.types.InvoiceResponse;
 import com.merge.api.accounting.types.InvoicesLineItemsRemoteFieldClassesListRequest;
@@ -108,6 +111,35 @@ public class AsyncInvoicesClient {
     public CompletableFuture<InvoiceResponse> partialUpdate(
             String id, PatchedInvoiceEndpointRequest request, RequestOptions requestOptions) {
         return this.rawClient.partialUpdate(id, request, requestOptions).thenApply(response -> response.body());
+    }
+
+    /**
+     * Creates multiple <code>Invoice</code> objects with the given values.
+     */
+    public CompletableFuture<AsyncBulkCreateResponse> bulkCreate(InvoiceBulkRequest request) {
+        return this.rawClient.bulkCreate(request).thenApply(response -> response.body());
+    }
+
+    /**
+     * Creates multiple <code>Invoice</code> objects with the given values.
+     */
+    public CompletableFuture<AsyncBulkCreateResponse> bulkCreate(
+            InvoiceBulkRequest request, RequestOptions requestOptions) {
+        return this.rawClient.bulkCreate(request, requestOptions).thenApply(response -> response.body());
+    }
+
+    /**
+     * Returns the status and results of an <code>Invoice</code> bulk create batch.
+     */
+    public CompletableFuture<BatchObjectsResponse> bulkRetrieve(String batchId) {
+        return this.rawClient.bulkRetrieve(batchId).thenApply(response -> response.body());
+    }
+
+    /**
+     * Returns the status and results of an <code>Invoice</code> bulk create batch.
+     */
+    public CompletableFuture<BatchObjectsResponse> bulkRetrieve(String batchId, RequestOptions requestOptions) {
+        return this.rawClient.bulkRetrieve(batchId, requestOptions).thenApply(response -> response.body());
     }
 
     /**

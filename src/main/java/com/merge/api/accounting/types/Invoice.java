@@ -10,7 +10,6 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
-import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.merge.api.core.ObjectMappers;
 import java.time.OffsetDateTime;
@@ -25,13 +24,15 @@ import java.util.Optional;
 public final class Invoice {
     private final Optional<String> id;
 
+    private final Optional<String> invoiceUrl;
+
     private final Optional<String> remoteId;
 
     private final Optional<OffsetDateTime> createdAt;
 
     private final Optional<OffsetDateTime> modifiedAt;
 
-    private final Optional<InvoiceTypeEnum> type;
+    private final Optional<InvoiceType> type;
 
     private final Optional<InvoiceContact> contact;
 
@@ -75,11 +76,13 @@ public final class Invoice {
 
     private final Optional<List<Optional<InvoicePurchaseOrdersItem>>> purchaseOrders;
 
+    private final Optional<List<Optional<InvoiceSalesOrdersItem>>> salesOrders;
+
     private final Optional<List<Optional<InvoicePaymentsItem>>> payments;
 
     private final Optional<List<Optional<InvoiceAppliedPaymentsItem>>> appliedPayments;
 
-    private final Optional<List<InvoiceLineItem>> lineItems;
+    private final Optional<List<InvoiceLineItemsItem>> lineItems;
 
     private final Optional<List<InvoiceAppliedCreditNotesItem>> appliedCreditNotes;
 
@@ -89,7 +92,7 @@ public final class Invoice {
 
     private final Optional<Boolean> remoteWasDeleted;
 
-    private final Optional<Map<String, JsonNode>> fieldMappings;
+    private final Optional<Map<String, Object>> fieldMappings;
 
     private final Optional<List<RemoteData>> remoteData;
 
@@ -99,10 +102,11 @@ public final class Invoice {
 
     private Invoice(
             Optional<String> id,
+            Optional<String> invoiceUrl,
             Optional<String> remoteId,
             Optional<OffsetDateTime> createdAt,
             Optional<OffsetDateTime> modifiedAt,
-            Optional<InvoiceTypeEnum> type,
+            Optional<InvoiceType> type,
             Optional<InvoiceContact> contact,
             Optional<String> number,
             Optional<OffsetDateTime> issueDate,
@@ -124,18 +128,20 @@ public final class Invoice {
             Optional<List<Optional<InvoiceTrackingCategoriesItem>>> trackingCategories,
             Optional<InvoiceAccountingPeriod> accountingPeriod,
             Optional<List<Optional<InvoicePurchaseOrdersItem>>> purchaseOrders,
+            Optional<List<Optional<InvoiceSalesOrdersItem>>> salesOrders,
             Optional<List<Optional<InvoicePaymentsItem>>> payments,
             Optional<List<Optional<InvoiceAppliedPaymentsItem>>> appliedPayments,
-            Optional<List<InvoiceLineItem>> lineItems,
+            Optional<List<InvoiceLineItemsItem>> lineItems,
             Optional<List<InvoiceAppliedCreditNotesItem>> appliedCreditNotes,
             Optional<List<InvoiceAppliedVendorCreditsItem>> appliedVendorCredits,
             Optional<Boolean> inclusiveOfTax,
             Optional<Boolean> remoteWasDeleted,
-            Optional<Map<String, JsonNode>> fieldMappings,
+            Optional<Map<String, Object>> fieldMappings,
             Optional<List<RemoteData>> remoteData,
             Optional<List<RemoteField>> remoteFields,
             Map<String, Object> additionalProperties) {
         this.id = id;
+        this.invoiceUrl = invoiceUrl;
         this.remoteId = remoteId;
         this.createdAt = createdAt;
         this.modifiedAt = modifiedAt;
@@ -161,6 +167,7 @@ public final class Invoice {
         this.trackingCategories = trackingCategories;
         this.accountingPeriod = accountingPeriod;
         this.purchaseOrders = purchaseOrders;
+        this.salesOrders = salesOrders;
         this.payments = payments;
         this.appliedPayments = appliedPayments;
         this.lineItems = lineItems;
@@ -177,6 +184,14 @@ public final class Invoice {
     @JsonProperty("id")
     public Optional<String> getId() {
         return id;
+    }
+
+    /**
+     * @return The 3rd party URL of the invoice.
+     */
+    @JsonProperty("invoice_url")
+    public Optional<String> getInvoiceUrl() {
+        return invoiceUrl;
     }
 
     /**
@@ -211,7 +226,7 @@ public final class Invoice {
      * </ul>
      */
     @JsonProperty("type")
-    public Optional<InvoiceTypeEnum> getType() {
+    public Optional<InvoiceType> getType() {
         return type;
     }
 
@@ -693,6 +708,11 @@ public final class Invoice {
         return purchaseOrders;
     }
 
+    @JsonProperty("sales_orders")
+    public Optional<List<Optional<InvoiceSalesOrdersItem>>> getSalesOrders() {
+        return salesOrders;
+    }
+
     /**
      * @return Array of <code>Payment</code> object IDs.
      */
@@ -710,7 +730,7 @@ public final class Invoice {
     }
 
     @JsonProperty("line_items")
-    public Optional<List<InvoiceLineItem>> getLineItems() {
+    public Optional<List<InvoiceLineItemsItem>> getLineItems() {
         return lineItems;
     }
 
@@ -747,7 +767,7 @@ public final class Invoice {
     }
 
     @JsonProperty("field_mappings")
-    public Optional<Map<String, JsonNode>> getFieldMappings() {
+    public Optional<Map<String, Object>> getFieldMappings() {
         return fieldMappings;
     }
 
@@ -774,6 +794,7 @@ public final class Invoice {
 
     private boolean equalTo(Invoice other) {
         return id.equals(other.id)
+                && invoiceUrl.equals(other.invoiceUrl)
                 && remoteId.equals(other.remoteId)
                 && createdAt.equals(other.createdAt)
                 && modifiedAt.equals(other.modifiedAt)
@@ -799,6 +820,7 @@ public final class Invoice {
                 && trackingCategories.equals(other.trackingCategories)
                 && accountingPeriod.equals(other.accountingPeriod)
                 && purchaseOrders.equals(other.purchaseOrders)
+                && salesOrders.equals(other.salesOrders)
                 && payments.equals(other.payments)
                 && appliedPayments.equals(other.appliedPayments)
                 && lineItems.equals(other.lineItems)
@@ -815,6 +837,7 @@ public final class Invoice {
     public int hashCode() {
         return Objects.hash(
                 this.id,
+                this.invoiceUrl,
                 this.remoteId,
                 this.createdAt,
                 this.modifiedAt,
@@ -840,6 +863,7 @@ public final class Invoice {
                 this.trackingCategories,
                 this.accountingPeriod,
                 this.purchaseOrders,
+                this.salesOrders,
                 this.payments,
                 this.appliedPayments,
                 this.lineItems,
@@ -865,13 +889,15 @@ public final class Invoice {
     public static final class Builder {
         private Optional<String> id = Optional.empty();
 
+        private Optional<String> invoiceUrl = Optional.empty();
+
         private Optional<String> remoteId = Optional.empty();
 
         private Optional<OffsetDateTime> createdAt = Optional.empty();
 
         private Optional<OffsetDateTime> modifiedAt = Optional.empty();
 
-        private Optional<InvoiceTypeEnum> type = Optional.empty();
+        private Optional<InvoiceType> type = Optional.empty();
 
         private Optional<InvoiceContact> contact = Optional.empty();
 
@@ -915,11 +941,13 @@ public final class Invoice {
 
         private Optional<List<Optional<InvoicePurchaseOrdersItem>>> purchaseOrders = Optional.empty();
 
+        private Optional<List<Optional<InvoiceSalesOrdersItem>>> salesOrders = Optional.empty();
+
         private Optional<List<Optional<InvoicePaymentsItem>>> payments = Optional.empty();
 
         private Optional<List<Optional<InvoiceAppliedPaymentsItem>>> appliedPayments = Optional.empty();
 
-        private Optional<List<InvoiceLineItem>> lineItems = Optional.empty();
+        private Optional<List<InvoiceLineItemsItem>> lineItems = Optional.empty();
 
         private Optional<List<InvoiceAppliedCreditNotesItem>> appliedCreditNotes = Optional.empty();
 
@@ -929,7 +957,7 @@ public final class Invoice {
 
         private Optional<Boolean> remoteWasDeleted = Optional.empty();
 
-        private Optional<Map<String, JsonNode>> fieldMappings = Optional.empty();
+        private Optional<Map<String, Object>> fieldMappings = Optional.empty();
 
         private Optional<List<RemoteData>> remoteData = Optional.empty();
 
@@ -942,6 +970,7 @@ public final class Invoice {
 
         public Builder from(Invoice other) {
             id(other.getId());
+            invoiceUrl(other.getInvoiceUrl());
             remoteId(other.getRemoteId());
             createdAt(other.getCreatedAt());
             modifiedAt(other.getModifiedAt());
@@ -967,6 +996,7 @@ public final class Invoice {
             trackingCategories(other.getTrackingCategories());
             accountingPeriod(other.getAccountingPeriod());
             purchaseOrders(other.getPurchaseOrders());
+            salesOrders(other.getSalesOrders());
             payments(other.getPayments());
             appliedPayments(other.getAppliedPayments());
             lineItems(other.getLineItems());
@@ -988,6 +1018,20 @@ public final class Invoice {
 
         public Builder id(String id) {
             this.id = Optional.ofNullable(id);
+            return this;
+        }
+
+        /**
+         * <p>The 3rd party URL of the invoice.</p>
+         */
+        @JsonSetter(value = "invoice_url", nulls = Nulls.SKIP)
+        public Builder invoiceUrl(Optional<String> invoiceUrl) {
+            this.invoiceUrl = invoiceUrl;
+            return this;
+        }
+
+        public Builder invoiceUrl(String invoiceUrl) {
+            this.invoiceUrl = Optional.ofNullable(invoiceUrl);
             return this;
         }
 
@@ -1041,12 +1085,12 @@ public final class Invoice {
          * </ul>
          */
         @JsonSetter(value = "type", nulls = Nulls.SKIP)
-        public Builder type(Optional<InvoiceTypeEnum> type) {
+        public Builder type(Optional<InvoiceType> type) {
             this.type = type;
             return this;
         }
 
-        public Builder type(InvoiceTypeEnum type) {
+        public Builder type(InvoiceType type) {
             this.type = Optional.ofNullable(type);
             return this;
         }
@@ -1655,6 +1699,17 @@ public final class Invoice {
             return this;
         }
 
+        @JsonSetter(value = "sales_orders", nulls = Nulls.SKIP)
+        public Builder salesOrders(Optional<List<Optional<InvoiceSalesOrdersItem>>> salesOrders) {
+            this.salesOrders = salesOrders;
+            return this;
+        }
+
+        public Builder salesOrders(List<Optional<InvoiceSalesOrdersItem>> salesOrders) {
+            this.salesOrders = Optional.ofNullable(salesOrders);
+            return this;
+        }
+
         /**
          * <p>Array of <code>Payment</code> object IDs.</p>
          */
@@ -1684,12 +1739,12 @@ public final class Invoice {
         }
 
         @JsonSetter(value = "line_items", nulls = Nulls.SKIP)
-        public Builder lineItems(Optional<List<InvoiceLineItem>> lineItems) {
+        public Builder lineItems(Optional<List<InvoiceLineItemsItem>> lineItems) {
             this.lineItems = lineItems;
             return this;
         }
 
-        public Builder lineItems(List<InvoiceLineItem> lineItems) {
+        public Builder lineItems(List<InvoiceLineItemsItem> lineItems) {
             this.lineItems = Optional.ofNullable(lineItems);
             return this;
         }
@@ -1751,12 +1806,12 @@ public final class Invoice {
         }
 
         @JsonSetter(value = "field_mappings", nulls = Nulls.SKIP)
-        public Builder fieldMappings(Optional<Map<String, JsonNode>> fieldMappings) {
+        public Builder fieldMappings(Optional<Map<String, Object>> fieldMappings) {
             this.fieldMappings = fieldMappings;
             return this;
         }
 
-        public Builder fieldMappings(Map<String, JsonNode> fieldMappings) {
+        public Builder fieldMappings(Map<String, Object> fieldMappings) {
             this.fieldMappings = Optional.ofNullable(fieldMappings);
             return this;
         }
@@ -1786,6 +1841,7 @@ public final class Invoice {
         public Invoice build() {
             return new Invoice(
                     id,
+                    invoiceUrl,
                     remoteId,
                     createdAt,
                     modifiedAt,
@@ -1811,6 +1867,7 @@ public final class Invoice {
                     trackingCategories,
                     accountingPeriod,
                     purchaseOrders,
+                    salesOrders,
                     payments,
                     appliedPayments,
                     lineItems,

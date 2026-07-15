@@ -10,7 +10,6 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
-import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.merge.api.core.ObjectMappers;
 import java.time.OffsetDateTime;
@@ -34,7 +33,7 @@ public final class Address {
 
     private final Optional<String> city;
 
-    private final Optional<JsonNode> state;
+    private final Optional<Object> state;
 
     private final Optional<String> countrySubdivision;
 
@@ -51,7 +50,7 @@ public final class Address {
             Optional<String> street1,
             Optional<String> street2,
             Optional<String> city,
-            Optional<JsonNode> state,
+            Optional<Object> state,
             Optional<String> countrySubdivision,
             Optional<AddressCountry> country,
             Optional<String> zipCode,
@@ -121,8 +120,11 @@ public final class Address {
         return city;
     }
 
+    /**
+     * @return The address's state or region.
+     */
     @JsonProperty("state")
-    public Optional<JsonNode> getState() {
+    public Optional<Object> getState() {
         return state;
     }
 
@@ -463,7 +465,7 @@ public final class Address {
 
         private Optional<String> city = Optional.empty();
 
-        private Optional<JsonNode> state = Optional.empty();
+        private Optional<Object> state = Optional.empty();
 
         private Optional<String> countrySubdivision = Optional.empty();
 
@@ -578,13 +580,16 @@ public final class Address {
             return this;
         }
 
+        /**
+         * <p>The address's state or region.</p>
+         */
         @JsonSetter(value = "state", nulls = Nulls.SKIP)
-        public Builder state(Optional<JsonNode> state) {
+        public Builder state(Optional<Object> state) {
             this.state = state;
             return this;
         }
 
-        public Builder state(JsonNode state) {
+        public Builder state(Object state) {
             this.state = Optional.ofNullable(state);
             return this;
         }

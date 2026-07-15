@@ -10,7 +10,6 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
-import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.merge.api.core.ObjectMappers;
 import java.time.OffsetDateTime;
@@ -23,6 +22,8 @@ import java.util.Optional;
 @JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = Employee.Builder.class)
 public final class Employee {
+    private final Optional<String> employeeUrl;
+
     private final Optional<String> id;
 
     private final Optional<String> remoteId;
@@ -87,17 +88,18 @@ public final class Employee {
 
     private final Optional<String> avatar;
 
-    private final Optional<Map<String, JsonNode>> customFields;
+    private final Optional<Map<String, Object>> customFields;
 
     private final Optional<Boolean> remoteWasDeleted;
 
-    private final Optional<Map<String, JsonNode>> fieldMappings;
+    private final Optional<Map<String, Object>> fieldMappings;
 
     private final Optional<List<RemoteData>> remoteData;
 
     private final Map<String, Object> additionalProperties;
 
     private Employee(
+            Optional<String> employeeUrl,
             Optional<String> id,
             Optional<String> remoteId,
             Optional<OffsetDateTime> createdAt,
@@ -130,11 +132,12 @@ public final class Employee {
             Optional<EmployeeEmploymentStatus> employmentStatus,
             Optional<OffsetDateTime> terminationDate,
             Optional<String> avatar,
-            Optional<Map<String, JsonNode>> customFields,
+            Optional<Map<String, Object>> customFields,
             Optional<Boolean> remoteWasDeleted,
-            Optional<Map<String, JsonNode>> fieldMappings,
+            Optional<Map<String, Object>> fieldMappings,
             Optional<List<RemoteData>> remoteData,
             Map<String, Object> additionalProperties) {
+        this.employeeUrl = employeeUrl;
         this.id = id;
         this.remoteId = remoteId;
         this.createdAt = createdAt;
@@ -172,6 +175,14 @@ public final class Employee {
         this.fieldMappings = fieldMappings;
         this.remoteData = remoteData;
         this.additionalProperties = additionalProperties;
+    }
+
+    /**
+     * @return The 3rd party URL of the employee.
+     */
+    @JsonProperty("employee_url")
+    public Optional<String> getEmployeeUrl() {
+        return employeeUrl;
     }
 
     @JsonProperty("id")
@@ -457,7 +468,7 @@ public final class Employee {
      * @return Custom fields configured for a given model.
      */
     @JsonProperty("custom_fields")
-    public Optional<Map<String, JsonNode>> getCustomFields() {
+    public Optional<Map<String, Object>> getCustomFields() {
         return customFields;
     }
 
@@ -470,7 +481,7 @@ public final class Employee {
     }
 
     @JsonProperty("field_mappings")
-    public Optional<Map<String, JsonNode>> getFieldMappings() {
+    public Optional<Map<String, Object>> getFieldMappings() {
         return fieldMappings;
     }
 
@@ -491,7 +502,8 @@ public final class Employee {
     }
 
     private boolean equalTo(Employee other) {
-        return id.equals(other.id)
+        return employeeUrl.equals(other.employeeUrl)
+                && id.equals(other.id)
                 && remoteId.equals(other.remoteId)
                 && createdAt.equals(other.createdAt)
                 && modifiedAt.equals(other.modifiedAt)
@@ -532,6 +544,7 @@ public final class Employee {
     @java.lang.Override
     public int hashCode() {
         return Objects.hash(
+                this.employeeUrl,
                 this.id,
                 this.remoteId,
                 this.createdAt,
@@ -581,6 +594,8 @@ public final class Employee {
 
     @JsonIgnoreProperties(ignoreUnknown = true)
     public static final class Builder {
+        private Optional<String> employeeUrl = Optional.empty();
+
         private Optional<String> id = Optional.empty();
 
         private Optional<String> remoteId = Optional.empty();
@@ -645,11 +660,11 @@ public final class Employee {
 
         private Optional<String> avatar = Optional.empty();
 
-        private Optional<Map<String, JsonNode>> customFields = Optional.empty();
+        private Optional<Map<String, Object>> customFields = Optional.empty();
 
         private Optional<Boolean> remoteWasDeleted = Optional.empty();
 
-        private Optional<Map<String, JsonNode>> fieldMappings = Optional.empty();
+        private Optional<Map<String, Object>> fieldMappings = Optional.empty();
 
         private Optional<List<RemoteData>> remoteData = Optional.empty();
 
@@ -659,6 +674,7 @@ public final class Employee {
         private Builder() {}
 
         public Builder from(Employee other) {
+            employeeUrl(other.getEmployeeUrl());
             id(other.getId());
             remoteId(other.getRemoteId());
             createdAt(other.getCreatedAt());
@@ -695,6 +711,20 @@ public final class Employee {
             remoteWasDeleted(other.getRemoteWasDeleted());
             fieldMappings(other.getFieldMappings());
             remoteData(other.getRemoteData());
+            return this;
+        }
+
+        /**
+         * <p>The 3rd party URL of the employee.</p>
+         */
+        @JsonSetter(value = "employee_url", nulls = Nulls.SKIP)
+        public Builder employeeUrl(Optional<String> employeeUrl) {
+            this.employeeUrl = employeeUrl;
+            return this;
+        }
+
+        public Builder employeeUrl(String employeeUrl) {
+            this.employeeUrl = Optional.ofNullable(employeeUrl);
             return this;
         }
 
@@ -1173,12 +1203,12 @@ public final class Employee {
          * <p>Custom fields configured for a given model.</p>
          */
         @JsonSetter(value = "custom_fields", nulls = Nulls.SKIP)
-        public Builder customFields(Optional<Map<String, JsonNode>> customFields) {
+        public Builder customFields(Optional<Map<String, Object>> customFields) {
             this.customFields = customFields;
             return this;
         }
 
-        public Builder customFields(Map<String, JsonNode> customFields) {
+        public Builder customFields(Map<String, Object> customFields) {
             this.customFields = Optional.ofNullable(customFields);
             return this;
         }
@@ -1198,12 +1228,12 @@ public final class Employee {
         }
 
         @JsonSetter(value = "field_mappings", nulls = Nulls.SKIP)
-        public Builder fieldMappings(Optional<Map<String, JsonNode>> fieldMappings) {
+        public Builder fieldMappings(Optional<Map<String, Object>> fieldMappings) {
             this.fieldMappings = fieldMappings;
             return this;
         }
 
-        public Builder fieldMappings(Map<String, JsonNode> fieldMappings) {
+        public Builder fieldMappings(Map<String, Object> fieldMappings) {
             this.fieldMappings = Optional.ofNullable(fieldMappings);
             return this;
         }
@@ -1221,6 +1251,7 @@ public final class Employee {
 
         public Employee build() {
             return new Employee(
+                    employeeUrl,
                     id,
                     remoteId,
                     createdAt,

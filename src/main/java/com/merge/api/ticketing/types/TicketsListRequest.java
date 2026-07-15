@@ -79,6 +79,8 @@ public final class TicketsListRequest {
 
     private final Optional<String> remoteId;
 
+    private final Optional<String> remoteIds;
+
     private final Optional<OffsetDateTime> remoteUpdatedAfter;
 
     private final Optional<OffsetDateTime> remoteUpdatedBefore;
@@ -124,6 +126,7 @@ public final class TicketsListRequest {
             Optional<OffsetDateTime> remoteCreatedBefore,
             Optional<TicketsListRequestRemoteFields> remoteFields,
             Optional<String> remoteId,
+            Optional<String> remoteIds,
             Optional<OffsetDateTime> remoteUpdatedAfter,
             Optional<OffsetDateTime> remoteUpdatedBefore,
             Optional<TicketsListRequestShowEnumOrigins> showEnumOrigins,
@@ -160,6 +163,7 @@ public final class TicketsListRequest {
         this.remoteCreatedBefore = remoteCreatedBefore;
         this.remoteFields = remoteFields;
         this.remoteId = remoteId;
+        this.remoteIds = remoteIds;
         this.remoteUpdatedAfter = remoteUpdatedAfter;
         this.remoteUpdatedBefore = remoteUpdatedBefore;
         this.showEnumOrigins = showEnumOrigins;
@@ -339,7 +343,7 @@ public final class TicketsListRequest {
     }
 
     /**
-     * @return Number of results to return per page.
+     * @return Number of results to return per page. The maximum limit is 100.
      */
     @JsonProperty("page_size")
     public Optional<Integer> getPageSize() {
@@ -398,6 +402,14 @@ public final class TicketsListRequest {
     @JsonProperty("remote_id")
     public Optional<String> getRemoteId() {
         return remoteId;
+    }
+
+    /**
+     * @return If provided, will only return tickets with these remote IDs (comma-separated).
+     */
+    @JsonProperty("remote_ids")
+    public Optional<String> getRemoteIds() {
+        return remoteIds;
     }
 
     /**
@@ -496,6 +508,7 @@ public final class TicketsListRequest {
                 && remoteCreatedBefore.equals(other.remoteCreatedBefore)
                 && remoteFields.equals(other.remoteFields)
                 && remoteId.equals(other.remoteId)
+                && remoteIds.equals(other.remoteIds)
                 && remoteUpdatedAfter.equals(other.remoteUpdatedAfter)
                 && remoteUpdatedBefore.equals(other.remoteUpdatedBefore)
                 && showEnumOrigins.equals(other.showEnumOrigins)
@@ -536,6 +549,7 @@ public final class TicketsListRequest {
                 this.remoteCreatedBefore,
                 this.remoteFields,
                 this.remoteId,
+                this.remoteIds,
                 this.remoteUpdatedAfter,
                 this.remoteUpdatedBefore,
                 this.showEnumOrigins,
@@ -612,6 +626,8 @@ public final class TicketsListRequest {
 
         private Optional<String> remoteId = Optional.empty();
 
+        private Optional<String> remoteIds = Optional.empty();
+
         private Optional<OffsetDateTime> remoteUpdatedAfter = Optional.empty();
 
         private Optional<OffsetDateTime> remoteUpdatedBefore = Optional.empty();
@@ -660,6 +676,7 @@ public final class TicketsListRequest {
             remoteCreatedBefore(other.getRemoteCreatedBefore());
             remoteFields(other.getRemoteFields());
             remoteId(other.getRemoteId());
+            remoteIds(other.getRemoteIds());
             remoteUpdatedAfter(other.getRemoteUpdatedAfter());
             remoteUpdatedBefore(other.getRemoteUpdatedBefore());
             showEnumOrigins(other.getShowEnumOrigins());
@@ -970,7 +987,7 @@ public final class TicketsListRequest {
         }
 
         /**
-         * <p>Number of results to return per page.</p>
+         * <p>Number of results to return per page. The maximum limit is 100.</p>
          */
         @JsonSetter(value = "page_size", nulls = Nulls.SKIP)
         public Builder pageSize(Optional<Integer> pageSize) {
@@ -1070,6 +1087,20 @@ public final class TicketsListRequest {
 
         public Builder remoteId(String remoteId) {
             this.remoteId = Optional.ofNullable(remoteId);
+            return this;
+        }
+
+        /**
+         * <p>If provided, will only return tickets with these remote IDs (comma-separated).</p>
+         */
+        @JsonSetter(value = "remote_ids", nulls = Nulls.SKIP)
+        public Builder remoteIds(Optional<String> remoteIds) {
+            this.remoteIds = remoteIds;
+            return this;
+        }
+
+        public Builder remoteIds(String remoteIds) {
+            this.remoteIds = Optional.ofNullable(remoteIds);
             return this;
         }
 
@@ -1201,6 +1232,7 @@ public final class TicketsListRequest {
                     remoteCreatedBefore,
                     remoteFields,
                     remoteId,
+                    remoteIds,
                     remoteUpdatedAfter,
                     remoteUpdatedBefore,
                     showEnumOrigins,

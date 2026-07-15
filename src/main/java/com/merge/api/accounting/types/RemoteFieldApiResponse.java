@@ -41,6 +41,12 @@ public final class RemoteFieldApiResponse {
 
     private final Optional<List<RemoteFieldApi>> purchaseOrder;
 
+    private final Optional<List<RemoteFieldApi>> salesOrder;
+
+    private final Optional<List<RemoteFieldApi>> itemFulfillment;
+
+    private final Optional<List<RemoteFieldApi>> expenseReport;
+
     private final Optional<List<RemoteFieldApi>> trackingCategory;
 
     private final Optional<List<RemoteFieldApi>> journalEntry;
@@ -84,6 +90,9 @@ public final class RemoteFieldApiResponse {
             Optional<List<RemoteFieldApi>> creditNote,
             Optional<List<RemoteFieldApi>> item,
             Optional<List<RemoteFieldApi>> purchaseOrder,
+            Optional<List<RemoteFieldApi>> salesOrder,
+            Optional<List<RemoteFieldApi>> itemFulfillment,
+            Optional<List<RemoteFieldApi>> expenseReport,
             Optional<List<RemoteFieldApi>> trackingCategory,
             Optional<List<RemoteFieldApi>> journalEntry,
             Optional<List<RemoteFieldApi>> taxRate,
@@ -110,6 +119,9 @@ public final class RemoteFieldApiResponse {
         this.creditNote = creditNote;
         this.item = item;
         this.purchaseOrder = purchaseOrder;
+        this.salesOrder = salesOrder;
+        this.itemFulfillment = itemFulfillment;
+        this.expenseReport = expenseReport;
         this.trackingCategory = trackingCategory;
         this.journalEntry = journalEntry;
         this.taxRate = taxRate;
@@ -176,6 +188,21 @@ public final class RemoteFieldApiResponse {
     @JsonProperty("PurchaseOrder")
     public Optional<List<RemoteFieldApi>> getPurchaseOrder() {
         return purchaseOrder;
+    }
+
+    @JsonProperty("SalesOrder")
+    public Optional<List<RemoteFieldApi>> getSalesOrder() {
+        return salesOrder;
+    }
+
+    @JsonProperty("ItemFulfillment")
+    public Optional<List<RemoteFieldApi>> getItemFulfillment() {
+        return itemFulfillment;
+    }
+
+    @JsonProperty("ExpenseReport")
+    public Optional<List<RemoteFieldApi>> getExpenseReport() {
+        return expenseReport;
     }
 
     @JsonProperty("TrackingCategory")
@@ -275,6 +302,9 @@ public final class RemoteFieldApiResponse {
                 && creditNote.equals(other.creditNote)
                 && item.equals(other.item)
                 && purchaseOrder.equals(other.purchaseOrder)
+                && salesOrder.equals(other.salesOrder)
+                && itemFulfillment.equals(other.itemFulfillment)
+                && expenseReport.equals(other.expenseReport)
                 && trackingCategory.equals(other.trackingCategory)
                 && journalEntry.equals(other.journalEntry)
                 && taxRate.equals(other.taxRate)
@@ -305,6 +335,9 @@ public final class RemoteFieldApiResponse {
                 this.creditNote,
                 this.item,
                 this.purchaseOrder,
+                this.salesOrder,
+                this.itemFulfillment,
+                this.expenseReport,
                 this.trackingCategory,
                 this.journalEntry,
                 this.taxRate,
@@ -353,6 +386,12 @@ public final class RemoteFieldApiResponse {
 
         private Optional<List<RemoteFieldApi>> purchaseOrder = Optional.empty();
 
+        private Optional<List<RemoteFieldApi>> salesOrder = Optional.empty();
+
+        private Optional<List<RemoteFieldApi>> itemFulfillment = Optional.empty();
+
+        private Optional<List<RemoteFieldApi>> expenseReport = Optional.empty();
+
         private Optional<List<RemoteFieldApi>> trackingCategory = Optional.empty();
 
         private Optional<List<RemoteFieldApi>> journalEntry = Optional.empty();
@@ -399,6 +438,9 @@ public final class RemoteFieldApiResponse {
             creditNote(other.getCreditNote());
             item(other.getItem());
             purchaseOrder(other.getPurchaseOrder());
+            salesOrder(other.getSalesOrder());
+            itemFulfillment(other.getItemFulfillment());
+            expenseReport(other.getExpenseReport());
             trackingCategory(other.getTrackingCategory());
             journalEntry(other.getJournalEntry());
             taxRate(other.getTaxRate());
@@ -524,6 +566,39 @@ public final class RemoteFieldApiResponse {
 
         public Builder purchaseOrder(List<RemoteFieldApi> purchaseOrder) {
             this.purchaseOrder = Optional.ofNullable(purchaseOrder);
+            return this;
+        }
+
+        @JsonSetter(value = "SalesOrder", nulls = Nulls.SKIP)
+        public Builder salesOrder(Optional<List<RemoteFieldApi>> salesOrder) {
+            this.salesOrder = salesOrder;
+            return this;
+        }
+
+        public Builder salesOrder(List<RemoteFieldApi> salesOrder) {
+            this.salesOrder = Optional.ofNullable(salesOrder);
+            return this;
+        }
+
+        @JsonSetter(value = "ItemFulfillment", nulls = Nulls.SKIP)
+        public Builder itemFulfillment(Optional<List<RemoteFieldApi>> itemFulfillment) {
+            this.itemFulfillment = itemFulfillment;
+            return this;
+        }
+
+        public Builder itemFulfillment(List<RemoteFieldApi> itemFulfillment) {
+            this.itemFulfillment = Optional.ofNullable(itemFulfillment);
+            return this;
+        }
+
+        @JsonSetter(value = "ExpenseReport", nulls = Nulls.SKIP)
+        public Builder expenseReport(Optional<List<RemoteFieldApi>> expenseReport) {
+            this.expenseReport = expenseReport;
+            return this;
+        }
+
+        public Builder expenseReport(List<RemoteFieldApi> expenseReport) {
+            this.expenseReport = Optional.ofNullable(expenseReport);
             return this;
         }
 
@@ -704,6 +779,9 @@ public final class RemoteFieldApiResponse {
                     creditNote,
                     item,
                     purchaseOrder,
+                    salesOrder,
+                    itemFulfillment,
+                    expenseReport,
                     trackingCategory,
                     journalEntry,
                     taxRate,

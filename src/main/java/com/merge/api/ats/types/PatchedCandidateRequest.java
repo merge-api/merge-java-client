@@ -10,7 +10,6 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
-import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.merge.api.core.ObjectMappers;
 import java.time.OffsetDateTime;
@@ -53,9 +52,9 @@ public final class PatchedCandidateRequest {
 
     private final Optional<String> remoteTemplateId;
 
-    private final Optional<Map<String, JsonNode>> integrationParams;
+    private final Optional<Map<String, Object>> integrationParams;
 
-    private final Optional<Map<String, JsonNode>> linkedAccountParams;
+    private final Optional<Map<String, Object>> linkedAccountParams;
 
     private final Map<String, Object> additionalProperties;
 
@@ -75,8 +74,8 @@ public final class PatchedCandidateRequest {
             Optional<List<Optional<String>>> applications,
             Optional<List<Optional<String>>> attachments,
             Optional<String> remoteTemplateId,
-            Optional<Map<String, JsonNode>> integrationParams,
-            Optional<Map<String, JsonNode>> linkedAccountParams,
+            Optional<Map<String, Object>> integrationParams,
+            Optional<Map<String, Object>> linkedAccountParams,
             Map<String, Object> additionalProperties) {
         this.firstName = firstName;
         this.lastName = lastName;
@@ -207,12 +206,12 @@ public final class PatchedCandidateRequest {
     }
 
     @JsonProperty("integration_params")
-    public Optional<Map<String, JsonNode>> getIntegrationParams() {
+    public Optional<Map<String, Object>> getIntegrationParams() {
         return integrationParams;
     }
 
     @JsonProperty("linked_account_params")
-    public Optional<Map<String, JsonNode>> getLinkedAccountParams() {
+    public Optional<Map<String, Object>> getLinkedAccountParams() {
         return linkedAccountParams;
     }
 
@@ -310,9 +309,9 @@ public final class PatchedCandidateRequest {
 
         private Optional<String> remoteTemplateId = Optional.empty();
 
-        private Optional<Map<String, JsonNode>> integrationParams = Optional.empty();
+        private Optional<Map<String, Object>> integrationParams = Optional.empty();
 
-        private Optional<Map<String, JsonNode>> linkedAccountParams = Optional.empty();
+        private Optional<Map<String, Object>> linkedAccountParams = Optional.empty();
 
         @JsonAnySetter
         private Map<String, Object> additionalProperties = new HashMap<>();
@@ -539,23 +538,23 @@ public final class PatchedCandidateRequest {
         }
 
         @JsonSetter(value = "integration_params", nulls = Nulls.SKIP)
-        public Builder integrationParams(Optional<Map<String, JsonNode>> integrationParams) {
+        public Builder integrationParams(Optional<Map<String, Object>> integrationParams) {
             this.integrationParams = integrationParams;
             return this;
         }
 
-        public Builder integrationParams(Map<String, JsonNode> integrationParams) {
+        public Builder integrationParams(Map<String, Object> integrationParams) {
             this.integrationParams = Optional.ofNullable(integrationParams);
             return this;
         }
 
         @JsonSetter(value = "linked_account_params", nulls = Nulls.SKIP)
-        public Builder linkedAccountParams(Optional<Map<String, JsonNode>> linkedAccountParams) {
+        public Builder linkedAccountParams(Optional<Map<String, Object>> linkedAccountParams) {
             this.linkedAccountParams = linkedAccountParams;
             return this;
         }
 
-        public Builder linkedAccountParams(Map<String, JsonNode> linkedAccountParams) {
+        public Builder linkedAccountParams(Map<String, Object> linkedAccountParams) {
             this.linkedAccountParams = Optional.ofNullable(linkedAccountParams);
             return this;
         }

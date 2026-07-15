@@ -10,7 +10,6 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
-import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.merge.api.core.ObjectMappers;
 import java.time.OffsetDateTime;
@@ -23,6 +22,8 @@ import java.util.Optional;
 @JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = BankFeedAccount.Builder.class)
 public final class BankFeedAccount {
+    private final Optional<String> bankFeedAccountUrl;
+
     private final Optional<String> id;
 
     private final Optional<String> remoteId;
@@ -53,13 +54,14 @@ public final class BankFeedAccount {
 
     private final Optional<Boolean> remoteWasDeleted;
 
-    private final Optional<Map<String, JsonNode>> fieldMappings;
+    private final Optional<Map<String, Object>> fieldMappings;
 
-    private final Optional<List<Optional<Map<String, JsonNode>>>> remoteData;
+    private final Optional<List<RemoteData>> remoteData;
 
     private final Map<String, Object> additionalProperties;
 
     private BankFeedAccount(
+            Optional<String> bankFeedAccountUrl,
             Optional<String> id,
             Optional<String> remoteId,
             Optional<OffsetDateTime> createdAt,
@@ -75,9 +77,10 @@ public final class BankFeedAccount {
             Optional<Double> sourceAccountBalance,
             Optional<BankFeedAccountAccountType> accountType,
             Optional<Boolean> remoteWasDeleted,
-            Optional<Map<String, JsonNode>> fieldMappings,
-            Optional<List<Optional<Map<String, JsonNode>>>> remoteData,
+            Optional<Map<String, Object>> fieldMappings,
+            Optional<List<RemoteData>> remoteData,
             Map<String, Object> additionalProperties) {
+        this.bankFeedAccountUrl = bankFeedAccountUrl;
         this.id = id;
         this.remoteId = remoteId;
         this.createdAt = createdAt;
@@ -96,6 +99,14 @@ public final class BankFeedAccount {
         this.fieldMappings = fieldMappings;
         this.remoteData = remoteData;
         this.additionalProperties = additionalProperties;
+    }
+
+    /**
+     * @return The 3rd party URL of the bank feed account.
+     */
+    @JsonProperty("bank_feed_account_url")
+    public Optional<String> getBankFeedAccountUrl() {
+        return bankFeedAccountUrl;
     }
 
     @JsonProperty("id")
@@ -532,12 +543,12 @@ public final class BankFeedAccount {
     }
 
     @JsonProperty("field_mappings")
-    public Optional<Map<String, JsonNode>> getFieldMappings() {
+    public Optional<Map<String, Object>> getFieldMappings() {
         return fieldMappings;
     }
 
     @JsonProperty("remote_data")
-    public Optional<List<Optional<Map<String, JsonNode>>>> getRemoteData() {
+    public Optional<List<RemoteData>> getRemoteData() {
         return remoteData;
     }
 
@@ -553,7 +564,8 @@ public final class BankFeedAccount {
     }
 
     private boolean equalTo(BankFeedAccount other) {
-        return id.equals(other.id)
+        return bankFeedAccountUrl.equals(other.bankFeedAccountUrl)
+                && id.equals(other.id)
                 && remoteId.equals(other.remoteId)
                 && createdAt.equals(other.createdAt)
                 && modifiedAt.equals(other.modifiedAt)
@@ -575,6 +587,7 @@ public final class BankFeedAccount {
     @java.lang.Override
     public int hashCode() {
         return Objects.hash(
+                this.bankFeedAccountUrl,
                 this.id,
                 this.remoteId,
                 this.createdAt,
@@ -605,6 +618,8 @@ public final class BankFeedAccount {
 
     @JsonIgnoreProperties(ignoreUnknown = true)
     public static final class Builder {
+        private Optional<String> bankFeedAccountUrl = Optional.empty();
+
         private Optional<String> id = Optional.empty();
 
         private Optional<String> remoteId = Optional.empty();
@@ -635,9 +650,9 @@ public final class BankFeedAccount {
 
         private Optional<Boolean> remoteWasDeleted = Optional.empty();
 
-        private Optional<Map<String, JsonNode>> fieldMappings = Optional.empty();
+        private Optional<Map<String, Object>> fieldMappings = Optional.empty();
 
-        private Optional<List<Optional<Map<String, JsonNode>>>> remoteData = Optional.empty();
+        private Optional<List<RemoteData>> remoteData = Optional.empty();
 
         @JsonAnySetter
         private Map<String, Object> additionalProperties = new HashMap<>();
@@ -645,6 +660,7 @@ public final class BankFeedAccount {
         private Builder() {}
 
         public Builder from(BankFeedAccount other) {
+            bankFeedAccountUrl(other.getBankFeedAccountUrl());
             id(other.getId());
             remoteId(other.getRemoteId());
             createdAt(other.getCreatedAt());
@@ -662,6 +678,20 @@ public final class BankFeedAccount {
             remoteWasDeleted(other.getRemoteWasDeleted());
             fieldMappings(other.getFieldMappings());
             remoteData(other.getRemoteData());
+            return this;
+        }
+
+        /**
+         * <p>The 3rd party URL of the bank feed account.</p>
+         */
+        @JsonSetter(value = "bank_feed_account_url", nulls = Nulls.SKIP)
+        public Builder bankFeedAccountUrl(Optional<String> bankFeedAccountUrl) {
+            this.bankFeedAccountUrl = bankFeedAccountUrl;
+            return this;
+        }
+
+        public Builder bankFeedAccountUrl(String bankFeedAccountUrl) {
+            this.bankFeedAccountUrl = Optional.ofNullable(bankFeedAccountUrl);
             return this;
         }
 
@@ -1189,29 +1219,30 @@ public final class BankFeedAccount {
         }
 
         @JsonSetter(value = "field_mappings", nulls = Nulls.SKIP)
-        public Builder fieldMappings(Optional<Map<String, JsonNode>> fieldMappings) {
+        public Builder fieldMappings(Optional<Map<String, Object>> fieldMappings) {
             this.fieldMappings = fieldMappings;
             return this;
         }
 
-        public Builder fieldMappings(Map<String, JsonNode> fieldMappings) {
+        public Builder fieldMappings(Map<String, Object> fieldMappings) {
             this.fieldMappings = Optional.ofNullable(fieldMappings);
             return this;
         }
 
         @JsonSetter(value = "remote_data", nulls = Nulls.SKIP)
-        public Builder remoteData(Optional<List<Optional<Map<String, JsonNode>>>> remoteData) {
+        public Builder remoteData(Optional<List<RemoteData>> remoteData) {
             this.remoteData = remoteData;
             return this;
         }
 
-        public Builder remoteData(List<Optional<Map<String, JsonNode>>> remoteData) {
+        public Builder remoteData(List<RemoteData> remoteData) {
             this.remoteData = Optional.ofNullable(remoteData);
             return this;
         }
 
         public BankFeedAccount build() {
             return new BankFeedAccount(
+                    bankFeedAccountUrl,
                     id,
                     remoteId,
                     createdAt,

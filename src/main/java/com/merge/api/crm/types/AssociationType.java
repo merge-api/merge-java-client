@@ -10,7 +10,6 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
-import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.merge.api.core.ObjectMappers;
 import java.time.OffsetDateTime;
@@ -31,7 +30,7 @@ public final class AssociationType {
 
     private final Optional<OffsetDateTime> modifiedAt;
 
-    private final Optional<Map<String, JsonNode>> sourceObjectClass;
+    private final Optional<Map<String, Object>> sourceObjectClass;
 
     private final Optional<List<AssociationSubType>> targetObjectClasses;
 
@@ -50,7 +49,7 @@ public final class AssociationType {
             Optional<String> remoteId,
             Optional<OffsetDateTime> createdAt,
             Optional<OffsetDateTime> modifiedAt,
-            Optional<Map<String, JsonNode>> sourceObjectClass,
+            Optional<Map<String, Object>> sourceObjectClass,
             Optional<List<AssociationSubType>> targetObjectClasses,
             Optional<String> remoteKeyName,
             Optional<String> displayName,
@@ -103,7 +102,7 @@ public final class AssociationType {
      * @return The class of the source object (Custom Object or Common Model) for the association type.
      */
     @JsonProperty("source_object_class")
-    public Optional<Map<String, JsonNode>> getSourceObjectClass() {
+    public Optional<Map<String, Object>> getSourceObjectClass() {
         return sourceObjectClass;
     }
 
@@ -190,7 +189,7 @@ public final class AssociationType {
 
         private Optional<OffsetDateTime> modifiedAt = Optional.empty();
 
-        private Optional<Map<String, JsonNode>> sourceObjectClass = Optional.empty();
+        private Optional<Map<String, Object>> sourceObjectClass = Optional.empty();
 
         private Optional<List<AssociationSubType>> targetObjectClasses = Optional.empty();
 
@@ -278,12 +277,12 @@ public final class AssociationType {
          * <p>The class of the source object (Custom Object or Common Model) for the association type.</p>
          */
         @JsonSetter(value = "source_object_class", nulls = Nulls.SKIP)
-        public Builder sourceObjectClass(Optional<Map<String, JsonNode>> sourceObjectClass) {
+        public Builder sourceObjectClass(Optional<Map<String, Object>> sourceObjectClass) {
             this.sourceObjectClass = sourceObjectClass;
             return this;
         }
 
-        public Builder sourceObjectClass(Map<String, JsonNode> sourceObjectClass) {
+        public Builder sourceObjectClass(Map<String, Object> sourceObjectClass) {
             this.sourceObjectClass = Optional.ofNullable(sourceObjectClass);
             return this;
         }

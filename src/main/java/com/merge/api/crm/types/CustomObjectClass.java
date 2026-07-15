@@ -10,7 +10,6 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
-import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.merge.api.core.ObjectMappers;
 import java.time.OffsetDateTime;
@@ -39,7 +38,7 @@ public final class CustomObjectClass {
 
     private final Optional<List<RemoteFieldClassForCustomObjectClass>> fields;
 
-    private final Optional<List<Map<String, JsonNode>>> associationTypes;
+    private final Optional<List<Map<String, Object>>> associationTypes;
 
     private final Map<String, Object> additionalProperties;
 
@@ -52,7 +51,7 @@ public final class CustomObjectClass {
             Optional<String> description,
             Optional<Map<String, Optional<String>>> labels,
             Optional<List<RemoteFieldClassForCustomObjectClass>> fields,
-            Optional<List<Map<String, JsonNode>>> associationTypes,
+            Optional<List<Map<String, Object>>> associationTypes,
             Map<String, Object> additionalProperties) {
         this.id = id;
         this.remoteId = remoteId;
@@ -122,7 +121,7 @@ public final class CustomObjectClass {
      * @return The types of associations with other models that the custom object class can have.
      */
     @JsonProperty("association_types")
-    public Optional<List<Map<String, JsonNode>>> getAssociationTypes() {
+    public Optional<List<Map<String, Object>>> getAssociationTypes() {
         return associationTypes;
     }
 
@@ -190,7 +189,7 @@ public final class CustomObjectClass {
 
         private Optional<List<RemoteFieldClassForCustomObjectClass>> fields = Optional.empty();
 
-        private Optional<List<Map<String, JsonNode>>> associationTypes = Optional.empty();
+        private Optional<List<Map<String, Object>>> associationTypes = Optional.empty();
 
         @JsonAnySetter
         private Map<String, Object> additionalProperties = new HashMap<>();
@@ -314,12 +313,12 @@ public final class CustomObjectClass {
          * <p>The types of associations with other models that the custom object class can have.</p>
          */
         @JsonSetter(value = "association_types", nulls = Nulls.SKIP)
-        public Builder associationTypes(Optional<List<Map<String, JsonNode>>> associationTypes) {
+        public Builder associationTypes(Optional<List<Map<String, Object>>> associationTypes) {
             this.associationTypes = associationTypes;
             return this;
         }
 
-        public Builder associationTypes(List<Map<String, JsonNode>> associationTypes) {
+        public Builder associationTypes(List<Map<String, Object>> associationTypes) {
             this.associationTypes = Optional.ofNullable(associationTypes);
             return this;
         }

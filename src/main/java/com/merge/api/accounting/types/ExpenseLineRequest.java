@@ -10,7 +10,6 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
-import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.merge.api.core.ObjectMappers;
 import java.util.HashMap;
@@ -50,9 +49,13 @@ public final class ExpenseLineRequest {
 
     private final Optional<String> taxRate;
 
-    private final Optional<Map<String, JsonNode>> integrationParams;
+    private final Optional<String> quantity;
 
-    private final Optional<Map<String, JsonNode>> linkedAccountParams;
+    private final Optional<String> unitPrice;
+
+    private final Optional<Map<String, Object>> integrationParams;
+
+    private final Optional<Map<String, Object>> linkedAccountParams;
 
     private final Optional<List<RemoteFieldRequest>> remoteFields;
 
@@ -73,8 +76,10 @@ public final class ExpenseLineRequest {
             Optional<String> description,
             Optional<String> exchangeRate,
             Optional<String> taxRate,
-            Optional<Map<String, JsonNode>> integrationParams,
-            Optional<Map<String, JsonNode>> linkedAccountParams,
+            Optional<String> quantity,
+            Optional<String> unitPrice,
+            Optional<Map<String, Object>> integrationParams,
+            Optional<Map<String, Object>> linkedAccountParams,
             Optional<List<RemoteFieldRequest>> remoteFields,
             Map<String, Object> additionalProperties) {
         this.remoteId = remoteId;
@@ -91,6 +96,8 @@ public final class ExpenseLineRequest {
         this.description = description;
         this.exchangeRate = exchangeRate;
         this.taxRate = taxRate;
+        this.quantity = quantity;
+        this.unitPrice = unitPrice;
         this.integrationParams = integrationParams;
         this.linkedAccountParams = linkedAccountParams;
         this.remoteFields = remoteFields;
@@ -511,13 +518,29 @@ public final class ExpenseLineRequest {
         return taxRate;
     }
 
+    /**
+     * @return Number of items for the expense line.
+     */
+    @JsonProperty("quantity")
+    public Optional<String> getQuantity() {
+        return quantity;
+    }
+
+    /**
+     * @return Unit price of the item for the expense line.
+     */
+    @JsonProperty("unit_price")
+    public Optional<String> getUnitPrice() {
+        return unitPrice;
+    }
+
     @JsonProperty("integration_params")
-    public Optional<Map<String, JsonNode>> getIntegrationParams() {
+    public Optional<Map<String, Object>> getIntegrationParams() {
         return integrationParams;
     }
 
     @JsonProperty("linked_account_params")
-    public Optional<Map<String, JsonNode>> getLinkedAccountParams() {
+    public Optional<Map<String, Object>> getLinkedAccountParams() {
         return linkedAccountParams;
     }
 
@@ -552,6 +575,8 @@ public final class ExpenseLineRequest {
                 && description.equals(other.description)
                 && exchangeRate.equals(other.exchangeRate)
                 && taxRate.equals(other.taxRate)
+                && quantity.equals(other.quantity)
+                && unitPrice.equals(other.unitPrice)
                 && integrationParams.equals(other.integrationParams)
                 && linkedAccountParams.equals(other.linkedAccountParams)
                 && remoteFields.equals(other.remoteFields);
@@ -574,6 +599,8 @@ public final class ExpenseLineRequest {
                 this.description,
                 this.exchangeRate,
                 this.taxRate,
+                this.quantity,
+                this.unitPrice,
                 this.integrationParams,
                 this.linkedAccountParams,
                 this.remoteFields);
@@ -619,9 +646,13 @@ public final class ExpenseLineRequest {
 
         private Optional<String> taxRate = Optional.empty();
 
-        private Optional<Map<String, JsonNode>> integrationParams = Optional.empty();
+        private Optional<String> quantity = Optional.empty();
 
-        private Optional<Map<String, JsonNode>> linkedAccountParams = Optional.empty();
+        private Optional<String> unitPrice = Optional.empty();
+
+        private Optional<Map<String, Object>> integrationParams = Optional.empty();
+
+        private Optional<Map<String, Object>> linkedAccountParams = Optional.empty();
 
         private Optional<List<RemoteFieldRequest>> remoteFields = Optional.empty();
 
@@ -645,6 +676,8 @@ public final class ExpenseLineRequest {
             description(other.getDescription());
             exchangeRate(other.getExchangeRate());
             taxRate(other.getTaxRate());
+            quantity(other.getQuantity());
+            unitPrice(other.getUnitPrice());
             integrationParams(other.getIntegrationParams());
             linkedAccountParams(other.getLinkedAccountParams());
             remoteFields(other.getRemoteFields());
@@ -1150,24 +1183,52 @@ public final class ExpenseLineRequest {
             return this;
         }
 
+        /**
+         * <p>Number of items for the expense line.</p>
+         */
+        @JsonSetter(value = "quantity", nulls = Nulls.SKIP)
+        public Builder quantity(Optional<String> quantity) {
+            this.quantity = quantity;
+            return this;
+        }
+
+        public Builder quantity(String quantity) {
+            this.quantity = Optional.ofNullable(quantity);
+            return this;
+        }
+
+        /**
+         * <p>Unit price of the item for the expense line.</p>
+         */
+        @JsonSetter(value = "unit_price", nulls = Nulls.SKIP)
+        public Builder unitPrice(Optional<String> unitPrice) {
+            this.unitPrice = unitPrice;
+            return this;
+        }
+
+        public Builder unitPrice(String unitPrice) {
+            this.unitPrice = Optional.ofNullable(unitPrice);
+            return this;
+        }
+
         @JsonSetter(value = "integration_params", nulls = Nulls.SKIP)
-        public Builder integrationParams(Optional<Map<String, JsonNode>> integrationParams) {
+        public Builder integrationParams(Optional<Map<String, Object>> integrationParams) {
             this.integrationParams = integrationParams;
             return this;
         }
 
-        public Builder integrationParams(Map<String, JsonNode> integrationParams) {
+        public Builder integrationParams(Map<String, Object> integrationParams) {
             this.integrationParams = Optional.ofNullable(integrationParams);
             return this;
         }
 
         @JsonSetter(value = "linked_account_params", nulls = Nulls.SKIP)
-        public Builder linkedAccountParams(Optional<Map<String, JsonNode>> linkedAccountParams) {
+        public Builder linkedAccountParams(Optional<Map<String, Object>> linkedAccountParams) {
             this.linkedAccountParams = linkedAccountParams;
             return this;
         }
 
-        public Builder linkedAccountParams(Map<String, JsonNode> linkedAccountParams) {
+        public Builder linkedAccountParams(Map<String, Object> linkedAccountParams) {
             this.linkedAccountParams = Optional.ofNullable(linkedAccountParams);
             return this;
         }
@@ -1199,6 +1260,8 @@ public final class ExpenseLineRequest {
                     description,
                     exchangeRate,
                     taxRate,
+                    quantity,
+                    unitPrice,
                     integrationParams,
                     linkedAccountParams,
                     remoteFields,

@@ -67,6 +67,10 @@ public class RawDependentsClient {
             QueryStringMapper.addQueryParameter(
                     httpUrl, "cursor", request.getCursor().get(), false);
         }
+        if (request.getEmployeeId().isPresent()) {
+            QueryStringMapper.addQueryParameter(
+                    httpUrl, "employee_id", request.getEmployeeId().get(), false);
+        }
         if (request.getIncludeDeletedData().isPresent()) {
             QueryStringMapper.addQueryParameter(
                     httpUrl,
@@ -120,9 +124,10 @@ public class RawDependentsClient {
         }
         try (Response response = client.newCall(okhttpRequest).execute()) {
             ResponseBody responseBody = response.body();
+            String responseBodyString = responseBody != null ? responseBody.string() : "{}";
             if (response.isSuccessful()) {
                 PaginatedDependentList parsedResponse =
-                        ObjectMappers.JSON_MAPPER.readValue(responseBody.string(), PaginatedDependentList.class);
+                        ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PaginatedDependentList.class);
                 Optional<String> startingAfter = parsedResponse.getNext();
                 DependentsListRequest nextRequest = DependentsListRequest.builder()
                         .from(request)
@@ -135,12 +140,8 @@ public class RawDependentsClient {
                                 .body()),
                         response);
             }
-            String responseBodyString = responseBody != null ? responseBody.string() : "{}";
-            throw new ApiError(
-                    "Error with status code " + response.code(),
-                    response.code(),
-                    ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Object.class),
-                    response);
+            Object errorBody = ObjectMappers.parseErrorBody(responseBodyString);
+            throw new ApiError("Error with status code " + response.code(), response.code(), errorBody, response);
         } catch (IOException e) {
             throw new MergeException("Network error executing HTTP request", e);
         }
@@ -199,16 +200,13 @@ public class RawDependentsClient {
         }
         try (Response response = client.newCall(okhttpRequest).execute()) {
             ResponseBody responseBody = response.body();
+            String responseBodyString = responseBody != null ? responseBody.string() : "{}";
             if (response.isSuccessful()) {
                 return new MergeApiHttpResponse<>(
-                        ObjectMappers.JSON_MAPPER.readValue(responseBody.string(), Dependent.class), response);
+                        ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Dependent.class), response);
             }
-            String responseBodyString = responseBody != null ? responseBody.string() : "{}";
-            throw new ApiError(
-                    "Error with status code " + response.code(),
-                    response.code(),
-                    ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Object.class),
-                    response);
+            Object errorBody = ObjectMappers.parseErrorBody(responseBodyString);
+            throw new ApiError("Error with status code " + response.code(), response.code(), errorBody, response);
         } catch (IOException e) {
             throw new MergeException("Network error executing HTTP request", e);
         }

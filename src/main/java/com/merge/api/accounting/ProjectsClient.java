@@ -3,12 +3,12 @@
  */
 package com.merge.api.accounting;
 
-import com.merge.api.accounting.types.PaginatedProjectList;
 import com.merge.api.accounting.types.Project;
 import com.merge.api.accounting.types.ProjectsListRequest;
 import com.merge.api.accounting.types.ProjectsRetrieveRequest;
 import com.merge.api.core.ClientOptions;
 import com.merge.api.core.RequestOptions;
+import com.merge.api.core.SyncPagingIterable;
 
 public class ProjectsClient {
     protected final ClientOptions clientOptions;
@@ -30,21 +30,21 @@ public class ProjectsClient {
     /**
      * Returns a list of <code>Project</code> objects.
      */
-    public PaginatedProjectList list() {
+    public SyncPagingIterable<Project> list() {
         return this.rawClient.list().body();
     }
 
     /**
      * Returns a list of <code>Project</code> objects.
      */
-    public PaginatedProjectList list(ProjectsListRequest request) {
+    public SyncPagingIterable<Project> list(ProjectsListRequest request) {
         return this.rawClient.list(request).body();
     }
 
     /**
      * Returns a list of <code>Project</code> objects.
      */
-    public PaginatedProjectList list(ProjectsListRequest request, RequestOptions requestOptions) {
+    public SyncPagingIterable<Project> list(ProjectsListRequest request, RequestOptions requestOptions) {
         return this.rawClient.list(request, requestOptions).body();
     }
 

@@ -53,6 +53,8 @@ public final class OffersListRequest {
 
     private final Optional<String> showEnumOrigins;
 
+    private final Optional<OffersListRequestStatus> status;
+
     private final Map<String, Object> additionalProperties;
 
     private OffersListRequest(
@@ -71,6 +73,7 @@ public final class OffersListRequest {
             Optional<String> remoteFields,
             Optional<String> remoteId,
             Optional<String> showEnumOrigins,
+            Optional<OffersListRequestStatus> status,
             Map<String, Object> additionalProperties) {
         this.expand = expand;
         this.applicationId = applicationId;
@@ -87,6 +90,7 @@ public final class OffersListRequest {
         this.remoteFields = remoteFields;
         this.remoteId = remoteId;
         this.showEnumOrigins = showEnumOrigins;
+        this.status = status;
         this.additionalProperties = additionalProperties;
     }
 
@@ -210,6 +214,25 @@ public final class OffersListRequest {
         return showEnumOrigins;
     }
 
+    /**
+     * @return If provided, will only return offers with this status. Options: ('DRAFT', 'APPROVAL-SENT', 'APPROVED', 'SENT', 'SENT-MANUALLY', 'OPENED', 'DENIED', 'SIGNED', 'DEPRECATED')
+     * <ul>
+     * <li><code>DRAFT</code> - DRAFT</li>
+     * <li><code>APPROVAL-SENT</code> - APPROVAL-SENT</li>
+     * <li><code>APPROVED</code> - APPROVED</li>
+     * <li><code>SENT</code> - SENT</li>
+     * <li><code>SENT-MANUALLY</code> - SENT-MANUALLY</li>
+     * <li><code>OPENED</code> - OPENED</li>
+     * <li><code>DENIED</code> - DENIED</li>
+     * <li><code>SIGNED</code> - SIGNED</li>
+     * <li><code>DEPRECATED</code> - DEPRECATED</li>
+     * </ul>
+     */
+    @JsonProperty("status")
+    public Optional<OffersListRequestStatus> getStatus() {
+        return status;
+    }
+
     @java.lang.Override
     public boolean equals(Object other) {
         if (this == other) return true;
@@ -236,7 +259,8 @@ public final class OffersListRequest {
                 && pageSize.equals(other.pageSize)
                 && remoteFields.equals(other.remoteFields)
                 && remoteId.equals(other.remoteId)
-                && showEnumOrigins.equals(other.showEnumOrigins);
+                && showEnumOrigins.equals(other.showEnumOrigins)
+                && status.equals(other.status);
     }
 
     @java.lang.Override
@@ -256,7 +280,8 @@ public final class OffersListRequest {
                 this.pageSize,
                 this.remoteFields,
                 this.remoteId,
-                this.showEnumOrigins);
+                this.showEnumOrigins,
+                this.status);
     }
 
     @java.lang.Override
@@ -300,6 +325,8 @@ public final class OffersListRequest {
 
         private Optional<String> showEnumOrigins = Optional.empty();
 
+        private Optional<OffersListRequestStatus> status = Optional.empty();
+
         @JsonAnySetter
         private Map<String, Object> additionalProperties = new HashMap<>();
 
@@ -321,6 +348,7 @@ public final class OffersListRequest {
             remoteFields(other.getRemoteFields());
             remoteId(other.getRemoteId());
             showEnumOrigins(other.getShowEnumOrigins());
+            status(other.getStatus());
             return this;
         }
 
@@ -539,6 +567,31 @@ public final class OffersListRequest {
             return this;
         }
 
+        /**
+         * <p>If provided, will only return offers with this status. Options: ('DRAFT', 'APPROVAL-SENT', 'APPROVED', 'SENT', 'SENT-MANUALLY', 'OPENED', 'DENIED', 'SIGNED', 'DEPRECATED')</p>
+         * <ul>
+         * <li><code>DRAFT</code> - DRAFT</li>
+         * <li><code>APPROVAL-SENT</code> - APPROVAL-SENT</li>
+         * <li><code>APPROVED</code> - APPROVED</li>
+         * <li><code>SENT</code> - SENT</li>
+         * <li><code>SENT-MANUALLY</code> - SENT-MANUALLY</li>
+         * <li><code>OPENED</code> - OPENED</li>
+         * <li><code>DENIED</code> - DENIED</li>
+         * <li><code>SIGNED</code> - SIGNED</li>
+         * <li><code>DEPRECATED</code> - DEPRECATED</li>
+         * </ul>
+         */
+        @JsonSetter(value = "status", nulls = Nulls.SKIP)
+        public Builder status(Optional<OffersListRequestStatus> status) {
+            this.status = status;
+            return this;
+        }
+
+        public Builder status(OffersListRequestStatus status) {
+            this.status = Optional.ofNullable(status);
+            return this;
+        }
+
         public OffersListRequest build() {
             return new OffersListRequest(
                     expand,
@@ -556,6 +609,7 @@ public final class OffersListRequest {
                     remoteFields,
                     remoteId,
                     showEnumOrigins,
+                    status,
                     additionalProperties);
         }
     }

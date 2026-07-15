@@ -10,7 +10,6 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
-import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.merge.api.core.ObjectMappers;
 import java.time.OffsetDateTime;
@@ -39,7 +38,7 @@ public final class InvoiceLineItem {
 
     private final Optional<Double> totalAmount;
 
-    private final Optional<InvoiceLineItemEmployee> employee;
+    private final Optional<String> employee;
 
     private final Optional<InvoiceLineItemProject> project;
 
@@ -63,7 +62,9 @@ public final class InvoiceLineItem {
 
     private final Optional<Boolean> remoteWasDeleted;
 
-    private final Optional<Map<String, JsonNode>> fieldMappings;
+    private final Optional<Boolean> isBillable;
+
+    private final Optional<Map<String, Object>> fieldMappings;
 
     private final Optional<List<RemoteField>> remoteFields;
 
@@ -78,7 +79,7 @@ public final class InvoiceLineItem {
             Optional<Double> unitPrice,
             Optional<Double> quantity,
             Optional<Double> totalAmount,
-            Optional<InvoiceLineItemEmployee> employee,
+            Optional<String> employee,
             Optional<InvoiceLineItemProject> project,
             Optional<InvoiceLineItemContact> contact,
             Optional<InvoiceLineItemCurrency> currency,
@@ -90,7 +91,8 @@ public final class InvoiceLineItem {
             Optional<List<Optional<InvoiceLineItemTrackingCategoriesItem>>> trackingCategories,
             Optional<String> company,
             Optional<Boolean> remoteWasDeleted,
-            Optional<Map<String, JsonNode>> fieldMappings,
+            Optional<Boolean> isBillable,
+            Optional<Map<String, Object>> fieldMappings,
             Optional<List<RemoteField>> remoteFields,
             Map<String, Object> additionalProperties) {
         this.id = id;
@@ -113,6 +115,7 @@ public final class InvoiceLineItem {
         this.trackingCategories = trackingCategories;
         this.company = company;
         this.remoteWasDeleted = remoteWasDeleted;
+        this.isBillable = isBillable;
         this.fieldMappings = fieldMappings;
         this.remoteFields = remoteFields;
         this.additionalProperties = additionalProperties;
@@ -183,7 +186,7 @@ public final class InvoiceLineItem {
      * @return The employee this overall transaction relates to.
      */
     @JsonProperty("employee")
-    public Optional<InvoiceLineItemEmployee> getEmployee() {
+    public Optional<String> getEmployee() {
         return employee;
     }
 
@@ -571,8 +574,16 @@ public final class InvoiceLineItem {
         return remoteWasDeleted;
     }
 
+    /**
+     * @return Indicates if the line item can be charged to the client/customer.
+     */
+    @JsonProperty("is_billable")
+    public Optional<Boolean> getIsBillable() {
+        return isBillable;
+    }
+
     @JsonProperty("field_mappings")
-    public Optional<Map<String, JsonNode>> getFieldMappings() {
+    public Optional<Map<String, Object>> getFieldMappings() {
         return fieldMappings;
     }
 
@@ -613,6 +624,7 @@ public final class InvoiceLineItem {
                 && trackingCategories.equals(other.trackingCategories)
                 && company.equals(other.company)
                 && remoteWasDeleted.equals(other.remoteWasDeleted)
+                && isBillable.equals(other.isBillable)
                 && fieldMappings.equals(other.fieldMappings)
                 && remoteFields.equals(other.remoteFields);
     }
@@ -640,6 +652,7 @@ public final class InvoiceLineItem {
                 this.trackingCategories,
                 this.company,
                 this.remoteWasDeleted,
+                this.isBillable,
                 this.fieldMappings,
                 this.remoteFields);
     }
@@ -671,7 +684,7 @@ public final class InvoiceLineItem {
 
         private Optional<Double> totalAmount = Optional.empty();
 
-        private Optional<InvoiceLineItemEmployee> employee = Optional.empty();
+        private Optional<String> employee = Optional.empty();
 
         private Optional<InvoiceLineItemProject> project = Optional.empty();
 
@@ -695,7 +708,9 @@ public final class InvoiceLineItem {
 
         private Optional<Boolean> remoteWasDeleted = Optional.empty();
 
-        private Optional<Map<String, JsonNode>> fieldMappings = Optional.empty();
+        private Optional<Boolean> isBillable = Optional.empty();
+
+        private Optional<Map<String, Object>> fieldMappings = Optional.empty();
 
         private Optional<List<RemoteField>> remoteFields = Optional.empty();
 
@@ -725,6 +740,7 @@ public final class InvoiceLineItem {
             trackingCategories(other.getTrackingCategories());
             company(other.getCompany());
             remoteWasDeleted(other.getRemoteWasDeleted());
+            isBillable(other.getIsBillable());
             fieldMappings(other.getFieldMappings());
             remoteFields(other.getRemoteFields());
             return this;
@@ -843,12 +859,12 @@ public final class InvoiceLineItem {
          * <p>The employee this overall transaction relates to.</p>
          */
         @JsonSetter(value = "employee", nulls = Nulls.SKIP)
-        public Builder employee(Optional<InvoiceLineItemEmployee> employee) {
+        public Builder employee(Optional<String> employee) {
             this.employee = employee;
             return this;
         }
 
-        public Builder employee(InvoiceLineItemEmployee employee) {
+        public Builder employee(String employee) {
             this.employee = Optional.ofNullable(employee);
             return this;
         }
@@ -1304,13 +1320,27 @@ public final class InvoiceLineItem {
             return this;
         }
 
+        /**
+         * <p>Indicates if the line item can be charged to the client/customer.</p>
+         */
+        @JsonSetter(value = "is_billable", nulls = Nulls.SKIP)
+        public Builder isBillable(Optional<Boolean> isBillable) {
+            this.isBillable = isBillable;
+            return this;
+        }
+
+        public Builder isBillable(Boolean isBillable) {
+            this.isBillable = Optional.ofNullable(isBillable);
+            return this;
+        }
+
         @JsonSetter(value = "field_mappings", nulls = Nulls.SKIP)
-        public Builder fieldMappings(Optional<Map<String, JsonNode>> fieldMappings) {
+        public Builder fieldMappings(Optional<Map<String, Object>> fieldMappings) {
             this.fieldMappings = fieldMappings;
             return this;
         }
 
-        public Builder fieldMappings(Map<String, JsonNode> fieldMappings) {
+        public Builder fieldMappings(Map<String, Object> fieldMappings) {
             this.fieldMappings = Optional.ofNullable(fieldMappings);
             return this;
         }
@@ -1348,6 +1378,7 @@ public final class InvoiceLineItem {
                     trackingCategories,
                     company,
                     remoteWasDeleted,
+                    isBillable,
                     fieldMappings,
                     remoteFields,
                     additionalProperties);

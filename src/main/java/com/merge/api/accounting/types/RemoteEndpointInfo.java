@@ -10,7 +10,6 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
-import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.merge.api.core.ObjectMappers;
 import java.util.ArrayList;
@@ -27,15 +26,12 @@ public final class RemoteEndpointInfo {
 
     private final String urlPath;
 
-    private final List<JsonNode> fieldTraversalPath;
+    private final List<Object> fieldTraversalPath;
 
     private final Map<String, Object> additionalProperties;
 
     private RemoteEndpointInfo(
-            String method,
-            String urlPath,
-            List<JsonNode> fieldTraversalPath,
-            Map<String, Object> additionalProperties) {
+            String method, String urlPath, List<Object> fieldTraversalPath, Map<String, Object> additionalProperties) {
         this.method = method;
         this.urlPath = urlPath;
         this.fieldTraversalPath = fieldTraversalPath;
@@ -53,7 +49,7 @@ public final class RemoteEndpointInfo {
     }
 
     @JsonProperty("field_traversal_path")
-    public List<JsonNode> getFieldTraversalPath() {
+    public List<Object> getFieldTraversalPath() {
         return fieldTraversalPath;
     }
 
@@ -101,11 +97,11 @@ public final class RemoteEndpointInfo {
     public interface _FinalStage {
         RemoteEndpointInfo build();
 
-        _FinalStage fieldTraversalPath(List<JsonNode> fieldTraversalPath);
+        _FinalStage fieldTraversalPath(List<Object> fieldTraversalPath);
 
-        _FinalStage addFieldTraversalPath(JsonNode fieldTraversalPath);
+        _FinalStage addFieldTraversalPath(Object fieldTraversalPath);
 
-        _FinalStage addAllFieldTraversalPath(List<JsonNode> fieldTraversalPath);
+        _FinalStage addAllFieldTraversalPath(List<Object> fieldTraversalPath);
     }
 
     @JsonIgnoreProperties(ignoreUnknown = true)
@@ -114,7 +110,7 @@ public final class RemoteEndpointInfo {
 
         private String urlPath;
 
-        private List<JsonNode> fieldTraversalPath = new ArrayList<>();
+        private List<Object> fieldTraversalPath = new ArrayList<>();
 
         @JsonAnySetter
         private Map<String, Object> additionalProperties = new HashMap<>();
@@ -144,7 +140,7 @@ public final class RemoteEndpointInfo {
         }
 
         @java.lang.Override
-        public _FinalStage addAllFieldTraversalPath(List<JsonNode> fieldTraversalPath) {
+        public _FinalStage addAllFieldTraversalPath(List<Object> fieldTraversalPath) {
             if (fieldTraversalPath != null) {
                 this.fieldTraversalPath.addAll(fieldTraversalPath);
             }
@@ -152,14 +148,14 @@ public final class RemoteEndpointInfo {
         }
 
         @java.lang.Override
-        public _FinalStage addFieldTraversalPath(JsonNode fieldTraversalPath) {
+        public _FinalStage addFieldTraversalPath(Object fieldTraversalPath) {
             this.fieldTraversalPath.add(fieldTraversalPath);
             return this;
         }
 
         @java.lang.Override
         @JsonSetter(value = "field_traversal_path", nulls = Nulls.SKIP)
-        public _FinalStage fieldTraversalPath(List<JsonNode> fieldTraversalPath) {
+        public _FinalStage fieldTraversalPath(List<Object> fieldTraversalPath) {
             this.fieldTraversalPath.clear();
             if (fieldTraversalPath != null) {
                 this.fieldTraversalPath.addAll(fieldTraversalPath);

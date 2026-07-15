@@ -3,12 +3,14 @@
  */
 package com.merge.api.accounting;
 
+import com.merge.api.accounting.types.ApplyCreditNoteRequest;
 import com.merge.api.accounting.types.CreditNote;
 import com.merge.api.accounting.types.CreditNoteEndpointRequest;
 import com.merge.api.accounting.types.CreditNoteResponse;
 import com.merge.api.accounting.types.CreditNotesListRequest;
 import com.merge.api.accounting.types.CreditNotesRetrieveRequest;
 import com.merge.api.accounting.types.MetaResponse;
+import com.merge.api.accounting.types.PatchedCreditNoteEndpointRequest;
 import com.merge.api.core.ClientOptions;
 import com.merge.api.core.RequestOptions;
 import com.merge.api.core.SyncPagingIterable;
@@ -88,6 +90,50 @@ public class AsyncCreditNotesClient {
     public CompletableFuture<CreditNote> retrieve(
             String id, CreditNotesRetrieveRequest request, RequestOptions requestOptions) {
         return this.rawClient.retrieve(id, request, requestOptions).thenApply(response -> response.body());
+    }
+
+    /**
+     * Updates a <code>CreditNote</code> object with the given <code>id</code>.
+     */
+    public CompletableFuture<CreditNoteResponse> partialUpdate(String id, PatchedCreditNoteEndpointRequest request) {
+        return this.rawClient.partialUpdate(id, request).thenApply(response -> response.body());
+    }
+
+    /**
+     * Updates a <code>CreditNote</code> object with the given <code>id</code>.
+     */
+    public CompletableFuture<CreditNoteResponse> partialUpdate(
+            String id, PatchedCreditNoteEndpointRequest request, RequestOptions requestOptions) {
+        return this.rawClient.partialUpdate(id, request, requestOptions).thenApply(response -> response.body());
+    }
+
+    /**
+     * Creates a new CreditNoteApplyLine to apply a credit note to an invoice
+     */
+    public CompletableFuture<CreditNoteResponse> applicationCreate(String id, ApplyCreditNoteRequest request) {
+        return this.rawClient.applicationCreate(id, request).thenApply(response -> response.body());
+    }
+
+    /**
+     * Creates a new CreditNoteApplyLine to apply a credit note to an invoice
+     */
+    public CompletableFuture<CreditNoteResponse> applicationCreate(
+            String id, ApplyCreditNoteRequest request, RequestOptions requestOptions) {
+        return this.rawClient.applicationCreate(id, request, requestOptions).thenApply(response -> response.body());
+    }
+
+    /**
+     * Returns metadata for <code>CreditNote</code> PATCHs.
+     */
+    public CompletableFuture<MetaResponse> metaPatchRetrieve(String id) {
+        return this.rawClient.metaPatchRetrieve(id).thenApply(response -> response.body());
+    }
+
+    /**
+     * Returns metadata for <code>CreditNote</code> PATCHs.
+     */
+    public CompletableFuture<MetaResponse> metaPatchRetrieve(String id, RequestOptions requestOptions) {
+        return this.rawClient.metaPatchRetrieve(id, requestOptions).thenApply(response -> response.body());
     }
 
     /**

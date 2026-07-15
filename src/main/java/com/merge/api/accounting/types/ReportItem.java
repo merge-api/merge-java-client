@@ -10,12 +10,10 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
-import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.merge.api.core.ObjectMappers;
 import java.time.OffsetDateTime;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
@@ -33,7 +31,7 @@ public final class ReportItem {
 
     private final Optional<Double> value;
 
-    private final Optional<List<Map<String, JsonNode>>> subItems;
+    private final Optional<Map<String, Object>> subItems;
 
     private final Optional<String> company;
 
@@ -47,7 +45,7 @@ public final class ReportItem {
             Optional<OffsetDateTime> modifiedAt,
             Optional<String> name,
             Optional<Double> value,
-            Optional<List<Map<String, JsonNode>>> subItems,
+            Optional<Map<String, Object>> subItems,
             Optional<String> company,
             Optional<Boolean> remoteWasDeleted,
             Map<String, Object> additionalProperties) {
@@ -103,7 +101,7 @@ public final class ReportItem {
     }
 
     @JsonProperty("sub_items")
-    public Optional<List<Map<String, JsonNode>>> getSubItems() {
+    public Optional<Map<String, Object>> getSubItems() {
         return subItems;
     }
 
@@ -179,7 +177,7 @@ public final class ReportItem {
 
         private Optional<Double> value = Optional.empty();
 
-        private Optional<List<Map<String, JsonNode>>> subItems = Optional.empty();
+        private Optional<Map<String, Object>> subItems = Optional.empty();
 
         private Optional<String> company = Optional.empty();
 
@@ -273,12 +271,12 @@ public final class ReportItem {
         }
 
         @JsonSetter(value = "sub_items", nulls = Nulls.SKIP)
-        public Builder subItems(Optional<List<Map<String, JsonNode>>> subItems) {
+        public Builder subItems(Optional<Map<String, Object>> subItems) {
             this.subItems = subItems;
             return this;
         }
 
-        public Builder subItems(List<Map<String, JsonNode>> subItems) {
+        public Builder subItems(Map<String, Object> subItems) {
             this.subItems = Optional.ofNullable(subItems);
             return this;
         }

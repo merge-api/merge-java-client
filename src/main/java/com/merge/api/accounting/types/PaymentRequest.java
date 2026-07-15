@@ -10,7 +10,6 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
-import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.merge.api.core.ObjectMappers;
 import java.time.OffsetDateTime;
@@ -23,6 +22,8 @@ import java.util.Optional;
 @JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = PaymentRequest.Builder.class)
 public final class PaymentRequest {
+    private final Optional<String> paymentUrl;
+
     private final Optional<OffsetDateTime> transactionDate;
 
     private final Optional<PaymentRequestContact> contact;
@@ -47,15 +48,16 @@ public final class PaymentRequest {
 
     private final Optional<List<PaymentRequestAppliedToLinesItem>> appliedToLines;
 
-    private final Optional<Map<String, JsonNode>> integrationParams;
+    private final Optional<Map<String, Object>> integrationParams;
 
-    private final Optional<Map<String, JsonNode>> linkedAccountParams;
+    private final Optional<Map<String, Object>> linkedAccountParams;
 
     private final Optional<List<RemoteFieldRequest>> remoteFields;
 
     private final Map<String, Object> additionalProperties;
 
     private PaymentRequest(
+            Optional<String> paymentUrl,
             Optional<OffsetDateTime> transactionDate,
             Optional<PaymentRequestContact> contact,
             Optional<PaymentRequestAccount> account,
@@ -68,10 +70,11 @@ public final class PaymentRequest {
             Optional<List<Optional<PaymentRequestTrackingCategoriesItem>>> trackingCategories,
             Optional<PaymentRequestAccountingPeriod> accountingPeriod,
             Optional<List<PaymentRequestAppliedToLinesItem>> appliedToLines,
-            Optional<Map<String, JsonNode>> integrationParams,
-            Optional<Map<String, JsonNode>> linkedAccountParams,
+            Optional<Map<String, Object>> integrationParams,
+            Optional<Map<String, Object>> linkedAccountParams,
             Optional<List<RemoteFieldRequest>> remoteFields,
             Map<String, Object> additionalProperties) {
+        this.paymentUrl = paymentUrl;
         this.transactionDate = transactionDate;
         this.contact = contact;
         this.account = account;
@@ -88,6 +91,14 @@ public final class PaymentRequest {
         this.linkedAccountParams = linkedAccountParams;
         this.remoteFields = remoteFields;
         this.additionalProperties = additionalProperties;
+    }
+
+    /**
+     * @return The 3rd party URL of the payment.
+     */
+    @JsonProperty("payment_url")
+    public Optional<String> getPaymentUrl() {
+        return paymentUrl;
     }
 
     /**
@@ -496,12 +507,12 @@ public final class PaymentRequest {
     }
 
     @JsonProperty("integration_params")
-    public Optional<Map<String, JsonNode>> getIntegrationParams() {
+    public Optional<Map<String, Object>> getIntegrationParams() {
         return integrationParams;
     }
 
     @JsonProperty("linked_account_params")
-    public Optional<Map<String, JsonNode>> getLinkedAccountParams() {
+    public Optional<Map<String, Object>> getLinkedAccountParams() {
         return linkedAccountParams;
     }
 
@@ -522,7 +533,8 @@ public final class PaymentRequest {
     }
 
     private boolean equalTo(PaymentRequest other) {
-        return transactionDate.equals(other.transactionDate)
+        return paymentUrl.equals(other.paymentUrl)
+                && transactionDate.equals(other.transactionDate)
                 && contact.equals(other.contact)
                 && account.equals(other.account)
                 && paymentMethod.equals(other.paymentMethod)
@@ -542,6 +554,7 @@ public final class PaymentRequest {
     @java.lang.Override
     public int hashCode() {
         return Objects.hash(
+                this.paymentUrl,
                 this.transactionDate,
                 this.contact,
                 this.account,
@@ -570,6 +583,8 @@ public final class PaymentRequest {
 
     @JsonIgnoreProperties(ignoreUnknown = true)
     public static final class Builder {
+        private Optional<String> paymentUrl = Optional.empty();
+
         private Optional<OffsetDateTime> transactionDate = Optional.empty();
 
         private Optional<PaymentRequestContact> contact = Optional.empty();
@@ -594,9 +609,9 @@ public final class PaymentRequest {
 
         private Optional<List<PaymentRequestAppliedToLinesItem>> appliedToLines = Optional.empty();
 
-        private Optional<Map<String, JsonNode>> integrationParams = Optional.empty();
+        private Optional<Map<String, Object>> integrationParams = Optional.empty();
 
-        private Optional<Map<String, JsonNode>> linkedAccountParams = Optional.empty();
+        private Optional<Map<String, Object>> linkedAccountParams = Optional.empty();
 
         private Optional<List<RemoteFieldRequest>> remoteFields = Optional.empty();
 
@@ -606,6 +621,7 @@ public final class PaymentRequest {
         private Builder() {}
 
         public Builder from(PaymentRequest other) {
+            paymentUrl(other.getPaymentUrl());
             transactionDate(other.getTransactionDate());
             contact(other.getContact());
             account(other.getAccount());
@@ -621,6 +637,20 @@ public final class PaymentRequest {
             integrationParams(other.getIntegrationParams());
             linkedAccountParams(other.getLinkedAccountParams());
             remoteFields(other.getRemoteFields());
+            return this;
+        }
+
+        /**
+         * <p>The 3rd party URL of the payment.</p>
+         */
+        @JsonSetter(value = "payment_url", nulls = Nulls.SKIP)
+        public Builder paymentUrl(Optional<String> paymentUrl) {
+            this.paymentUrl = paymentUrl;
+            return this;
+        }
+
+        public Builder paymentUrl(String paymentUrl) {
+            this.paymentUrl = Optional.ofNullable(paymentUrl);
             return this;
         }
 
@@ -1103,23 +1133,23 @@ public final class PaymentRequest {
         }
 
         @JsonSetter(value = "integration_params", nulls = Nulls.SKIP)
-        public Builder integrationParams(Optional<Map<String, JsonNode>> integrationParams) {
+        public Builder integrationParams(Optional<Map<String, Object>> integrationParams) {
             this.integrationParams = integrationParams;
             return this;
         }
 
-        public Builder integrationParams(Map<String, JsonNode> integrationParams) {
+        public Builder integrationParams(Map<String, Object> integrationParams) {
             this.integrationParams = Optional.ofNullable(integrationParams);
             return this;
         }
 
         @JsonSetter(value = "linked_account_params", nulls = Nulls.SKIP)
-        public Builder linkedAccountParams(Optional<Map<String, JsonNode>> linkedAccountParams) {
+        public Builder linkedAccountParams(Optional<Map<String, Object>> linkedAccountParams) {
             this.linkedAccountParams = linkedAccountParams;
             return this;
         }
 
-        public Builder linkedAccountParams(Map<String, JsonNode> linkedAccountParams) {
+        public Builder linkedAccountParams(Map<String, Object> linkedAccountParams) {
             this.linkedAccountParams = Optional.ofNullable(linkedAccountParams);
             return this;
         }
@@ -1137,6 +1167,7 @@ public final class PaymentRequest {
 
         public PaymentRequest build() {
             return new PaymentRequest(
+                    paymentUrl,
                     transactionDate,
                     contact,
                     account,
