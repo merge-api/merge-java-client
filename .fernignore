@@ -15,6 +15,7 @@ src/main/java/com/merge/legacy
 src/main/java/com/merge/api/core/QueryStringMapper.java
 
 src/test/java/com/merge/api/integration/CursorPaginationIntegrationTest.java
+src/test/java/com/merge/api/jackson/FreeFormFieldTypeTest.java
 .fern/replay.lock
 .fern/replay.yml
 .gitattributes
