@@ -77,19 +77,22 @@ public class TicketingIntegrationTest {
     @Test
     void roles() {
         smokeListAndRetrieve(
-                client.ticketing().roles().list(), id -> client.ticketing().roles().retrieve(id));
+                client.ticketing().roles().list(),
+                id -> client.ticketing().roles().retrieve(id));
     }
 
     @Test
     void tags() {
         smokeListAndRetrieve(
-                client.ticketing().tags().list(), id -> client.ticketing().tags().retrieve(id));
+                client.ticketing().tags().list(),
+                id -> client.ticketing().tags().retrieve(id));
     }
 
     @Test
     void teams() {
         smokeListAndRetrieve(
-                client.ticketing().teams().list(), id -> client.ticketing().teams().retrieve(id));
+                client.ticketing().teams().list(),
+                id -> client.ticketing().teams().retrieve(id));
     }
 
     @Test
@@ -102,7 +105,8 @@ public class TicketingIntegrationTest {
     @Test
     void users() {
         smokeListAndRetrieve(
-                client.ticketing().users().list(), id -> client.ticketing().users().retrieve(id));
+                client.ticketing().users().list(),
+                id -> client.ticketing().users().retrieve(id));
     }
 
     @Test
@@ -111,8 +115,7 @@ public class TicketingIntegrationTest {
                 .tickets()
                 .list(TicketsListRequest.builder()
                         .pageSize(5)
-                        .expand(List.of(
-                                TicketsListRequestExpandItem.ASSIGNEES, TicketsListRequestExpandItem.ACCOUNT))
+                        .expand(List.of(TicketsListRequestExpandItem.ASSIGNEES, TicketsListRequestExpandItem.ACCOUNT))
                         .build()));
     }
 

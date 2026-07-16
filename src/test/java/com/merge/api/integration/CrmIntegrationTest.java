@@ -65,17 +65,20 @@ public class CrmIntegrationTest {
     @Test
     void engagements() {
         smokeListAndRetrieve(
-                client.crm().engagements().list(), id -> client.crm().engagements().retrieve(id));
+                client.crm().engagements().list(),
+                id -> client.crm().engagements().retrieve(id));
     }
 
     @Test
     void leads() {
-        smokeListAndRetrieve(client.crm().leads().list(), id -> client.crm().leads().retrieve(id));
+        smokeListAndRetrieve(
+                client.crm().leads().list(), id -> client.crm().leads().retrieve(id));
     }
 
     @Test
     void notes() {
-        smokeListAndRetrieve(client.crm().notes().list(), id -> client.crm().notes().retrieve(id));
+        smokeListAndRetrieve(
+                client.crm().notes().list(), id -> client.crm().notes().retrieve(id));
     }
 
     @Test
@@ -87,17 +90,20 @@ public class CrmIntegrationTest {
 
     @Test
     void stages() {
-        smokeListAndRetrieve(client.crm().stages().list(), id -> client.crm().stages().retrieve(id));
+        smokeListAndRetrieve(
+                client.crm().stages().list(), id -> client.crm().stages().retrieve(id));
     }
 
     @Test
     void tasks() {
-        smokeListAndRetrieve(client.crm().tasks().list(), id -> client.crm().tasks().retrieve(id));
+        smokeListAndRetrieve(
+                client.crm().tasks().list(), id -> client.crm().tasks().retrieve(id));
     }
 
     @Test
     void users() {
-        smokeListAndRetrieve(client.crm().users().list(), id -> client.crm().users().retrieve(id));
+        smokeListAndRetrieve(
+                client.crm().users().list(), id -> client.crm().users().retrieve(id));
     }
 
     @Test
@@ -117,8 +123,7 @@ public class CrmIntegrationTest {
                 .list(EngagementsListRequest.builder()
                         .pageSize(5)
                         .expand(List.of(
-                                EngagementsListRequestExpandItem.CONTACTS,
-                                EngagementsListRequestExpandItem.OWNER))
+                                EngagementsListRequestExpandItem.CONTACTS, EngagementsListRequestExpandItem.OWNER))
                         .build()));
     }
 
@@ -149,8 +154,7 @@ public class CrmIntegrationTest {
                 .list(OpportunitiesListRequest.builder()
                         .pageSize(5)
                         .expand(List.of(
-                                OpportunitiesListRequestExpandItem.ACCOUNT,
-                                OpportunitiesListRequestExpandItem.OWNER))
+                                OpportunitiesListRequestExpandItem.ACCOUNT, OpportunitiesListRequestExpandItem.OWNER))
                         .build()));
     }
 

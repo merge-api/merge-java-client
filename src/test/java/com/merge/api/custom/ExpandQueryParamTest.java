@@ -6,7 +6,6 @@ import com.merge.api.core.QueryStringMapper;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import okhttp3.HttpUrl;
 import org.junit.jupiter.api.Test;

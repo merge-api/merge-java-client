@@ -40,7 +40,8 @@ public class FileStorageIntegrationTest {
     @Test
     void files() {
         smokeListAndRetrieve(
-                client.fileStorage().files().list(), id -> client.fileStorage().files().retrieve(id));
+                client.fileStorage().files().list(),
+                id -> client.fileStorage().files().retrieve(id));
     }
 
     @Test
@@ -60,7 +61,8 @@ public class FileStorageIntegrationTest {
     @Test
     void users() {
         smokeListAndRetrieve(
-                client.fileStorage().users().list(), id -> client.fileStorage().users().retrieve(id));
+                client.fileStorage().users().list(),
+                id -> client.fileStorage().users().retrieve(id));
     }
 
     @Test
@@ -80,8 +82,7 @@ public class FileStorageIntegrationTest {
                 .list(FoldersListRequest.builder()
                         .pageSize(5)
                         .expand(List.of(
-                                FoldersListRequestExpandItem.PERMISSIONS,
-                                FoldersListRequestExpandItem.PARENT_FOLDER))
+                                FoldersListRequestExpandItem.PERMISSIONS, FoldersListRequestExpandItem.PARENT_FOLDER))
                         .build()));
     }
 
