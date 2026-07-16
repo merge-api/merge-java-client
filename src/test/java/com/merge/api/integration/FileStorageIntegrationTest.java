@@ -91,7 +91,7 @@ public class FileStorageIntegrationTest {
                 .groups()
                 .list(GroupsListRequest.builder()
                         .pageSize(5)
-                        .expand(List.of(GroupsListRequestExpandItem.USERS))
+                        .expand(List.of(GroupsListRequestExpandItem.CHILD_GROUPS))
                         .build()));
     }
 }
