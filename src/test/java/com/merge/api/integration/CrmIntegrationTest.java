@@ -26,9 +26,9 @@ public class CrmIntegrationTest {
 
     @BeforeEach
     void setUp() {
-        String apiKey = System.getenv("MERGE_API_KEY_CRM");
+        String apiKey = System.getenv("MERGE_API_KEY_SECONDARY");
         String accountToken = System.getenv("MERGE_ACCOUNT_TOKEN_CRM");
-        assertNotNull(apiKey, "MERGE_API_KEY_CRM must be set");
+        assertNotNull(apiKey, "MERGE_API_KEY_SECONDARY must be set");
         assertNotNull(accountToken, "MERGE_ACCOUNT_TOKEN_CRM must be set");
         client = MergeApiClient.builder()
                 .apiKey(apiKey)

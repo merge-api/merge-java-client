@@ -20,9 +20,9 @@ public class KnowledgebaseIntegrationTest {
 
     @BeforeEach
     void setUp() {
-        String apiKey = System.getenv("MERGE_API_KEY_KNOWLEDGEBASE");
+        String apiKey = System.getenv("MERGE_API_KEY_SECONDARY");
         String accountToken = System.getenv("MERGE_ACCOUNT_TOKEN_KNOWLEDGEBASE");
-        assertNotNull(apiKey, "MERGE_API_KEY_KNOWLEDGEBASE must be set");
+        assertNotNull(apiKey, "MERGE_API_KEY_SECONDARY must be set");
         assertNotNull(accountToken, "MERGE_ACCOUNT_TOKEN_KNOWLEDGEBASE must be set");
         client = MergeApiClient.builder()
                 .apiKey(apiKey)

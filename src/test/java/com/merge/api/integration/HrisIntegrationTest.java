@@ -22,9 +22,9 @@ public class HrisIntegrationTest {
 
     @BeforeEach
     void setUp() {
-        String apiKey = System.getenv("MERGE_API_KEY_HRIS");
+        String apiKey = System.getenv("MERGE_API_KEY_SECONDARY");
         String accountToken = System.getenv("MERGE_ACCOUNT_TOKEN_HRIS");
-        assertNotNull(apiKey, "MERGE_API_KEY_HRIS must be set");
+        assertNotNull(apiKey, "MERGE_API_KEY_SECONDARY must be set");
         assertNotNull(accountToken, "MERGE_ACCOUNT_TOKEN_HRIS must be set");
         client = MergeApiClient.builder()
                 .apiKey(apiKey)

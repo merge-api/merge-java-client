@@ -22,9 +22,9 @@ public class TicketingIntegrationTest {
 
     @BeforeEach
     void setUp() {
-        String apiKey = System.getenv("MERGE_API_KEY_TICKETING");
+        String apiKey = System.getenv("MERGE_API_KEY_SECONDARY");
         String accountToken = System.getenv("MERGE_ACCOUNT_TOKEN_TICKETING");
-        assertNotNull(apiKey, "MERGE_API_KEY_TICKETING must be set");
+        assertNotNull(apiKey, "MERGE_API_KEY_SECONDARY must be set");
         assertNotNull(accountToken, "MERGE_ACCOUNT_TOKEN_TICKETING must be set");
         client = MergeApiClient.builder()
                 .apiKey(apiKey)

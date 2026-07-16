@@ -26,9 +26,9 @@ public class AtsIntegrationTest {
 
     @BeforeEach
     void setUp() {
-        String apiKey = System.getenv("MERGE_API_KEY_ATS");
+        String apiKey = System.getenv("MERGE_API_KEY_SECONDARY");
         String accountToken = System.getenv("MERGE_ACCOUNT_TOKEN_ATS");
-        assertNotNull(apiKey, "MERGE_API_KEY_ATS must be set");
+        assertNotNull(apiKey, "MERGE_API_KEY_SECONDARY must be set");
         assertNotNull(accountToken, "MERGE_ACCOUNT_TOKEN_ATS must be set");
         client = MergeApiClient.builder()
                 .apiKey(apiKey)

@@ -13,9 +13,9 @@ public class ChatIntegrationTest {
 
     @BeforeEach
     void setUp() {
-        String apiKey = System.getenv("MERGE_API_KEY_CHAT");
+        String apiKey = System.getenv("MERGE_API_KEY_SECONDARY");
         String accountToken = System.getenv("MERGE_ACCOUNT_TOKEN_CHAT");
-        assertNotNull(apiKey, "MERGE_API_KEY_CHAT must be set");
+        assertNotNull(apiKey, "MERGE_API_KEY_SECONDARY must be set");
         assertNotNull(accountToken, "MERGE_ACCOUNT_TOKEN_CHAT must be set");
         client = MergeApiClient.builder()
                 .apiKey(apiKey)
