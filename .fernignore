@@ -15,6 +15,14 @@ src/main/java/com/merge/legacy
 src/main/java/com/merge/api/core/QueryStringMapper.java
 
 src/test/java/com/merge/api/integration/CursorPaginationIntegrationTest.java
+src/test/java/com/merge/api/integration/IntegrationSupport.java
+src/test/java/com/merge/api/integration/AtsIntegrationTest.java
+src/test/java/com/merge/api/integration/ChatIntegrationTest.java
+src/test/java/com/merge/api/integration/CrmIntegrationTest.java
+src/test/java/com/merge/api/integration/FileStorageIntegrationTest.java
+src/test/java/com/merge/api/integration/HrisIntegrationTest.java
+src/test/java/com/merge/api/integration/KnowledgebaseIntegrationTest.java
+src/test/java/com/merge/api/integration/TicketingIntegrationTest.java
 src/test/java/com/merge/api/jackson/FreeFormFieldTypeTest.java
 src/test/java/com/merge/api/custom/EnumForwardCompatTest.java
 src/test/java/com/merge/api/custom/OneOfUnionTest.java

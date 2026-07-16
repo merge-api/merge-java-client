@@ -37,8 +37,20 @@ jobs:
       - name: Test
         run: ./gradlew test
         env:
+          MERGE_API_KEY_ATS: ${{ secrets.MERGE_API_KEY_ATS }}
+          MERGE_ACCOUNT_TOKEN_ATS: ${{ secrets.MERGE_ACCOUNT_TOKEN_ATS }}
+          MERGE_API_KEY_CHAT: ${{ secrets.MERGE_API_KEY_CHAT }}
+          MERGE_ACCOUNT_TOKEN_CHAT: ${{ secrets.MERGE_ACCOUNT_TOKEN_CHAT }}
+          MERGE_API_KEY_CRM: ${{ secrets.MERGE_API_KEY_CRM }}
+          MERGE_ACCOUNT_TOKEN_CRM: ${{ secrets.MERGE_ACCOUNT_TOKEN_CRM }}
           MERGE_API_KEY_FILESTORAGE: ${{ secrets.MERGE_API_KEY_FILESTORAGE }}
           MERGE_ACCOUNT_TOKEN_FILESTORAGE: ${{ secrets.MERGE_ACCOUNT_TOKEN_FILESTORAGE }}
+          MERGE_API_KEY_HRIS: ${{ secrets.MERGE_API_KEY_HRIS }}
+          MERGE_ACCOUNT_TOKEN_HRIS: ${{ secrets.MERGE_ACCOUNT_TOKEN_HRIS }}
+          MERGE_API_KEY_KNOWLEDGEBASE: ${{ secrets.MERGE_API_KEY_KNOWLEDGEBASE }}
+          MERGE_ACCOUNT_TOKEN_KNOWLEDGEBASE: ${{ secrets.MERGE_ACCOUNT_TOKEN_KNOWLEDGEBASE }}
+          MERGE_API_KEY_TICKETING: ${{ secrets.MERGE_API_KEY_TICKETING }}
+          MERGE_ACCOUNT_TOKEN_TICKETING: ${{ secrets.MERGE_ACCOUNT_TOKEN_TICKETING }}
 
   publish:
     needs: [ compile, test ]
