@@ -47,13 +47,15 @@ public class HrisIntegrationTest {
     @Test
     void companies() {
         smokeListAndRetrieve(
-                client.hris().companies().list(), id -> client.hris().companies().retrieve(id));
+                client.hris().companies().list(),
+                id -> client.hris().companies().retrieve(id));
     }
 
     @Test
     void dependents() {
         smokeListAndRetrieve(
-                client.hris().dependents().list(), id -> client.hris().dependents().retrieve(id));
+                client.hris().dependents().list(),
+                id -> client.hris().dependents().retrieve(id));
     }
 
     @Test
@@ -66,7 +68,8 @@ public class HrisIntegrationTest {
     @Test
     void employees() {
         smokeListAndRetrieve(
-                client.hris().employees().list(), id -> client.hris().employees().retrieve(id));
+                client.hris().employees().list(),
+                id -> client.hris().employees().retrieve(id));
     }
 
     @Test
@@ -79,7 +82,8 @@ public class HrisIntegrationTest {
     @Test
     void employments() {
         smokeListAndRetrieve(
-                client.hris().employments().list(), id -> client.hris().employments().retrieve(id));
+                client.hris().employments().list(),
+                id -> client.hris().employments().retrieve(id));
     }
 
     @Test
@@ -91,24 +95,28 @@ public class HrisIntegrationTest {
     @Test
     void locations() {
         smokeListAndRetrieve(
-                client.hris().locations().list(), id -> client.hris().locations().retrieve(id));
+                client.hris().locations().list(),
+                id -> client.hris().locations().retrieve(id));
     }
 
     @Test
     void payGroups() {
         smokeListAndRetrieve(
-                client.hris().payGroups().list(), id -> client.hris().payGroups().retrieve(id));
+                client.hris().payGroups().list(),
+                id -> client.hris().payGroups().retrieve(id));
     }
 
     @Test
     void payrollRuns() {
         smokeListAndRetrieve(
-                client.hris().payrollRuns().list(), id -> client.hris().payrollRuns().retrieve(id));
+                client.hris().payrollRuns().list(),
+                id -> client.hris().payrollRuns().retrieve(id));
     }
 
     @Test
     void teams() {
-        smokeListAndRetrieve(client.hris().teams().list(), id -> client.hris().teams().retrieve(id));
+        smokeListAndRetrieve(
+                client.hris().teams().list(), id -> client.hris().teams().retrieve(id));
     }
 
     @Test
@@ -138,8 +146,7 @@ public class HrisIntegrationTest {
                 .list(EmployeesListRequest.builder()
                         .pageSize(5)
                         .expand(List.of(
-                                EmployeesListRequestExpandItem.EMPLOYMENTS,
-                                EmployeesListRequestExpandItem.PAY_GROUP))
+                                EmployeesListRequestExpandItem.EMPLOYMENTS, EmployeesListRequestExpandItem.PAY_GROUP))
                         .build()));
     }
 

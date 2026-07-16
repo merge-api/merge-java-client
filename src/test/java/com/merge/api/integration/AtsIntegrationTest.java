@@ -39,42 +39,49 @@ public class AtsIntegrationTest {
     @Test
     void activities() {
         smokeListAndRetrieve(
-                client.ats().activities().list(), id -> client.ats().activities().retrieve(id));
+                client.ats().activities().list(),
+                id -> client.ats().activities().retrieve(id));
     }
 
     @Test
     void applications() {
         smokeListAndRetrieve(
-                client.ats().applications().list(), id -> client.ats().applications().retrieve(id));
+                client.ats().applications().list(),
+                id -> client.ats().applications().retrieve(id));
     }
 
     @Test
     void attachments() {
         smokeListAndRetrieve(
-                client.ats().attachments().list(), id -> client.ats().attachments().retrieve(id));
+                client.ats().attachments().list(),
+                id -> client.ats().attachments().retrieve(id));
     }
 
     @Test
     void candidates() {
         smokeListAndRetrieve(
-                client.ats().candidates().list(), id -> client.ats().candidates().retrieve(id));
+                client.ats().candidates().list(),
+                id -> client.ats().candidates().retrieve(id));
     }
 
     @Test
     void departments() {
         smokeListAndRetrieve(
-                client.ats().departments().list(), id -> client.ats().departments().retrieve(id));
+                client.ats().departments().list(),
+                id -> client.ats().departments().retrieve(id));
     }
 
     @Test
     void eeocs() {
-        smokeListAndRetrieve(client.ats().eeocs().list(), id -> client.ats().eeocs().retrieve(id));
+        smokeListAndRetrieve(
+                client.ats().eeocs().list(), id -> client.ats().eeocs().retrieve(id));
     }
 
     @Test
     void interviews() {
         smokeListAndRetrieve(
-                client.ats().interviews().list(), id -> client.ats().interviews().retrieve(id));
+                client.ats().interviews().list(),
+                id -> client.ats().interviews().retrieve(id));
     }
 
     @Test
@@ -87,39 +94,46 @@ public class AtsIntegrationTest {
     @Test
     void jobPostings() {
         smokeListAndRetrieve(
-                client.ats().jobPostings().list(), id -> client.ats().jobPostings().retrieve(id));
+                client.ats().jobPostings().list(),
+                id -> client.ats().jobPostings().retrieve(id));
     }
 
     @Test
     void jobs() {
-        smokeListAndRetrieve(client.ats().jobs().list(), id -> client.ats().jobs().retrieve(id));
+        smokeListAndRetrieve(
+                client.ats().jobs().list(), id -> client.ats().jobs().retrieve(id));
     }
 
     @Test
     void offers() {
-        smokeListAndRetrieve(client.ats().offers().list(), id -> client.ats().offers().retrieve(id));
+        smokeListAndRetrieve(
+                client.ats().offers().list(), id -> client.ats().offers().retrieve(id));
     }
 
     @Test
     void offices() {
-        smokeListAndRetrieve(client.ats().offices().list(), id -> client.ats().offices().retrieve(id));
+        smokeListAndRetrieve(
+                client.ats().offices().list(), id -> client.ats().offices().retrieve(id));
     }
 
     @Test
     void rejectReasons() {
         smokeListAndRetrieve(
-                client.ats().rejectReasons().list(), id -> client.ats().rejectReasons().retrieve(id));
+                client.ats().rejectReasons().list(),
+                id -> client.ats().rejectReasons().retrieve(id));
     }
 
     @Test
     void scorecards() {
         smokeListAndRetrieve(
-                client.ats().scorecards().list(), id -> client.ats().scorecards().retrieve(id));
+                client.ats().scorecards().list(),
+                id -> client.ats().scorecards().retrieve(id));
     }
 
     @Test
     void users() {
-        smokeListAndRetrieve(client.ats().users().list(), id -> client.ats().users().retrieve(id));
+        smokeListAndRetrieve(
+                client.ats().users().list(), id -> client.ats().users().retrieve(id));
     }
 
     @Test
@@ -134,8 +148,7 @@ public class AtsIntegrationTest {
                 .list(ApplicationsListRequest.builder()
                         .pageSize(5)
                         .expand(List.of(
-                                ApplicationsListRequestExpandItem.CANDIDATE,
-                                ApplicationsListRequestExpandItem.OFFERS))
+                                ApplicationsListRequestExpandItem.CANDIDATE, ApplicationsListRequestExpandItem.OFFERS))
                         .build()));
     }
 
@@ -158,8 +171,7 @@ public class AtsIntegrationTest {
                 .list(InterviewsListRequest.builder()
                         .pageSize(5)
                         .expand(List.of(
-                                InterviewsListRequestExpandItem.APPLICATION,
-                                InterviewsListRequestExpandItem.ORGANIZER))
+                                InterviewsListRequestExpandItem.APPLICATION, InterviewsListRequestExpandItem.ORGANIZER))
                         .build()));
     }
 

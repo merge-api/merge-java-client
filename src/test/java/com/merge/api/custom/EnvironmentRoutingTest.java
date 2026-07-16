@@ -24,6 +24,8 @@ public final class EnvironmentRoutingTest {
 
     @Test
     public void customUrlRoundTrips() {
-        assertEquals("http://localhost:8080", Environment.custom("http://localhost:8080").getUrl());
+        assertEquals(
+                "http://localhost:8080",
+                Environment.custom("http://localhost:8080").getUrl());
     }
 }
