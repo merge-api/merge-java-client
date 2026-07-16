@@ -16,6 +16,12 @@ src/main/java/com/merge/api/core/QueryStringMapper.java
 
 src/test/java/com/merge/api/integration/CursorPaginationIntegrationTest.java
 src/test/java/com/merge/api/jackson/FreeFormFieldTypeTest.java
+src/test/java/com/merge/api/custom/EnumForwardCompatTest.java
+src/test/java/com/merge/api/custom/OneOfUnionTest.java
+src/test/java/com/merge/api/custom/ExpandQueryParamTest.java
+src/test/java/com/merge/api/custom/DateTimeSerializationTest.java
+src/test/java/com/merge/api/custom/ErrorResponseTest.java
+src/test/java/com/merge/api/custom/EnvironmentRoutingTest.java
 .fern/replay.lock
 .fern/replay.yml
 .gitattributes
