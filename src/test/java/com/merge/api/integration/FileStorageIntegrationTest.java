@@ -20,9 +20,9 @@ public class FileStorageIntegrationTest {
 
     @BeforeEach
     void setUp() {
-        String apiKey = System.getenv("MERGE_API_KEY_SECONDARY");
+        String apiKey = System.getenv("MERGE_API_KEY_FILESTORAGE");
         String accountToken = System.getenv("MERGE_ACCOUNT_TOKEN_FILESTORAGE");
-        assertNotNull(apiKey, "MERGE_API_KEY_SECONDARY must be set");
+        assertNotNull(apiKey, "MERGE_API_KEY_FILESTORAGE must be set");
         assertNotNull(accountToken, "MERGE_ACCOUNT_TOKEN_FILESTORAGE must be set");
         client = MergeApiClient.builder()
                 .apiKey(apiKey)
