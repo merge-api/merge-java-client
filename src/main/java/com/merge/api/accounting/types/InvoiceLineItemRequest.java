@@ -10,7 +10,6 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
-import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.merge.api.core.ObjectMappers;
 import java.util.HashMap;
@@ -32,7 +31,7 @@ public final class InvoiceLineItemRequest {
 
     private final Optional<Double> totalAmount;
 
-    private final Optional<InvoiceLineItemRequestEmployee> employee;
+    private final Optional<String> employee;
 
     private final Optional<InvoiceLineItemRequestProject> project;
 
@@ -54,9 +53,11 @@ public final class InvoiceLineItemRequest {
 
     private final Optional<String> company;
 
-    private final Optional<Map<String, JsonNode>> integrationParams;
+    private final Optional<Boolean> isBillable;
 
-    private final Optional<Map<String, JsonNode>> linkedAccountParams;
+    private final Optional<Map<String, Object>> integrationParams;
+
+    private final Optional<Map<String, Object>> linkedAccountParams;
 
     private final Optional<List<RemoteFieldRequest>> remoteFields;
 
@@ -68,7 +69,7 @@ public final class InvoiceLineItemRequest {
             Optional<Double> unitPrice,
             Optional<Double> quantity,
             Optional<Double> totalAmount,
-            Optional<InvoiceLineItemRequestEmployee> employee,
+            Optional<String> employee,
             Optional<InvoiceLineItemRequestProject> project,
             Optional<InvoiceLineItemRequestContact> contact,
             Optional<InvoiceLineItemRequestCurrency> currency,
@@ -79,8 +80,9 @@ public final class InvoiceLineItemRequest {
             Optional<InvoiceLineItemRequestTrackingCategory> trackingCategory,
             Optional<List<Optional<InvoiceLineItemRequestTrackingCategoriesItem>>> trackingCategories,
             Optional<String> company,
-            Optional<Map<String, JsonNode>> integrationParams,
-            Optional<Map<String, JsonNode>> linkedAccountParams,
+            Optional<Boolean> isBillable,
+            Optional<Map<String, Object>> integrationParams,
+            Optional<Map<String, Object>> linkedAccountParams,
             Optional<List<RemoteFieldRequest>> remoteFields,
             Map<String, Object> additionalProperties) {
         this.remoteId = remoteId;
@@ -99,6 +101,7 @@ public final class InvoiceLineItemRequest {
         this.trackingCategory = trackingCategory;
         this.trackingCategories = trackingCategories;
         this.company = company;
+        this.isBillable = isBillable;
         this.integrationParams = integrationParams;
         this.linkedAccountParams = linkedAccountParams;
         this.remoteFields = remoteFields;
@@ -149,7 +152,7 @@ public final class InvoiceLineItemRequest {
      * @return The employee this overall transaction relates to.
      */
     @JsonProperty("employee")
-    public Optional<InvoiceLineItemRequestEmployee> getEmployee() {
+    public Optional<String> getEmployee() {
         return employee;
     }
 
@@ -529,13 +532,21 @@ public final class InvoiceLineItemRequest {
         return company;
     }
 
+    /**
+     * @return Indicates if the line item can be charged to the client/customer.
+     */
+    @JsonProperty("is_billable")
+    public Optional<Boolean> getIsBillable() {
+        return isBillable;
+    }
+
     @JsonProperty("integration_params")
-    public Optional<Map<String, JsonNode>> getIntegrationParams() {
+    public Optional<Map<String, Object>> getIntegrationParams() {
         return integrationParams;
     }
 
     @JsonProperty("linked_account_params")
-    public Optional<Map<String, JsonNode>> getLinkedAccountParams() {
+    public Optional<Map<String, Object>> getLinkedAccountParams() {
         return linkedAccountParams;
     }
 
@@ -572,6 +583,7 @@ public final class InvoiceLineItemRequest {
                 && trackingCategory.equals(other.trackingCategory)
                 && trackingCategories.equals(other.trackingCategories)
                 && company.equals(other.company)
+                && isBillable.equals(other.isBillable)
                 && integrationParams.equals(other.integrationParams)
                 && linkedAccountParams.equals(other.linkedAccountParams)
                 && remoteFields.equals(other.remoteFields);
@@ -596,6 +608,7 @@ public final class InvoiceLineItemRequest {
                 this.trackingCategory,
                 this.trackingCategories,
                 this.company,
+                this.isBillable,
                 this.integrationParams,
                 this.linkedAccountParams,
                 this.remoteFields);
@@ -622,7 +635,7 @@ public final class InvoiceLineItemRequest {
 
         private Optional<Double> totalAmount = Optional.empty();
 
-        private Optional<InvoiceLineItemRequestEmployee> employee = Optional.empty();
+        private Optional<String> employee = Optional.empty();
 
         private Optional<InvoiceLineItemRequestProject> project = Optional.empty();
 
@@ -645,9 +658,11 @@ public final class InvoiceLineItemRequest {
 
         private Optional<String> company = Optional.empty();
 
-        private Optional<Map<String, JsonNode>> integrationParams = Optional.empty();
+        private Optional<Boolean> isBillable = Optional.empty();
 
-        private Optional<Map<String, JsonNode>> linkedAccountParams = Optional.empty();
+        private Optional<Map<String, Object>> integrationParams = Optional.empty();
+
+        private Optional<Map<String, Object>> linkedAccountParams = Optional.empty();
 
         private Optional<List<RemoteFieldRequest>> remoteFields = Optional.empty();
 
@@ -673,6 +688,7 @@ public final class InvoiceLineItemRequest {
             trackingCategory(other.getTrackingCategory());
             trackingCategories(other.getTrackingCategories());
             company(other.getCompany());
+            isBillable(other.getIsBillable());
             integrationParams(other.getIntegrationParams());
             linkedAccountParams(other.getLinkedAccountParams());
             remoteFields(other.getRemoteFields());
@@ -753,12 +769,12 @@ public final class InvoiceLineItemRequest {
          * <p>The employee this overall transaction relates to.</p>
          */
         @JsonSetter(value = "employee", nulls = Nulls.SKIP)
-        public Builder employee(Optional<InvoiceLineItemRequestEmployee> employee) {
+        public Builder employee(Optional<String> employee) {
             this.employee = employee;
             return this;
         }
 
-        public Builder employee(InvoiceLineItemRequestEmployee employee) {
+        public Builder employee(String employee) {
             this.employee = Optional.ofNullable(employee);
             return this;
         }
@@ -1201,24 +1217,38 @@ public final class InvoiceLineItemRequest {
             return this;
         }
 
+        /**
+         * <p>Indicates if the line item can be charged to the client/customer.</p>
+         */
+        @JsonSetter(value = "is_billable", nulls = Nulls.SKIP)
+        public Builder isBillable(Optional<Boolean> isBillable) {
+            this.isBillable = isBillable;
+            return this;
+        }
+
+        public Builder isBillable(Boolean isBillable) {
+            this.isBillable = Optional.ofNullable(isBillable);
+            return this;
+        }
+
         @JsonSetter(value = "integration_params", nulls = Nulls.SKIP)
-        public Builder integrationParams(Optional<Map<String, JsonNode>> integrationParams) {
+        public Builder integrationParams(Optional<Map<String, Object>> integrationParams) {
             this.integrationParams = integrationParams;
             return this;
         }
 
-        public Builder integrationParams(Map<String, JsonNode> integrationParams) {
+        public Builder integrationParams(Map<String, Object> integrationParams) {
             this.integrationParams = Optional.ofNullable(integrationParams);
             return this;
         }
 
         @JsonSetter(value = "linked_account_params", nulls = Nulls.SKIP)
-        public Builder linkedAccountParams(Optional<Map<String, JsonNode>> linkedAccountParams) {
+        public Builder linkedAccountParams(Optional<Map<String, Object>> linkedAccountParams) {
             this.linkedAccountParams = linkedAccountParams;
             return this;
         }
 
-        public Builder linkedAccountParams(Map<String, JsonNode> linkedAccountParams) {
+        public Builder linkedAccountParams(Map<String, Object> linkedAccountParams) {
             this.linkedAccountParams = Optional.ofNullable(linkedAccountParams);
             return this;
         }
@@ -1252,6 +1282,7 @@ public final class InvoiceLineItemRequest {
                     trackingCategory,
                     trackingCategories,
                     company,
+                    isBillable,
                     integrationParams,
                     linkedAccountParams,
                     remoteFields,

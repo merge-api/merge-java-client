@@ -50,6 +50,8 @@ public class AsyncAccountingClient {
 
     protected final Supplier<AsyncEmployeesClient> employeesClient;
 
+    protected final Supplier<AsyncExpenseReportsClient> expenseReportsClient;
+
     protected final Supplier<AsyncExpensesClient> expensesClient;
 
     protected final Supplier<AsyncFieldMappingClient> fieldMappingClient;
@@ -63,6 +65,8 @@ public class AsyncAccountingClient {
     protected final Supplier<AsyncInvoicesClient> invoicesClient;
 
     protected final Supplier<AsyncIssuesClient> issuesClient;
+
+    protected final Supplier<AsyncItemFulfillmentsClient> itemFulfillmentsClient;
 
     protected final Supplier<AsyncItemsClient> itemsClient;
 
@@ -87,6 +91,8 @@ public class AsyncAccountingClient {
     protected final Supplier<AsyncPurchaseOrdersClient> purchaseOrdersClient;
 
     protected final Supplier<AsyncRegenerateKeyClient> regenerateKeyClient;
+
+    protected final Supplier<AsyncSalesOrdersClient> salesOrdersClient;
 
     protected final Supplier<AsyncSyncStatusClient> syncStatusClient;
 
@@ -124,6 +130,7 @@ public class AsyncAccountingClient {
         this.scopesClient = Suppliers.memoize(() -> new AsyncScopesClient(clientOptions));
         this.deleteAccountClient = Suppliers.memoize(() -> new AsyncDeleteAccountClient(clientOptions));
         this.employeesClient = Suppliers.memoize(() -> new AsyncEmployeesClient(clientOptions));
+        this.expenseReportsClient = Suppliers.memoize(() -> new AsyncExpenseReportsClient(clientOptions));
         this.expensesClient = Suppliers.memoize(() -> new AsyncExpensesClient(clientOptions));
         this.fieldMappingClient = Suppliers.memoize(() -> new AsyncFieldMappingClient(clientOptions));
         this.generalLedgerTransactionsClient =
@@ -132,6 +139,7 @@ public class AsyncAccountingClient {
         this.incomeStatementsClient = Suppliers.memoize(() -> new AsyncIncomeStatementsClient(clientOptions));
         this.invoicesClient = Suppliers.memoize(() -> new AsyncInvoicesClient(clientOptions));
         this.issuesClient = Suppliers.memoize(() -> new AsyncIssuesClient(clientOptions));
+        this.itemFulfillmentsClient = Suppliers.memoize(() -> new AsyncItemFulfillmentsClient(clientOptions));
         this.itemsClient = Suppliers.memoize(() -> new AsyncItemsClient(clientOptions));
         this.journalEntriesClient = Suppliers.memoize(() -> new AsyncJournalEntriesClient(clientOptions));
         this.linkTokenClient = Suppliers.memoize(() -> new AsyncLinkTokenClient(clientOptions));
@@ -144,6 +152,7 @@ public class AsyncAccountingClient {
         this.projectsClient = Suppliers.memoize(() -> new AsyncProjectsClient(clientOptions));
         this.purchaseOrdersClient = Suppliers.memoize(() -> new AsyncPurchaseOrdersClient(clientOptions));
         this.regenerateKeyClient = Suppliers.memoize(() -> new AsyncRegenerateKeyClient(clientOptions));
+        this.salesOrdersClient = Suppliers.memoize(() -> new AsyncSalesOrdersClient(clientOptions));
         this.syncStatusClient = Suppliers.memoize(() -> new AsyncSyncStatusClient(clientOptions));
         this.forceResyncClient = Suppliers.memoize(() -> new AsyncForceResyncClient(clientOptions));
         this.taxRatesClient = Suppliers.memoize(() -> new AsyncTaxRatesClient(clientOptions));
@@ -233,6 +242,10 @@ public class AsyncAccountingClient {
         return this.employeesClient.get();
     }
 
+    public AsyncExpenseReportsClient expenseReports() {
+        return this.expenseReportsClient.get();
+    }
+
     public AsyncExpensesClient expenses() {
         return this.expensesClient.get();
     }
@@ -259,6 +272,10 @@ public class AsyncAccountingClient {
 
     public AsyncIssuesClient issues() {
         return this.issuesClient.get();
+    }
+
+    public AsyncItemFulfillmentsClient itemFulfillments() {
+        return this.itemFulfillmentsClient.get();
     }
 
     public AsyncItemsClient items() {
@@ -307,6 +324,10 @@ public class AsyncAccountingClient {
 
     public AsyncRegenerateKeyClient regenerateKey() {
         return this.regenerateKeyClient.get();
+    }
+
+    public AsyncSalesOrdersClient salesOrders() {
+        return this.salesOrdersClient.get();
     }
 
     public AsyncSyncStatusClient syncStatus() {

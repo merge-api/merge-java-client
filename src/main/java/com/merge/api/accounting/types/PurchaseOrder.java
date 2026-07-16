@@ -10,7 +10,6 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
-import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.merge.api.core.ObjectMappers;
 import java.time.OffsetDateTime;
@@ -24,6 +23,8 @@ import java.util.Optional;
 @JsonDeserialize(builder = PurchaseOrder.Builder.class)
 public final class PurchaseOrder {
     private final Optional<String> id;
+
+    private final Optional<String> purchaseOrderUrl;
 
     private final Optional<String> remoteId;
 
@@ -57,7 +58,7 @@ public final class PurchaseOrder {
 
     private final Optional<PurchaseOrderPaymentTerm> paymentTerm;
 
-    private final Optional<List<PurchaseOrderLineItem>> lineItems;
+    private final Optional<List<PurchaseOrderLineItemsItem>> lineItems;
 
     private final Optional<Boolean> inclusiveOfTax;
 
@@ -71,7 +72,7 @@ public final class PurchaseOrder {
 
     private final Optional<Boolean> remoteWasDeleted;
 
-    private final Optional<Map<String, JsonNode>> fieldMappings;
+    private final Optional<Map<String, Object>> fieldMappings;
 
     private final Optional<List<RemoteData>> remoteData;
 
@@ -81,6 +82,7 @@ public final class PurchaseOrder {
 
     private PurchaseOrder(
             Optional<String> id,
+            Optional<String> purchaseOrderUrl,
             Optional<String> remoteId,
             Optional<OffsetDateTime> createdAt,
             Optional<OffsetDateTime> modifiedAt,
@@ -97,18 +99,19 @@ public final class PurchaseOrder {
             Optional<PurchaseOrderCurrency> currency,
             Optional<String> exchangeRate,
             Optional<PurchaseOrderPaymentTerm> paymentTerm,
-            Optional<List<PurchaseOrderLineItem>> lineItems,
+            Optional<List<PurchaseOrderLineItemsItem>> lineItems,
             Optional<Boolean> inclusiveOfTax,
             Optional<List<Optional<PurchaseOrderTrackingCategoriesItem>>> trackingCategories,
             Optional<PurchaseOrderAccountingPeriod> accountingPeriod,
             Optional<OffsetDateTime> remoteCreatedAt,
             Optional<OffsetDateTime> remoteUpdatedAt,
             Optional<Boolean> remoteWasDeleted,
-            Optional<Map<String, JsonNode>> fieldMappings,
+            Optional<Map<String, Object>> fieldMappings,
             Optional<List<RemoteData>> remoteData,
             Optional<List<RemoteField>> remoteFields,
             Map<String, Object> additionalProperties) {
         this.id = id;
+        this.purchaseOrderUrl = purchaseOrderUrl;
         this.remoteId = remoteId;
         this.createdAt = createdAt;
         this.modifiedAt = modifiedAt;
@@ -141,6 +144,14 @@ public final class PurchaseOrder {
     @JsonProperty("id")
     public Optional<String> getId() {
         return id;
+    }
+
+    /**
+     * @return The 3rd party URL of the purchase order.
+     */
+    @JsonProperty("purchase_order_url")
+    public Optional<String> getPurchaseOrderUrl() {
+        return purchaseOrderUrl;
     }
 
     /**
@@ -587,7 +598,7 @@ public final class PurchaseOrder {
     }
 
     @JsonProperty("line_items")
-    public Optional<List<PurchaseOrderLineItem>> getLineItems() {
+    public Optional<List<PurchaseOrderLineItemsItem>> getLineItems() {
         return lineItems;
     }
 
@@ -637,7 +648,7 @@ public final class PurchaseOrder {
     }
 
     @JsonProperty("field_mappings")
-    public Optional<Map<String, JsonNode>> getFieldMappings() {
+    public Optional<Map<String, Object>> getFieldMappings() {
         return fieldMappings;
     }
 
@@ -664,6 +675,7 @@ public final class PurchaseOrder {
 
     private boolean equalTo(PurchaseOrder other) {
         return id.equals(other.id)
+                && purchaseOrderUrl.equals(other.purchaseOrderUrl)
                 && remoteId.equals(other.remoteId)
                 && createdAt.equals(other.createdAt)
                 && modifiedAt.equals(other.modifiedAt)
@@ -696,6 +708,7 @@ public final class PurchaseOrder {
     public int hashCode() {
         return Objects.hash(
                 this.id,
+                this.purchaseOrderUrl,
                 this.remoteId,
                 this.createdAt,
                 this.modifiedAt,
@@ -737,6 +750,8 @@ public final class PurchaseOrder {
     public static final class Builder {
         private Optional<String> id = Optional.empty();
 
+        private Optional<String> purchaseOrderUrl = Optional.empty();
+
         private Optional<String> remoteId = Optional.empty();
 
         private Optional<OffsetDateTime> createdAt = Optional.empty();
@@ -769,7 +784,7 @@ public final class PurchaseOrder {
 
         private Optional<PurchaseOrderPaymentTerm> paymentTerm = Optional.empty();
 
-        private Optional<List<PurchaseOrderLineItem>> lineItems = Optional.empty();
+        private Optional<List<PurchaseOrderLineItemsItem>> lineItems = Optional.empty();
 
         private Optional<Boolean> inclusiveOfTax = Optional.empty();
 
@@ -783,7 +798,7 @@ public final class PurchaseOrder {
 
         private Optional<Boolean> remoteWasDeleted = Optional.empty();
 
-        private Optional<Map<String, JsonNode>> fieldMappings = Optional.empty();
+        private Optional<Map<String, Object>> fieldMappings = Optional.empty();
 
         private Optional<List<RemoteData>> remoteData = Optional.empty();
 
@@ -796,6 +811,7 @@ public final class PurchaseOrder {
 
         public Builder from(PurchaseOrder other) {
             id(other.getId());
+            purchaseOrderUrl(other.getPurchaseOrderUrl());
             remoteId(other.getRemoteId());
             createdAt(other.getCreatedAt());
             modifiedAt(other.getModifiedAt());
@@ -833,6 +849,20 @@ public final class PurchaseOrder {
 
         public Builder id(String id) {
             this.id = Optional.ofNullable(id);
+            return this;
+        }
+
+        /**
+         * <p>The 3rd party URL of the purchase order.</p>
+         */
+        @JsonSetter(value = "purchase_order_url", nulls = Nulls.SKIP)
+        public Builder purchaseOrderUrl(Optional<String> purchaseOrderUrl) {
+            this.purchaseOrderUrl = purchaseOrderUrl;
+            return this;
+        }
+
+        public Builder purchaseOrderUrl(String purchaseOrderUrl) {
+            this.purchaseOrderUrl = Optional.ofNullable(purchaseOrderUrl);
             return this;
         }
 
@@ -1376,12 +1406,12 @@ public final class PurchaseOrder {
         }
 
         @JsonSetter(value = "line_items", nulls = Nulls.SKIP)
-        public Builder lineItems(Optional<List<PurchaseOrderLineItem>> lineItems) {
+        public Builder lineItems(Optional<List<PurchaseOrderLineItemsItem>> lineItems) {
             this.lineItems = lineItems;
             return this;
         }
 
-        public Builder lineItems(List<PurchaseOrderLineItem> lineItems) {
+        public Builder lineItems(List<PurchaseOrderLineItemsItem> lineItems) {
             this.lineItems = Optional.ofNullable(lineItems);
             return this;
         }
@@ -1469,12 +1499,12 @@ public final class PurchaseOrder {
         }
 
         @JsonSetter(value = "field_mappings", nulls = Nulls.SKIP)
-        public Builder fieldMappings(Optional<Map<String, JsonNode>> fieldMappings) {
+        public Builder fieldMappings(Optional<Map<String, Object>> fieldMappings) {
             this.fieldMappings = fieldMappings;
             return this;
         }
 
-        public Builder fieldMappings(Map<String, JsonNode> fieldMappings) {
+        public Builder fieldMappings(Map<String, Object> fieldMappings) {
             this.fieldMappings = Optional.ofNullable(fieldMappings);
             return this;
         }
@@ -1504,6 +1534,7 @@ public final class PurchaseOrder {
         public PurchaseOrder build() {
             return new PurchaseOrder(
                     id,
+                    purchaseOrderUrl,
                     remoteId,
                     createdAt,
                     modifiedAt,

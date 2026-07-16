@@ -10,7 +10,6 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
-import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.merge.api.core.ObjectMappers;
 import java.util.HashMap;
@@ -22,30 +21,50 @@ import java.util.Optional;
 @JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = PatchedEditFieldMappingRequest.Builder.class)
 public final class PatchedEditFieldMappingRequest {
-    private final Optional<List<JsonNode>> remoteFieldTraversalPath;
+    private final Optional<Integer> remoteDataIterationCount;
+
+    private final Optional<List<Object>> remoteFieldTraversalPath;
 
     private final Optional<String> remoteMethod;
 
     private final Optional<String> remoteUrlPath;
 
+    private final Optional<String> jmesPath;
+
+    private final Optional<String> advancedMappingExpression;
+
     private final Map<String, Object> additionalProperties;
 
     private PatchedEditFieldMappingRequest(
-            Optional<List<JsonNode>> remoteFieldTraversalPath,
+            Optional<Integer> remoteDataIterationCount,
+            Optional<List<Object>> remoteFieldTraversalPath,
             Optional<String> remoteMethod,
             Optional<String> remoteUrlPath,
+            Optional<String> jmesPath,
+            Optional<String> advancedMappingExpression,
             Map<String, Object> additionalProperties) {
+        this.remoteDataIterationCount = remoteDataIterationCount;
         this.remoteFieldTraversalPath = remoteFieldTraversalPath;
         this.remoteMethod = remoteMethod;
         this.remoteUrlPath = remoteUrlPath;
+        this.jmesPath = jmesPath;
+        this.advancedMappingExpression = advancedMappingExpression;
         this.additionalProperties = additionalProperties;
+    }
+
+    /**
+     * @return Number of common model instances to iterate through when fetching remote data for field mappings. Defaults to 250 if not provided.
+     */
+    @JsonProperty("remote_data_iteration_count")
+    public Optional<Integer> getRemoteDataIterationCount() {
+        return remoteDataIterationCount;
     }
 
     /**
      * @return The field traversal path of the remote field listed when you hit the GET /remote-fields endpoint.
      */
     @JsonProperty("remote_field_traversal_path")
-    public Optional<List<JsonNode>> getRemoteFieldTraversalPath() {
+    public Optional<List<Object>> getRemoteFieldTraversalPath() {
         return remoteFieldTraversalPath;
     }
 
@@ -65,6 +84,22 @@ public final class PatchedEditFieldMappingRequest {
         return remoteUrlPath;
     }
 
+    /**
+     * @return DEPRECATED: Use 'advanced_mapping_expression' instead.
+     */
+    @JsonProperty("jmes_path")
+    public Optional<String> getJmesPath() {
+        return jmesPath;
+    }
+
+    /**
+     * @return A JSONata expression used to transform the remote field data.
+     */
+    @JsonProperty("advanced_mapping_expression")
+    public Optional<String> getAdvancedMappingExpression() {
+        return advancedMappingExpression;
+    }
+
     @java.lang.Override
     public boolean equals(Object other) {
         if (this == other) return true;
@@ -77,14 +112,23 @@ public final class PatchedEditFieldMappingRequest {
     }
 
     private boolean equalTo(PatchedEditFieldMappingRequest other) {
-        return remoteFieldTraversalPath.equals(other.remoteFieldTraversalPath)
+        return remoteDataIterationCount.equals(other.remoteDataIterationCount)
+                && remoteFieldTraversalPath.equals(other.remoteFieldTraversalPath)
                 && remoteMethod.equals(other.remoteMethod)
-                && remoteUrlPath.equals(other.remoteUrlPath);
+                && remoteUrlPath.equals(other.remoteUrlPath)
+                && jmesPath.equals(other.jmesPath)
+                && advancedMappingExpression.equals(other.advancedMappingExpression);
     }
 
     @java.lang.Override
     public int hashCode() {
-        return Objects.hash(this.remoteFieldTraversalPath, this.remoteMethod, this.remoteUrlPath);
+        return Objects.hash(
+                this.remoteDataIterationCount,
+                this.remoteFieldTraversalPath,
+                this.remoteMethod,
+                this.remoteUrlPath,
+                this.jmesPath,
+                this.advancedMappingExpression);
     }
 
     @java.lang.Override
@@ -98,11 +142,17 @@ public final class PatchedEditFieldMappingRequest {
 
     @JsonIgnoreProperties(ignoreUnknown = true)
     public static final class Builder {
-        private Optional<List<JsonNode>> remoteFieldTraversalPath = Optional.empty();
+        private Optional<Integer> remoteDataIterationCount = Optional.empty();
+
+        private Optional<List<Object>> remoteFieldTraversalPath = Optional.empty();
 
         private Optional<String> remoteMethod = Optional.empty();
 
         private Optional<String> remoteUrlPath = Optional.empty();
+
+        private Optional<String> jmesPath = Optional.empty();
+
+        private Optional<String> advancedMappingExpression = Optional.empty();
 
         @JsonAnySetter
         private Map<String, Object> additionalProperties = new HashMap<>();
@@ -110,9 +160,26 @@ public final class PatchedEditFieldMappingRequest {
         private Builder() {}
 
         public Builder from(PatchedEditFieldMappingRequest other) {
+            remoteDataIterationCount(other.getRemoteDataIterationCount());
             remoteFieldTraversalPath(other.getRemoteFieldTraversalPath());
             remoteMethod(other.getRemoteMethod());
             remoteUrlPath(other.getRemoteUrlPath());
+            jmesPath(other.getJmesPath());
+            advancedMappingExpression(other.getAdvancedMappingExpression());
+            return this;
+        }
+
+        /**
+         * <p>Number of common model instances to iterate through when fetching remote data for field mappings. Defaults to 250 if not provided.</p>
+         */
+        @JsonSetter(value = "remote_data_iteration_count", nulls = Nulls.SKIP)
+        public Builder remoteDataIterationCount(Optional<Integer> remoteDataIterationCount) {
+            this.remoteDataIterationCount = remoteDataIterationCount;
+            return this;
+        }
+
+        public Builder remoteDataIterationCount(Integer remoteDataIterationCount) {
+            this.remoteDataIterationCount = Optional.ofNullable(remoteDataIterationCount);
             return this;
         }
 
@@ -120,12 +187,12 @@ public final class PatchedEditFieldMappingRequest {
          * <p>The field traversal path of the remote field listed when you hit the GET /remote-fields endpoint.</p>
          */
         @JsonSetter(value = "remote_field_traversal_path", nulls = Nulls.SKIP)
-        public Builder remoteFieldTraversalPath(Optional<List<JsonNode>> remoteFieldTraversalPath) {
+        public Builder remoteFieldTraversalPath(Optional<List<Object>> remoteFieldTraversalPath) {
             this.remoteFieldTraversalPath = remoteFieldTraversalPath;
             return this;
         }
 
-        public Builder remoteFieldTraversalPath(List<JsonNode> remoteFieldTraversalPath) {
+        public Builder remoteFieldTraversalPath(List<Object> remoteFieldTraversalPath) {
             this.remoteFieldTraversalPath = Optional.ofNullable(remoteFieldTraversalPath);
             return this;
         }
@@ -158,9 +225,43 @@ public final class PatchedEditFieldMappingRequest {
             return this;
         }
 
+        /**
+         * <p>DEPRECATED: Use 'advanced_mapping_expression' instead.</p>
+         */
+        @JsonSetter(value = "jmes_path", nulls = Nulls.SKIP)
+        public Builder jmesPath(Optional<String> jmesPath) {
+            this.jmesPath = jmesPath;
+            return this;
+        }
+
+        public Builder jmesPath(String jmesPath) {
+            this.jmesPath = Optional.ofNullable(jmesPath);
+            return this;
+        }
+
+        /**
+         * <p>A JSONata expression used to transform the remote field data.</p>
+         */
+        @JsonSetter(value = "advanced_mapping_expression", nulls = Nulls.SKIP)
+        public Builder advancedMappingExpression(Optional<String> advancedMappingExpression) {
+            this.advancedMappingExpression = advancedMappingExpression;
+            return this;
+        }
+
+        public Builder advancedMappingExpression(String advancedMappingExpression) {
+            this.advancedMappingExpression = Optional.ofNullable(advancedMappingExpression);
+            return this;
+        }
+
         public PatchedEditFieldMappingRequest build() {
             return new PatchedEditFieldMappingRequest(
-                    remoteFieldTraversalPath, remoteMethod, remoteUrlPath, additionalProperties);
+                    remoteDataIterationCount,
+                    remoteFieldTraversalPath,
+                    remoteMethod,
+                    remoteUrlPath,
+                    jmesPath,
+                    advancedMappingExpression,
+                    additionalProperties);
         }
     }
 }

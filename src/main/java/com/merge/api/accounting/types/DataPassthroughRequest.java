@@ -10,7 +10,6 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
-import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.merge.api.core.ObjectMappers;
 import java.util.HashMap;
@@ -33,7 +32,7 @@ public final class DataPassthroughRequest {
 
     private final Optional<List<MultipartFormFieldRequest>> multipartFormData;
 
-    private final Optional<Map<String, JsonNode>> headers;
+    private final Optional<Map<String, Object>> headers;
 
     private final Optional<RequestFormatEnum> requestFormat;
 
@@ -47,7 +46,7 @@ public final class DataPassthroughRequest {
             Optional<String> baseUrlOverride,
             Optional<String> data,
             Optional<List<MultipartFormFieldRequest>> multipartFormData,
-            Optional<Map<String, JsonNode>> headers,
+            Optional<Map<String, Object>> headers,
             Optional<RequestFormatEnum> requestFormat,
             Optional<Boolean> normalizeResponse,
             Map<String, Object> additionalProperties) {
@@ -103,7 +102,7 @@ public final class DataPassthroughRequest {
      * @return The headers to use for the request (Merge will handle the account's authorization headers). <code>Content-Type</code> header is required for passthrough. Choose content type corresponding to expected format of receiving server.
      */
     @JsonProperty("headers")
-    public Optional<Map<String, JsonNode>> getHeaders() {
+    public Optional<Map<String, Object>> getHeaders() {
         return headers;
     }
 
@@ -204,9 +203,9 @@ public final class DataPassthroughRequest {
         /**
          * <p>The headers to use for the request (Merge will handle the account's authorization headers). <code>Content-Type</code> header is required for passthrough. Choose content type corresponding to expected format of receiving server.</p>
          */
-        _FinalStage headers(Optional<Map<String, JsonNode>> headers);
+        _FinalStage headers(Optional<Map<String, Object>> headers);
 
-        _FinalStage headers(Map<String, JsonNode> headers);
+        _FinalStage headers(Map<String, Object> headers);
 
         _FinalStage requestFormat(Optional<RequestFormatEnum> requestFormat);
 
@@ -230,7 +229,7 @@ public final class DataPassthroughRequest {
 
         private Optional<RequestFormatEnum> requestFormat = Optional.empty();
 
-        private Optional<Map<String, JsonNode>> headers = Optional.empty();
+        private Optional<Map<String, Object>> headers = Optional.empty();
 
         private Optional<List<MultipartFormFieldRequest>> multipartFormData = Optional.empty();
 
@@ -313,7 +312,7 @@ public final class DataPassthroughRequest {
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @java.lang.Override
-        public _FinalStage headers(Map<String, JsonNode> headers) {
+        public _FinalStage headers(Map<String, Object> headers) {
             this.headers = Optional.ofNullable(headers);
             return this;
         }
@@ -323,7 +322,7 @@ public final class DataPassthroughRequest {
          */
         @java.lang.Override
         @JsonSetter(value = "headers", nulls = Nulls.SKIP)
-        public _FinalStage headers(Optional<Map<String, JsonNode>> headers) {
+        public _FinalStage headers(Optional<Map<String, Object>> headers) {
             this.headers = headers;
             return this;
         }

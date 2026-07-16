@@ -3,7 +3,10 @@
  */
 package com.merge.api.accounting;
 
+import com.merge.api.accounting.types.AsyncBulkCreateResponse;
+import com.merge.api.accounting.types.BatchObjectsResponse;
 import com.merge.api.accounting.types.Expense;
+import com.merge.api.accounting.types.ExpenseBulkRequest;
 import com.merge.api.accounting.types.ExpenseEndpointRequest;
 import com.merge.api.accounting.types.ExpenseResponse;
 import com.merge.api.accounting.types.ExpensesLinesRemoteFieldClassesListRequest;
@@ -90,6 +93,35 @@ public class AsyncExpensesClient {
     public CompletableFuture<Expense> retrieve(
             String id, ExpensesRetrieveRequest request, RequestOptions requestOptions) {
         return this.rawClient.retrieve(id, request, requestOptions).thenApply(response -> response.body());
+    }
+
+    /**
+     * Creates multiple <code>Expense</code> objects with the given values.
+     */
+    public CompletableFuture<AsyncBulkCreateResponse> bulkCreate(ExpenseBulkRequest request) {
+        return this.rawClient.bulkCreate(request).thenApply(response -> response.body());
+    }
+
+    /**
+     * Creates multiple <code>Expense</code> objects with the given values.
+     */
+    public CompletableFuture<AsyncBulkCreateResponse> bulkCreate(
+            ExpenseBulkRequest request, RequestOptions requestOptions) {
+        return this.rawClient.bulkCreate(request, requestOptions).thenApply(response -> response.body());
+    }
+
+    /**
+     * Returns the status and results of an <code>Expense</code> bulk create batch.
+     */
+    public CompletableFuture<BatchObjectsResponse> bulkRetrieve(String batchId) {
+        return this.rawClient.bulkRetrieve(batchId).thenApply(response -> response.body());
+    }
+
+    /**
+     * Returns the status and results of an <code>Expense</code> bulk create batch.
+     */
+    public CompletableFuture<BatchObjectsResponse> bulkRetrieve(String batchId, RequestOptions requestOptions) {
+        return this.rawClient.bulkRetrieve(batchId, requestOptions).thenApply(response -> response.body());
     }
 
     /**

@@ -31,7 +31,7 @@ public final class FilesDownloadRequestMetaRetrieveRequest {
     }
 
     /**
-     * @return If provided, specifies the export format of the file to be downloaded. For information on supported export formats, please refer to our &lt;a href='https://help.merge.dev/en/articles/8615316-file-export-and-download-specification' target='_blank'&gt;export format help center article&lt;/a&gt;.
+     * @return If provided, specifies the export format of the file to be downloaded.
      */
     @JsonProperty("mime_type")
     public Optional<String> getMimeType() {
@@ -83,7 +83,7 @@ public final class FilesDownloadRequestMetaRetrieveRequest {
         }
 
         /**
-         * <p>If provided, specifies the export format of the file to be downloaded. For information on supported export formats, please refer to our &lt;a href='https://help.merge.dev/en/articles/8615316-file-export-and-download-specification' target='_blank'&gt;export format help center article&lt;/a&gt;.</p>
+         * <p>If provided, specifies the export format of the file to be downloaded.</p>
          */
         @JsonSetter(value = "mime_type", nulls = Nulls.SKIP)
         public Builder mimeType(Optional<String> mimeType) {

@@ -10,7 +10,6 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
-import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.merge.api.core.ObjectMappers;
 import java.time.OffsetDateTime;
@@ -33,7 +32,7 @@ public final class CustomObject {
 
     private final Optional<String> objectClass;
 
-    private final Optional<Map<String, JsonNode>> fields;
+    private final Optional<Map<String, Object>> fields;
 
     private final Optional<List<RemoteField>> remoteFields;
 
@@ -45,7 +44,7 @@ public final class CustomObject {
             Optional<OffsetDateTime> createdAt,
             Optional<OffsetDateTime> modifiedAt,
             Optional<String> objectClass,
-            Optional<Map<String, JsonNode>> fields,
+            Optional<Map<String, Object>> fields,
             Optional<List<RemoteField>> remoteFields,
             Map<String, Object> additionalProperties) {
         this.id = id;
@@ -99,7 +98,7 @@ public final class CustomObject {
      * @return The fields and values contained within the custom object record.
      */
     @JsonProperty("fields")
-    public Optional<Map<String, JsonNode>> getFields() {
+    public Optional<Map<String, Object>> getFields() {
         return fields;
     }
 
@@ -162,7 +161,7 @@ public final class CustomObject {
 
         private Optional<String> objectClass = Optional.empty();
 
-        private Optional<Map<String, JsonNode>> fields = Optional.empty();
+        private Optional<Map<String, Object>> fields = Optional.empty();
 
         private Optional<List<RemoteField>> remoteFields = Optional.empty();
 
@@ -253,12 +252,12 @@ public final class CustomObject {
          * <p>The fields and values contained within the custom object record.</p>
          */
         @JsonSetter(value = "fields", nulls = Nulls.SKIP)
-        public Builder fields(Optional<Map<String, JsonNode>> fields) {
+        public Builder fields(Optional<Map<String, Object>> fields) {
             this.fields = fields;
             return this;
         }
 
-        public Builder fields(Map<String, JsonNode> fields) {
+        public Builder fields(Map<String, Object> fields) {
             this.fields = Optional.ofNullable(fields);
             return this;
         }

@@ -27,14 +27,14 @@ public class AsyncLinkTokenClient {
     }
 
     /**
-     * Creates a link token to be used when linking a new end user.
+     * Creates a link token to be used when linking a new end user. The link token expires after single use.
      */
     public CompletableFuture<LinkToken> create(EndUserDetailsRequest request) {
         return this.rawClient.create(request).thenApply(response -> response.body());
     }
 
     /**
-     * Creates a link token to be used when linking a new end user.
+     * Creates a link token to be used when linking a new end user. The link token expires after single use.
      */
     public CompletableFuture<LinkToken> create(EndUserDetailsRequest request, RequestOptions requestOptions) {
         return this.rawClient.create(request, requestOptions).thenApply(response -> response.body());

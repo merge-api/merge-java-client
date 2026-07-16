@@ -10,7 +10,6 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
-import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.merge.api.core.ObjectMappers;
 import java.time.OffsetDateTime;
@@ -23,6 +22,8 @@ import java.util.Optional;
 @JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = Group.Builder.class)
 public final class Group {
+    private final Optional<String> groupUrl;
+
     private final Optional<String> id;
 
     private final Optional<String> remoteId;
@@ -41,13 +42,14 @@ public final class Group {
 
     private final Optional<Boolean> remoteWasDeleted;
 
-    private final Optional<Map<String, JsonNode>> fieldMappings;
+    private final Optional<Map<String, Object>> fieldMappings;
 
     private final Optional<List<RemoteData>> remoteData;
 
     private final Map<String, Object> additionalProperties;
 
     private Group(
+            Optional<String> groupUrl,
             Optional<String> id,
             Optional<String> remoteId,
             Optional<OffsetDateTime> createdAt,
@@ -57,9 +59,10 @@ public final class Group {
             Optional<GroupType> type,
             Optional<Boolean> isCommonlyUsedAsTeam,
             Optional<Boolean> remoteWasDeleted,
-            Optional<Map<String, JsonNode>> fieldMappings,
+            Optional<Map<String, Object>> fieldMappings,
             Optional<List<RemoteData>> remoteData,
             Map<String, Object> additionalProperties) {
+        this.groupUrl = groupUrl;
         this.id = id;
         this.remoteId = remoteId;
         this.createdAt = createdAt;
@@ -72,6 +75,14 @@ public final class Group {
         this.fieldMappings = fieldMappings;
         this.remoteData = remoteData;
         this.additionalProperties = additionalProperties;
+    }
+
+    /**
+     * @return The 3rd party URL of the group.
+     */
+    @JsonProperty("group_url")
+    public Optional<String> getGroupUrl() {
+        return groupUrl;
     }
 
     @JsonProperty("id")
@@ -151,7 +162,7 @@ public final class Group {
     }
 
     @JsonProperty("field_mappings")
-    public Optional<Map<String, JsonNode>> getFieldMappings() {
+    public Optional<Map<String, Object>> getFieldMappings() {
         return fieldMappings;
     }
 
@@ -172,7 +183,8 @@ public final class Group {
     }
 
     private boolean equalTo(Group other) {
-        return id.equals(other.id)
+        return groupUrl.equals(other.groupUrl)
+                && id.equals(other.id)
                 && remoteId.equals(other.remoteId)
                 && createdAt.equals(other.createdAt)
                 && modifiedAt.equals(other.modifiedAt)
@@ -188,6 +200,7 @@ public final class Group {
     @java.lang.Override
     public int hashCode() {
         return Objects.hash(
+                this.groupUrl,
                 this.id,
                 this.remoteId,
                 this.createdAt,
@@ -212,6 +225,8 @@ public final class Group {
 
     @JsonIgnoreProperties(ignoreUnknown = true)
     public static final class Builder {
+        private Optional<String> groupUrl = Optional.empty();
+
         private Optional<String> id = Optional.empty();
 
         private Optional<String> remoteId = Optional.empty();
@@ -230,7 +245,7 @@ public final class Group {
 
         private Optional<Boolean> remoteWasDeleted = Optional.empty();
 
-        private Optional<Map<String, JsonNode>> fieldMappings = Optional.empty();
+        private Optional<Map<String, Object>> fieldMappings = Optional.empty();
 
         private Optional<List<RemoteData>> remoteData = Optional.empty();
 
@@ -240,6 +255,7 @@ public final class Group {
         private Builder() {}
 
         public Builder from(Group other) {
+            groupUrl(other.getGroupUrl());
             id(other.getId());
             remoteId(other.getRemoteId());
             createdAt(other.getCreatedAt());
@@ -251,6 +267,20 @@ public final class Group {
             remoteWasDeleted(other.getRemoteWasDeleted());
             fieldMappings(other.getFieldMappings());
             remoteData(other.getRemoteData());
+            return this;
+        }
+
+        /**
+         * <p>The 3rd party URL of the group.</p>
+         */
+        @JsonSetter(value = "group_url", nulls = Nulls.SKIP)
+        public Builder groupUrl(Optional<String> groupUrl) {
+            this.groupUrl = groupUrl;
+            return this;
+        }
+
+        public Builder groupUrl(String groupUrl) {
+            this.groupUrl = Optional.ofNullable(groupUrl);
             return this;
         }
 
@@ -385,12 +415,12 @@ public final class Group {
         }
 
         @JsonSetter(value = "field_mappings", nulls = Nulls.SKIP)
-        public Builder fieldMappings(Optional<Map<String, JsonNode>> fieldMappings) {
+        public Builder fieldMappings(Optional<Map<String, Object>> fieldMappings) {
             this.fieldMappings = fieldMappings;
             return this;
         }
 
-        public Builder fieldMappings(Map<String, JsonNode> fieldMappings) {
+        public Builder fieldMappings(Map<String, Object> fieldMappings) {
             this.fieldMappings = Optional.ofNullable(fieldMappings);
             return this;
         }
@@ -408,6 +438,7 @@ public final class Group {
 
         public Group build() {
             return new Group(
+                    groupUrl,
                     id,
                     remoteId,
                     createdAt,

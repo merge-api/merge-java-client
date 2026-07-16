@@ -10,7 +10,6 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
-import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.merge.api.core.ObjectMappers;
 import java.time.OffsetDateTime;
@@ -33,15 +32,17 @@ public final class PatchedTaskRequest {
 
     private final Optional<String> opportunity;
 
+    private final Optional<String> contact;
+
     private final Optional<OffsetDateTime> completedDate;
 
     private final Optional<OffsetDateTime> dueDate;
 
     private final Optional<PatchedTaskRequestStatus> status;
 
-    private final Optional<Map<String, JsonNode>> integrationParams;
+    private final Optional<Map<String, Object>> integrationParams;
 
-    private final Optional<Map<String, JsonNode>> linkedAccountParams;
+    private final Optional<Map<String, Object>> linkedAccountParams;
 
     private final Optional<List<RemoteFieldRequest>> remoteFields;
 
@@ -53,11 +54,12 @@ public final class PatchedTaskRequest {
             Optional<String> owner,
             Optional<String> account,
             Optional<String> opportunity,
+            Optional<String> contact,
             Optional<OffsetDateTime> completedDate,
             Optional<OffsetDateTime> dueDate,
             Optional<PatchedTaskRequestStatus> status,
-            Optional<Map<String, JsonNode>> integrationParams,
-            Optional<Map<String, JsonNode>> linkedAccountParams,
+            Optional<Map<String, Object>> integrationParams,
+            Optional<Map<String, Object>> linkedAccountParams,
             Optional<List<RemoteFieldRequest>> remoteFields,
             Map<String, Object> additionalProperties) {
         this.subject = subject;
@@ -65,6 +67,7 @@ public final class PatchedTaskRequest {
         this.owner = owner;
         this.account = account;
         this.opportunity = opportunity;
+        this.contact = contact;
         this.completedDate = completedDate;
         this.dueDate = dueDate;
         this.status = status;
@@ -115,6 +118,14 @@ public final class PatchedTaskRequest {
     }
 
     /**
+     * @return The task's contact.
+     */
+    @JsonProperty("contact")
+    public Optional<String> getContact() {
+        return contact;
+    }
+
+    /**
      * @return When the task is completed.
      */
     @JsonProperty("completed_date")
@@ -143,12 +154,12 @@ public final class PatchedTaskRequest {
     }
 
     @JsonProperty("integration_params")
-    public Optional<Map<String, JsonNode>> getIntegrationParams() {
+    public Optional<Map<String, Object>> getIntegrationParams() {
         return integrationParams;
     }
 
     @JsonProperty("linked_account_params")
-    public Optional<Map<String, JsonNode>> getLinkedAccountParams() {
+    public Optional<Map<String, Object>> getLinkedAccountParams() {
         return linkedAccountParams;
     }
 
@@ -174,6 +185,7 @@ public final class PatchedTaskRequest {
                 && owner.equals(other.owner)
                 && account.equals(other.account)
                 && opportunity.equals(other.opportunity)
+                && contact.equals(other.contact)
                 && completedDate.equals(other.completedDate)
                 && dueDate.equals(other.dueDate)
                 && status.equals(other.status)
@@ -190,6 +202,7 @@ public final class PatchedTaskRequest {
                 this.owner,
                 this.account,
                 this.opportunity,
+                this.contact,
                 this.completedDate,
                 this.dueDate,
                 this.status,
@@ -219,15 +232,17 @@ public final class PatchedTaskRequest {
 
         private Optional<String> opportunity = Optional.empty();
 
+        private Optional<String> contact = Optional.empty();
+
         private Optional<OffsetDateTime> completedDate = Optional.empty();
 
         private Optional<OffsetDateTime> dueDate = Optional.empty();
 
         private Optional<PatchedTaskRequestStatus> status = Optional.empty();
 
-        private Optional<Map<String, JsonNode>> integrationParams = Optional.empty();
+        private Optional<Map<String, Object>> integrationParams = Optional.empty();
 
-        private Optional<Map<String, JsonNode>> linkedAccountParams = Optional.empty();
+        private Optional<Map<String, Object>> linkedAccountParams = Optional.empty();
 
         private Optional<List<RemoteFieldRequest>> remoteFields = Optional.empty();
 
@@ -242,6 +257,7 @@ public final class PatchedTaskRequest {
             owner(other.getOwner());
             account(other.getAccount());
             opportunity(other.getOpportunity());
+            contact(other.getContact());
             completedDate(other.getCompletedDate());
             dueDate(other.getDueDate());
             status(other.getStatus());
@@ -322,6 +338,20 @@ public final class PatchedTaskRequest {
         }
 
         /**
+         * <p>The task's contact.</p>
+         */
+        @JsonSetter(value = "contact", nulls = Nulls.SKIP)
+        public Builder contact(Optional<String> contact) {
+            this.contact = contact;
+            return this;
+        }
+
+        public Builder contact(String contact) {
+            this.contact = Optional.ofNullable(contact);
+            return this;
+        }
+
+        /**
          * <p>When the task is completed.</p>
          */
         @JsonSetter(value = "completed_date", nulls = Nulls.SKIP)
@@ -368,23 +398,23 @@ public final class PatchedTaskRequest {
         }
 
         @JsonSetter(value = "integration_params", nulls = Nulls.SKIP)
-        public Builder integrationParams(Optional<Map<String, JsonNode>> integrationParams) {
+        public Builder integrationParams(Optional<Map<String, Object>> integrationParams) {
             this.integrationParams = integrationParams;
             return this;
         }
 
-        public Builder integrationParams(Map<String, JsonNode> integrationParams) {
+        public Builder integrationParams(Map<String, Object> integrationParams) {
             this.integrationParams = Optional.ofNullable(integrationParams);
             return this;
         }
 
         @JsonSetter(value = "linked_account_params", nulls = Nulls.SKIP)
-        public Builder linkedAccountParams(Optional<Map<String, JsonNode>> linkedAccountParams) {
+        public Builder linkedAccountParams(Optional<Map<String, Object>> linkedAccountParams) {
             this.linkedAccountParams = linkedAccountParams;
             return this;
         }
 
-        public Builder linkedAccountParams(Map<String, JsonNode> linkedAccountParams) {
+        public Builder linkedAccountParams(Map<String, Object> linkedAccountParams) {
             this.linkedAccountParams = Optional.ofNullable(linkedAccountParams);
             return this;
         }
@@ -407,6 +437,7 @@ public final class PatchedTaskRequest {
                     owner,
                     account,
                     opportunity,
+                    contact,
                     completedDate,
                     dueDate,
                     status,

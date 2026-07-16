@@ -60,6 +60,10 @@ public class AsyncRawUsersClient {
         HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("ticketing/v1/users");
+        if (request.getCollections().isPresent()) {
+            QueryStringMapper.addQueryParameter(
+                    httpUrl, "collections", request.getCollections().get(), false);
+        }
         if (request.getCreatedAfter().isPresent()) {
             QueryStringMapper.addQueryParameter(
                     httpUrl, "created_after", request.getCreatedAfter().get(), false);
@@ -110,9 +114,17 @@ public class AsyncRawUsersClient {
             QueryStringMapper.addQueryParameter(
                     httpUrl, "remote_id", request.getRemoteId().get(), false);
         }
+        if (request.getRoles().isPresent()) {
+            QueryStringMapper.addQueryParameter(
+                    httpUrl, "roles", request.getRoles().get(), false);
+        }
         if (request.getTeam().isPresent()) {
             QueryStringMapper.addQueryParameter(
                     httpUrl, "team", request.getTeam().get(), false);
+        }
+        if (request.getTeams().isPresent()) {
+            QueryStringMapper.addQueryParameter(
+                    httpUrl, "teams", request.getTeams().get(), false);
         }
         if (request.getExpand().isPresent()) {
             QueryStringMapper.addQueryParameter(
@@ -133,9 +145,10 @@ public class AsyncRawUsersClient {
             @Override
             public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                 try (ResponseBody responseBody = response.body()) {
+                    String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                     if (response.isSuccessful()) {
                         PaginatedUserList parsedResponse =
-                                ObjectMappers.JSON_MAPPER.readValue(responseBody.string(), PaginatedUserList.class);
+                                ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PaginatedUserList.class);
                         Optional<String> startingAfter = parsedResponse.getNext();
                         UsersListRequest nextRequest = UsersListRequest.builder()
                                 .from(request)
@@ -155,12 +168,9 @@ public class AsyncRawUsersClient {
                                 response));
                         return;
                     }
-                    String responseBodyString = responseBody != null ? responseBody.string() : "{}";
+                    Object errorBody = ObjectMappers.parseErrorBody(responseBodyString);
                     future.completeExceptionally(new ApiError(
-                            "Error with status code " + response.code(),
-                            response.code(),
-                            ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Object.class),
-                            response));
+                            "Error with status code " + response.code(), response.code(), errorBody, response));
                     return;
                 } catch (IOException e) {
                     future.completeExceptionally(new MergeException("Network error executing HTTP request", e));
@@ -228,17 +238,15 @@ public class AsyncRawUsersClient {
             @Override
             public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                 try (ResponseBody responseBody = response.body()) {
+                    String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                     if (response.isSuccessful()) {
                         future.complete(new MergeApiHttpResponse<>(
-                                ObjectMappers.JSON_MAPPER.readValue(responseBody.string(), User.class), response));
+                                ObjectMappers.JSON_MAPPER.readValue(responseBodyString, User.class), response));
                         return;
                     }
-                    String responseBodyString = responseBody != null ? responseBody.string() : "{}";
+                    Object errorBody = ObjectMappers.parseErrorBody(responseBodyString);
                     future.completeExceptionally(new ApiError(
-                            "Error with status code " + response.code(),
-                            response.code(),
-                            ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Object.class),
-                            response));
+                            "Error with status code " + response.code(), response.code(), errorBody, response));
                     return;
                 } catch (IOException e) {
                     future.completeExceptionally(new MergeException("Network error executing HTTP request", e));

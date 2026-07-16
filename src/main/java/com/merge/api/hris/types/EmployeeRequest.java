@@ -10,7 +10,6 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
-import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.merge.api.core.ObjectMappers;
 import java.time.OffsetDateTime;
@@ -26,6 +25,8 @@ public final class EmployeeRequest {
     private final Optional<String> employeeNumber;
 
     private final Optional<EmployeeRequestCompany> company;
+
+    private final Optional<String> employeeUrl;
 
     private final Optional<String> firstName;
 
@@ -77,15 +78,16 @@ public final class EmployeeRequest {
 
     private final Optional<String> avatar;
 
-    private final Optional<Map<String, JsonNode>> integrationParams;
+    private final Optional<Map<String, Object>> integrationParams;
 
-    private final Optional<Map<String, JsonNode>> linkedAccountParams;
+    private final Optional<Map<String, Object>> linkedAccountParams;
 
     private final Map<String, Object> additionalProperties;
 
     private EmployeeRequest(
             Optional<String> employeeNumber,
             Optional<EmployeeRequestCompany> company,
+            Optional<String> employeeUrl,
             Optional<String> firstName,
             Optional<String> lastName,
             Optional<String> preferredName,
@@ -111,11 +113,12 @@ public final class EmployeeRequest {
             Optional<EmployeeRequestEmploymentStatus> employmentStatus,
             Optional<OffsetDateTime> terminationDate,
             Optional<String> avatar,
-            Optional<Map<String, JsonNode>> integrationParams,
-            Optional<Map<String, JsonNode>> linkedAccountParams,
+            Optional<Map<String, Object>> integrationParams,
+            Optional<Map<String, Object>> linkedAccountParams,
             Map<String, Object> additionalProperties) {
         this.employeeNumber = employeeNumber;
         this.company = company;
+        this.employeeUrl = employeeUrl;
         this.firstName = firstName;
         this.lastName = lastName;
         this.preferredName = preferredName;
@@ -160,6 +163,14 @@ public final class EmployeeRequest {
     @JsonProperty("company")
     public Optional<EmployeeRequestCompany> getCompany() {
         return company;
+    }
+
+    /**
+     * @return The 3rd party URL of the employee.
+     */
+    @JsonProperty("employee_url")
+    public Optional<String> getEmployeeUrl() {
+        return employeeUrl;
     }
 
     /**
@@ -389,12 +400,12 @@ public final class EmployeeRequest {
     }
 
     @JsonProperty("integration_params")
-    public Optional<Map<String, JsonNode>> getIntegrationParams() {
+    public Optional<Map<String, Object>> getIntegrationParams() {
         return integrationParams;
     }
 
     @JsonProperty("linked_account_params")
-    public Optional<Map<String, JsonNode>> getLinkedAccountParams() {
+    public Optional<Map<String, Object>> getLinkedAccountParams() {
         return linkedAccountParams;
     }
 
@@ -412,6 +423,7 @@ public final class EmployeeRequest {
     private boolean equalTo(EmployeeRequest other) {
         return employeeNumber.equals(other.employeeNumber)
                 && company.equals(other.company)
+                && employeeUrl.equals(other.employeeUrl)
                 && firstName.equals(other.firstName)
                 && lastName.equals(other.lastName)
                 && preferredName.equals(other.preferredName)
@@ -446,6 +458,7 @@ public final class EmployeeRequest {
         return Objects.hash(
                 this.employeeNumber,
                 this.company,
+                this.employeeUrl,
                 this.firstName,
                 this.lastName,
                 this.preferredName,
@@ -489,6 +502,8 @@ public final class EmployeeRequest {
         private Optional<String> employeeNumber = Optional.empty();
 
         private Optional<EmployeeRequestCompany> company = Optional.empty();
+
+        private Optional<String> employeeUrl = Optional.empty();
 
         private Optional<String> firstName = Optional.empty();
 
@@ -540,9 +555,9 @@ public final class EmployeeRequest {
 
         private Optional<String> avatar = Optional.empty();
 
-        private Optional<Map<String, JsonNode>> integrationParams = Optional.empty();
+        private Optional<Map<String, Object>> integrationParams = Optional.empty();
 
-        private Optional<Map<String, JsonNode>> linkedAccountParams = Optional.empty();
+        private Optional<Map<String, Object>> linkedAccountParams = Optional.empty();
 
         @JsonAnySetter
         private Map<String, Object> additionalProperties = new HashMap<>();
@@ -552,6 +567,7 @@ public final class EmployeeRequest {
         public Builder from(EmployeeRequest other) {
             employeeNumber(other.getEmployeeNumber());
             company(other.getCompany());
+            employeeUrl(other.getEmployeeUrl());
             firstName(other.getFirstName());
             lastName(other.getLastName());
             preferredName(other.getPreferredName());
@@ -607,6 +623,20 @@ public final class EmployeeRequest {
 
         public Builder company(EmployeeRequestCompany company) {
             this.company = Optional.ofNullable(company);
+            return this;
+        }
+
+        /**
+         * <p>The 3rd party URL of the employee.</p>
+         */
+        @JsonSetter(value = "employee_url", nulls = Nulls.SKIP)
+        public Builder employeeUrl(Optional<String> employeeUrl) {
+            this.employeeUrl = employeeUrl;
+            return this;
+        }
+
+        public Builder employeeUrl(String employeeUrl) {
+            this.employeeUrl = Optional.ofNullable(employeeUrl);
             return this;
         }
 
@@ -987,23 +1017,23 @@ public final class EmployeeRequest {
         }
 
         @JsonSetter(value = "integration_params", nulls = Nulls.SKIP)
-        public Builder integrationParams(Optional<Map<String, JsonNode>> integrationParams) {
+        public Builder integrationParams(Optional<Map<String, Object>> integrationParams) {
             this.integrationParams = integrationParams;
             return this;
         }
 
-        public Builder integrationParams(Map<String, JsonNode> integrationParams) {
+        public Builder integrationParams(Map<String, Object> integrationParams) {
             this.integrationParams = Optional.ofNullable(integrationParams);
             return this;
         }
 
         @JsonSetter(value = "linked_account_params", nulls = Nulls.SKIP)
-        public Builder linkedAccountParams(Optional<Map<String, JsonNode>> linkedAccountParams) {
+        public Builder linkedAccountParams(Optional<Map<String, Object>> linkedAccountParams) {
             this.linkedAccountParams = linkedAccountParams;
             return this;
         }
 
-        public Builder linkedAccountParams(Map<String, JsonNode> linkedAccountParams) {
+        public Builder linkedAccountParams(Map<String, Object> linkedAccountParams) {
             this.linkedAccountParams = Optional.ofNullable(linkedAccountParams);
             return this;
         }
@@ -1012,6 +1042,7 @@ public final class EmployeeRequest {
             return new EmployeeRequest(
                     employeeNumber,
                     company,
+                    employeeUrl,
                     firstName,
                     lastName,
                     preferredName,

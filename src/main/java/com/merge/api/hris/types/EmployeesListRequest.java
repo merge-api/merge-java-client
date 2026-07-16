@@ -35,6 +35,8 @@ public final class EmployeesListRequest {
 
     private final Optional<String> displayFullName;
 
+    private final Optional<String> employeeNumber;
+
     private final Optional<EmployeesListRequestEmploymentStatus> employmentStatus;
 
     private final Optional<String> employmentType;
@@ -98,6 +100,7 @@ public final class EmployeesListRequest {
             Optional<OffsetDateTime> createdBefore,
             Optional<String> cursor,
             Optional<String> displayFullName,
+            Optional<String> employeeNumber,
             Optional<EmployeesListRequestEmploymentStatus> employmentStatus,
             Optional<String> employmentType,
             Optional<String> firstName,
@@ -132,6 +135,7 @@ public final class EmployeesListRequest {
         this.createdBefore = createdBefore;
         this.cursor = cursor;
         this.displayFullName = displayFullName;
+        this.employeeNumber = employeeNumber;
         this.employmentStatus = employmentStatus;
         this.employmentType = employmentType;
         this.firstName = firstName;
@@ -211,6 +215,14 @@ public final class EmployeesListRequest {
     }
 
     /**
+     * @return If provided, will only return employees with this employee number.
+     */
+    @JsonProperty("employee_number")
+    public Optional<String> getEmployeeNumber() {
+        return employeeNumber;
+    }
+
+    /**
      * @return If provided, will only return employees with this employment status.
      * <ul>
      * <li><code>ACTIVE</code> - ACTIVE</li>
@@ -224,7 +236,7 @@ public final class EmployeesListRequest {
     }
 
     /**
-     * @return If provided, will only return employees that have an employment of the specified employment_type.
+     * @return If provided, will only return employees that have an employment of the specified employment type.
      */
     @JsonProperty("employment_type")
     public Optional<String> getEmploymentType() {
@@ -288,7 +300,7 @@ public final class EmployeesListRequest {
     }
 
     /**
-     * @return If provided, will only return employees that have an employment of the specified job_title.
+     * @return If provided, will only return employees that have an employment of the specified job title.
      */
     @JsonProperty("job_title")
     public Optional<String> getJobTitle() {
@@ -328,7 +340,7 @@ public final class EmployeesListRequest {
     }
 
     /**
-     * @return Number of results to return per page.
+     * @return Number of results to return per page. The maximum limit is 100.
      */
     @JsonProperty("page_size")
     public Optional<Integer> getPageSize() {
@@ -449,6 +461,7 @@ public final class EmployeesListRequest {
                 && createdBefore.equals(other.createdBefore)
                 && cursor.equals(other.cursor)
                 && displayFullName.equals(other.displayFullName)
+                && employeeNumber.equals(other.employeeNumber)
                 && employmentStatus.equals(other.employmentStatus)
                 && employmentType.equals(other.employmentType)
                 && firstName.equals(other.firstName)
@@ -487,6 +500,7 @@ public final class EmployeesListRequest {
                 this.createdBefore,
                 this.cursor,
                 this.displayFullName,
+                this.employeeNumber,
                 this.employmentStatus,
                 this.employmentType,
                 this.firstName,
@@ -538,6 +552,8 @@ public final class EmployeesListRequest {
         private Optional<String> cursor = Optional.empty();
 
         private Optional<String> displayFullName = Optional.empty();
+
+        private Optional<String> employeeNumber = Optional.empty();
 
         private Optional<EmployeesListRequestEmploymentStatus> employmentStatus = Optional.empty();
 
@@ -605,6 +621,7 @@ public final class EmployeesListRequest {
             createdBefore(other.getCreatedBefore());
             cursor(other.getCursor());
             displayFullName(other.getDisplayFullName());
+            employeeNumber(other.getEmployeeNumber());
             employmentStatus(other.getEmploymentStatus());
             employmentType(other.getEmploymentType());
             firstName(other.getFirstName());
@@ -725,6 +742,20 @@ public final class EmployeesListRequest {
         }
 
         /**
+         * <p>If provided, will only return employees with this employee number.</p>
+         */
+        @JsonSetter(value = "employee_number", nulls = Nulls.SKIP)
+        public Builder employeeNumber(Optional<String> employeeNumber) {
+            this.employeeNumber = employeeNumber;
+            return this;
+        }
+
+        public Builder employeeNumber(String employeeNumber) {
+            this.employeeNumber = Optional.ofNullable(employeeNumber);
+            return this;
+        }
+
+        /**
          * <p>If provided, will only return employees with this employment status.</p>
          * <ul>
          * <li><code>ACTIVE</code> - ACTIVE</li>
@@ -744,7 +775,7 @@ public final class EmployeesListRequest {
         }
 
         /**
-         * <p>If provided, will only return employees that have an employment of the specified employment_type.</p>
+         * <p>If provided, will only return employees that have an employment of the specified employment type.</p>
          */
         @JsonSetter(value = "employment_type", nulls = Nulls.SKIP)
         public Builder employmentType(Optional<String> employmentType) {
@@ -856,7 +887,7 @@ public final class EmployeesListRequest {
         }
 
         /**
-         * <p>If provided, will only return employees that have an employment of the specified job_title.</p>
+         * <p>If provided, will only return employees that have an employment of the specified job title.</p>
          */
         @JsonSetter(value = "job_title", nulls = Nulls.SKIP)
         public Builder jobTitle(Optional<String> jobTitle) {
@@ -926,7 +957,7 @@ public final class EmployeesListRequest {
         }
 
         /**
-         * <p>Number of results to return per page.</p>
+         * <p>Number of results to return per page. The maximum limit is 100.</p>
          */
         @JsonSetter(value = "page_size", nulls = Nulls.SKIP)
         public Builder pageSize(Optional<Integer> pageSize) {
@@ -1115,6 +1146,7 @@ public final class EmployeesListRequest {
                     createdBefore,
                     cursor,
                     displayFullName,
+                    employeeNumber,
                     employmentStatus,
                     employmentType,
                     firstName,

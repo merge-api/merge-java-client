@@ -10,7 +10,6 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
-import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.merge.api.core.ObjectMappers;
 import java.time.OffsetDateTime;
@@ -59,9 +58,11 @@ public final class Lead {
 
     private final Optional<LeadConvertedAccount> convertedAccount;
 
+    private final Optional<LeadStatus> status;
+
     private final Optional<Boolean> remoteWasDeleted;
 
-    private final Optional<Map<String, JsonNode>> fieldMappings;
+    private final Optional<Map<String, Object>> fieldMappings;
 
     private final Optional<List<RemoteData>> remoteData;
 
@@ -88,8 +89,9 @@ public final class Lead {
             Optional<OffsetDateTime> convertedDate,
             Optional<LeadConvertedContact> convertedContact,
             Optional<LeadConvertedAccount> convertedAccount,
+            Optional<LeadStatus> status,
             Optional<Boolean> remoteWasDeleted,
-            Optional<Map<String, JsonNode>> fieldMappings,
+            Optional<Map<String, Object>> fieldMappings,
             Optional<List<RemoteData>> remoteData,
             Optional<List<RemoteField>> remoteFields,
             Map<String, Object> additionalProperties) {
@@ -111,6 +113,7 @@ public final class Lead {
         this.convertedDate = convertedDate;
         this.convertedContact = convertedContact;
         this.convertedAccount = convertedAccount;
+        this.status = status;
         this.remoteWasDeleted = remoteWasDeleted;
         this.fieldMappings = fieldMappings;
         this.remoteData = remoteData;
@@ -251,6 +254,20 @@ public final class Lead {
     }
 
     /**
+     * @return The lead's status.
+     * <ul>
+     * <li><code>OPEN</code> - OPEN</li>
+     * <li><code>CLOSED</code> - CLOSED</li>
+     * <li><code>UNQUALIFIED</code> - UNQUALIFIED</li>
+     * <li><code>QUALIFIED</code> - QUALIFIED</li>
+     * </ul>
+     */
+    @JsonProperty("status")
+    public Optional<LeadStatus> getStatus() {
+        return status;
+    }
+
+    /**
      * @return Indicates whether or not this object has been deleted in the third party platform. Full coverage deletion detection is a premium add-on. Native deletion detection is offered for free with limited coverage. <a href="https://docs.merge.dev/integrations/hris/supported-features/">Learn more</a>.
      */
     @JsonProperty("remote_was_deleted")
@@ -259,7 +276,7 @@ public final class Lead {
     }
 
     @JsonProperty("field_mappings")
-    public Optional<Map<String, JsonNode>> getFieldMappings() {
+    public Optional<Map<String, Object>> getFieldMappings() {
         return fieldMappings;
     }
 
@@ -303,6 +320,7 @@ public final class Lead {
                 && convertedDate.equals(other.convertedDate)
                 && convertedContact.equals(other.convertedContact)
                 && convertedAccount.equals(other.convertedAccount)
+                && status.equals(other.status)
                 && remoteWasDeleted.equals(other.remoteWasDeleted)
                 && fieldMappings.equals(other.fieldMappings)
                 && remoteData.equals(other.remoteData)
@@ -330,6 +348,7 @@ public final class Lead {
                 this.convertedDate,
                 this.convertedContact,
                 this.convertedAccount,
+                this.status,
                 this.remoteWasDeleted,
                 this.fieldMappings,
                 this.remoteData,
@@ -383,9 +402,11 @@ public final class Lead {
 
         private Optional<LeadConvertedAccount> convertedAccount = Optional.empty();
 
+        private Optional<LeadStatus> status = Optional.empty();
+
         private Optional<Boolean> remoteWasDeleted = Optional.empty();
 
-        private Optional<Map<String, JsonNode>> fieldMappings = Optional.empty();
+        private Optional<Map<String, Object>> fieldMappings = Optional.empty();
 
         private Optional<List<RemoteData>> remoteData = Optional.empty();
 
@@ -415,6 +436,7 @@ public final class Lead {
             convertedDate(other.getConvertedDate());
             convertedContact(other.getConvertedContact());
             convertedAccount(other.getConvertedAccount());
+            status(other.getStatus());
             remoteWasDeleted(other.getRemoteWasDeleted());
             fieldMappings(other.getFieldMappings());
             remoteData(other.getRemoteData());
@@ -663,6 +685,26 @@ public final class Lead {
         }
 
         /**
+         * <p>The lead's status.</p>
+         * <ul>
+         * <li><code>OPEN</code> - OPEN</li>
+         * <li><code>CLOSED</code> - CLOSED</li>
+         * <li><code>UNQUALIFIED</code> - UNQUALIFIED</li>
+         * <li><code>QUALIFIED</code> - QUALIFIED</li>
+         * </ul>
+         */
+        @JsonSetter(value = "status", nulls = Nulls.SKIP)
+        public Builder status(Optional<LeadStatus> status) {
+            this.status = status;
+            return this;
+        }
+
+        public Builder status(LeadStatus status) {
+            this.status = Optional.ofNullable(status);
+            return this;
+        }
+
+        /**
          * <p>Indicates whether or not this object has been deleted in the third party platform. Full coverage deletion detection is a premium add-on. Native deletion detection is offered for free with limited coverage. <a href="https://docs.merge.dev/integrations/hris/supported-features/">Learn more</a>.</p>
          */
         @JsonSetter(value = "remote_was_deleted", nulls = Nulls.SKIP)
@@ -677,12 +719,12 @@ public final class Lead {
         }
 
         @JsonSetter(value = "field_mappings", nulls = Nulls.SKIP)
-        public Builder fieldMappings(Optional<Map<String, JsonNode>> fieldMappings) {
+        public Builder fieldMappings(Optional<Map<String, Object>> fieldMappings) {
             this.fieldMappings = fieldMappings;
             return this;
         }
 
-        public Builder fieldMappings(Map<String, JsonNode> fieldMappings) {
+        public Builder fieldMappings(Map<String, Object> fieldMappings) {
             this.fieldMappings = Optional.ofNullable(fieldMappings);
             return this;
         }
@@ -729,6 +771,7 @@ public final class Lead {
                     convertedDate,
                     convertedContact,
                     convertedAccount,
+                    status,
                     remoteWasDeleted,
                     fieldMappings,
                     remoteData,

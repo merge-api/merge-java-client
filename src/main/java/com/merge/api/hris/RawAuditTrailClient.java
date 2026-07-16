@@ -90,9 +90,10 @@ public class RawAuditTrailClient {
         }
         try (Response response = client.newCall(okhttpRequest).execute()) {
             ResponseBody responseBody = response.body();
+            String responseBodyString = responseBody != null ? responseBody.string() : "{}";
             if (response.isSuccessful()) {
                 PaginatedAuditLogEventList parsedResponse =
-                        ObjectMappers.JSON_MAPPER.readValue(responseBody.string(), PaginatedAuditLogEventList.class);
+                        ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PaginatedAuditLogEventList.class);
                 Optional<String> startingAfter = parsedResponse.getNext();
                 AuditTrailListRequest nextRequest = AuditTrailListRequest.builder()
                         .from(request)
@@ -106,12 +107,8 @@ public class RawAuditTrailClient {
                                         .body()),
                         response);
             }
-            String responseBodyString = responseBody != null ? responseBody.string() : "{}";
-            throw new ApiError(
-                    "Error with status code " + response.code(),
-                    response.code(),
-                    ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Object.class),
-                    response);
+            Object errorBody = ObjectMappers.parseErrorBody(responseBodyString);
+            throw new ApiError("Error with status code " + response.code(), response.code(), errorBody, response);
         } catch (IOException e) {
             throw new MergeException("Network error executing HTTP request", e);
         }

@@ -10,7 +10,6 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
-import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.merge.api.core.ObjectMappers;
 import java.time.OffsetDateTime;
@@ -25,6 +24,8 @@ import org.jetbrains.annotations.NotNull;
 @JsonDeserialize(builder = PaymentTerm.Builder.class)
 public final class PaymentTerm {
     private final Optional<String> id;
+
+    private final Optional<String> paymentTermUrl;
 
     private final Optional<String> remoteId;
 
@@ -44,7 +45,7 @@ public final class PaymentTerm {
 
     private final Optional<OffsetDateTime> remoteLastModifiedAt;
 
-    private final Optional<Map<String, JsonNode>> fieldMappings;
+    private final Optional<Map<String, Object>> fieldMappings;
 
     private final Optional<List<RemoteData>> remoteData;
 
@@ -52,6 +53,7 @@ public final class PaymentTerm {
 
     private PaymentTerm(
             Optional<String> id,
+            Optional<String> paymentTermUrl,
             Optional<String> remoteId,
             Optional<OffsetDateTime> createdAt,
             Optional<OffsetDateTime> modifiedAt,
@@ -61,10 +63,11 @@ public final class PaymentTerm {
             Optional<Integer> daysUntilDue,
             Optional<Integer> discountDays,
             Optional<OffsetDateTime> remoteLastModifiedAt,
-            Optional<Map<String, JsonNode>> fieldMappings,
+            Optional<Map<String, Object>> fieldMappings,
             Optional<List<RemoteData>> remoteData,
             Map<String, Object> additionalProperties) {
         this.id = id;
+        this.paymentTermUrl = paymentTermUrl;
         this.remoteId = remoteId;
         this.createdAt = createdAt;
         this.modifiedAt = modifiedAt;
@@ -82,6 +85,14 @@ public final class PaymentTerm {
     @JsonProperty("id")
     public Optional<String> getId() {
         return id;
+    }
+
+    /**
+     * @return The 3rd party URL of the payment term.
+     */
+    @JsonProperty("payment_term_url")
+    public Optional<String> getPaymentTermUrl() {
+        return paymentTermUrl;
     }
 
     /**
@@ -157,7 +168,7 @@ public final class PaymentTerm {
     }
 
     @JsonProperty("field_mappings")
-    public Optional<Map<String, JsonNode>> getFieldMappings() {
+    public Optional<Map<String, Object>> getFieldMappings() {
         return fieldMappings;
     }
 
@@ -179,6 +190,7 @@ public final class PaymentTerm {
 
     private boolean equalTo(PaymentTerm other) {
         return id.equals(other.id)
+                && paymentTermUrl.equals(other.paymentTermUrl)
                 && remoteId.equals(other.remoteId)
                 && createdAt.equals(other.createdAt)
                 && modifiedAt.equals(other.modifiedAt)
@@ -196,6 +208,7 @@ public final class PaymentTerm {
     public int hashCode() {
         return Objects.hash(
                 this.id,
+                this.paymentTermUrl,
                 this.remoteId,
                 this.createdAt,
                 this.modifiedAt,
@@ -233,6 +246,13 @@ public final class PaymentTerm {
         _FinalStage id(Optional<String> id);
 
         _FinalStage id(String id);
+
+        /**
+         * <p>The 3rd party URL of the payment term.</p>
+         */
+        _FinalStage paymentTermUrl(Optional<String> paymentTermUrl);
+
+        _FinalStage paymentTermUrl(String paymentTermUrl);
 
         /**
          * <p>The third-party API ID of the matching object.</p>
@@ -290,9 +310,9 @@ public final class PaymentTerm {
 
         _FinalStage remoteLastModifiedAt(OffsetDateTime remoteLastModifiedAt);
 
-        _FinalStage fieldMappings(Optional<Map<String, JsonNode>> fieldMappings);
+        _FinalStage fieldMappings(Optional<Map<String, Object>> fieldMappings);
 
-        _FinalStage fieldMappings(Map<String, JsonNode> fieldMappings);
+        _FinalStage fieldMappings(Map<String, Object> fieldMappings);
 
         _FinalStage remoteData(Optional<List<RemoteData>> remoteData);
 
@@ -305,7 +325,7 @@ public final class PaymentTerm {
 
         private Optional<List<RemoteData>> remoteData = Optional.empty();
 
-        private Optional<Map<String, JsonNode>> fieldMappings = Optional.empty();
+        private Optional<Map<String, Object>> fieldMappings = Optional.empty();
 
         private Optional<OffsetDateTime> remoteLastModifiedAt = Optional.empty();
 
@@ -323,6 +343,8 @@ public final class PaymentTerm {
 
         private Optional<String> remoteId = Optional.empty();
 
+        private Optional<String> paymentTermUrl = Optional.empty();
+
         private Optional<String> id = Optional.empty();
 
         @JsonAnySetter
@@ -333,6 +355,7 @@ public final class PaymentTerm {
         @java.lang.Override
         public Builder from(PaymentTerm other) {
             id(other.getId());
+            paymentTermUrl(other.getPaymentTermUrl());
             remoteId(other.getRemoteId());
             createdAt(other.getCreatedAt());
             modifiedAt(other.getModifiedAt());
@@ -373,14 +396,14 @@ public final class PaymentTerm {
         }
 
         @java.lang.Override
-        public _FinalStage fieldMappings(Map<String, JsonNode> fieldMappings) {
+        public _FinalStage fieldMappings(Map<String, Object> fieldMappings) {
             this.fieldMappings = Optional.ofNullable(fieldMappings);
             return this;
         }
 
         @java.lang.Override
         @JsonSetter(value = "field_mappings", nulls = Nulls.SKIP)
-        public _FinalStage fieldMappings(Optional<Map<String, JsonNode>> fieldMappings) {
+        public _FinalStage fieldMappings(Optional<Map<String, Object>> fieldMappings) {
             this.fieldMappings = fieldMappings;
             return this;
         }
@@ -545,6 +568,26 @@ public final class PaymentTerm {
             return this;
         }
 
+        /**
+         * <p>The 3rd party URL of the payment term.</p>
+         * @return Reference to {@code this} so that method calls can be chained together.
+         */
+        @java.lang.Override
+        public _FinalStage paymentTermUrl(String paymentTermUrl) {
+            this.paymentTermUrl = Optional.ofNullable(paymentTermUrl);
+            return this;
+        }
+
+        /**
+         * <p>The 3rd party URL of the payment term.</p>
+         */
+        @java.lang.Override
+        @JsonSetter(value = "payment_term_url", nulls = Nulls.SKIP)
+        public _FinalStage paymentTermUrl(Optional<String> paymentTermUrl) {
+            this.paymentTermUrl = paymentTermUrl;
+            return this;
+        }
+
         @java.lang.Override
         public _FinalStage id(String id) {
             this.id = Optional.ofNullable(id);
@@ -562,6 +605,7 @@ public final class PaymentTerm {
         public PaymentTerm build() {
             return new PaymentTerm(
                     id,
+                    paymentTermUrl,
                     remoteId,
                     createdAt,
                     modifiedAt,

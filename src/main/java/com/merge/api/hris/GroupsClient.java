@@ -9,6 +9,8 @@ import com.merge.api.core.SyncPagingIterable;
 import com.merge.api.hris.types.Group;
 import com.merge.api.hris.types.GroupsListRequest;
 import com.merge.api.hris.types.GroupsRetrieveRequest;
+import com.merge.api.hris.types.GroupsTypesListRequest;
+import com.merge.api.hris.types.GroupsTypesListResponse;
 
 public class GroupsClient {
     protected final ClientOptions clientOptions;
@@ -67,5 +69,26 @@ public class GroupsClient {
      */
     public Group retrieve(String id, GroupsRetrieveRequest request, RequestOptions requestOptions) {
         return this.rawClient.retrieve(id, request, requestOptions).body();
+    }
+
+    /**
+     * Returns a list of distinct group type values from the Groups common model.
+     */
+    public GroupsTypesListResponse typesList() {
+        return this.rawClient.typesList().body();
+    }
+
+    /**
+     * Returns a list of distinct group type values from the Groups common model.
+     */
+    public GroupsTypesListResponse typesList(GroupsTypesListRequest request) {
+        return this.rawClient.typesList(request).body();
+    }
+
+    /**
+     * Returns a list of distinct group type values from the Groups common model.
+     */
+    public GroupsTypesListResponse typesList(GroupsTypesListRequest request, RequestOptions requestOptions) {
+        return this.rawClient.typesList(request, requestOptions).body();
     }
 }

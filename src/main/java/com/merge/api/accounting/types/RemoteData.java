@@ -10,7 +10,6 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
-import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.merge.api.core.ObjectMappers;
 import java.util.HashMap;
@@ -24,11 +23,11 @@ import org.jetbrains.annotations.NotNull;
 public final class RemoteData {
     private final String path;
 
-    private final Optional<JsonNode> data;
+    private final Optional<Object> data;
 
     private final Map<String, Object> additionalProperties;
 
-    private RemoteData(String path, Optional<JsonNode> data, Map<String, Object> additionalProperties) {
+    private RemoteData(String path, Optional<Object> data, Map<String, Object> additionalProperties) {
         this.path = path;
         this.data = data;
         this.additionalProperties = additionalProperties;
@@ -42,8 +41,11 @@ public final class RemoteData {
         return path;
     }
 
+    /**
+     * @return The data returned from the third-party for this object in its original, unnormalized format.
+     */
     @JsonProperty("data")
-    public Optional<JsonNode> getData() {
+    public Optional<Object> getData() {
         return data;
     }
 
@@ -88,16 +90,19 @@ public final class RemoteData {
     public interface _FinalStage {
         RemoteData build();
 
-        _FinalStage data(Optional<JsonNode> data);
+        /**
+         * <p>The data returned from the third-party for this object in its original, unnormalized format.</p>
+         */
+        _FinalStage data(Optional<Object> data);
 
-        _FinalStage data(JsonNode data);
+        _FinalStage data(Object data);
     }
 
     @JsonIgnoreProperties(ignoreUnknown = true)
     public static final class Builder implements PathStage, _FinalStage {
         private String path;
 
-        private Optional<JsonNode> data = Optional.empty();
+        private Optional<Object> data = Optional.empty();
 
         @JsonAnySetter
         private Map<String, Object> additionalProperties = new HashMap<>();
@@ -123,15 +128,22 @@ public final class RemoteData {
             return this;
         }
 
+        /**
+         * <p>The data returned from the third-party for this object in its original, unnormalized format.</p>
+         * @return Reference to {@code this} so that method calls can be chained together.
+         */
         @java.lang.Override
-        public _FinalStage data(JsonNode data) {
+        public _FinalStage data(Object data) {
             this.data = Optional.ofNullable(data);
             return this;
         }
 
+        /**
+         * <p>The data returned from the third-party for this object in its original, unnormalized format.</p>
+         */
         @java.lang.Override
         @JsonSetter(value = "data", nulls = Nulls.SKIP)
-        public _FinalStage data(Optional<JsonNode> data) {
+        public _FinalStage data(Optional<Object> data) {
             this.data = data;
             return this;
         }

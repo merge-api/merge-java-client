@@ -10,7 +10,6 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
-import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.merge.api.core.ObjectMappers;
 import java.time.OffsetDateTime;
@@ -24,6 +23,8 @@ import java.util.Optional;
 @JsonDeserialize(builder = Payment.Builder.class)
 public final class Payment {
     private final Optional<String> id;
+
+    private final Optional<String> paymentUrl;
 
     private final Optional<String> remoteId;
 
@@ -59,7 +60,7 @@ public final class Payment {
 
     private final Optional<Boolean> remoteWasDeleted;
 
-    private final Optional<Map<String, JsonNode>> fieldMappings;
+    private final Optional<Map<String, Object>> fieldMappings;
 
     private final Optional<List<RemoteData>> remoteData;
 
@@ -69,6 +70,7 @@ public final class Payment {
 
     private Payment(
             Optional<String> id,
+            Optional<String> paymentUrl,
             Optional<String> remoteId,
             Optional<OffsetDateTime> createdAt,
             Optional<OffsetDateTime> modifiedAt,
@@ -86,11 +88,12 @@ public final class Payment {
             Optional<List<PaymentAppliedToLinesItem>> appliedToLines,
             Optional<OffsetDateTime> remoteUpdatedAt,
             Optional<Boolean> remoteWasDeleted,
-            Optional<Map<String, JsonNode>> fieldMappings,
+            Optional<Map<String, Object>> fieldMappings,
             Optional<List<RemoteData>> remoteData,
             Optional<List<RemoteField>> remoteFields,
             Map<String, Object> additionalProperties) {
         this.id = id;
+        this.paymentUrl = paymentUrl;
         this.remoteId = remoteId;
         this.createdAt = createdAt;
         this.modifiedAt = modifiedAt;
@@ -117,6 +120,14 @@ public final class Payment {
     @JsonProperty("id")
     public Optional<String> getId() {
         return id;
+    }
+
+    /**
+     * @return The 3rd party URL of the payment.
+     */
+    @JsonProperty("payment_url")
+    public Optional<String> getPaymentUrl() {
+        return paymentUrl;
     }
 
     /**
@@ -565,7 +576,7 @@ public final class Payment {
     }
 
     @JsonProperty("field_mappings")
-    public Optional<Map<String, JsonNode>> getFieldMappings() {
+    public Optional<Map<String, Object>> getFieldMappings() {
         return fieldMappings;
     }
 
@@ -592,6 +603,7 @@ public final class Payment {
 
     private boolean equalTo(Payment other) {
         return id.equals(other.id)
+                && paymentUrl.equals(other.paymentUrl)
                 && remoteId.equals(other.remoteId)
                 && createdAt.equals(other.createdAt)
                 && modifiedAt.equals(other.modifiedAt)
@@ -618,6 +630,7 @@ public final class Payment {
     public int hashCode() {
         return Objects.hash(
                 this.id,
+                this.paymentUrl,
                 this.remoteId,
                 this.createdAt,
                 this.modifiedAt,
@@ -653,6 +666,8 @@ public final class Payment {
     public static final class Builder {
         private Optional<String> id = Optional.empty();
 
+        private Optional<String> paymentUrl = Optional.empty();
+
         private Optional<String> remoteId = Optional.empty();
 
         private Optional<OffsetDateTime> createdAt = Optional.empty();
@@ -687,7 +702,7 @@ public final class Payment {
 
         private Optional<Boolean> remoteWasDeleted = Optional.empty();
 
-        private Optional<Map<String, JsonNode>> fieldMappings = Optional.empty();
+        private Optional<Map<String, Object>> fieldMappings = Optional.empty();
 
         private Optional<List<RemoteData>> remoteData = Optional.empty();
 
@@ -700,6 +715,7 @@ public final class Payment {
 
         public Builder from(Payment other) {
             id(other.getId());
+            paymentUrl(other.getPaymentUrl());
             remoteId(other.getRemoteId());
             createdAt(other.getCreatedAt());
             modifiedAt(other.getModifiedAt());
@@ -731,6 +747,20 @@ public final class Payment {
 
         public Builder id(String id) {
             this.id = Optional.ofNullable(id);
+            return this;
+        }
+
+        /**
+         * <p>The 3rd party URL of the payment.</p>
+         */
+        @JsonSetter(value = "payment_url", nulls = Nulls.SKIP)
+        public Builder paymentUrl(Optional<String> paymentUrl) {
+            this.paymentUrl = paymentUrl;
+            return this;
+        }
+
+        public Builder paymentUrl(String paymentUrl) {
+            this.paymentUrl = Optional.ofNullable(paymentUrl);
             return this;
         }
 
@@ -1282,12 +1312,12 @@ public final class Payment {
         }
 
         @JsonSetter(value = "field_mappings", nulls = Nulls.SKIP)
-        public Builder fieldMappings(Optional<Map<String, JsonNode>> fieldMappings) {
+        public Builder fieldMappings(Optional<Map<String, Object>> fieldMappings) {
             this.fieldMappings = fieldMappings;
             return this;
         }
 
-        public Builder fieldMappings(Map<String, JsonNode> fieldMappings) {
+        public Builder fieldMappings(Map<String, Object> fieldMappings) {
             this.fieldMappings = Optional.ofNullable(fieldMappings);
             return this;
         }
@@ -1317,6 +1347,7 @@ public final class Payment {
         public Payment build() {
             return new Payment(
                     id,
+                    paymentUrl,
                     remoteId,
                     createdAt,
                     modifiedAt,

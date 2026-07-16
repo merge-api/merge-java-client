@@ -10,7 +10,6 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
-import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.merge.api.core.ObjectMappers;
 import java.time.OffsetDateTime;
@@ -65,13 +64,15 @@ public final class InvoiceRequest {
 
     private final Optional<List<Optional<InvoiceRequestTrackingCategoriesItem>>> trackingCategories;
 
-    private final Optional<List<InvoiceLineItemRequest>> lineItems;
+    private final Optional<InvoiceRequestAccountingPeriod> accountingPeriod;
+
+    private final Optional<List<InvoiceRequestLineItemsItem>> lineItems;
 
     private final Optional<List<Optional<InvoiceRequestPurchaseOrdersItem>>> purchaseOrders;
 
-    private final Optional<Map<String, JsonNode>> integrationParams;
+    private final Optional<Map<String, Object>> integrationParams;
 
-    private final Optional<Map<String, JsonNode>> linkedAccountParams;
+    private final Optional<Map<String, Object>> linkedAccountParams;
 
     private final Optional<List<RemoteFieldRequest>> remoteFields;
 
@@ -99,10 +100,11 @@ public final class InvoiceRequest {
             Optional<Double> balance,
             Optional<List<Optional<InvoiceRequestPaymentsItem>>> payments,
             Optional<List<Optional<InvoiceRequestTrackingCategoriesItem>>> trackingCategories,
-            Optional<List<InvoiceLineItemRequest>> lineItems,
+            Optional<InvoiceRequestAccountingPeriod> accountingPeriod,
+            Optional<List<InvoiceRequestLineItemsItem>> lineItems,
             Optional<List<Optional<InvoiceRequestPurchaseOrdersItem>>> purchaseOrders,
-            Optional<Map<String, JsonNode>> integrationParams,
-            Optional<Map<String, JsonNode>> linkedAccountParams,
+            Optional<Map<String, Object>> integrationParams,
+            Optional<Map<String, Object>> linkedAccountParams,
             Optional<List<RemoteFieldRequest>> remoteFields,
             Map<String, Object> additionalProperties) {
         this.type = type;
@@ -126,6 +128,7 @@ public final class InvoiceRequest {
         this.balance = balance;
         this.payments = payments;
         this.trackingCategories = trackingCategories;
+        this.accountingPeriod = accountingPeriod;
         this.lineItems = lineItems;
         this.purchaseOrders = purchaseOrders;
         this.integrationParams = integrationParams;
@@ -619,8 +622,16 @@ public final class InvoiceRequest {
         return trackingCategories;
     }
 
+    /**
+     * @return The accounting period that the Invoice was generated in.
+     */
+    @JsonProperty("accounting_period")
+    public Optional<InvoiceRequestAccountingPeriod> getAccountingPeriod() {
+        return accountingPeriod;
+    }
+
     @JsonProperty("line_items")
-    public Optional<List<InvoiceLineItemRequest>> getLineItems() {
+    public Optional<List<InvoiceRequestLineItemsItem>> getLineItems() {
         return lineItems;
     }
 
@@ -630,12 +641,12 @@ public final class InvoiceRequest {
     }
 
     @JsonProperty("integration_params")
-    public Optional<Map<String, JsonNode>> getIntegrationParams() {
+    public Optional<Map<String, Object>> getIntegrationParams() {
         return integrationParams;
     }
 
     @JsonProperty("linked_account_params")
-    public Optional<Map<String, JsonNode>> getLinkedAccountParams() {
+    public Optional<Map<String, Object>> getLinkedAccountParams() {
         return linkedAccountParams;
     }
 
@@ -677,6 +688,7 @@ public final class InvoiceRequest {
                 && balance.equals(other.balance)
                 && payments.equals(other.payments)
                 && trackingCategories.equals(other.trackingCategories)
+                && accountingPeriod.equals(other.accountingPeriod)
                 && lineItems.equals(other.lineItems)
                 && purchaseOrders.equals(other.purchaseOrders)
                 && integrationParams.equals(other.integrationParams)
@@ -708,6 +720,7 @@ public final class InvoiceRequest {
                 this.balance,
                 this.payments,
                 this.trackingCategories,
+                this.accountingPeriod,
                 this.lineItems,
                 this.purchaseOrders,
                 this.integrationParams,
@@ -768,13 +781,15 @@ public final class InvoiceRequest {
 
         private Optional<List<Optional<InvoiceRequestTrackingCategoriesItem>>> trackingCategories = Optional.empty();
 
-        private Optional<List<InvoiceLineItemRequest>> lineItems = Optional.empty();
+        private Optional<InvoiceRequestAccountingPeriod> accountingPeriod = Optional.empty();
+
+        private Optional<List<InvoiceRequestLineItemsItem>> lineItems = Optional.empty();
 
         private Optional<List<Optional<InvoiceRequestPurchaseOrdersItem>>> purchaseOrders = Optional.empty();
 
-        private Optional<Map<String, JsonNode>> integrationParams = Optional.empty();
+        private Optional<Map<String, Object>> integrationParams = Optional.empty();
 
-        private Optional<Map<String, JsonNode>> linkedAccountParams = Optional.empty();
+        private Optional<Map<String, Object>> linkedAccountParams = Optional.empty();
 
         private Optional<List<RemoteFieldRequest>> remoteFields = Optional.empty();
 
@@ -805,6 +820,7 @@ public final class InvoiceRequest {
             balance(other.getBalance());
             payments(other.getPayments());
             trackingCategories(other.getTrackingCategories());
+            accountingPeriod(other.getAccountingPeriod());
             lineItems(other.getLineItems());
             purchaseOrders(other.getPurchaseOrders());
             integrationParams(other.getIntegrationParams());
@@ -1425,13 +1441,27 @@ public final class InvoiceRequest {
             return this;
         }
 
+        /**
+         * <p>The accounting period that the Invoice was generated in.</p>
+         */
+        @JsonSetter(value = "accounting_period", nulls = Nulls.SKIP)
+        public Builder accountingPeriod(Optional<InvoiceRequestAccountingPeriod> accountingPeriod) {
+            this.accountingPeriod = accountingPeriod;
+            return this;
+        }
+
+        public Builder accountingPeriod(InvoiceRequestAccountingPeriod accountingPeriod) {
+            this.accountingPeriod = Optional.ofNullable(accountingPeriod);
+            return this;
+        }
+
         @JsonSetter(value = "line_items", nulls = Nulls.SKIP)
-        public Builder lineItems(Optional<List<InvoiceLineItemRequest>> lineItems) {
+        public Builder lineItems(Optional<List<InvoiceRequestLineItemsItem>> lineItems) {
             this.lineItems = lineItems;
             return this;
         }
 
-        public Builder lineItems(List<InvoiceLineItemRequest> lineItems) {
+        public Builder lineItems(List<InvoiceRequestLineItemsItem> lineItems) {
             this.lineItems = Optional.ofNullable(lineItems);
             return this;
         }
@@ -1448,23 +1478,23 @@ public final class InvoiceRequest {
         }
 
         @JsonSetter(value = "integration_params", nulls = Nulls.SKIP)
-        public Builder integrationParams(Optional<Map<String, JsonNode>> integrationParams) {
+        public Builder integrationParams(Optional<Map<String, Object>> integrationParams) {
             this.integrationParams = integrationParams;
             return this;
         }
 
-        public Builder integrationParams(Map<String, JsonNode> integrationParams) {
+        public Builder integrationParams(Map<String, Object> integrationParams) {
             this.integrationParams = Optional.ofNullable(integrationParams);
             return this;
         }
 
         @JsonSetter(value = "linked_account_params", nulls = Nulls.SKIP)
-        public Builder linkedAccountParams(Optional<Map<String, JsonNode>> linkedAccountParams) {
+        public Builder linkedAccountParams(Optional<Map<String, Object>> linkedAccountParams) {
             this.linkedAccountParams = linkedAccountParams;
             return this;
         }
 
-        public Builder linkedAccountParams(Map<String, JsonNode> linkedAccountParams) {
+        public Builder linkedAccountParams(Map<String, Object> linkedAccountParams) {
             this.linkedAccountParams = Optional.ofNullable(linkedAccountParams);
             return this;
         }
@@ -1503,6 +1533,7 @@ public final class InvoiceRequest {
                     balance,
                     payments,
                     trackingCategories,
+                    accountingPeriod,
                     lineItems,
                     purchaseOrders,
                     integrationParams,

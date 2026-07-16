@@ -10,7 +10,6 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
-import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.merge.api.core.ObjectMappers;
 import java.util.HashMap;
@@ -24,13 +23,13 @@ import org.jetbrains.annotations.NotNull;
 @JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = RemoteFieldApi.Builder.class)
 public final class RemoteFieldApi {
-    private final Map<String, JsonNode> schema;
+    private final Map<String, Object> schema;
 
     private final String remoteKeyName;
 
     private final RemoteEndpointInfo remoteEndpointInfo;
 
-    private final Optional<List<JsonNode>> exampleValues;
+    private final Optional<List<Object>> exampleValues;
 
     private final Optional<AdvancedMetadata> advancedMetadata;
 
@@ -39,10 +38,10 @@ public final class RemoteFieldApi {
     private final Map<String, Object> additionalProperties;
 
     private RemoteFieldApi(
-            Map<String, JsonNode> schema,
+            Map<String, Object> schema,
             String remoteKeyName,
             RemoteEndpointInfo remoteEndpointInfo,
-            Optional<List<JsonNode>> exampleValues,
+            Optional<List<Object>> exampleValues,
             Optional<AdvancedMetadata> advancedMetadata,
             Optional<RemoteFieldApiCoverage> coverage,
             Map<String, Object> additionalProperties) {
@@ -56,7 +55,7 @@ public final class RemoteFieldApi {
     }
 
     @JsonProperty("schema")
-    public Map<String, JsonNode> getSchema() {
+    public Map<String, Object> getSchema() {
         return schema;
     }
 
@@ -71,7 +70,7 @@ public final class RemoteFieldApi {
     }
 
     @JsonProperty("example_values")
-    public Optional<List<JsonNode>> getExampleValues() {
+    public Optional<List<Object>> getExampleValues() {
         return exampleValues;
     }
 
@@ -138,15 +137,15 @@ public final class RemoteFieldApi {
     public interface _FinalStage {
         RemoteFieldApi build();
 
-        _FinalStage schema(Map<String, JsonNode> schema);
+        _FinalStage schema(Map<String, Object> schema);
 
-        _FinalStage putAllSchema(Map<String, JsonNode> schema);
+        _FinalStage putAllSchema(Map<String, Object> schema);
 
-        _FinalStage schema(String key, JsonNode value);
+        _FinalStage schema(String key, Object value);
 
-        _FinalStage exampleValues(Optional<List<JsonNode>> exampleValues);
+        _FinalStage exampleValues(Optional<List<Object>> exampleValues);
 
-        _FinalStage exampleValues(List<JsonNode> exampleValues);
+        _FinalStage exampleValues(List<Object> exampleValues);
 
         _FinalStage advancedMetadata(Optional<AdvancedMetadata> advancedMetadata);
 
@@ -167,9 +166,9 @@ public final class RemoteFieldApi {
 
         private Optional<AdvancedMetadata> advancedMetadata = Optional.empty();
 
-        private Optional<List<JsonNode>> exampleValues = Optional.empty();
+        private Optional<List<Object>> exampleValues = Optional.empty();
 
-        private Map<String, JsonNode> schema = new LinkedHashMap<>();
+        private Map<String, Object> schema = new LinkedHashMap<>();
 
         @JsonAnySetter
         private Map<String, Object> additionalProperties = new HashMap<>();
@@ -228,26 +227,26 @@ public final class RemoteFieldApi {
         }
 
         @java.lang.Override
-        public _FinalStage exampleValues(List<JsonNode> exampleValues) {
+        public _FinalStage exampleValues(List<Object> exampleValues) {
             this.exampleValues = Optional.ofNullable(exampleValues);
             return this;
         }
 
         @java.lang.Override
         @JsonSetter(value = "example_values", nulls = Nulls.SKIP)
-        public _FinalStage exampleValues(Optional<List<JsonNode>> exampleValues) {
+        public _FinalStage exampleValues(Optional<List<Object>> exampleValues) {
             this.exampleValues = exampleValues;
             return this;
         }
 
         @java.lang.Override
-        public _FinalStage schema(String key, JsonNode value) {
+        public _FinalStage schema(String key, Object value) {
             this.schema.put(key, value);
             return this;
         }
 
         @java.lang.Override
-        public _FinalStage putAllSchema(Map<String, JsonNode> schema) {
+        public _FinalStage putAllSchema(Map<String, Object> schema) {
             if (schema != null) {
                 this.schema.putAll(schema);
             }
@@ -256,7 +255,7 @@ public final class RemoteFieldApi {
 
         @java.lang.Override
         @JsonSetter(value = "schema", nulls = Nulls.SKIP)
-        public _FinalStage schema(Map<String, JsonNode> schema) {
+        public _FinalStage schema(Map<String, Object> schema) {
             this.schema.clear();
             if (schema != null) {
                 this.schema.putAll(schema);

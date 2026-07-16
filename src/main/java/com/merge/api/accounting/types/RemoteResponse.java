@@ -10,7 +10,6 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
-import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.merge.api.core.ObjectMappers;
 import java.util.HashMap;
@@ -28,13 +27,13 @@ public final class RemoteResponse {
 
     private final int status;
 
-    private final JsonNode response;
+    private final Object response;
 
-    private final Optional<Map<String, JsonNode>> responseHeaders;
+    private final Optional<Map<String, Object>> responseHeaders;
 
-    private final Optional<ResponseTypeEnum> responseType;
+    private final Optional<RemoteResponseResponseType> responseType;
 
-    private final Optional<Map<String, JsonNode>> headers;
+    private final Optional<Map<String, Object>> headers;
 
     private final Map<String, Object> additionalProperties;
 
@@ -42,10 +41,10 @@ public final class RemoteResponse {
             String method,
             String path,
             int status,
-            JsonNode response,
-            Optional<Map<String, JsonNode>> responseHeaders,
-            Optional<ResponseTypeEnum> responseType,
-            Optional<Map<String, JsonNode>> headers,
+            Object response,
+            Optional<Map<String, Object>> responseHeaders,
+            Optional<RemoteResponseResponseType> responseType,
+            Optional<Map<String, Object>> headers,
             Map<String, Object> additionalProperties) {
         this.method = method;
         this.path = path;
@@ -73,22 +72,22 @@ public final class RemoteResponse {
     }
 
     @JsonProperty("response")
-    public JsonNode getResponse() {
+    public Object getResponse() {
         return response;
     }
 
     @JsonProperty("response_headers")
-    public Optional<Map<String, JsonNode>> getResponseHeaders() {
+    public Optional<Map<String, Object>> getResponseHeaders() {
         return responseHeaders;
     }
 
     @JsonProperty("response_type")
-    public Optional<ResponseTypeEnum> getResponseType() {
+    public Optional<RemoteResponseResponseType> getResponseType() {
         return responseType;
     }
 
     @JsonProperty("headers")
-    public Optional<Map<String, JsonNode>> getHeaders() {
+    public Optional<Map<String, Object>> getHeaders() {
         return headers;
     }
 
@@ -149,23 +148,23 @@ public final class RemoteResponse {
     }
 
     public interface ResponseStage {
-        _FinalStage response(@NotNull JsonNode response);
+        _FinalStage response(Object response);
     }
 
     public interface _FinalStage {
         RemoteResponse build();
 
-        _FinalStage responseHeaders(Optional<Map<String, JsonNode>> responseHeaders);
+        _FinalStage responseHeaders(Optional<Map<String, Object>> responseHeaders);
 
-        _FinalStage responseHeaders(Map<String, JsonNode> responseHeaders);
+        _FinalStage responseHeaders(Map<String, Object> responseHeaders);
 
-        _FinalStage responseType(Optional<ResponseTypeEnum> responseType);
+        _FinalStage responseType(Optional<RemoteResponseResponseType> responseType);
 
-        _FinalStage responseType(ResponseTypeEnum responseType);
+        _FinalStage responseType(RemoteResponseResponseType responseType);
 
-        _FinalStage headers(Optional<Map<String, JsonNode>> headers);
+        _FinalStage headers(Optional<Map<String, Object>> headers);
 
-        _FinalStage headers(Map<String, JsonNode> headers);
+        _FinalStage headers(Map<String, Object> headers);
     }
 
     @JsonIgnoreProperties(ignoreUnknown = true)
@@ -176,13 +175,13 @@ public final class RemoteResponse {
 
         private int status;
 
-        private JsonNode response;
+        private Object response;
 
-        private Optional<Map<String, JsonNode>> headers = Optional.empty();
+        private Optional<Map<String, Object>> headers = Optional.empty();
 
-        private Optional<ResponseTypeEnum> responseType = Optional.empty();
+        private Optional<RemoteResponseResponseType> responseType = Optional.empty();
 
-        private Optional<Map<String, JsonNode>> responseHeaders = Optional.empty();
+        private Optional<Map<String, Object>> responseHeaders = Optional.empty();
 
         @JsonAnySetter
         private Map<String, Object> additionalProperties = new HashMap<>();
@@ -224,46 +223,46 @@ public final class RemoteResponse {
 
         @java.lang.Override
         @JsonSetter("response")
-        public _FinalStage response(@NotNull JsonNode response) {
+        public _FinalStage response(Object response) {
             this.response = response;
             return this;
         }
 
         @java.lang.Override
-        public _FinalStage headers(Map<String, JsonNode> headers) {
+        public _FinalStage headers(Map<String, Object> headers) {
             this.headers = Optional.ofNullable(headers);
             return this;
         }
 
         @java.lang.Override
         @JsonSetter(value = "headers", nulls = Nulls.SKIP)
-        public _FinalStage headers(Optional<Map<String, JsonNode>> headers) {
+        public _FinalStage headers(Optional<Map<String, Object>> headers) {
             this.headers = headers;
             return this;
         }
 
         @java.lang.Override
-        public _FinalStage responseType(ResponseTypeEnum responseType) {
+        public _FinalStage responseType(RemoteResponseResponseType responseType) {
             this.responseType = Optional.ofNullable(responseType);
             return this;
         }
 
         @java.lang.Override
         @JsonSetter(value = "response_type", nulls = Nulls.SKIP)
-        public _FinalStage responseType(Optional<ResponseTypeEnum> responseType) {
+        public _FinalStage responseType(Optional<RemoteResponseResponseType> responseType) {
             this.responseType = responseType;
             return this;
         }
 
         @java.lang.Override
-        public _FinalStage responseHeaders(Map<String, JsonNode> responseHeaders) {
+        public _FinalStage responseHeaders(Map<String, Object> responseHeaders) {
             this.responseHeaders = Optional.ofNullable(responseHeaders);
             return this;
         }
 
         @java.lang.Override
         @JsonSetter(value = "response_headers", nulls = Nulls.SKIP)
-        public _FinalStage responseHeaders(Optional<Map<String, JsonNode>> responseHeaders) {
+        public _FinalStage responseHeaders(Optional<Map<String, Object>> responseHeaders) {
             this.responseHeaders = responseHeaders;
             return this;
         }

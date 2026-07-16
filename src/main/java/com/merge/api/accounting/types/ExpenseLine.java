@@ -42,7 +42,7 @@ public final class ExpenseLine {
 
     private final Optional<ExpenseLineEmployee> employee;
 
-    private final Optional<TransactionCurrencyEnum> currency;
+    private final Optional<ExpenseLineCurrency> currency;
 
     private final Optional<ExpenseLineAccount> account;
 
@@ -55,6 +55,10 @@ public final class ExpenseLine {
     private final Optional<String> exchangeRate;
 
     private final Optional<String> taxRate;
+
+    private final Optional<String> quantity;
+
+    private final Optional<String> unitPrice;
 
     private final Optional<Boolean> remoteWasDeleted;
 
@@ -71,13 +75,15 @@ public final class ExpenseLine {
             Optional<List<Optional<ExpenseLineTrackingCategoriesItem>>> trackingCategories,
             Optional<String> company,
             Optional<ExpenseLineEmployee> employee,
-            Optional<TransactionCurrencyEnum> currency,
+            Optional<ExpenseLineCurrency> currency,
             Optional<ExpenseLineAccount> account,
             Optional<ExpenseLineContact> contact,
             Optional<ExpenseLineProject> project,
             Optional<String> description,
             Optional<String> exchangeRate,
             Optional<String> taxRate,
+            Optional<String> quantity,
+            Optional<String> unitPrice,
             Optional<Boolean> remoteWasDeleted,
             Map<String, Object> additionalProperties) {
         this.id = id;
@@ -97,6 +103,8 @@ public final class ExpenseLine {
         this.description = description;
         this.exchangeRate = exchangeRate;
         this.taxRate = taxRate;
+        this.quantity = quantity;
+        this.unitPrice = unitPrice;
         this.remoteWasDeleted = remoteWasDeleted;
         this.additionalProperties = additionalProperties;
     }
@@ -487,7 +495,7 @@ public final class ExpenseLine {
      * </ul>
      */
     @JsonProperty("currency")
-    public Optional<TransactionCurrencyEnum> getCurrency() {
+    public Optional<ExpenseLineCurrency> getCurrency() {
         return currency;
     }
 
@@ -537,6 +545,22 @@ public final class ExpenseLine {
     }
 
     /**
+     * @return Number of items for the expense line.
+     */
+    @JsonProperty("quantity")
+    public Optional<String> getQuantity() {
+        return quantity;
+    }
+
+    /**
+     * @return Unit price of the item for the expense line.
+     */
+    @JsonProperty("unit_price")
+    public Optional<String> getUnitPrice() {
+        return unitPrice;
+    }
+
+    /**
      * @return Indicates whether or not this object has been deleted in the third party platform. Full coverage deletion detection is a premium add-on. Native deletion detection is offered for free with limited coverage. <a href="https://docs.merge.dev/integrations/hris/supported-features/">Learn more</a>.
      */
     @JsonProperty("remote_was_deleted")
@@ -573,6 +597,8 @@ public final class ExpenseLine {
                 && description.equals(other.description)
                 && exchangeRate.equals(other.exchangeRate)
                 && taxRate.equals(other.taxRate)
+                && quantity.equals(other.quantity)
+                && unitPrice.equals(other.unitPrice)
                 && remoteWasDeleted.equals(other.remoteWasDeleted);
     }
 
@@ -596,6 +622,8 @@ public final class ExpenseLine {
                 this.description,
                 this.exchangeRate,
                 this.taxRate,
+                this.quantity,
+                this.unitPrice,
                 this.remoteWasDeleted);
     }
 
@@ -630,7 +658,7 @@ public final class ExpenseLine {
 
         private Optional<ExpenseLineEmployee> employee = Optional.empty();
 
-        private Optional<TransactionCurrencyEnum> currency = Optional.empty();
+        private Optional<ExpenseLineCurrency> currency = Optional.empty();
 
         private Optional<ExpenseLineAccount> account = Optional.empty();
 
@@ -643,6 +671,10 @@ public final class ExpenseLine {
         private Optional<String> exchangeRate = Optional.empty();
 
         private Optional<String> taxRate = Optional.empty();
+
+        private Optional<String> quantity = Optional.empty();
+
+        private Optional<String> unitPrice = Optional.empty();
 
         private Optional<Boolean> remoteWasDeleted = Optional.empty();
 
@@ -669,6 +701,8 @@ public final class ExpenseLine {
             description(other.getDescription());
             exchangeRate(other.getExchangeRate());
             taxRate(other.getTaxRate());
+            quantity(other.getQuantity());
+            unitPrice(other.getUnitPrice());
             remoteWasDeleted(other.getRemoteWasDeleted());
             return this;
         }
@@ -1120,12 +1154,12 @@ public final class ExpenseLine {
          * </ul>
          */
         @JsonSetter(value = "currency", nulls = Nulls.SKIP)
-        public Builder currency(Optional<TransactionCurrencyEnum> currency) {
+        public Builder currency(Optional<ExpenseLineCurrency> currency) {
             this.currency = currency;
             return this;
         }
 
-        public Builder currency(TransactionCurrencyEnum currency) {
+        public Builder currency(ExpenseLineCurrency currency) {
             this.currency = Optional.ofNullable(currency);
             return this;
         }
@@ -1212,6 +1246,34 @@ public final class ExpenseLine {
         }
 
         /**
+         * <p>Number of items for the expense line.</p>
+         */
+        @JsonSetter(value = "quantity", nulls = Nulls.SKIP)
+        public Builder quantity(Optional<String> quantity) {
+            this.quantity = quantity;
+            return this;
+        }
+
+        public Builder quantity(String quantity) {
+            this.quantity = Optional.ofNullable(quantity);
+            return this;
+        }
+
+        /**
+         * <p>Unit price of the item for the expense line.</p>
+         */
+        @JsonSetter(value = "unit_price", nulls = Nulls.SKIP)
+        public Builder unitPrice(Optional<String> unitPrice) {
+            this.unitPrice = unitPrice;
+            return this;
+        }
+
+        public Builder unitPrice(String unitPrice) {
+            this.unitPrice = Optional.ofNullable(unitPrice);
+            return this;
+        }
+
+        /**
          * <p>Indicates whether or not this object has been deleted in the third party platform. Full coverage deletion detection is a premium add-on. Native deletion detection is offered for free with limited coverage. <a href="https://docs.merge.dev/integrations/hris/supported-features/">Learn more</a>.</p>
          */
         @JsonSetter(value = "remote_was_deleted", nulls = Nulls.SKIP)
@@ -1244,6 +1306,8 @@ public final class ExpenseLine {
                     description,
                     exchangeRate,
                     taxRate,
+                    quantity,
+                    unitPrice,
                     remoteWasDeleted,
                     additionalProperties);
         }

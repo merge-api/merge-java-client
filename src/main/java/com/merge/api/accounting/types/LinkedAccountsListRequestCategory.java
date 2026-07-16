@@ -10,8 +10,14 @@ public final class LinkedAccountsListRequestCategory {
     public static final LinkedAccountsListRequestCategory HRIS =
             new LinkedAccountsListRequestCategory(Value.HRIS, "hris");
 
+    public static final LinkedAccountsListRequestCategory KNOWLEDGEBASE =
+            new LinkedAccountsListRequestCategory(Value.KNOWLEDGEBASE, "knowledgebase");
+
     public static final LinkedAccountsListRequestCategory TICKETING =
             new LinkedAccountsListRequestCategory(Value.TICKETING, "ticketing");
+
+    public static final LinkedAccountsListRequestCategory COMMUNICATION =
+            new LinkedAccountsListRequestCategory(Value.COMMUNICATION, "communication");
 
     public static final LinkedAccountsListRequestCategory CRM = new LinkedAccountsListRequestCategory(Value.CRM, "crm");
 
@@ -21,10 +27,16 @@ public final class LinkedAccountsListRequestCategory {
     public static final LinkedAccountsListRequestCategory ACCOUNTING =
             new LinkedAccountsListRequestCategory(Value.ACCOUNTING, "accounting");
 
+    public static final LinkedAccountsListRequestCategory DATAWAREHOUSE =
+            new LinkedAccountsListRequestCategory(Value.DATAWAREHOUSE, "datawarehouse");
+
     public static final LinkedAccountsListRequestCategory MKTG =
             new LinkedAccountsListRequestCategory(Value.MKTG, "mktg");
 
     public static final LinkedAccountsListRequestCategory ATS = new LinkedAccountsListRequestCategory(Value.ATS, "ats");
+
+    public static final LinkedAccountsListRequestCategory CHAT =
+            new LinkedAccountsListRequestCategory(Value.CHAT, "chat");
 
     private final Value value;
 
@@ -61,18 +73,26 @@ public final class LinkedAccountsListRequestCategory {
         switch (value) {
             case HRIS:
                 return visitor.visitHris();
+            case KNOWLEDGEBASE:
+                return visitor.visitKnowledgebase();
             case TICKETING:
                 return visitor.visitTicketing();
+            case COMMUNICATION:
+                return visitor.visitCommunication();
             case CRM:
                 return visitor.visitCrm();
             case FILESTORAGE:
                 return visitor.visitFilestorage();
             case ACCOUNTING:
                 return visitor.visitAccounting();
+            case DATAWAREHOUSE:
+                return visitor.visitDatawarehouse();
             case MKTG:
                 return visitor.visitMktg();
             case ATS:
                 return visitor.visitAts();
+            case CHAT:
+                return visitor.visitChat();
             case UNKNOWN:
             default:
                 return visitor.visitUnknown(string);
@@ -84,18 +104,26 @@ public final class LinkedAccountsListRequestCategory {
         switch (value) {
             case "hris":
                 return HRIS;
+            case "knowledgebase":
+                return KNOWLEDGEBASE;
             case "ticketing":
                 return TICKETING;
+            case "communication":
+                return COMMUNICATION;
             case "crm":
                 return CRM;
             case "filestorage":
                 return FILESTORAGE;
             case "accounting":
                 return ACCOUNTING;
+            case "datawarehouse":
+                return DATAWAREHOUSE;
             case "mktg":
                 return MKTG;
             case "ats":
                 return ATS;
+            case "chat":
+                return CHAT;
             default:
                 return new LinkedAccountsListRequestCategory(Value.UNKNOWN, value);
         }
@@ -106,11 +134,19 @@ public final class LinkedAccountsListRequestCategory {
 
         ATS,
 
+        CHAT,
+
+        COMMUNICATION,
+
         CRM,
+
+        DATAWAREHOUSE,
 
         FILESTORAGE,
 
         HRIS,
+
+        KNOWLEDGEBASE,
 
         MKTG,
 
@@ -124,11 +160,19 @@ public final class LinkedAccountsListRequestCategory {
 
         T visitAts();
 
+        T visitChat();
+
+        T visitCommunication();
+
         T visitCrm();
+
+        T visitDatawarehouse();
 
         T visitFilestorage();
 
         T visitHris();
+
+        T visitKnowledgebase();
 
         T visitMktg();
 

@@ -41,6 +41,12 @@ public final class FieldMappingApiInstanceResponse {
 
     private final Optional<List<FieldMappingApiInstance>> purchaseOrder;
 
+    private final Optional<List<FieldMappingApiInstance>> salesOrder;
+
+    private final Optional<List<FieldMappingApiInstance>> itemFulfillment;
+
+    private final Optional<List<FieldMappingApiInstance>> expenseReport;
+
     private final Optional<List<FieldMappingApiInstance>> trackingCategory;
 
     private final Optional<List<FieldMappingApiInstance>> journalEntry;
@@ -84,6 +90,9 @@ public final class FieldMappingApiInstanceResponse {
             Optional<List<FieldMappingApiInstance>> creditNote,
             Optional<List<FieldMappingApiInstance>> item,
             Optional<List<FieldMappingApiInstance>> purchaseOrder,
+            Optional<List<FieldMappingApiInstance>> salesOrder,
+            Optional<List<FieldMappingApiInstance>> itemFulfillment,
+            Optional<List<FieldMappingApiInstance>> expenseReport,
             Optional<List<FieldMappingApiInstance>> trackingCategory,
             Optional<List<FieldMappingApiInstance>> journalEntry,
             Optional<List<FieldMappingApiInstance>> taxRate,
@@ -110,6 +119,9 @@ public final class FieldMappingApiInstanceResponse {
         this.creditNote = creditNote;
         this.item = item;
         this.purchaseOrder = purchaseOrder;
+        this.salesOrder = salesOrder;
+        this.itemFulfillment = itemFulfillment;
+        this.expenseReport = expenseReport;
         this.trackingCategory = trackingCategory;
         this.journalEntry = journalEntry;
         this.taxRate = taxRate;
@@ -176,6 +188,21 @@ public final class FieldMappingApiInstanceResponse {
     @JsonProperty("PurchaseOrder")
     public Optional<List<FieldMappingApiInstance>> getPurchaseOrder() {
         return purchaseOrder;
+    }
+
+    @JsonProperty("SalesOrder")
+    public Optional<List<FieldMappingApiInstance>> getSalesOrder() {
+        return salesOrder;
+    }
+
+    @JsonProperty("ItemFulfillment")
+    public Optional<List<FieldMappingApiInstance>> getItemFulfillment() {
+        return itemFulfillment;
+    }
+
+    @JsonProperty("ExpenseReport")
+    public Optional<List<FieldMappingApiInstance>> getExpenseReport() {
+        return expenseReport;
     }
 
     @JsonProperty("TrackingCategory")
@@ -275,6 +302,9 @@ public final class FieldMappingApiInstanceResponse {
                 && creditNote.equals(other.creditNote)
                 && item.equals(other.item)
                 && purchaseOrder.equals(other.purchaseOrder)
+                && salesOrder.equals(other.salesOrder)
+                && itemFulfillment.equals(other.itemFulfillment)
+                && expenseReport.equals(other.expenseReport)
                 && trackingCategory.equals(other.trackingCategory)
                 && journalEntry.equals(other.journalEntry)
                 && taxRate.equals(other.taxRate)
@@ -305,6 +335,9 @@ public final class FieldMappingApiInstanceResponse {
                 this.creditNote,
                 this.item,
                 this.purchaseOrder,
+                this.salesOrder,
+                this.itemFulfillment,
+                this.expenseReport,
                 this.trackingCategory,
                 this.journalEntry,
                 this.taxRate,
@@ -353,6 +386,12 @@ public final class FieldMappingApiInstanceResponse {
 
         private Optional<List<FieldMappingApiInstance>> purchaseOrder = Optional.empty();
 
+        private Optional<List<FieldMappingApiInstance>> salesOrder = Optional.empty();
+
+        private Optional<List<FieldMappingApiInstance>> itemFulfillment = Optional.empty();
+
+        private Optional<List<FieldMappingApiInstance>> expenseReport = Optional.empty();
+
         private Optional<List<FieldMappingApiInstance>> trackingCategory = Optional.empty();
 
         private Optional<List<FieldMappingApiInstance>> journalEntry = Optional.empty();
@@ -399,6 +438,9 @@ public final class FieldMappingApiInstanceResponse {
             creditNote(other.getCreditNote());
             item(other.getItem());
             purchaseOrder(other.getPurchaseOrder());
+            salesOrder(other.getSalesOrder());
+            itemFulfillment(other.getItemFulfillment());
+            expenseReport(other.getExpenseReport());
             trackingCategory(other.getTrackingCategory());
             journalEntry(other.getJournalEntry());
             taxRate(other.getTaxRate());
@@ -524,6 +566,39 @@ public final class FieldMappingApiInstanceResponse {
 
         public Builder purchaseOrder(List<FieldMappingApiInstance> purchaseOrder) {
             this.purchaseOrder = Optional.ofNullable(purchaseOrder);
+            return this;
+        }
+
+        @JsonSetter(value = "SalesOrder", nulls = Nulls.SKIP)
+        public Builder salesOrder(Optional<List<FieldMappingApiInstance>> salesOrder) {
+            this.salesOrder = salesOrder;
+            return this;
+        }
+
+        public Builder salesOrder(List<FieldMappingApiInstance> salesOrder) {
+            this.salesOrder = Optional.ofNullable(salesOrder);
+            return this;
+        }
+
+        @JsonSetter(value = "ItemFulfillment", nulls = Nulls.SKIP)
+        public Builder itemFulfillment(Optional<List<FieldMappingApiInstance>> itemFulfillment) {
+            this.itemFulfillment = itemFulfillment;
+            return this;
+        }
+
+        public Builder itemFulfillment(List<FieldMappingApiInstance> itemFulfillment) {
+            this.itemFulfillment = Optional.ofNullable(itemFulfillment);
+            return this;
+        }
+
+        @JsonSetter(value = "ExpenseReport", nulls = Nulls.SKIP)
+        public Builder expenseReport(Optional<List<FieldMappingApiInstance>> expenseReport) {
+            this.expenseReport = expenseReport;
+            return this;
+        }
+
+        public Builder expenseReport(List<FieldMappingApiInstance> expenseReport) {
+            this.expenseReport = Optional.ofNullable(expenseReport);
             return this;
         }
 
@@ -704,6 +779,9 @@ public final class FieldMappingApiInstanceResponse {
                     creditNote,
                     item,
                     purchaseOrder,
+                    salesOrder,
+                    itemFulfillment,
+                    expenseReport,
                     trackingCategory,
                     journalEntry,
                     taxRate,

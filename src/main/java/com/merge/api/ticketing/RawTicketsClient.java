@@ -11,6 +11,7 @@ import com.merge.api.core.MergeException;
 import com.merge.api.core.ObjectMappers;
 import com.merge.api.core.QueryStringMapper;
 import com.merge.api.core.RequestOptions;
+import com.merge.api.core.ResponseBodyInputStream;
 import com.merge.api.core.SyncPagingIterable;
 import com.merge.api.ticketing.types.MetaResponse;
 import com.merge.api.ticketing.types.PaginatedRemoteFieldClassList;
@@ -22,16 +23,16 @@ import com.merge.api.ticketing.types.Ticket;
 import com.merge.api.ticketing.types.TicketEndpointRequest;
 import com.merge.api.ticketing.types.TicketResponse;
 import com.merge.api.ticketing.types.TicketsListRequest;
+import com.merge.api.ticketing.types.TicketsLiveSearchRetrieveRequest;
 import com.merge.api.ticketing.types.TicketsMetaPostRetrieveRequest;
 import com.merge.api.ticketing.types.TicketsRemoteFieldClassesListRequest;
 import com.merge.api.ticketing.types.TicketsRetrieveRequest;
 import com.merge.api.ticketing.types.TicketsViewersListRequest;
 import com.merge.api.ticketing.types.Viewer;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.Optional;
 import okhttp3.Headers;
 import okhttp3.HttpUrl;
@@ -193,6 +194,10 @@ public class RawTicketsClient {
             QueryStringMapper.addQueryParameter(
                     httpUrl, "remote_id", request.getRemoteId().get(), false);
         }
+        if (request.getRemoteIds().isPresent()) {
+            QueryStringMapper.addQueryParameter(
+                    httpUrl, "remote_ids", request.getRemoteIds().get(), false);
+        }
         if (request.getRemoteUpdatedAfter().isPresent()) {
             QueryStringMapper.addQueryParameter(
                     httpUrl,
@@ -243,9 +248,10 @@ public class RawTicketsClient {
         }
         try (Response response = client.newCall(okhttpRequest).execute()) {
             ResponseBody responseBody = response.body();
+            String responseBodyString = responseBody != null ? responseBody.string() : "{}";
             if (response.isSuccessful()) {
                 PaginatedTicketList parsedResponse =
-                        ObjectMappers.JSON_MAPPER.readValue(responseBody.string(), PaginatedTicketList.class);
+                        ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PaginatedTicketList.class);
                 Optional<String> startingAfter = parsedResponse.getNext();
                 TicketsListRequest nextRequest = TicketsListRequest.builder()
                         .from(request)
@@ -258,12 +264,8 @@ public class RawTicketsClient {
                                 .body()),
                         response);
             }
-            String responseBodyString = responseBody != null ? responseBody.string() : "{}";
-            throw new ApiError(
-                    "Error with status code " + response.code(),
-                    response.code(),
-                    ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Object.class),
-                    response);
+            Object errorBody = ObjectMappers.parseErrorBody(responseBodyString);
+            throw new ApiError("Error with status code " + response.code(), response.code(), errorBody, response);
         } catch (IOException e) {
             throw new MergeException("Network error executing HTTP request", e);
         }
@@ -291,12 +293,10 @@ public class RawTicketsClient {
             QueryStringMapper.addQueryParameter(
                     httpUrl, "run_async", request.getRunAsync().get(), false);
         }
-        Map<String, Object> properties = new HashMap<>();
-        properties.put("model", request.getModel());
         RequestBody body;
         try {
             body = RequestBody.create(
-                    ObjectMappers.JSON_MAPPER.writeValueAsBytes(properties), MediaTypes.APPLICATION_JSON);
+                    ObjectMappers.JSON_MAPPER.writeValueAsBytes(request), MediaTypes.APPLICATION_JSON);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
@@ -313,16 +313,13 @@ public class RawTicketsClient {
         }
         try (Response response = client.newCall(okhttpRequest).execute()) {
             ResponseBody responseBody = response.body();
+            String responseBodyString = responseBody != null ? responseBody.string() : "{}";
             if (response.isSuccessful()) {
                 return new MergeApiHttpResponse<>(
-                        ObjectMappers.JSON_MAPPER.readValue(responseBody.string(), TicketResponse.class), response);
+                        ObjectMappers.JSON_MAPPER.readValue(responseBodyString, TicketResponse.class), response);
             }
-            String responseBodyString = responseBody != null ? responseBody.string() : "{}";
-            throw new ApiError(
-                    "Error with status code " + response.code(),
-                    response.code(),
-                    ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Object.class),
-                    response);
+            Object errorBody = ObjectMappers.parseErrorBody(responseBodyString);
+            throw new ApiError("Error with status code " + response.code(), response.code(), errorBody, response);
         } catch (IOException e) {
             throw new MergeException("Network error executing HTTP request", e);
         }
@@ -393,16 +390,13 @@ public class RawTicketsClient {
         }
         try (Response response = client.newCall(okhttpRequest).execute()) {
             ResponseBody responseBody = response.body();
+            String responseBodyString = responseBody != null ? responseBody.string() : "{}";
             if (response.isSuccessful()) {
                 return new MergeApiHttpResponse<>(
-                        ObjectMappers.JSON_MAPPER.readValue(responseBody.string(), Ticket.class), response);
+                        ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Ticket.class), response);
             }
-            String responseBodyString = responseBody != null ? responseBody.string() : "{}";
-            throw new ApiError(
-                    "Error with status code " + response.code(),
-                    response.code(),
-                    ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Object.class),
-                    response);
+            Object errorBody = ObjectMappers.parseErrorBody(responseBodyString);
+            throw new ApiError("Error with status code " + response.code(), response.code(), errorBody, response);
         } catch (IOException e) {
             throw new MergeException("Network error executing HTTP request", e);
         }
@@ -432,12 +426,10 @@ public class RawTicketsClient {
             QueryStringMapper.addQueryParameter(
                     httpUrl, "run_async", request.getRunAsync().get(), false);
         }
-        Map<String, Object> properties = new HashMap<>();
-        properties.put("model", request.getModel());
         RequestBody body;
         try {
             body = RequestBody.create(
-                    ObjectMappers.JSON_MAPPER.writeValueAsBytes(properties), MediaTypes.APPLICATION_JSON);
+                    ObjectMappers.JSON_MAPPER.writeValueAsBytes(request), MediaTypes.APPLICATION_JSON);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
@@ -454,16 +446,13 @@ public class RawTicketsClient {
         }
         try (Response response = client.newCall(okhttpRequest).execute()) {
             ResponseBody responseBody = response.body();
+            String responseBodyString = responseBody != null ? responseBody.string() : "{}";
             if (response.isSuccessful()) {
                 return new MergeApiHttpResponse<>(
-                        ObjectMappers.JSON_MAPPER.readValue(responseBody.string(), TicketResponse.class), response);
+                        ObjectMappers.JSON_MAPPER.readValue(responseBodyString, TicketResponse.class), response);
             }
-            String responseBodyString = responseBody != null ? responseBody.string() : "{}";
-            throw new ApiError(
-                    "Error with status code " + response.code(),
-                    response.code(),
-                    ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Object.class),
-                    response);
+            Object errorBody = ObjectMappers.parseErrorBody(responseBodyString);
+            throw new ApiError("Error with status code " + response.code(), response.code(), errorBody, response);
         } catch (IOException e) {
             throw new MergeException("Network error executing HTTP request", e);
         }
@@ -536,9 +525,10 @@ public class RawTicketsClient {
         }
         try (Response response = client.newCall(okhttpRequest).execute()) {
             ResponseBody responseBody = response.body();
+            String responseBodyString = responseBody != null ? responseBody.string() : "{}";
             if (response.isSuccessful()) {
                 PaginatedViewerList parsedResponse =
-                        ObjectMappers.JSON_MAPPER.readValue(responseBody.string(), PaginatedViewerList.class);
+                        ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PaginatedViewerList.class);
                 Optional<String> startingAfter = parsedResponse.getNext();
                 TicketsViewersListRequest nextRequest = TicketsViewersListRequest.builder()
                         .from(request)
@@ -552,12 +542,111 @@ public class RawTicketsClient {
                                         .body()),
                         response);
             }
+            Object errorBody = ObjectMappers.parseErrorBody(responseBodyString);
+            throw new ApiError("Error with status code " + response.code(), response.code(), errorBody, response);
+        } catch (IOException e) {
+            throw new MergeException("Network error executing HTTP request", e);
+        }
+    }
+
+    /**
+     * Returns a list of <code>Ticket</code> objects.
+     */
+    public MergeApiHttpResponse<InputStream> liveSearchRetrieve() {
+        return liveSearchRetrieve(TicketsLiveSearchRetrieveRequest.builder().build());
+    }
+
+    /**
+     * Returns a list of <code>Ticket</code> objects.
+     */
+    public MergeApiHttpResponse<InputStream> liveSearchRetrieve(TicketsLiveSearchRetrieveRequest request) {
+        return liveSearchRetrieve(request, null);
+    }
+
+    /**
+     * Returns a list of <code>Ticket</code> objects.
+     */
+    public MergeApiHttpResponse<InputStream> liveSearchRetrieve(
+            TicketsLiveSearchRetrieveRequest request, RequestOptions requestOptions) {
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
+                .newBuilder()
+                .addPathSegments("ticketing/v1/tickets/live-search");
+        if (request.getAssigneeIds().isPresent()) {
+            QueryStringMapper.addQueryParameter(
+                    httpUrl, "assignee_ids", request.getAssigneeIds().get(), false);
+        }
+        if (request.getAssignees().isPresent()) {
+            QueryStringMapper.addQueryParameter(
+                    httpUrl, "assignees", request.getAssignees().get(), false);
+        }
+        if (request.getCollectionIds().isPresent()) {
+            QueryStringMapper.addQueryParameter(
+                    httpUrl, "collection_ids", request.getCollectionIds().get(), false);
+        }
+        if (request.getCollections().isPresent()) {
+            QueryStringMapper.addQueryParameter(
+                    httpUrl, "collections", request.getCollections().get(), false);
+        }
+        if (request.getIncludeDeletedData().isPresent()) {
+            QueryStringMapper.addQueryParameter(
+                    httpUrl,
+                    "include_deleted_data",
+                    request.getIncludeDeletedData().get(),
+                    false);
+        }
+        if (request.getIncludeRemoteFields().isPresent()) {
+            QueryStringMapper.addQueryParameter(
+                    httpUrl,
+                    "include_remote_fields",
+                    request.getIncludeRemoteFields().get(),
+                    false);
+        }
+        if (request.getIncludeShellData().isPresent()) {
+            QueryStringMapper.addQueryParameter(
+                    httpUrl, "include_shell_data", request.getIncludeShellData().get(), false);
+        }
+        if (request.getName().isPresent()) {
+            QueryStringMapper.addQueryParameter(
+                    httpUrl, "name", request.getName().get(), false);
+        }
+        if (request.getRemoteCursor().isPresent()) {
+            QueryStringMapper.addQueryParameter(
+                    httpUrl, "remote_cursor", request.getRemoteCursor().get(), false);
+        }
+        if (request.getRemoteFields().isPresent()) {
+            QueryStringMapper.addQueryParameter(
+                    httpUrl, "remote_fields", request.getRemoteFields().get(), false);
+        }
+        if (request.getShowEnumOrigins().isPresent()) {
+            QueryStringMapper.addQueryParameter(
+                    httpUrl, "show_enum_origins", request.getShowEnumOrigins().get(), false);
+        }
+        if (request.getStatus().isPresent()) {
+            QueryStringMapper.addQueryParameter(
+                    httpUrl, "status", request.getStatus().get(), false);
+        }
+        if (request.getTicketUrl().isPresent()) {
+            QueryStringMapper.addQueryParameter(
+                    httpUrl, "ticket_url", request.getTicketUrl().get(), false);
+        }
+        Request.Builder _requestBuilder = new Request.Builder()
+                .url(httpUrl.build())
+                .method("GET", null)
+                .headers(Headers.of(clientOptions.headers(requestOptions)));
+        Request okhttpRequest = _requestBuilder.build();
+        OkHttpClient client = clientOptions.httpClient();
+        if (requestOptions != null && requestOptions.getTimeout().isPresent()) {
+            client = clientOptions.httpClientWithTimeout(requestOptions);
+        }
+        try {
+            Response response = client.newCall(okhttpRequest).execute();
+            ResponseBody responseBody = response.body();
+            if (response.isSuccessful()) {
+                return new MergeApiHttpResponse<>(new ResponseBodyInputStream(response), response);
+            }
             String responseBodyString = responseBody != null ? responseBody.string() : "{}";
-            throw new ApiError(
-                    "Error with status code " + response.code(),
-                    response.code(),
-                    ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Object.class),
-                    response);
+            Object errorBody = ObjectMappers.parseErrorBody(responseBodyString);
+            throw new ApiError("Error with status code " + response.code(), response.code(), errorBody, response);
         } catch (IOException e) {
             throw new MergeException("Network error executing HTTP request", e);
         }
@@ -591,16 +680,13 @@ public class RawTicketsClient {
         }
         try (Response response = client.newCall(okhttpRequest).execute()) {
             ResponseBody responseBody = response.body();
+            String responseBodyString = responseBody != null ? responseBody.string() : "{}";
             if (response.isSuccessful()) {
                 return new MergeApiHttpResponse<>(
-                        ObjectMappers.JSON_MAPPER.readValue(responseBody.string(), MetaResponse.class), response);
+                        ObjectMappers.JSON_MAPPER.readValue(responseBodyString, MetaResponse.class), response);
             }
-            String responseBodyString = responseBody != null ? responseBody.string() : "{}";
-            throw new ApiError(
-                    "Error with status code " + response.code(),
-                    response.code(),
-                    ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Object.class),
-                    response);
+            Object errorBody = ObjectMappers.parseErrorBody(responseBodyString);
+            throw new ApiError("Error with status code " + response.code(), response.code(), errorBody, response);
         } catch (IOException e) {
             throw new MergeException("Network error executing HTTP request", e);
         }
@@ -648,16 +734,13 @@ public class RawTicketsClient {
         }
         try (Response response = client.newCall(okhttpRequest).execute()) {
             ResponseBody responseBody = response.body();
+            String responseBodyString = responseBody != null ? responseBody.string() : "{}";
             if (response.isSuccessful()) {
                 return new MergeApiHttpResponse<>(
-                        ObjectMappers.JSON_MAPPER.readValue(responseBody.string(), MetaResponse.class), response);
+                        ObjectMappers.JSON_MAPPER.readValue(responseBodyString, MetaResponse.class), response);
             }
-            String responseBodyString = responseBody != null ? responseBody.string() : "{}";
-            throw new ApiError(
-                    "Error with status code " + response.code(),
-                    response.code(),
-                    ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Object.class),
-                    response);
+            Object errorBody = ObjectMappers.parseErrorBody(responseBodyString);
+            throw new ApiError("Error with status code " + response.code(), response.code(), errorBody, response);
         } catch (IOException e) {
             throw new MergeException("Network error executing HTTP request", e);
         }
@@ -739,9 +822,10 @@ public class RawTicketsClient {
         }
         try (Response response = client.newCall(okhttpRequest).execute()) {
             ResponseBody responseBody = response.body();
+            String responseBodyString = responseBody != null ? responseBody.string() : "{}";
             if (response.isSuccessful()) {
                 PaginatedRemoteFieldClassList parsedResponse =
-                        ObjectMappers.JSON_MAPPER.readValue(responseBody.string(), PaginatedRemoteFieldClassList.class);
+                        ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PaginatedRemoteFieldClassList.class);
                 Optional<String> startingAfter = parsedResponse.getNext();
                 TicketsRemoteFieldClassesListRequest nextRequest = TicketsRemoteFieldClassesListRequest.builder()
                         .from(request)
@@ -755,12 +839,8 @@ public class RawTicketsClient {
                                         .body()),
                         response);
             }
-            String responseBodyString = responseBody != null ? responseBody.string() : "{}";
-            throw new ApiError(
-                    "Error with status code " + response.code(),
-                    response.code(),
-                    ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Object.class),
-                    response);
+            Object errorBody = ObjectMappers.parseErrorBody(responseBodyString);
+            throw new ApiError("Error with status code " + response.code(), response.code(), errorBody, response);
         } catch (IOException e) {
             throw new MergeException("Network error executing HTTP request", e);
         }

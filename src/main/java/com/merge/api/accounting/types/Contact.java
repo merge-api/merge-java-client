@@ -10,7 +10,6 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
-import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.merge.api.core.ObjectMappers;
 import java.time.OffsetDateTime;
@@ -23,6 +22,8 @@ import java.util.Optional;
 @JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = Contact.Builder.class)
 public final class Contact {
+    private final Optional<String> contactUrl;
+
     private final Optional<String> id;
 
     private final Optional<String> remoteId;
@@ -47,15 +48,15 @@ public final class Contact {
 
     private final Optional<OffsetDateTime> remoteUpdatedAt;
 
-    private final Optional<String> company;
+    private final Optional<ContactCompany> company;
 
-    private final Optional<List<Optional<ContactAddressesItem>>> addresses;
+    private final Optional<List<ContactAddressesItem>> addresses;
 
-    private final Optional<List<AccountingPhoneNumber>> phoneNumbers;
+    private final Optional<List<ContactPhoneNumbersItem>> phoneNumbers;
 
     private final Optional<Boolean> remoteWasDeleted;
 
-    private final Optional<Map<String, JsonNode>> fieldMappings;
+    private final Optional<Map<String, Object>> fieldMappings;
 
     private final Optional<List<RemoteData>> remoteData;
 
@@ -64,6 +65,7 @@ public final class Contact {
     private final Map<String, Object> additionalProperties;
 
     private Contact(
+            Optional<String> contactUrl,
             Optional<String> id,
             Optional<String> remoteId,
             Optional<OffsetDateTime> createdAt,
@@ -76,14 +78,15 @@ public final class Contact {
             Optional<ContactStatus> status,
             Optional<String> currency,
             Optional<OffsetDateTime> remoteUpdatedAt,
-            Optional<String> company,
-            Optional<List<Optional<ContactAddressesItem>>> addresses,
-            Optional<List<AccountingPhoneNumber>> phoneNumbers,
+            Optional<ContactCompany> company,
+            Optional<List<ContactAddressesItem>> addresses,
+            Optional<List<ContactPhoneNumbersItem>> phoneNumbers,
             Optional<Boolean> remoteWasDeleted,
-            Optional<Map<String, JsonNode>> fieldMappings,
+            Optional<Map<String, Object>> fieldMappings,
             Optional<List<RemoteData>> remoteData,
             Optional<List<RemoteField>> remoteFields,
             Map<String, Object> additionalProperties) {
+        this.contactUrl = contactUrl;
         this.id = id;
         this.remoteId = remoteId;
         this.createdAt = createdAt;
@@ -104,6 +107,14 @@ public final class Contact {
         this.remoteData = remoteData;
         this.remoteFields = remoteFields;
         this.additionalProperties = additionalProperties;
+    }
+
+    /**
+     * @return The 3rd party URL of the contact.
+     */
+    @JsonProperty("contact_url")
+    public Optional<String> getContactUrl() {
+        return contactUrl;
     }
 
     @JsonProperty("id")
@@ -207,7 +218,7 @@ public final class Contact {
      * @return The company the contact belongs to.
      */
     @JsonProperty("company")
-    public Optional<String> getCompany() {
+    public Optional<ContactCompany> getCompany() {
         return company;
     }
 
@@ -215,7 +226,7 @@ public final class Contact {
      * @return <code>Address</code> object IDs for the given <code>Contacts</code> object.
      */
     @JsonProperty("addresses")
-    public Optional<List<Optional<ContactAddressesItem>>> getAddresses() {
+    public Optional<List<ContactAddressesItem>> getAddresses() {
         return addresses;
     }
 
@@ -223,7 +234,7 @@ public final class Contact {
      * @return <code>AccountingPhoneNumber</code> object for the given <code>Contacts</code> object.
      */
     @JsonProperty("phone_numbers")
-    public Optional<List<AccountingPhoneNumber>> getPhoneNumbers() {
+    public Optional<List<ContactPhoneNumbersItem>> getPhoneNumbers() {
         return phoneNumbers;
     }
 
@@ -236,7 +247,7 @@ public final class Contact {
     }
 
     @JsonProperty("field_mappings")
-    public Optional<Map<String, JsonNode>> getFieldMappings() {
+    public Optional<Map<String, Object>> getFieldMappings() {
         return fieldMappings;
     }
 
@@ -262,7 +273,8 @@ public final class Contact {
     }
 
     private boolean equalTo(Contact other) {
-        return id.equals(other.id)
+        return contactUrl.equals(other.contactUrl)
+                && id.equals(other.id)
                 && remoteId.equals(other.remoteId)
                 && createdAt.equals(other.createdAt)
                 && modifiedAt.equals(other.modifiedAt)
@@ -286,6 +298,7 @@ public final class Contact {
     @java.lang.Override
     public int hashCode() {
         return Objects.hash(
+                this.contactUrl,
                 this.id,
                 this.remoteId,
                 this.createdAt,
@@ -318,6 +331,8 @@ public final class Contact {
 
     @JsonIgnoreProperties(ignoreUnknown = true)
     public static final class Builder {
+        private Optional<String> contactUrl = Optional.empty();
+
         private Optional<String> id = Optional.empty();
 
         private Optional<String> remoteId = Optional.empty();
@@ -342,15 +357,15 @@ public final class Contact {
 
         private Optional<OffsetDateTime> remoteUpdatedAt = Optional.empty();
 
-        private Optional<String> company = Optional.empty();
+        private Optional<ContactCompany> company = Optional.empty();
 
-        private Optional<List<Optional<ContactAddressesItem>>> addresses = Optional.empty();
+        private Optional<List<ContactAddressesItem>> addresses = Optional.empty();
 
-        private Optional<List<AccountingPhoneNumber>> phoneNumbers = Optional.empty();
+        private Optional<List<ContactPhoneNumbersItem>> phoneNumbers = Optional.empty();
 
         private Optional<Boolean> remoteWasDeleted = Optional.empty();
 
-        private Optional<Map<String, JsonNode>> fieldMappings = Optional.empty();
+        private Optional<Map<String, Object>> fieldMappings = Optional.empty();
 
         private Optional<List<RemoteData>> remoteData = Optional.empty();
 
@@ -362,6 +377,7 @@ public final class Contact {
         private Builder() {}
 
         public Builder from(Contact other) {
+            contactUrl(other.getContactUrl());
             id(other.getId());
             remoteId(other.getRemoteId());
             createdAt(other.getCreatedAt());
@@ -381,6 +397,20 @@ public final class Contact {
             fieldMappings(other.getFieldMappings());
             remoteData(other.getRemoteData());
             remoteFields(other.getRemoteFields());
+            return this;
+        }
+
+        /**
+         * <p>The 3rd party URL of the contact.</p>
+         */
+        @JsonSetter(value = "contact_url", nulls = Nulls.SKIP)
+        public Builder contactUrl(Optional<String> contactUrl) {
+            this.contactUrl = contactUrl;
+            return this;
+        }
+
+        public Builder contactUrl(String contactUrl) {
+            this.contactUrl = Optional.ofNullable(contactUrl);
             return this;
         }
 
@@ -557,12 +587,12 @@ public final class Contact {
          * <p>The company the contact belongs to.</p>
          */
         @JsonSetter(value = "company", nulls = Nulls.SKIP)
-        public Builder company(Optional<String> company) {
+        public Builder company(Optional<ContactCompany> company) {
             this.company = company;
             return this;
         }
 
-        public Builder company(String company) {
+        public Builder company(ContactCompany company) {
             this.company = Optional.ofNullable(company);
             return this;
         }
@@ -571,12 +601,12 @@ public final class Contact {
          * <p><code>Address</code> object IDs for the given <code>Contacts</code> object.</p>
          */
         @JsonSetter(value = "addresses", nulls = Nulls.SKIP)
-        public Builder addresses(Optional<List<Optional<ContactAddressesItem>>> addresses) {
+        public Builder addresses(Optional<List<ContactAddressesItem>> addresses) {
             this.addresses = addresses;
             return this;
         }
 
-        public Builder addresses(List<Optional<ContactAddressesItem>> addresses) {
+        public Builder addresses(List<ContactAddressesItem> addresses) {
             this.addresses = Optional.ofNullable(addresses);
             return this;
         }
@@ -585,12 +615,12 @@ public final class Contact {
          * <p><code>AccountingPhoneNumber</code> object for the given <code>Contacts</code> object.</p>
          */
         @JsonSetter(value = "phone_numbers", nulls = Nulls.SKIP)
-        public Builder phoneNumbers(Optional<List<AccountingPhoneNumber>> phoneNumbers) {
+        public Builder phoneNumbers(Optional<List<ContactPhoneNumbersItem>> phoneNumbers) {
             this.phoneNumbers = phoneNumbers;
             return this;
         }
 
-        public Builder phoneNumbers(List<AccountingPhoneNumber> phoneNumbers) {
+        public Builder phoneNumbers(List<ContactPhoneNumbersItem> phoneNumbers) {
             this.phoneNumbers = Optional.ofNullable(phoneNumbers);
             return this;
         }
@@ -610,12 +640,12 @@ public final class Contact {
         }
 
         @JsonSetter(value = "field_mappings", nulls = Nulls.SKIP)
-        public Builder fieldMappings(Optional<Map<String, JsonNode>> fieldMappings) {
+        public Builder fieldMappings(Optional<Map<String, Object>> fieldMappings) {
             this.fieldMappings = fieldMappings;
             return this;
         }
 
-        public Builder fieldMappings(Map<String, JsonNode> fieldMappings) {
+        public Builder fieldMappings(Map<String, Object> fieldMappings) {
             this.fieldMappings = Optional.ofNullable(fieldMappings);
             return this;
         }
@@ -644,6 +674,7 @@ public final class Contact {
 
         public Contact build() {
             return new Contact(
+                    contactUrl,
                     id,
                     remoteId,
                     createdAt,

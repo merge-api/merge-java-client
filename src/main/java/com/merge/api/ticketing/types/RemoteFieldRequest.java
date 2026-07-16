@@ -10,7 +10,6 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
-import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.merge.api.core.ObjectMappers;
 import java.util.HashMap;
@@ -24,13 +23,13 @@ import org.jetbrains.annotations.NotNull;
 public final class RemoteFieldRequest {
     private final RemoteFieldRequestRemoteFieldClass remoteFieldClass;
 
-    private final Optional<JsonNode> value;
+    private final Optional<Object> value;
 
     private final Map<String, Object> additionalProperties;
 
     private RemoteFieldRequest(
             RemoteFieldRequestRemoteFieldClass remoteFieldClass,
-            Optional<JsonNode> value,
+            Optional<Object> value,
             Map<String, Object> additionalProperties) {
         this.remoteFieldClass = remoteFieldClass;
         this.value = value;
@@ -43,7 +42,7 @@ public final class RemoteFieldRequest {
     }
 
     @JsonProperty("value")
-    public Optional<JsonNode> getValue() {
+    public Optional<Object> getValue() {
         return value;
     }
 
@@ -85,16 +84,16 @@ public final class RemoteFieldRequest {
     public interface _FinalStage {
         RemoteFieldRequest build();
 
-        _FinalStage value(Optional<JsonNode> value);
+        _FinalStage value(Optional<Object> value);
 
-        _FinalStage value(JsonNode value);
+        _FinalStage value(Object value);
     }
 
     @JsonIgnoreProperties(ignoreUnknown = true)
     public static final class Builder implements RemoteFieldClassStage, _FinalStage {
         private RemoteFieldRequestRemoteFieldClass remoteFieldClass;
 
-        private Optional<JsonNode> value = Optional.empty();
+        private Optional<Object> value = Optional.empty();
 
         @JsonAnySetter
         private Map<String, Object> additionalProperties = new HashMap<>();
@@ -116,14 +115,14 @@ public final class RemoteFieldRequest {
         }
 
         @java.lang.Override
-        public _FinalStage value(JsonNode value) {
+        public _FinalStage value(Object value) {
             this.value = Optional.ofNullable(value);
             return this;
         }
 
         @java.lang.Override
         @JsonSetter(value = "value", nulls = Nulls.SKIP)
-        public _FinalStage value(Optional<JsonNode> value) {
+        public _FinalStage value(Optional<Object> value) {
             this.value = value;
             return this;
         }

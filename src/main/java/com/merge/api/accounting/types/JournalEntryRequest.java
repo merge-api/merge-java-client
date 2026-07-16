@@ -10,7 +10,6 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
-import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.merge.api.core.ObjectMappers;
 import java.time.OffsetDateTime;
@@ -39,15 +38,15 @@ public final class JournalEntryRequest {
 
     private final Optional<Boolean> inclusiveOfTax;
 
-    private final Optional<List<JournalLineRequest>> lines;
+    private final Optional<List<JournalEntryRequestLinesItem>> lines;
 
     private final Optional<String> journalNumber;
 
     private final Optional<JournalEntryRequestPostingStatus> postingStatus;
 
-    private final Optional<Map<String, JsonNode>> integrationParams;
+    private final Optional<Map<String, Object>> integrationParams;
 
-    private final Optional<Map<String, JsonNode>> linkedAccountParams;
+    private final Optional<Map<String, Object>> linkedAccountParams;
 
     private final Optional<List<RemoteFieldRequest>> remoteFields;
 
@@ -62,11 +61,11 @@ public final class JournalEntryRequest {
             Optional<JournalEntryRequestCompany> company,
             Optional<List<Optional<JournalEntryRequestTrackingCategoriesItem>>> trackingCategories,
             Optional<Boolean> inclusiveOfTax,
-            Optional<List<JournalLineRequest>> lines,
+            Optional<List<JournalEntryRequestLinesItem>> lines,
             Optional<String> journalNumber,
             Optional<JournalEntryRequestPostingStatus> postingStatus,
-            Optional<Map<String, JsonNode>> integrationParams,
-            Optional<Map<String, JsonNode>> linkedAccountParams,
+            Optional<Map<String, Object>> integrationParams,
+            Optional<Map<String, Object>> linkedAccountParams,
             Optional<List<RemoteFieldRequest>> remoteFields,
             Map<String, Object> additionalProperties) {
         this.transactionDate = transactionDate;
@@ -456,7 +455,7 @@ public final class JournalEntryRequest {
     }
 
     @JsonProperty("lines")
-    public Optional<List<JournalLineRequest>> getLines() {
+    public Optional<List<JournalEntryRequestLinesItem>> getLines() {
         return lines;
     }
 
@@ -481,12 +480,12 @@ public final class JournalEntryRequest {
     }
 
     @JsonProperty("integration_params")
-    public Optional<Map<String, JsonNode>> getIntegrationParams() {
+    public Optional<Map<String, Object>> getIntegrationParams() {
         return integrationParams;
     }
 
     @JsonProperty("linked_account_params")
-    public Optional<Map<String, JsonNode>> getLinkedAccountParams() {
+    public Optional<Map<String, Object>> getLinkedAccountParams() {
         return linkedAccountParams;
     }
 
@@ -570,15 +569,15 @@ public final class JournalEntryRequest {
 
         private Optional<Boolean> inclusiveOfTax = Optional.empty();
 
-        private Optional<List<JournalLineRequest>> lines = Optional.empty();
+        private Optional<List<JournalEntryRequestLinesItem>> lines = Optional.empty();
 
         private Optional<String> journalNumber = Optional.empty();
 
         private Optional<JournalEntryRequestPostingStatus> postingStatus = Optional.empty();
 
-        private Optional<Map<String, JsonNode>> integrationParams = Optional.empty();
+        private Optional<Map<String, Object>> integrationParams = Optional.empty();
 
-        private Optional<Map<String, JsonNode>> linkedAccountParams = Optional.empty();
+        private Optional<Map<String, Object>> linkedAccountParams = Optional.empty();
 
         private Optional<List<RemoteFieldRequest>> remoteFields = Optional.empty();
 
@@ -1025,12 +1024,12 @@ public final class JournalEntryRequest {
         }
 
         @JsonSetter(value = "lines", nulls = Nulls.SKIP)
-        public Builder lines(Optional<List<JournalLineRequest>> lines) {
+        public Builder lines(Optional<List<JournalEntryRequestLinesItem>> lines) {
             this.lines = lines;
             return this;
         }
 
-        public Builder lines(List<JournalLineRequest> lines) {
+        public Builder lines(List<JournalEntryRequestLinesItem> lines) {
             this.lines = Optional.ofNullable(lines);
             return this;
         }
@@ -1068,23 +1067,23 @@ public final class JournalEntryRequest {
         }
 
         @JsonSetter(value = "integration_params", nulls = Nulls.SKIP)
-        public Builder integrationParams(Optional<Map<String, JsonNode>> integrationParams) {
+        public Builder integrationParams(Optional<Map<String, Object>> integrationParams) {
             this.integrationParams = integrationParams;
             return this;
         }
 
-        public Builder integrationParams(Map<String, JsonNode> integrationParams) {
+        public Builder integrationParams(Map<String, Object> integrationParams) {
             this.integrationParams = Optional.ofNullable(integrationParams);
             return this;
         }
 
         @JsonSetter(value = "linked_account_params", nulls = Nulls.SKIP)
-        public Builder linkedAccountParams(Optional<Map<String, JsonNode>> linkedAccountParams) {
+        public Builder linkedAccountParams(Optional<Map<String, Object>> linkedAccountParams) {
             this.linkedAccountParams = linkedAccountParams;
             return this;
         }
 
-        public Builder linkedAccountParams(Map<String, JsonNode> linkedAccountParams) {
+        public Builder linkedAccountParams(Map<String, Object> linkedAccountParams) {
             this.linkedAccountParams = Optional.ofNullable(linkedAccountParams);
             return this;
         }

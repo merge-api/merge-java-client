@@ -21,6 +21,8 @@ import java.util.Optional;
 @JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = BankFeedTransaction.Builder.class)
 public final class BankFeedTransaction {
+    private final Optional<String> bankFeedTransactionUrl;
+
     private final Optional<String> id;
 
     private final Optional<String> remoteId;
@@ -54,6 +56,7 @@ public final class BankFeedTransaction {
     private final Map<String, Object> additionalProperties;
 
     private BankFeedTransaction(
+            Optional<String> bankFeedTransactionUrl,
             Optional<String> id,
             Optional<String> remoteId,
             Optional<OffsetDateTime> createdAt,
@@ -70,6 +73,7 @@ public final class BankFeedTransaction {
             Optional<Boolean> remoteWasDeleted,
             Optional<Boolean> isProcessed,
             Map<String, Object> additionalProperties) {
+        this.bankFeedTransactionUrl = bankFeedTransactionUrl;
         this.id = id;
         this.remoteId = remoteId;
         this.createdAt = createdAt;
@@ -86,6 +90,14 @@ public final class BankFeedTransaction {
         this.remoteWasDeleted = remoteWasDeleted;
         this.isProcessed = isProcessed;
         this.additionalProperties = additionalProperties;
+    }
+
+    /**
+     * @return The 3rd party URL of the bank feed transaction.
+     */
+    @JsonProperty("bank_feed_transaction_url")
+    public Optional<String> getBankFeedTransactionUrl() {
+        return bankFeedTransactionUrl;
     }
 
     @JsonProperty("id")
@@ -221,7 +233,8 @@ public final class BankFeedTransaction {
     }
 
     private boolean equalTo(BankFeedTransaction other) {
-        return id.equals(other.id)
+        return bankFeedTransactionUrl.equals(other.bankFeedTransactionUrl)
+                && id.equals(other.id)
                 && remoteId.equals(other.remoteId)
                 && createdAt.equals(other.createdAt)
                 && modifiedAt.equals(other.modifiedAt)
@@ -241,6 +254,7 @@ public final class BankFeedTransaction {
     @java.lang.Override
     public int hashCode() {
         return Objects.hash(
+                this.bankFeedTransactionUrl,
                 this.id,
                 this.remoteId,
                 this.createdAt,
@@ -269,6 +283,8 @@ public final class BankFeedTransaction {
 
     @JsonIgnoreProperties(ignoreUnknown = true)
     public static final class Builder {
+        private Optional<String> bankFeedTransactionUrl = Optional.empty();
+
         private Optional<String> id = Optional.empty();
 
         private Optional<String> remoteId = Optional.empty();
@@ -305,6 +321,7 @@ public final class BankFeedTransaction {
         private Builder() {}
 
         public Builder from(BankFeedTransaction other) {
+            bankFeedTransactionUrl(other.getBankFeedTransactionUrl());
             id(other.getId());
             remoteId(other.getRemoteId());
             createdAt(other.getCreatedAt());
@@ -320,6 +337,20 @@ public final class BankFeedTransaction {
             sourceTransactionId(other.getSourceTransactionId());
             remoteWasDeleted(other.getRemoteWasDeleted());
             isProcessed(other.getIsProcessed());
+            return this;
+        }
+
+        /**
+         * <p>The 3rd party URL of the bank feed transaction.</p>
+         */
+        @JsonSetter(value = "bank_feed_transaction_url", nulls = Nulls.SKIP)
+        public Builder bankFeedTransactionUrl(Optional<String> bankFeedTransactionUrl) {
+            this.bankFeedTransactionUrl = bankFeedTransactionUrl;
+            return this;
+        }
+
+        public Builder bankFeedTransactionUrl(String bankFeedTransactionUrl) {
+            this.bankFeedTransactionUrl = Optional.ofNullable(bankFeedTransactionUrl);
             return this;
         }
 
@@ -536,6 +567,7 @@ public final class BankFeedTransaction {
 
         public BankFeedTransaction build() {
             return new BankFeedTransaction(
+                    bankFeedTransactionUrl,
                     id,
                     remoteId,
                     createdAt,

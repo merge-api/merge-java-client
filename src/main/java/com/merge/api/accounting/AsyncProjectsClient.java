@@ -3,12 +3,12 @@
  */
 package com.merge.api.accounting;
 
-import com.merge.api.accounting.types.PaginatedProjectList;
 import com.merge.api.accounting.types.Project;
 import com.merge.api.accounting.types.ProjectsListRequest;
 import com.merge.api.accounting.types.ProjectsRetrieveRequest;
 import com.merge.api.core.ClientOptions;
 import com.merge.api.core.RequestOptions;
+import com.merge.api.core.SyncPagingIterable;
 import java.util.concurrent.CompletableFuture;
 
 public class AsyncProjectsClient {
@@ -31,21 +31,22 @@ public class AsyncProjectsClient {
     /**
      * Returns a list of <code>Project</code> objects.
      */
-    public CompletableFuture<PaginatedProjectList> list() {
+    public CompletableFuture<SyncPagingIterable<Project>> list() {
         return this.rawClient.list().thenApply(response -> response.body());
     }
 
     /**
      * Returns a list of <code>Project</code> objects.
      */
-    public CompletableFuture<PaginatedProjectList> list(ProjectsListRequest request) {
+    public CompletableFuture<SyncPagingIterable<Project>> list(ProjectsListRequest request) {
         return this.rawClient.list(request).thenApply(response -> response.body());
     }
 
     /**
      * Returns a list of <code>Project</code> objects.
      */
-    public CompletableFuture<PaginatedProjectList> list(ProjectsListRequest request, RequestOptions requestOptions) {
+    public CompletableFuture<SyncPagingIterable<Project>> list(
+            ProjectsListRequest request, RequestOptions requestOptions) {
         return this.rawClient.list(request, requestOptions).thenApply(response -> response.body());
     }
 

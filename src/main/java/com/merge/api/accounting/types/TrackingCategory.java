@@ -10,7 +10,6 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
-import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.merge.api.core.ObjectMappers;
 import java.time.OffsetDateTime;
@@ -42,7 +41,9 @@ public final class TrackingCategory {
 
     private final Optional<Boolean> remoteWasDeleted;
 
-    private final Optional<Map<String, JsonNode>> fieldMappings;
+    private final Optional<Map<String, Object>> fieldMappings;
+
+    private final Optional<String> trackingCategoryUrl;
 
     private final Map<String, Object> additionalProperties;
 
@@ -57,7 +58,8 @@ public final class TrackingCategory {
             Optional<String> parentCategory,
             Optional<TrackingCategoryCompany> company,
             Optional<Boolean> remoteWasDeleted,
-            Optional<Map<String, JsonNode>> fieldMappings,
+            Optional<Map<String, Object>> fieldMappings,
+            Optional<String> trackingCategoryUrl,
             Map<String, Object> additionalProperties) {
         this.id = id;
         this.remoteId = remoteId;
@@ -70,6 +72,7 @@ public final class TrackingCategory {
         this.company = company;
         this.remoteWasDeleted = remoteWasDeleted;
         this.fieldMappings = fieldMappings;
+        this.trackingCategoryUrl = trackingCategoryUrl;
         this.additionalProperties = additionalProperties;
     }
 
@@ -156,8 +159,16 @@ public final class TrackingCategory {
     }
 
     @JsonProperty("field_mappings")
-    public Optional<Map<String, JsonNode>> getFieldMappings() {
+    public Optional<Map<String, Object>> getFieldMappings() {
         return fieldMappings;
+    }
+
+    /**
+     * @return The 3rd party URL of the tracking category.
+     */
+    @JsonProperty("tracking_category_url")
+    public Optional<String> getTrackingCategoryUrl() {
+        return trackingCategoryUrl;
     }
 
     @java.lang.Override
@@ -182,7 +193,8 @@ public final class TrackingCategory {
                 && parentCategory.equals(other.parentCategory)
                 && company.equals(other.company)
                 && remoteWasDeleted.equals(other.remoteWasDeleted)
-                && fieldMappings.equals(other.fieldMappings);
+                && fieldMappings.equals(other.fieldMappings)
+                && trackingCategoryUrl.equals(other.trackingCategoryUrl);
     }
 
     @java.lang.Override
@@ -198,7 +210,8 @@ public final class TrackingCategory {
                 this.parentCategory,
                 this.company,
                 this.remoteWasDeleted,
-                this.fieldMappings);
+                this.fieldMappings,
+                this.trackingCategoryUrl);
     }
 
     @java.lang.Override
@@ -232,7 +245,9 @@ public final class TrackingCategory {
 
         private Optional<Boolean> remoteWasDeleted = Optional.empty();
 
-        private Optional<Map<String, JsonNode>> fieldMappings = Optional.empty();
+        private Optional<Map<String, Object>> fieldMappings = Optional.empty();
+
+        private Optional<String> trackingCategoryUrl = Optional.empty();
 
         @JsonAnySetter
         private Map<String, Object> additionalProperties = new HashMap<>();
@@ -251,6 +266,7 @@ public final class TrackingCategory {
             company(other.getCompany());
             remoteWasDeleted(other.getRemoteWasDeleted());
             fieldMappings(other.getFieldMappings());
+            trackingCategoryUrl(other.getTrackingCategoryUrl());
             return this;
         }
 
@@ -397,13 +413,27 @@ public final class TrackingCategory {
         }
 
         @JsonSetter(value = "field_mappings", nulls = Nulls.SKIP)
-        public Builder fieldMappings(Optional<Map<String, JsonNode>> fieldMappings) {
+        public Builder fieldMappings(Optional<Map<String, Object>> fieldMappings) {
             this.fieldMappings = fieldMappings;
             return this;
         }
 
-        public Builder fieldMappings(Map<String, JsonNode> fieldMappings) {
+        public Builder fieldMappings(Map<String, Object> fieldMappings) {
             this.fieldMappings = Optional.ofNullable(fieldMappings);
+            return this;
+        }
+
+        /**
+         * <p>The 3rd party URL of the tracking category.</p>
+         */
+        @JsonSetter(value = "tracking_category_url", nulls = Nulls.SKIP)
+        public Builder trackingCategoryUrl(Optional<String> trackingCategoryUrl) {
+            this.trackingCategoryUrl = trackingCategoryUrl;
+            return this;
+        }
+
+        public Builder trackingCategoryUrl(String trackingCategoryUrl) {
+            this.trackingCategoryUrl = Optional.ofNullable(trackingCategoryUrl);
             return this;
         }
 
@@ -420,6 +450,7 @@ public final class TrackingCategory {
                     company,
                     remoteWasDeleted,
                     fieldMappings,
+                    trackingCategoryUrl,
                     additionalProperties);
         }
     }

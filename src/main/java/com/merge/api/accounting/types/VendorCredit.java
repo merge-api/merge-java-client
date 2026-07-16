@@ -10,7 +10,6 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
-import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.merge.api.core.ObjectMappers;
 import java.time.OffsetDateTime;
@@ -47,7 +46,7 @@ public final class VendorCredit {
 
     private final Optional<VendorCreditCompany> company;
 
-    private final Optional<List<VendorCreditLine>> lines;
+    private final Optional<List<VendorCreditLinesItem>> lines;
 
     private final Optional<List<Optional<VendorCreditTrackingCategoriesItem>>> trackingCategories;
 
@@ -57,9 +56,11 @@ public final class VendorCredit {
 
     private final Optional<VendorCreditAccountingPeriod> accountingPeriod;
 
-    private final Optional<Map<String, JsonNode>> fieldMappings;
+    private final Optional<Map<String, Object>> fieldMappings;
 
     private final Optional<List<RemoteData>> remoteData;
+
+    private final Optional<String> vendorCreditUrl;
 
     private final Map<String, Object> additionalProperties;
 
@@ -76,13 +77,14 @@ public final class VendorCredit {
             Optional<String> exchangeRate,
             Optional<Boolean> inclusiveOfTax,
             Optional<VendorCreditCompany> company,
-            Optional<List<VendorCreditLine>> lines,
+            Optional<List<VendorCreditLinesItem>> lines,
             Optional<List<Optional<VendorCreditTrackingCategoriesItem>>> trackingCategories,
             Optional<List<VendorCreditApplyLineForVendorCredit>> appliedToLines,
             Optional<Boolean> remoteWasDeleted,
             Optional<VendorCreditAccountingPeriod> accountingPeriod,
-            Optional<Map<String, JsonNode>> fieldMappings,
+            Optional<Map<String, Object>> fieldMappings,
             Optional<List<RemoteData>> remoteData,
+            Optional<String> vendorCreditUrl,
             Map<String, Object> additionalProperties) {
         this.id = id;
         this.remoteId = remoteId;
@@ -103,6 +105,7 @@ public final class VendorCredit {
         this.accountingPeriod = accountingPeriod;
         this.fieldMappings = fieldMappings;
         this.remoteData = remoteData;
+        this.vendorCreditUrl = vendorCreditUrl;
         this.additionalProperties = additionalProperties;
     }
 
@@ -508,7 +511,7 @@ public final class VendorCredit {
     }
 
     @JsonProperty("lines")
-    public Optional<List<VendorCreditLine>> getLines() {
+    public Optional<List<VendorCreditLinesItem>> getLines() {
         return lines;
     }
 
@@ -542,13 +545,21 @@ public final class VendorCredit {
     }
 
     @JsonProperty("field_mappings")
-    public Optional<Map<String, JsonNode>> getFieldMappings() {
+    public Optional<Map<String, Object>> getFieldMappings() {
         return fieldMappings;
     }
 
     @JsonProperty("remote_data")
     public Optional<List<RemoteData>> getRemoteData() {
         return remoteData;
+    }
+
+    /**
+     * @return The 3rd party URL of the vendor credit.
+     */
+    @JsonProperty("vendor_credit_url")
+    public Optional<String> getVendorCreditUrl() {
+        return vendorCreditUrl;
     }
 
     @java.lang.Override
@@ -581,7 +592,8 @@ public final class VendorCredit {
                 && remoteWasDeleted.equals(other.remoteWasDeleted)
                 && accountingPeriod.equals(other.accountingPeriod)
                 && fieldMappings.equals(other.fieldMappings)
-                && remoteData.equals(other.remoteData);
+                && remoteData.equals(other.remoteData)
+                && vendorCreditUrl.equals(other.vendorCreditUrl);
     }
 
     @java.lang.Override
@@ -605,7 +617,8 @@ public final class VendorCredit {
                 this.remoteWasDeleted,
                 this.accountingPeriod,
                 this.fieldMappings,
-                this.remoteData);
+                this.remoteData,
+                this.vendorCreditUrl);
     }
 
     @java.lang.Override
@@ -643,7 +656,7 @@ public final class VendorCredit {
 
         private Optional<VendorCreditCompany> company = Optional.empty();
 
-        private Optional<List<VendorCreditLine>> lines = Optional.empty();
+        private Optional<List<VendorCreditLinesItem>> lines = Optional.empty();
 
         private Optional<List<Optional<VendorCreditTrackingCategoriesItem>>> trackingCategories = Optional.empty();
 
@@ -653,9 +666,11 @@ public final class VendorCredit {
 
         private Optional<VendorCreditAccountingPeriod> accountingPeriod = Optional.empty();
 
-        private Optional<Map<String, JsonNode>> fieldMappings = Optional.empty();
+        private Optional<Map<String, Object>> fieldMappings = Optional.empty();
 
         private Optional<List<RemoteData>> remoteData = Optional.empty();
+
+        private Optional<String> vendorCreditUrl = Optional.empty();
 
         @JsonAnySetter
         private Map<String, Object> additionalProperties = new HashMap<>();
@@ -682,6 +697,7 @@ public final class VendorCredit {
             accountingPeriod(other.getAccountingPeriod());
             fieldMappings(other.getFieldMappings());
             remoteData(other.getRemoteData());
+            vendorCreditUrl(other.getVendorCreditUrl());
             return this;
         }
 
@@ -1159,12 +1175,12 @@ public final class VendorCredit {
         }
 
         @JsonSetter(value = "lines", nulls = Nulls.SKIP)
-        public Builder lines(Optional<List<VendorCreditLine>> lines) {
+        public Builder lines(Optional<List<VendorCreditLinesItem>> lines) {
             this.lines = lines;
             return this;
         }
 
-        public Builder lines(List<VendorCreditLine> lines) {
+        public Builder lines(List<VendorCreditLinesItem> lines) {
             this.lines = Optional.ofNullable(lines);
             return this;
         }
@@ -1224,12 +1240,12 @@ public final class VendorCredit {
         }
 
         @JsonSetter(value = "field_mappings", nulls = Nulls.SKIP)
-        public Builder fieldMappings(Optional<Map<String, JsonNode>> fieldMappings) {
+        public Builder fieldMappings(Optional<Map<String, Object>> fieldMappings) {
             this.fieldMappings = fieldMappings;
             return this;
         }
 
-        public Builder fieldMappings(Map<String, JsonNode> fieldMappings) {
+        public Builder fieldMappings(Map<String, Object> fieldMappings) {
             this.fieldMappings = Optional.ofNullable(fieldMappings);
             return this;
         }
@@ -1242,6 +1258,20 @@ public final class VendorCredit {
 
         public Builder remoteData(List<RemoteData> remoteData) {
             this.remoteData = Optional.ofNullable(remoteData);
+            return this;
+        }
+
+        /**
+         * <p>The 3rd party URL of the vendor credit.</p>
+         */
+        @JsonSetter(value = "vendor_credit_url", nulls = Nulls.SKIP)
+        public Builder vendorCreditUrl(Optional<String> vendorCreditUrl) {
+            this.vendorCreditUrl = vendorCreditUrl;
+            return this;
+        }
+
+        public Builder vendorCreditUrl(String vendorCreditUrl) {
+            this.vendorCreditUrl = Optional.ofNullable(vendorCreditUrl);
             return this;
         }
 
@@ -1266,6 +1296,7 @@ public final class VendorCredit {
                     accountingPeriod,
                     fieldMappings,
                     remoteData,
+                    vendorCreditUrl,
                     additionalProperties);
         }
     }

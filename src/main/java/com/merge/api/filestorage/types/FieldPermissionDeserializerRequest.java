@@ -10,7 +10,6 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
-import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.merge.api.core.ObjectMappers;
 import java.util.HashMap;
@@ -22,15 +21,15 @@ import java.util.Optional;
 @JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = FieldPermissionDeserializerRequest.Builder.class)
 public final class FieldPermissionDeserializerRequest {
-    private final Optional<List<JsonNode>> enabledFields;
+    private final Optional<List<Object>> enabledFields;
 
-    private final Optional<List<JsonNode>> disabledFields;
+    private final Optional<List<Object>> disabledFields;
 
     private final Map<String, Object> additionalProperties;
 
     private FieldPermissionDeserializerRequest(
-            Optional<List<JsonNode>> enabledFields,
-            Optional<List<JsonNode>> disabledFields,
+            Optional<List<Object>> enabledFields,
+            Optional<List<Object>> disabledFields,
             Map<String, Object> additionalProperties) {
         this.enabledFields = enabledFields;
         this.disabledFields = disabledFields;
@@ -38,12 +37,12 @@ public final class FieldPermissionDeserializerRequest {
     }
 
     @JsonProperty("enabled_fields")
-    public Optional<List<JsonNode>> getEnabledFields() {
+    public Optional<List<Object>> getEnabledFields() {
         return enabledFields;
     }
 
     @JsonProperty("disabled_fields")
-    public Optional<List<JsonNode>> getDisabledFields() {
+    public Optional<List<Object>> getDisabledFields() {
         return disabledFields;
     }
 
@@ -79,9 +78,9 @@ public final class FieldPermissionDeserializerRequest {
 
     @JsonIgnoreProperties(ignoreUnknown = true)
     public static final class Builder {
-        private Optional<List<JsonNode>> enabledFields = Optional.empty();
+        private Optional<List<Object>> enabledFields = Optional.empty();
 
-        private Optional<List<JsonNode>> disabledFields = Optional.empty();
+        private Optional<List<Object>> disabledFields = Optional.empty();
 
         @JsonAnySetter
         private Map<String, Object> additionalProperties = new HashMap<>();
@@ -95,23 +94,23 @@ public final class FieldPermissionDeserializerRequest {
         }
 
         @JsonSetter(value = "enabled_fields", nulls = Nulls.SKIP)
-        public Builder enabledFields(Optional<List<JsonNode>> enabledFields) {
+        public Builder enabledFields(Optional<List<Object>> enabledFields) {
             this.enabledFields = enabledFields;
             return this;
         }
 
-        public Builder enabledFields(List<JsonNode> enabledFields) {
+        public Builder enabledFields(List<Object> enabledFields) {
             this.enabledFields = Optional.ofNullable(enabledFields);
             return this;
         }
 
         @JsonSetter(value = "disabled_fields", nulls = Nulls.SKIP)
-        public Builder disabledFields(Optional<List<JsonNode>> disabledFields) {
+        public Builder disabledFields(Optional<List<Object>> disabledFields) {
             this.disabledFields = disabledFields;
             return this;
         }
 
-        public Builder disabledFields(List<JsonNode> disabledFields) {
+        public Builder disabledFields(List<Object> disabledFields) {
             this.disabledFields = Optional.ofNullable(disabledFields);
             return this;
         }

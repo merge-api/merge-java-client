@@ -10,7 +10,6 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
-import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.merge.api.core.ObjectMappers;
 import java.time.OffsetDateTime;
@@ -51,11 +50,11 @@ public final class PurchaseOrderRequest {
 
     private final Optional<List<Optional<PurchaseOrderRequestTrackingCategoriesItem>>> trackingCategories;
 
-    private final Optional<List<PurchaseOrderLineItemRequest>> lineItems;
+    private final Optional<List<PurchaseOrderRequestLineItemsItem>> lineItems;
 
-    private final Optional<Map<String, JsonNode>> integrationParams;
+    private final Optional<Map<String, Object>> integrationParams;
 
-    private final Optional<Map<String, JsonNode>> linkedAccountParams;
+    private final Optional<Map<String, Object>> linkedAccountParams;
 
     private final Optional<List<RemoteFieldRequest>> remoteFields;
 
@@ -76,9 +75,9 @@ public final class PurchaseOrderRequest {
             Optional<Boolean> inclusiveOfTax,
             Optional<String> exchangeRate,
             Optional<List<Optional<PurchaseOrderRequestTrackingCategoriesItem>>> trackingCategories,
-            Optional<List<PurchaseOrderLineItemRequest>> lineItems,
-            Optional<Map<String, JsonNode>> integrationParams,
-            Optional<Map<String, JsonNode>> linkedAccountParams,
+            Optional<List<PurchaseOrderRequestLineItemsItem>> lineItems,
+            Optional<Map<String, Object>> integrationParams,
+            Optional<Map<String, Object>> linkedAccountParams,
             Optional<List<RemoteFieldRequest>> remoteFields,
             Map<String, Object> additionalProperties) {
         this.status = status;
@@ -527,17 +526,17 @@ public final class PurchaseOrderRequest {
     }
 
     @JsonProperty("line_items")
-    public Optional<List<PurchaseOrderLineItemRequest>> getLineItems() {
+    public Optional<List<PurchaseOrderRequestLineItemsItem>> getLineItems() {
         return lineItems;
     }
 
     @JsonProperty("integration_params")
-    public Optional<Map<String, JsonNode>> getIntegrationParams() {
+    public Optional<Map<String, Object>> getIntegrationParams() {
         return integrationParams;
     }
 
     @JsonProperty("linked_account_params")
-    public Optional<Map<String, JsonNode>> getLinkedAccountParams() {
+    public Optional<Map<String, Object>> getLinkedAccountParams() {
         return linkedAccountParams;
     }
 
@@ -641,11 +640,11 @@ public final class PurchaseOrderRequest {
         private Optional<List<Optional<PurchaseOrderRequestTrackingCategoriesItem>>> trackingCategories =
                 Optional.empty();
 
-        private Optional<List<PurchaseOrderLineItemRequest>> lineItems = Optional.empty();
+        private Optional<List<PurchaseOrderRequestLineItemsItem>> lineItems = Optional.empty();
 
-        private Optional<Map<String, JsonNode>> integrationParams = Optional.empty();
+        private Optional<Map<String, Object>> integrationParams = Optional.empty();
 
-        private Optional<Map<String, JsonNode>> linkedAccountParams = Optional.empty();
+        private Optional<Map<String, Object>> linkedAccountParams = Optional.empty();
 
         private Optional<List<RemoteFieldRequest>> remoteFields = Optional.empty();
 
@@ -1187,34 +1186,34 @@ public final class PurchaseOrderRequest {
         }
 
         @JsonSetter(value = "line_items", nulls = Nulls.SKIP)
-        public Builder lineItems(Optional<List<PurchaseOrderLineItemRequest>> lineItems) {
+        public Builder lineItems(Optional<List<PurchaseOrderRequestLineItemsItem>> lineItems) {
             this.lineItems = lineItems;
             return this;
         }
 
-        public Builder lineItems(List<PurchaseOrderLineItemRequest> lineItems) {
+        public Builder lineItems(List<PurchaseOrderRequestLineItemsItem> lineItems) {
             this.lineItems = Optional.ofNullable(lineItems);
             return this;
         }
 
         @JsonSetter(value = "integration_params", nulls = Nulls.SKIP)
-        public Builder integrationParams(Optional<Map<String, JsonNode>> integrationParams) {
+        public Builder integrationParams(Optional<Map<String, Object>> integrationParams) {
             this.integrationParams = integrationParams;
             return this;
         }
 
-        public Builder integrationParams(Map<String, JsonNode> integrationParams) {
+        public Builder integrationParams(Map<String, Object> integrationParams) {
             this.integrationParams = Optional.ofNullable(integrationParams);
             return this;
         }
 
         @JsonSetter(value = "linked_account_params", nulls = Nulls.SKIP)
-        public Builder linkedAccountParams(Optional<Map<String, JsonNode>> linkedAccountParams) {
+        public Builder linkedAccountParams(Optional<Map<String, Object>> linkedAccountParams) {
             this.linkedAccountParams = linkedAccountParams;
             return this;
         }
 
-        public Builder linkedAccountParams(Map<String, JsonNode> linkedAccountParams) {
+        public Builder linkedAccountParams(Map<String, Object> linkedAccountParams) {
             this.linkedAccountParams = Optional.ofNullable(linkedAccountParams);
             return this;
         }

@@ -34,7 +34,7 @@ public final class CreditNoteRequestLineItemsItem {
         if (this.type == 0) {
             return visitor.visit((String) this.value);
         } else if (this.type == 1) {
-            return visitor.visit((CreditNoteLineItemRequest) this.value);
+            return visitor.visit((CreditNoteLineItem) this.value);
         }
         throw new IllegalStateException("Failed to visit value. This should never happen.");
     }
@@ -63,14 +63,14 @@ public final class CreditNoteRequestLineItemsItem {
         return new CreditNoteRequestLineItemsItem(value, 0);
     }
 
-    public static CreditNoteRequestLineItemsItem of(CreditNoteLineItemRequest value) {
+    public static CreditNoteRequestLineItemsItem of(CreditNoteLineItem value) {
         return new CreditNoteRequestLineItemsItem(value, 1);
     }
 
     public interface Visitor<T> {
         T visit(String value);
 
-        T visit(CreditNoteLineItemRequest value);
+        T visit(CreditNoteLineItem value);
     }
 
     static final class Deserializer extends StdDeserializer<CreditNoteRequestLineItemsItem> {
@@ -87,7 +87,7 @@ public final class CreditNoteRequestLineItemsItem {
             } catch (RuntimeException e) {
             }
             try {
-                return of(ObjectMappers.JSON_MAPPER.convertValue(value, CreditNoteLineItemRequest.class));
+                return of(ObjectMappers.JSON_MAPPER.convertValue(value, CreditNoteLineItem.class));
             } catch (RuntimeException e) {
             }
             throw new JsonParseException(p, "Failed to deserialize");

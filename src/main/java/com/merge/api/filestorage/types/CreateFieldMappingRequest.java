@@ -10,7 +10,6 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
-import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.merge.api.core.ObjectMappers;
 import java.util.ArrayList;
@@ -26,11 +25,13 @@ import org.jetbrains.annotations.NotNull;
 public final class CreateFieldMappingRequest {
     private final Optional<Boolean> excludeRemoteFieldMetadata;
 
+    private final Optional<Integer> remoteDataIterationCount;
+
     private final String targetFieldName;
 
     private final String targetFieldDescription;
 
-    private final List<JsonNode> remoteFieldTraversalPath;
+    private final List<Object> remoteFieldTraversalPath;
 
     private final String remoteMethod;
 
@@ -38,24 +39,30 @@ public final class CreateFieldMappingRequest {
 
     private final String commonModelName;
 
+    private final Optional<String> jmesPath;
+
     private final Map<String, Object> additionalProperties;
 
     private CreateFieldMappingRequest(
             Optional<Boolean> excludeRemoteFieldMetadata,
+            Optional<Integer> remoteDataIterationCount,
             String targetFieldName,
             String targetFieldDescription,
-            List<JsonNode> remoteFieldTraversalPath,
+            List<Object> remoteFieldTraversalPath,
             String remoteMethod,
             String remoteUrlPath,
             String commonModelName,
+            Optional<String> jmesPath,
             Map<String, Object> additionalProperties) {
         this.excludeRemoteFieldMetadata = excludeRemoteFieldMetadata;
+        this.remoteDataIterationCount = remoteDataIterationCount;
         this.targetFieldName = targetFieldName;
         this.targetFieldDescription = targetFieldDescription;
         this.remoteFieldTraversalPath = remoteFieldTraversalPath;
         this.remoteMethod = remoteMethod;
         this.remoteUrlPath = remoteUrlPath;
         this.commonModelName = commonModelName;
+        this.jmesPath = jmesPath;
         this.additionalProperties = additionalProperties;
     }
 
@@ -65,6 +72,14 @@ public final class CreateFieldMappingRequest {
     @JsonProperty("exclude_remote_field_metadata")
     public Optional<Boolean> getExcludeRemoteFieldMetadata() {
         return excludeRemoteFieldMetadata;
+    }
+
+    /**
+     * @return Number of common model instances to iterate through when fetching remote data for field mappings. Defaults to 250 if not provided.
+     */
+    @JsonProperty("remote_data_iteration_count")
+    public Optional<Integer> getRemoteDataIterationCount() {
+        return remoteDataIterationCount;
     }
 
     /**
@@ -87,7 +102,7 @@ public final class CreateFieldMappingRequest {
      * @return The field traversal path of the remote field listed when you hit the GET /remote-fields endpoint.
      */
     @JsonProperty("remote_field_traversal_path")
-    public List<JsonNode> getRemoteFieldTraversalPath() {
+    public List<Object> getRemoteFieldTraversalPath() {
         return remoteFieldTraversalPath;
     }
 
@@ -115,6 +130,14 @@ public final class CreateFieldMappingRequest {
         return commonModelName;
     }
 
+    /**
+     * @return JMES path to specify json query expression to be used on field mapping.
+     */
+    @JsonProperty("jmes_path")
+    public Optional<String> getJmesPath() {
+        return jmesPath;
+    }
+
     @java.lang.Override
     public boolean equals(Object other) {
         if (this == other) return true;
@@ -128,24 +151,28 @@ public final class CreateFieldMappingRequest {
 
     private boolean equalTo(CreateFieldMappingRequest other) {
         return excludeRemoteFieldMetadata.equals(other.excludeRemoteFieldMetadata)
+                && remoteDataIterationCount.equals(other.remoteDataIterationCount)
                 && targetFieldName.equals(other.targetFieldName)
                 && targetFieldDescription.equals(other.targetFieldDescription)
                 && remoteFieldTraversalPath.equals(other.remoteFieldTraversalPath)
                 && remoteMethod.equals(other.remoteMethod)
                 && remoteUrlPath.equals(other.remoteUrlPath)
-                && commonModelName.equals(other.commonModelName);
+                && commonModelName.equals(other.commonModelName)
+                && jmesPath.equals(other.jmesPath);
     }
 
     @java.lang.Override
     public int hashCode() {
         return Objects.hash(
                 this.excludeRemoteFieldMetadata,
+                this.remoteDataIterationCount,
                 this.targetFieldName,
                 this.targetFieldDescription,
                 this.remoteFieldTraversalPath,
                 this.remoteMethod,
                 this.remoteUrlPath,
-                this.commonModelName);
+                this.commonModelName,
+                this.jmesPath);
     }
 
     @java.lang.Override
@@ -205,13 +232,27 @@ public final class CreateFieldMappingRequest {
         _FinalStage excludeRemoteFieldMetadata(Boolean excludeRemoteFieldMetadata);
 
         /**
+         * <p>Number of common model instances to iterate through when fetching remote data for field mappings. Defaults to 250 if not provided.</p>
+         */
+        _FinalStage remoteDataIterationCount(Optional<Integer> remoteDataIterationCount);
+
+        _FinalStage remoteDataIterationCount(Integer remoteDataIterationCount);
+
+        /**
          * <p>The field traversal path of the remote field listed when you hit the GET /remote-fields endpoint.</p>
          */
-        _FinalStage remoteFieldTraversalPath(List<JsonNode> remoteFieldTraversalPath);
+        _FinalStage remoteFieldTraversalPath(List<Object> remoteFieldTraversalPath);
 
-        _FinalStage addRemoteFieldTraversalPath(JsonNode remoteFieldTraversalPath);
+        _FinalStage addRemoteFieldTraversalPath(Object remoteFieldTraversalPath);
 
-        _FinalStage addAllRemoteFieldTraversalPath(List<JsonNode> remoteFieldTraversalPath);
+        _FinalStage addAllRemoteFieldTraversalPath(List<Object> remoteFieldTraversalPath);
+
+        /**
+         * <p>JMES path to specify json query expression to be used on field mapping.</p>
+         */
+        _FinalStage jmesPath(Optional<String> jmesPath);
+
+        _FinalStage jmesPath(String jmesPath);
     }
 
     @JsonIgnoreProperties(ignoreUnknown = true)
@@ -232,7 +273,11 @@ public final class CreateFieldMappingRequest {
 
         private String commonModelName;
 
-        private List<JsonNode> remoteFieldTraversalPath = new ArrayList<>();
+        private Optional<String> jmesPath = Optional.empty();
+
+        private List<Object> remoteFieldTraversalPath = new ArrayList<>();
+
+        private Optional<Integer> remoteDataIterationCount = Optional.empty();
 
         private Optional<Boolean> excludeRemoteFieldMetadata = Optional.empty();
 
@@ -244,12 +289,14 @@ public final class CreateFieldMappingRequest {
         @java.lang.Override
         public Builder from(CreateFieldMappingRequest other) {
             excludeRemoteFieldMetadata(other.getExcludeRemoteFieldMetadata());
+            remoteDataIterationCount(other.getRemoteDataIterationCount());
             targetFieldName(other.getTargetFieldName());
             targetFieldDescription(other.getTargetFieldDescription());
             remoteFieldTraversalPath(other.getRemoteFieldTraversalPath());
             remoteMethod(other.getRemoteMethod());
             remoteUrlPath(other.getRemoteUrlPath());
             commonModelName(other.getCommonModelName());
+            jmesPath(other.getJmesPath());
             return this;
         }
 
@@ -314,11 +361,31 @@ public final class CreateFieldMappingRequest {
         }
 
         /**
+         * <p>JMES path to specify json query expression to be used on field mapping.</p>
+         * @return Reference to {@code this} so that method calls can be chained together.
+         */
+        @java.lang.Override
+        public _FinalStage jmesPath(String jmesPath) {
+            this.jmesPath = Optional.ofNullable(jmesPath);
+            return this;
+        }
+
+        /**
+         * <p>JMES path to specify json query expression to be used on field mapping.</p>
+         */
+        @java.lang.Override
+        @JsonSetter(value = "jmes_path", nulls = Nulls.SKIP)
+        public _FinalStage jmesPath(Optional<String> jmesPath) {
+            this.jmesPath = jmesPath;
+            return this;
+        }
+
+        /**
          * <p>The field traversal path of the remote field listed when you hit the GET /remote-fields endpoint.</p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @java.lang.Override
-        public _FinalStage addAllRemoteFieldTraversalPath(List<JsonNode> remoteFieldTraversalPath) {
+        public _FinalStage addAllRemoteFieldTraversalPath(List<Object> remoteFieldTraversalPath) {
             if (remoteFieldTraversalPath != null) {
                 this.remoteFieldTraversalPath.addAll(remoteFieldTraversalPath);
             }
@@ -330,7 +397,7 @@ public final class CreateFieldMappingRequest {
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @java.lang.Override
-        public _FinalStage addRemoteFieldTraversalPath(JsonNode remoteFieldTraversalPath) {
+        public _FinalStage addRemoteFieldTraversalPath(Object remoteFieldTraversalPath) {
             this.remoteFieldTraversalPath.add(remoteFieldTraversalPath);
             return this;
         }
@@ -340,11 +407,31 @@ public final class CreateFieldMappingRequest {
          */
         @java.lang.Override
         @JsonSetter(value = "remote_field_traversal_path", nulls = Nulls.SKIP)
-        public _FinalStage remoteFieldTraversalPath(List<JsonNode> remoteFieldTraversalPath) {
+        public _FinalStage remoteFieldTraversalPath(List<Object> remoteFieldTraversalPath) {
             this.remoteFieldTraversalPath.clear();
             if (remoteFieldTraversalPath != null) {
                 this.remoteFieldTraversalPath.addAll(remoteFieldTraversalPath);
             }
+            return this;
+        }
+
+        /**
+         * <p>Number of common model instances to iterate through when fetching remote data for field mappings. Defaults to 250 if not provided.</p>
+         * @return Reference to {@code this} so that method calls can be chained together.
+         */
+        @java.lang.Override
+        public _FinalStage remoteDataIterationCount(Integer remoteDataIterationCount) {
+            this.remoteDataIterationCount = Optional.ofNullable(remoteDataIterationCount);
+            return this;
+        }
+
+        /**
+         * <p>Number of common model instances to iterate through when fetching remote data for field mappings. Defaults to 250 if not provided.</p>
+         */
+        @java.lang.Override
+        @JsonSetter(value = "remote_data_iteration_count", nulls = Nulls.SKIP)
+        public _FinalStage remoteDataIterationCount(Optional<Integer> remoteDataIterationCount) {
+            this.remoteDataIterationCount = remoteDataIterationCount;
             return this;
         }
 
@@ -372,12 +459,14 @@ public final class CreateFieldMappingRequest {
         public CreateFieldMappingRequest build() {
             return new CreateFieldMappingRequest(
                     excludeRemoteFieldMetadata,
+                    remoteDataIterationCount,
                     targetFieldName,
                     targetFieldDescription,
                     remoteFieldTraversalPath,
                     remoteMethod,
                     remoteUrlPath,
                     commonModelName,
+                    jmesPath,
                     additionalProperties);
         }
     }

@@ -10,7 +10,6 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
-import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.merge.api.core.ObjectMappers;
 import java.time.OffsetDateTime;
@@ -23,6 +22,8 @@ import java.util.Optional;
 @JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = CreditNote.Builder.class)
 public final class CreditNote {
+    private final Optional<String> creditNoteUrl;
+
     private final Optional<String> id;
 
     private final Optional<String> remoteId;
@@ -49,7 +50,7 @@ public final class CreditNote {
 
     private final Optional<Boolean> inclusiveOfTax;
 
-    private final Optional<List<CreditNoteLineItem>> lineItems;
+    private final Optional<List<CreditNoteLineItemsItem>> lineItems;
 
     private final Optional<List<Optional<CreditNoteTrackingCategoriesItem>>> trackingCategories;
 
@@ -69,13 +70,14 @@ public final class CreditNote {
 
     private final Optional<Boolean> remoteWasDeleted;
 
-    private final Optional<Map<String, JsonNode>> fieldMappings;
+    private final Optional<Map<String, Object>> fieldMappings;
 
     private final Optional<List<RemoteData>> remoteData;
 
     private final Map<String, Object> additionalProperties;
 
     private CreditNote(
+            Optional<String> creditNoteUrl,
             Optional<String> id,
             Optional<String> remoteId,
             Optional<OffsetDateTime> createdAt,
@@ -89,7 +91,7 @@ public final class CreditNote {
             Optional<Double> totalAmount,
             Optional<Double> remainingCredit,
             Optional<Boolean> inclusiveOfTax,
-            Optional<List<CreditNoteLineItem>> lineItems,
+            Optional<List<CreditNoteLineItemsItem>> lineItems,
             Optional<List<Optional<CreditNoteTrackingCategoriesItem>>> trackingCategories,
             Optional<CreditNoteCurrency> currency,
             Optional<OffsetDateTime> remoteCreatedAt,
@@ -99,9 +101,10 @@ public final class CreditNote {
             Optional<CreditNoteAccountingPeriod> accountingPeriod,
             Optional<List<CreditNoteApplyLineForCreditNote>> appliedToLines,
             Optional<Boolean> remoteWasDeleted,
-            Optional<Map<String, JsonNode>> fieldMappings,
+            Optional<Map<String, Object>> fieldMappings,
             Optional<List<RemoteData>> remoteData,
             Map<String, Object> additionalProperties) {
+        this.creditNoteUrl = creditNoteUrl;
         this.id = id;
         this.remoteId = remoteId;
         this.createdAt = createdAt;
@@ -128,6 +131,14 @@ public final class CreditNote {
         this.fieldMappings = fieldMappings;
         this.remoteData = remoteData;
         this.additionalProperties = additionalProperties;
+    }
+
+    /**
+     * @return The 3rd party URL of the credit note.
+     */
+    @JsonProperty("credit_note_url")
+    public Optional<String> getCreditNoteUrl() {
+        return creditNoteUrl;
     }
 
     @JsonProperty("id")
@@ -237,7 +248,7 @@ public final class CreditNote {
     }
 
     @JsonProperty("line_items")
-    public Optional<List<CreditNoteLineItem>> getLineItems() {
+    public Optional<List<CreditNoteLineItemsItem>> getLineItems() {
         return lineItems;
     }
 
@@ -619,7 +630,7 @@ public final class CreditNote {
     }
 
     @JsonProperty("field_mappings")
-    public Optional<Map<String, JsonNode>> getFieldMappings() {
+    public Optional<Map<String, Object>> getFieldMappings() {
         return fieldMappings;
     }
 
@@ -640,7 +651,8 @@ public final class CreditNote {
     }
 
     private boolean equalTo(CreditNote other) {
-        return id.equals(other.id)
+        return creditNoteUrl.equals(other.creditNoteUrl)
+                && id.equals(other.id)
                 && remoteId.equals(other.remoteId)
                 && createdAt.equals(other.createdAt)
                 && modifiedAt.equals(other.modifiedAt)
@@ -670,6 +682,7 @@ public final class CreditNote {
     @java.lang.Override
     public int hashCode() {
         return Objects.hash(
+                this.creditNoteUrl,
                 this.id,
                 this.remoteId,
                 this.createdAt,
@@ -708,6 +721,8 @@ public final class CreditNote {
 
     @JsonIgnoreProperties(ignoreUnknown = true)
     public static final class Builder {
+        private Optional<String> creditNoteUrl = Optional.empty();
+
         private Optional<String> id = Optional.empty();
 
         private Optional<String> remoteId = Optional.empty();
@@ -734,7 +749,7 @@ public final class CreditNote {
 
         private Optional<Boolean> inclusiveOfTax = Optional.empty();
 
-        private Optional<List<CreditNoteLineItem>> lineItems = Optional.empty();
+        private Optional<List<CreditNoteLineItemsItem>> lineItems = Optional.empty();
 
         private Optional<List<Optional<CreditNoteTrackingCategoriesItem>>> trackingCategories = Optional.empty();
 
@@ -754,7 +769,7 @@ public final class CreditNote {
 
         private Optional<Boolean> remoteWasDeleted = Optional.empty();
 
-        private Optional<Map<String, JsonNode>> fieldMappings = Optional.empty();
+        private Optional<Map<String, Object>> fieldMappings = Optional.empty();
 
         private Optional<List<RemoteData>> remoteData = Optional.empty();
 
@@ -764,6 +779,7 @@ public final class CreditNote {
         private Builder() {}
 
         public Builder from(CreditNote other) {
+            creditNoteUrl(other.getCreditNoteUrl());
             id(other.getId());
             remoteId(other.getRemoteId());
             createdAt(other.getCreatedAt());
@@ -789,6 +805,20 @@ public final class CreditNote {
             remoteWasDeleted(other.getRemoteWasDeleted());
             fieldMappings(other.getFieldMappings());
             remoteData(other.getRemoteData());
+            return this;
+        }
+
+        /**
+         * <p>The 3rd party URL of the credit note.</p>
+         */
+        @JsonSetter(value = "credit_note_url", nulls = Nulls.SKIP)
+        public Builder creditNoteUrl(Optional<String> creditNoteUrl) {
+            this.creditNoteUrl = creditNoteUrl;
+            return this;
+        }
+
+        public Builder creditNoteUrl(String creditNoteUrl) {
+            this.creditNoteUrl = Optional.ofNullable(creditNoteUrl);
             return this;
         }
 
@@ -977,12 +1007,12 @@ public final class CreditNote {
         }
 
         @JsonSetter(value = "line_items", nulls = Nulls.SKIP)
-        public Builder lineItems(Optional<List<CreditNoteLineItem>> lineItems) {
+        public Builder lineItems(Optional<List<CreditNoteLineItemsItem>> lineItems) {
             this.lineItems = lineItems;
             return this;
         }
 
-        public Builder lineItems(List<CreditNoteLineItem> lineItems) {
+        public Builder lineItems(List<CreditNoteLineItemsItem> lineItems) {
             this.lineItems = Optional.ofNullable(lineItems);
             return this;
         }
@@ -1420,12 +1450,12 @@ public final class CreditNote {
         }
 
         @JsonSetter(value = "field_mappings", nulls = Nulls.SKIP)
-        public Builder fieldMappings(Optional<Map<String, JsonNode>> fieldMappings) {
+        public Builder fieldMappings(Optional<Map<String, Object>> fieldMappings) {
             this.fieldMappings = fieldMappings;
             return this;
         }
 
-        public Builder fieldMappings(Map<String, JsonNode> fieldMappings) {
+        public Builder fieldMappings(Map<String, Object> fieldMappings) {
             this.fieldMappings = Optional.ofNullable(fieldMappings);
             return this;
         }
@@ -1443,6 +1473,7 @@ public final class CreditNote {
 
         public CreditNote build() {
             return new CreditNote(
+                    creditNoteUrl,
                     id,
                     remoteId,
                     createdAt,

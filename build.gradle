@@ -9,19 +9,18 @@ plugins {
 repositories {
     mavenCentral()
     maven {
-        url 'https://ossrh-staging-api.central.sonatype.com/service/local/staging/deploy/maven2/'
+        url 'https://oss.sonatype.org/service/local/staging/deploy/maven2/'
     }
 }
 
 dependencies {
-    api 'com.squareup.okhttp3:okhttp:4.12.0'
-    api 'com.fasterxml.jackson.core:jackson-databind:2.17.2'
-    api 'com.fasterxml.jackson.datatype:jackson-datatype-jdk8:2.17.2'
-    api 'com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.17.2'
+    api 'com.squareup.okhttp3:okhttp:5.2.1'
+    api 'com.fasterxml.jackson.core:jackson-databind:2.18.2'
+    api 'com.fasterxml.jackson.datatype:jackson-datatype-jdk8:2.18.2'
+    api 'com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.18.2'
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.2'
     testImplementation 'org.junit.jupiter:junit-jupiter-engine:5.8.2'
     testImplementation 'org.junit.jupiter:junit-jupiter-params:5.8.2'
-    testImplementation 'com.squareup.okhttp3:mockwebserver:4.12.0'
 }
 
 
@@ -48,7 +47,7 @@ java {
 
 group = 'dev.merge'
 
-version = '5.0.1'
+version = '6.0.0'
 
 jar {
     dependsOn(":generatePomFileForMavenPublication")
@@ -79,7 +78,7 @@ publishing {
         maven(MavenPublication) {
             groupId = 'dev.merge'
             artifactId = 'merge-java-client'
-            version = '5.0.1'
+            version = '6.0.0'
             from components.java
             pom {
                 name = 'merge'
@@ -87,7 +86,7 @@ publishing {
                 url = 'https://buildwithfern.com'
                 licenses {
                     license {
-                        name = 'Custom License (LICENSE)'
+                        name = 'Last updated: April 21, 2022'
                     }
                 }
                 developers {

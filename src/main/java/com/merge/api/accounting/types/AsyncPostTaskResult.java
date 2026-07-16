@@ -10,7 +10,6 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
-import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.merge.api.core.ObjectMappers;
 import java.util.HashMap;
@@ -23,13 +22,13 @@ import java.util.Optional;
 public final class AsyncPostTaskResult {
     private final Optional<Integer> statusCode;
 
-    private final Optional<Map<String, JsonNode>> response;
+    private final Optional<Map<String, Object>> response;
 
     private final Map<String, Object> additionalProperties;
 
     private AsyncPostTaskResult(
             Optional<Integer> statusCode,
-            Optional<Map<String, JsonNode>> response,
+            Optional<Map<String, Object>> response,
             Map<String, Object> additionalProperties) {
         this.statusCode = statusCode;
         this.response = response;
@@ -42,7 +41,7 @@ public final class AsyncPostTaskResult {
     }
 
     @JsonProperty("response")
-    public Optional<Map<String, JsonNode>> getResponse() {
+    public Optional<Map<String, Object>> getResponse() {
         return response;
     }
 
@@ -79,7 +78,7 @@ public final class AsyncPostTaskResult {
     public static final class Builder {
         private Optional<Integer> statusCode = Optional.empty();
 
-        private Optional<Map<String, JsonNode>> response = Optional.empty();
+        private Optional<Map<String, Object>> response = Optional.empty();
 
         @JsonAnySetter
         private Map<String, Object> additionalProperties = new HashMap<>();
@@ -104,12 +103,12 @@ public final class AsyncPostTaskResult {
         }
 
         @JsonSetter(value = "response", nulls = Nulls.SKIP)
-        public Builder response(Optional<Map<String, JsonNode>> response) {
+        public Builder response(Optional<Map<String, Object>> response) {
             this.response = response;
             return this;
         }
 
-        public Builder response(Map<String, JsonNode> response) {
+        public Builder response(Map<String, Object> response) {
             this.response = Optional.ofNullable(response);
             return this;
         }

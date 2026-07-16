@@ -53,6 +53,10 @@ public final class FilesListRequest {
 
     private final Optional<Integer> pageSize;
 
+    private final Optional<OffsetDateTime> remoteCreatedAfter;
+
+    private final Optional<OffsetDateTime> remoteCreatedBefore;
+
     private final Optional<String> remoteId;
 
     private final Map<String, Object> additionalProperties;
@@ -73,6 +77,8 @@ public final class FilesListRequest {
             Optional<String> name,
             Optional<FilesListRequestOrderBy> orderBy,
             Optional<Integer> pageSize,
+            Optional<OffsetDateTime> remoteCreatedAfter,
+            Optional<OffsetDateTime> remoteCreatedBefore,
             Optional<String> remoteId,
             Map<String, Object> additionalProperties) {
         this.expand = expand;
@@ -90,6 +96,8 @@ public final class FilesListRequest {
         this.name = name;
         this.orderBy = orderBy;
         this.pageSize = pageSize;
+        this.remoteCreatedAfter = remoteCreatedAfter;
+        this.remoteCreatedBefore = remoteCreatedBefore;
         this.remoteId = remoteId;
         this.additionalProperties = additionalProperties;
     }
@@ -207,11 +215,27 @@ public final class FilesListRequest {
     }
 
     /**
-     * @return Number of results to return per page.
+     * @return Number of results to return per page. The maximum limit is 100.
      */
     @JsonProperty("page_size")
     public Optional<Integer> getPageSize() {
         return pageSize;
+    }
+
+    /**
+     * @return If provided, will only return files created in the third party platform after this datetime.
+     */
+    @JsonProperty("remote_created_after")
+    public Optional<OffsetDateTime> getRemoteCreatedAfter() {
+        return remoteCreatedAfter;
+    }
+
+    /**
+     * @return If provided, will only return files created in the third party platform before this datetime.
+     */
+    @JsonProperty("remote_created_before")
+    public Optional<OffsetDateTime> getRemoteCreatedBefore() {
+        return remoteCreatedBefore;
     }
 
     /**
@@ -249,6 +273,8 @@ public final class FilesListRequest {
                 && name.equals(other.name)
                 && orderBy.equals(other.orderBy)
                 && pageSize.equals(other.pageSize)
+                && remoteCreatedAfter.equals(other.remoteCreatedAfter)
+                && remoteCreatedBefore.equals(other.remoteCreatedBefore)
                 && remoteId.equals(other.remoteId);
     }
 
@@ -270,6 +296,8 @@ public final class FilesListRequest {
                 this.name,
                 this.orderBy,
                 this.pageSize,
+                this.remoteCreatedAfter,
+                this.remoteCreatedBefore,
                 this.remoteId);
     }
 
@@ -314,6 +342,10 @@ public final class FilesListRequest {
 
         private Optional<Integer> pageSize = Optional.empty();
 
+        private Optional<OffsetDateTime> remoteCreatedAfter = Optional.empty();
+
+        private Optional<OffsetDateTime> remoteCreatedBefore = Optional.empty();
+
         private Optional<String> remoteId = Optional.empty();
 
         @JsonAnySetter
@@ -337,6 +369,8 @@ public final class FilesListRequest {
             name(other.getName());
             orderBy(other.getOrderBy());
             pageSize(other.getPageSize());
+            remoteCreatedAfter(other.getRemoteCreatedAfter());
+            remoteCreatedBefore(other.getRemoteCreatedBefore());
             remoteId(other.getRemoteId());
             return this;
         }
@@ -543,7 +577,7 @@ public final class FilesListRequest {
         }
 
         /**
-         * <p>Number of results to return per page.</p>
+         * <p>Number of results to return per page. The maximum limit is 100.</p>
          */
         @JsonSetter(value = "page_size", nulls = Nulls.SKIP)
         public Builder pageSize(Optional<Integer> pageSize) {
@@ -553,6 +587,34 @@ public final class FilesListRequest {
 
         public Builder pageSize(Integer pageSize) {
             this.pageSize = Optional.ofNullable(pageSize);
+            return this;
+        }
+
+        /**
+         * <p>If provided, will only return files created in the third party platform after this datetime.</p>
+         */
+        @JsonSetter(value = "remote_created_after", nulls = Nulls.SKIP)
+        public Builder remoteCreatedAfter(Optional<OffsetDateTime> remoteCreatedAfter) {
+            this.remoteCreatedAfter = remoteCreatedAfter;
+            return this;
+        }
+
+        public Builder remoteCreatedAfter(OffsetDateTime remoteCreatedAfter) {
+            this.remoteCreatedAfter = Optional.ofNullable(remoteCreatedAfter);
+            return this;
+        }
+
+        /**
+         * <p>If provided, will only return files created in the third party platform before this datetime.</p>
+         */
+        @JsonSetter(value = "remote_created_before", nulls = Nulls.SKIP)
+        public Builder remoteCreatedBefore(Optional<OffsetDateTime> remoteCreatedBefore) {
+            this.remoteCreatedBefore = remoteCreatedBefore;
+            return this;
+        }
+
+        public Builder remoteCreatedBefore(OffsetDateTime remoteCreatedBefore) {
+            this.remoteCreatedBefore = Optional.ofNullable(remoteCreatedBefore);
             return this;
         }
 
@@ -587,6 +649,8 @@ public final class FilesListRequest {
                     name,
                     orderBy,
                     pageSize,
+                    remoteCreatedAfter,
+                    remoteCreatedBefore,
                     remoteId,
                     additionalProperties);
         }

@@ -10,11 +10,11 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
-import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.merge.api.core.ObjectMappers;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
@@ -22,9 +22,7 @@ import java.util.Optional;
 @JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = MetaResponse.Builder.class)
 public final class MetaResponse {
-    private final Map<String, JsonNode> requestSchema;
-
-    private final Optional<Map<String, JsonNode>> remoteFieldClasses;
+    private final Map<String, Object> requestSchema;
 
     private final Optional<LinkedAccountStatus> status;
 
@@ -32,31 +30,28 @@ public final class MetaResponse {
 
     private final boolean hasRequiredLinkedAccountParams;
 
+    private final Optional<List<String>> remoteFields;
+
     private final Map<String, Object> additionalProperties;
 
     private MetaResponse(
-            Map<String, JsonNode> requestSchema,
-            Optional<Map<String, JsonNode>> remoteFieldClasses,
+            Map<String, Object> requestSchema,
             Optional<LinkedAccountStatus> status,
             boolean hasConditionalParams,
             boolean hasRequiredLinkedAccountParams,
+            Optional<List<String>> remoteFields,
             Map<String, Object> additionalProperties) {
         this.requestSchema = requestSchema;
-        this.remoteFieldClasses = remoteFieldClasses;
         this.status = status;
         this.hasConditionalParams = hasConditionalParams;
         this.hasRequiredLinkedAccountParams = hasRequiredLinkedAccountParams;
+        this.remoteFields = remoteFields;
         this.additionalProperties = additionalProperties;
     }
 
     @JsonProperty("request_schema")
-    public Map<String, JsonNode> getRequestSchema() {
+    public Map<String, Object> getRequestSchema() {
         return requestSchema;
-    }
-
-    @JsonProperty("remote_field_classes")
-    public Optional<Map<String, JsonNode>> getRemoteFieldClasses() {
-        return remoteFieldClasses;
     }
 
     @JsonProperty("status")
@@ -74,6 +69,14 @@ public final class MetaResponse {
         return hasRequiredLinkedAccountParams;
     }
 
+    /**
+     * @return Remote field values to populate
+     */
+    @JsonProperty("remote_fields")
+    public Optional<List<String>> getRemoteFields() {
+        return remoteFields;
+    }
+
     @java.lang.Override
     public boolean equals(Object other) {
         if (this == other) return true;
@@ -87,20 +90,20 @@ public final class MetaResponse {
 
     private boolean equalTo(MetaResponse other) {
         return requestSchema.equals(other.requestSchema)
-                && remoteFieldClasses.equals(other.remoteFieldClasses)
                 && status.equals(other.status)
                 && hasConditionalParams == other.hasConditionalParams
-                && hasRequiredLinkedAccountParams == other.hasRequiredLinkedAccountParams;
+                && hasRequiredLinkedAccountParams == other.hasRequiredLinkedAccountParams
+                && remoteFields.equals(other.remoteFields);
     }
 
     @java.lang.Override
     public int hashCode() {
         return Objects.hash(
                 this.requestSchema,
-                this.remoteFieldClasses,
                 this.status,
                 this.hasConditionalParams,
-                this.hasRequiredLinkedAccountParams);
+                this.hasRequiredLinkedAccountParams,
+                this.remoteFields);
     }
 
     @java.lang.Override
@@ -125,19 +128,22 @@ public final class MetaResponse {
     public interface _FinalStage {
         MetaResponse build();
 
-        _FinalStage requestSchema(Map<String, JsonNode> requestSchema);
+        _FinalStage requestSchema(Map<String, Object> requestSchema);
 
-        _FinalStage putAllRequestSchema(Map<String, JsonNode> requestSchema);
+        _FinalStage putAllRequestSchema(Map<String, Object> requestSchema);
 
-        _FinalStage requestSchema(String key, JsonNode value);
-
-        _FinalStage remoteFieldClasses(Optional<Map<String, JsonNode>> remoteFieldClasses);
-
-        _FinalStage remoteFieldClasses(Map<String, JsonNode> remoteFieldClasses);
+        _FinalStage requestSchema(String key, Object value);
 
         _FinalStage status(Optional<LinkedAccountStatus> status);
 
         _FinalStage status(LinkedAccountStatus status);
+
+        /**
+         * <p>Remote field values to populate</p>
+         */
+        _FinalStage remoteFields(Optional<List<String>> remoteFields);
+
+        _FinalStage remoteFields(List<String> remoteFields);
     }
 
     @JsonIgnoreProperties(ignoreUnknown = true)
@@ -147,11 +153,11 @@ public final class MetaResponse {
 
         private boolean hasRequiredLinkedAccountParams;
 
+        private Optional<List<String>> remoteFields = Optional.empty();
+
         private Optional<LinkedAccountStatus> status = Optional.empty();
 
-        private Optional<Map<String, JsonNode>> remoteFieldClasses = Optional.empty();
-
-        private Map<String, JsonNode> requestSchema = new LinkedHashMap<>();
+        private Map<String, Object> requestSchema = new LinkedHashMap<>();
 
         @JsonAnySetter
         private Map<String, Object> additionalProperties = new HashMap<>();
@@ -161,10 +167,10 @@ public final class MetaResponse {
         @java.lang.Override
         public Builder from(MetaResponse other) {
             requestSchema(other.getRequestSchema());
-            remoteFieldClasses(other.getRemoteFieldClasses());
             status(other.getStatus());
             hasConditionalParams(other.getHasConditionalParams());
             hasRequiredLinkedAccountParams(other.getHasRequiredLinkedAccountParams());
+            remoteFields(other.getRemoteFields());
             return this;
         }
 
@@ -182,6 +188,26 @@ public final class MetaResponse {
             return this;
         }
 
+        /**
+         * <p>Remote field values to populate</p>
+         * @return Reference to {@code this} so that method calls can be chained together.
+         */
+        @java.lang.Override
+        public _FinalStage remoteFields(List<String> remoteFields) {
+            this.remoteFields = Optional.ofNullable(remoteFields);
+            return this;
+        }
+
+        /**
+         * <p>Remote field values to populate</p>
+         */
+        @java.lang.Override
+        @JsonSetter(value = "remote_fields", nulls = Nulls.SKIP)
+        public _FinalStage remoteFields(Optional<List<String>> remoteFields) {
+            this.remoteFields = remoteFields;
+            return this;
+        }
+
         @java.lang.Override
         public _FinalStage status(LinkedAccountStatus status) {
             this.status = Optional.ofNullable(status);
@@ -196,26 +222,13 @@ public final class MetaResponse {
         }
 
         @java.lang.Override
-        public _FinalStage remoteFieldClasses(Map<String, JsonNode> remoteFieldClasses) {
-            this.remoteFieldClasses = Optional.ofNullable(remoteFieldClasses);
-            return this;
-        }
-
-        @java.lang.Override
-        @JsonSetter(value = "remote_field_classes", nulls = Nulls.SKIP)
-        public _FinalStage remoteFieldClasses(Optional<Map<String, JsonNode>> remoteFieldClasses) {
-            this.remoteFieldClasses = remoteFieldClasses;
-            return this;
-        }
-
-        @java.lang.Override
-        public _FinalStage requestSchema(String key, JsonNode value) {
+        public _FinalStage requestSchema(String key, Object value) {
             this.requestSchema.put(key, value);
             return this;
         }
 
         @java.lang.Override
-        public _FinalStage putAllRequestSchema(Map<String, JsonNode> requestSchema) {
+        public _FinalStage putAllRequestSchema(Map<String, Object> requestSchema) {
             if (requestSchema != null) {
                 this.requestSchema.putAll(requestSchema);
             }
@@ -224,7 +237,7 @@ public final class MetaResponse {
 
         @java.lang.Override
         @JsonSetter(value = "request_schema", nulls = Nulls.SKIP)
-        public _FinalStage requestSchema(Map<String, JsonNode> requestSchema) {
+        public _FinalStage requestSchema(Map<String, Object> requestSchema) {
             this.requestSchema.clear();
             if (requestSchema != null) {
                 this.requestSchema.putAll(requestSchema);
@@ -236,10 +249,10 @@ public final class MetaResponse {
         public MetaResponse build() {
             return new MetaResponse(
                     requestSchema,
-                    remoteFieldClasses,
                     status,
                     hasConditionalParams,
                     hasRequiredLinkedAccountParams,
+                    remoteFields,
                     additionalProperties);
         }
     }

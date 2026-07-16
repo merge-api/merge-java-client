@@ -23,7 +23,7 @@ import java.util.Optional;
 @JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = CollectionsListRequest.Builder.class)
 public final class CollectionsListRequest {
-    private final Optional<List<String>> expand;
+    private final Optional<List<CollectionsListRequestExpandItem>> expand;
 
     private final Optional<CollectionsListRequestCollectionType> collectionType;
 
@@ -58,7 +58,7 @@ public final class CollectionsListRequest {
     private final Map<String, Object> additionalProperties;
 
     private CollectionsListRequest(
-            Optional<List<String>> expand,
+            Optional<List<CollectionsListRequestExpandItem>> expand,
             Optional<CollectionsListRequestCollectionType> collectionType,
             Optional<OffsetDateTime> createdAfter,
             Optional<OffsetDateTime> createdBefore,
@@ -98,7 +98,7 @@ public final class CollectionsListRequest {
      * @return Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces.
      */
     @JsonProperty("expand")
-    public Optional<List<String>> getExpand() {
+    public Optional<List<CollectionsListRequestExpandItem>> getExpand() {
         return expand;
     }
 
@@ -183,7 +183,7 @@ public final class CollectionsListRequest {
     }
 
     /**
-     * @return Number of results to return per page.
+     * @return Number of results to return per page. The maximum limit is 100.
      */
     @JsonProperty("page_size")
     public Optional<Integer> getPageSize() {
@@ -284,7 +284,7 @@ public final class CollectionsListRequest {
 
     @JsonIgnoreProperties(ignoreUnknown = true)
     public static final class Builder {
-        private Optional<List<String>> expand = Optional.empty();
+        private Optional<List<CollectionsListRequestExpandItem>> expand = Optional.empty();
 
         private Optional<CollectionsListRequestCollectionType> collectionType = Optional.empty();
 
@@ -345,17 +345,17 @@ public final class CollectionsListRequest {
          * <p>Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces.</p>
          */
         @JsonSetter(value = "expand", nulls = Nulls.SKIP)
-        public Builder expand(Optional<List<String>> expand) {
+        public Builder expand(Optional<List<CollectionsListRequestExpandItem>> expand) {
             this.expand = expand;
             return this;
         }
 
-        public Builder expand(List<String> expand) {
+        public Builder expand(List<CollectionsListRequestExpandItem> expand) {
             this.expand = Optional.ofNullable(expand);
             return this;
         }
 
-        public Builder expand(String expand) {
+        public Builder expand(CollectionsListRequestExpandItem expand) {
             this.expand = Optional.of(Collections.singletonList(expand));
             return this;
         }
@@ -501,7 +501,7 @@ public final class CollectionsListRequest {
         }
 
         /**
-         * <p>Number of results to return per page.</p>
+         * <p>Number of results to return per page. The maximum limit is 100.</p>
          */
         @JsonSetter(value = "page_size", nulls = Nulls.SKIP)
         public Builder pageSize(Optional<Integer> pageSize) {

@@ -10,7 +10,6 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
-import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.merge.api.core.ObjectMappers;
 import java.time.OffsetDateTime;
@@ -45,7 +44,7 @@ public final class File {
 
     private final Optional<FileFolder> folder;
 
-    private final Optional<Map<String, JsonNode>> checksum;
+    private final Optional<Map<String, Object>> checksum;
 
     private final Optional<FilePermissions> permissions;
 
@@ -57,7 +56,7 @@ public final class File {
 
     private final Optional<Boolean> remoteWasDeleted;
 
-    private final Optional<Map<String, JsonNode>> fieldMappings;
+    private final Optional<Map<String, Object>> fieldMappings;
 
     private final Optional<List<RemoteData>> remoteData;
 
@@ -75,13 +74,13 @@ public final class File {
             Optional<String> mimeType,
             Optional<String> description,
             Optional<FileFolder> folder,
-            Optional<Map<String, JsonNode>> checksum,
+            Optional<Map<String, Object>> checksum,
             Optional<FilePermissions> permissions,
             Optional<FileDrive> drive,
             Optional<OffsetDateTime> remoteCreatedAt,
             Optional<OffsetDateTime> remoteUpdatedAt,
             Optional<Boolean> remoteWasDeleted,
-            Optional<Map<String, JsonNode>> fieldMappings,
+            Optional<Map<String, Object>> fieldMappings,
             Optional<List<RemoteData>> remoteData,
             Map<String, Object> additionalProperties) {
         this.id = id;
@@ -195,7 +194,7 @@ public final class File {
      * @return This field stores file checksum data. 'type' indicates the algorithm (e.g. crc_32, sha1, sha256, quickXor, or md5), and 'content_hash' is the unique hash used to verify file integrity and detect alterations.
      */
     @JsonProperty("checksum")
-    public Optional<Map<String, JsonNode>> getChecksum() {
+    public Optional<Map<String, Object>> getChecksum() {
         return checksum;
     }
 
@@ -240,7 +239,7 @@ public final class File {
     }
 
     @JsonProperty("field_mappings")
-    public Optional<Map<String, JsonNode>> getFieldMappings() {
+    public Optional<Map<String, Object>> getFieldMappings() {
         return fieldMappings;
     }
 
@@ -339,7 +338,7 @@ public final class File {
 
         private Optional<FileFolder> folder = Optional.empty();
 
-        private Optional<Map<String, JsonNode>> checksum = Optional.empty();
+        private Optional<Map<String, Object>> checksum = Optional.empty();
 
         private Optional<FilePermissions> permissions = Optional.empty();
 
@@ -351,7 +350,7 @@ public final class File {
 
         private Optional<Boolean> remoteWasDeleted = Optional.empty();
 
-        private Optional<Map<String, JsonNode>> fieldMappings = Optional.empty();
+        private Optional<Map<String, Object>> fieldMappings = Optional.empty();
 
         private Optional<List<RemoteData>> remoteData = Optional.empty();
 
@@ -538,12 +537,12 @@ public final class File {
          * <p>This field stores file checksum data. 'type' indicates the algorithm (e.g. crc_32, sha1, sha256, quickXor, or md5), and 'content_hash' is the unique hash used to verify file integrity and detect alterations.</p>
          */
         @JsonSetter(value = "checksum", nulls = Nulls.SKIP)
-        public Builder checksum(Optional<Map<String, JsonNode>> checksum) {
+        public Builder checksum(Optional<Map<String, Object>> checksum) {
             this.checksum = checksum;
             return this;
         }
 
-        public Builder checksum(Map<String, JsonNode> checksum) {
+        public Builder checksum(Map<String, Object> checksum) {
             this.checksum = Optional.ofNullable(checksum);
             return this;
         }
@@ -619,12 +618,12 @@ public final class File {
         }
 
         @JsonSetter(value = "field_mappings", nulls = Nulls.SKIP)
-        public Builder fieldMappings(Optional<Map<String, JsonNode>> fieldMappings) {
+        public Builder fieldMappings(Optional<Map<String, Object>> fieldMappings) {
             this.fieldMappings = fieldMappings;
             return this;
         }
 
-        public Builder fieldMappings(Map<String, JsonNode> fieldMappings) {
+        public Builder fieldMappings(Map<String, Object> fieldMappings) {
             this.fieldMappings = Optional.ofNullable(fieldMappings);
             return this;
         }
