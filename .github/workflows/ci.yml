@@ -20,6 +20,9 @@ jobs:
       - name: Compile
         run: ./gradlew compileJava
 
+      - name: Check formatting
+        run: ./gradlew spotlessCheck
+
   test:
     needs: [ compile ]
     runs-on: ubuntu-latest
